@@ -1,0 +1,4 @@
+enum Userlevel {
+  Admin, User, Guest
+
+}
