@@ -16,6 +16,34 @@ export class User {
   private sex: Sex;
   private lastLogin: DateTimeFormat;
   private loggedIn: boolean;
+  private sessionID: number;
+
+  isAdmin (): boolean {
+    return this.userLevel === Userlevel.Admin;
+  }
+
+  isLoggedIn (): boolean {
+    return this.loggedIn;
+  }
+
+  getFullName(): string {
+    return this.firstName + ' ' + this.lastName;
+  }
+
+  getUID (): number {
+    return this.id;
+  }
+
+  getSession (): number {
+    return this.sessionID;
+  }
+
+  getLastOnline(): DateTimeFormat {
+    return this.lastLogin;
+  }
+
+
+
 
 
 
