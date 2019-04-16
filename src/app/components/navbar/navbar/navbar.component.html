@@ -34,29 +34,32 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <form class="px-4 py-3" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <h3>Sign in</h3>
             <div class="form-group">
               <label for="exampleDropdownFormEmail1">Email address</label>
               <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com" formControlName="email">
             </div>
-            <div class="form-group">
+            <div class="form-group mb-2">
               <label for="exampleDropdownFormPassword1">Password</label>
               <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password" formControlName="password">
             </div>
-            <div class="form-check">
+            <p class="mb-2"><a  id="forgot-password" routerLink="/passwordrecovery">Forgot password?</a></p>
+            <div class="form-check mb-2">
               <input type="checkbox" class="form-check-input" id="dropdownCheck">
               <label class="form-check-label" for="dropdownCheck">
                 Remember me
               </label>
             </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+            <button class="btn btn-outline-primary ml-1" routerLink="/register">Sign up</button>
 
           </form>
-          <button type="submit" class="btn-block" (click)="glogin()" >Fix proper google signin button</button>
-          <button type="submit" class="btn-block" (click)="fblogin()" >Fix proper fb signin button</button>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" routerLink="/register">New around here? Sign up</a>
-          <a class="dropdown-item" routerLink="/passwordrecovery">Forgot password?</a>
-        </div>
+          <!-- Have to fix PROPER login to facebook/google buttons -->
+          <button type="button" class="btn btn-lg" (click)="glogin()" ><img src="../../../../assets/images/btngsignin.png" style="background-size:100%" alt="Test"> </button>
+          <button type="button" class="btn btn-lg" (click)="fblogin()"><img src="../../../../assets/images/facebooklogin1.png" style="background-size:100%" alt="Test"></button>
+          </div>
+
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
         <a class="nav-link" routerLink="/home" (click)="onLogoutClick()">Logout</a>
