@@ -31,6 +31,10 @@ export class NavbarComponent implements OnInit {
       }
     });
 
+    this.loginService.getLoggedInGoogleUser().subscribe( user => {
+      this.user = user;
+    })
+
     this.loginService.getLoggedInFacebookUser().subscribe( user => {
       console.log( user );
       this.user = user;
@@ -56,8 +60,14 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  glogin() {
+    this.loginService.loginGoogle();
+  }
+
   fblogin(){
     this.loginService.loginFacebook();
     
   }
+
+  
 }

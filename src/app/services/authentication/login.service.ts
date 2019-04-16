@@ -18,6 +18,14 @@ export class LoginService {
     });
   }
 
+  loginGoogle() {
+    this.afAuth.auth.signInWithRedirect( new auth.GoogleAuthProvider());
+  }
+
+  getLoggedInGoogleUser() {
+    return this.afAuth.authState;
+  }
+
   loginFacebook(){
     this.afAuth.auth.signInWithRedirect( new auth.FacebookAuthProvider()).then(success => {
       console.log(success);
