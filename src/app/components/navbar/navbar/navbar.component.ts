@@ -11,6 +11,9 @@ import {AuthGuard} from '../../../services/authentication/auth-guard.service';
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean;
+
+  user: firebase.User;
+
   profileForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
@@ -27,6 +30,12 @@ export class NavbarComponent implements OnInit {
         this.isLoggedIn = false;
       }
     });
+
+    this.loginService.getLoggedInFacebookUser().subscribe( user => {
+      console.log( user );
+      this.user = user;
+    })
+
   }
 
   onSubmit() {
@@ -45,5 +54,10 @@ export class NavbarComponent implements OnInit {
     this.loginService.logout();
     this.isLoggedIn = false;
     this.router.navigate(['/home']);
+  }
+
+  fblogin(){
+    this.loginService.loginFacebook();
+    
   }
 }
