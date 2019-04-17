@@ -1,0 +1,19 @@
+import { Injectable } from '@angular/core';
+import {AngularFireAuth} from "@angular/fire/auth";
+import {Router} from "@angular/router";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class RecoverpwService {
+
+  constructor(private afAuth: AngularFireAuth, private router: Router) { }
+
+
+  resetPassword(_email: string) {
+    return this.afAuth.auth.sendPasswordResetEmail(_email)
+      .then(() => console.log("email sent"))
+      .catch((error) => console.log(error))
+
+  }
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from "../../../services/authentication/login.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {RecoverpwService} from "../../../services/mail/recoverpw.service";
 
 @Component({
   selector: 'app-passwordrecovery',
@@ -9,7 +10,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class PasswordrecoveryComponent implements OnInit {
 
-  constructor(private service: LoginService) { }
+  constructor(private service: RecoverpwService) { }
 
   private email: string;
 
