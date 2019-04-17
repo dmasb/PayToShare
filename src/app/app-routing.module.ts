@@ -14,7 +14,7 @@ import {PasswordrecoveryComponent} from './components/body/passwordrecovery/pass
 import {IndexComponent} from './components/body/index/index.component';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
+  {path: '', component: HomeComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
   {path: 'mypage', component: MypageComponent, canActivate: [AuthGuard]},
   {path: 'pricing', component: PricingComponent},
