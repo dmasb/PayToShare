@@ -1,10 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase';
-<<<<<<< HEAD
-=======
-import {Router} from '@angular/router';
->>>>>>> 72e71021a0adb1602d219e579cd6f5742a367748
 
 @Injectable({
   providedIn: 'root'
@@ -27,14 +23,6 @@ export class LoginService {
 
   loginGoogle() {
     this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
-<<<<<<< HEAD
-=======
-
-     this.afAuth.auth.getRedirectResult().then(result => {
-      if (result.user) {
-        this.router.navigate(['mypage']);
-      }});
->>>>>>> 72e71021a0adb1602d219e579cd6f5742a367748
   }
 
   getLoggedInGoogleUser() {
@@ -42,13 +30,7 @@ export class LoginService {
   }
 
   loginFacebook() {
-<<<<<<< HEAD
     this.afAuth.auth.signInWithRedirect(new auth.FacebookAuthProvider());
-=======
-    this.afAuth.auth.signInWithRedirect(new auth.FacebookAuthProvider()).then(success => {
-      console.log(success);
-    });
->>>>>>> 72e71021a0adb1602d219e579cd6f5742a367748
   }
 
   getLoggedInFacebookUser() {
