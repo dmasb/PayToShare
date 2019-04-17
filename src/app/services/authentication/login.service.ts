@@ -1,38 +1,39 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
-import { auth } from 'firebase';
-import { Router } from '@angular/router';
+import {auth} from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) {
+  constructor(private afAuth: AngularFireAuth) {
   }
 
   login(email: string, password: string) {
-    return new Promise((resolve, reject) => {
+    return new Promise(() => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
-        .then(userData => resolve(userData), err => reject(err));
+        .then(success => {
+          console.log('Log in success, redirecting');
+        }, failed => {
+          console.warn('Wrong email or password');
+        });
     });
   }
 
   loginGoogle() {
-    this.afAuth.auth.signInWithRedirect( new auth.GoogleAuthProvider());
+    this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
   }
 
   getLoggedInGoogleUser() {
     return this.afAuth.authState;
   }
 
-  loginFacebook(){
-    this.afAuth.auth.signInWithRedirect( new auth.FacebookAuthProvider()).then(success => {
-      console.log(success);
-    });
+  loginFacebook() {
+    this.afAuth.auth.signInWithRedirect(new auth.FacebookAuthProvider());
   }
 
-  getLoggedInFacebookUser(){
+  getLoggedInFacebookUser() {
     return this.afAuth.authState;
   }
 
