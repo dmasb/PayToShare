@@ -13,18 +13,22 @@ export class PasswordrecoveryComponent implements OnInit {
   constructor(private service: RecoverpwService) { }
 
   private email: string = '';
-  private isValid: boolean = true;
+  private showError: boolean = false;
+  private valid: boolean;
 
   ngOnInit() {
   }
 
   emptyEmail(): boolean {
-    if(this.email === '') this.isValid = true; // reset valid state
+    if(this.email === '') {
+      this.showError = false; // remove error msg
+    }
     return this.email === '';
   }
   async resetPassword(){
     await this.service.resetPassword(this.email).then( () => {
-      this.isValid = this.service.isValidEmail();
+      this.valid = this.service.isValidEmail();
+      this.showError = !this.valid;
     });
   }
 }
