@@ -9,11 +9,22 @@ export class RecoverpwService {
 
   constructor(private afAuth: AngularFireAuth, private router: Router) { }
 
+  private isValid: boolean;
 
   resetPassword(_email: string) {
     return this.afAuth.auth.sendPasswordResetEmail(_email)
-      .then(() => console.log("email sent"))
-      .catch((error) => console.log(error))
+      .then(() => {
+        console.log("email sent");
+        this.isValid = true;
+      })
+      .catch((error) => {
+        this.isValid = false;
+        console.log(error)
+      })
 
+  }
+
+  isValidEmail() : boolean {
+    return this.isValid;
   }
 }
