@@ -11,19 +11,13 @@ export class PasswordrecoveryComponent implements OnInit {
 
   constructor(private service: LoginService) { }
 
-  form = new FormGroup({
-    email: new FormControl('')
-  });
+  private email: string;
 
   ngOnInit() {
   }
 
-  onSubmit() {
-    let email = this.form.controls.email.value;
-    this.resetPassword(email)
-  }
 
-  async resetPassword(email: string){
-    await this.service.resetPassword(email);
+  async resetPassword(){
+    await this.service.resetPassword(this.email);
   }
 }
