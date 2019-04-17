@@ -24,32 +24,27 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.authGuard.getAuth().subscribe(auth => {
-      if (auth) {
-        this.isLoggedIn = true;
-      } else {
-        this.isLoggedIn = false;
-      }
+      this.isLoggedIn = !!auth;
     });
 
-    this.loginService.getLoggedInGoogleUser().subscribe( user => {
+    this.loginService.getLoggedInGoogleUser().subscribe(user => {
       this.user = user;
-    })
+    });
 
-    this.loginService.getLoggedInFacebookUser().subscribe( user => {
-      console.log( user );
+    this.loginService.getLoggedInFacebookUser().subscribe(user => {
       this.user = user;
-    })
+    });
 
   }
 
   onSubmit() {
     const email = this.profileForm.controls.email.value;
     const password = this.profileForm.controls.password.value;
-    console.log(email);
-    console.log(password);
     this.loginService.login(email, password).then(loggedIn => {
         this.isLoggedIn = true;
         this.router.navigate(['/mypage']);
+      }, fail => {
+      console.log('failed');
       }
     );
   }
@@ -64,10 +59,7 @@ export class NavbarComponent implements OnInit {
     this.loginService.loginGoogle();
   }
 
-  fblogin(){
+  fblogin() {
     this.loginService.loginFacebook();
-    
   }
-
-  
 }
