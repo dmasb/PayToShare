@@ -20,11 +20,6 @@ export class LoginService {
 
   loginGoogle() {
     this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
-
-     this.afAuth.auth.getRedirectResult().then(result => {
-      if (result.user) {
-        this.router.navigate(['mypage']);
-      }});
   }
 
   getLoggedInGoogleUser() {
@@ -43,6 +38,12 @@ export class LoginService {
 
   logout() {
     this.afAuth.auth.signOut();
+  }
+
+  resetPassword(_email: string) {
+    return this.afAuth.auth.sendPasswordResetEmail(_email)
+      .then(() => console.log("email sent"))
+      .catch((error) => console.log(error))
   }
 }
 
