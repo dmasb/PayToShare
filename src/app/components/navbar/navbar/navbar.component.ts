@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
     password: new FormControl('')
   });
 
+
   constructor(private authGuard: AuthGuard, private loginService: LoginService, private router: Router) {
   }
 

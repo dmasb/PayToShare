@@ -26,7 +26,6 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/features">Features</a>
-
         <li class="nav-item dropdown" *ngIf="!isLoggedIn">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,8 +34,6 @@
           <div class="dropdown-menu dropdown-menu-right border border-secondary">
             <form class="px-4 py-3" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
               <h3>Sign in</h3>
-
-
               <div class="form-group mt-2">
                 <label class="sr-only" for="exampleDropdownFormEmail1">Email address</label>
                 <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com" formControlName="email">
