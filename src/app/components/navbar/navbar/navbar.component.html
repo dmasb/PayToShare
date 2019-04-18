@@ -35,16 +35,8 @@
           <div class="dropdown-menu dropdown-menu-right border border-secondary">
             <form class="px-4 py-3" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
               <h3>Sign in</h3>
-              <div class="row">
-                <div class="col-12">
-                  <!-- Have to fix PROPER login to facebook/google buttons -->
-                  <button type="button" class="loginBtn loginBtn--google" (click)="glogin()" > Google </button>
-                  <button type="button" class="loginBtn loginBtn--facebook" (click)="fblogin()"> Facebook</button>
-                </div>
-              </div>
-              <div class="row mt-2">
-                <div class="col-12"><h6>OR</h6></div>
-              </div>
+
+
               <div class="form-group mt-2">
                 <label class="sr-only" for="exampleDropdownFormEmail1">Email address</label>
                 <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com" formControlName="email">
@@ -60,6 +52,16 @@
                 <label class="form-check-label" for="dropdownCheck">
                   Remember me
                 </label>
+              </div>
+              <div class="row mt-2">
+                <div class="col-12"><h6>OR</h6></div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <!-- Have to fix PROPER login to facebook/google buttons -->
+                  <button type="button" class="loginBtn loginBtn--google" (click)="glogin()" > Google </button>
+                  <button type="button" class="loginBtn loginBtn--facebook" (click)="fblogin()"> Facebook</button>
+                </div>
               </div>
             </form>
             </div>
