@@ -19,12 +19,14 @@ export class PasswordrecoveryComponent implements OnInit {
   ngOnInit() {
   }
 
+  // Resets error msg when email string is empty.
   emptyEmail(): boolean {
     if(this.email === '') {
-      this.showError = false; // remove error msg
+      this.showError = false;
     }
     return this.email === '';
   }
+  // Requests a password reset from the Recover-service and sets status message.
   async resetPassword(){
     await this.service.resetPassword(this.email).then( () => {
       this.valid = this.service.isValidEmail();
