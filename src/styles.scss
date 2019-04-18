@@ -1,2 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+#content-wrap {
+  padding-bottom: 3.5em;    /* Footer height */
+}/* You can add global styles to this file, and also import other style files */
 
