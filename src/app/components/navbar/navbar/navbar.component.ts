@@ -40,11 +40,11 @@ export class NavbarComponent implements OnInit {
   onSubmit() {
     const email = this.profileForm.controls.email.value;
     const password = this.profileForm.controls.password.value;
-    this.loginService.login(email, password).then(loggedIn => {
+    this.loginService.login(email, password).then(() => {
         this.isLoggedIn = true;
         this.router.navigate(['/mypage']);
-      }, fail => {
-      console.log('failed');
+      }, () => {
+        console.log('failed');
       }
     );
   }
@@ -52,7 +52,7 @@ export class NavbarComponent implements OnInit {
   onLogoutClick() {
     this.loginService.logout();
     this.isLoggedIn = false;
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 
   glogin() {
