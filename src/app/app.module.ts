@@ -19,6 +19,7 @@ import {LoginComponent} from './components/body/login/login.component';
 import { PasswordrecoveryComponent } from './components/body/passwordrecovery/passwordrecovery.component';
 import { IndexComponent } from './components/body/index/index.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AdminComponent } from './components/navbar/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FooterComponent } from './components/footer/footer.component';
     MypageComponent,
     PasswordrecoveryComponent,
     IndexComponent,
-    FooterComponent
+    FooterComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
