@@ -5,18 +5,16 @@ import DateTimeFormat = Intl.DateTimeFormat;
 
 export class User {
 
-  private userLevel: Userlevel;
-  private id: number;
-  private firstName: String;
-  private lastName: String;
-  private city: string;
-  private socialSecurityNr: number;
-  private address: String;
-  private zipCode: number;
-  private sex: Sex;
-  private lastLogin: DateTimeFormat;
-  private loggedIn: boolean;
-  private sessionID: number;
+  private userLevel?: Userlevel = Userlevel.User;
+  private firstName?: String = "";
+  private lastName?: String = "";
+  private city?: string = "";
+  private address?: String = "";
+  private phone: number = null;
+  private sex?: Sex = null;
+  private lastLogin?: DateTimeFormat;
+  private loggedIn?: boolean = false;
+  private sessionID?: number;
 
   isAdmin (): boolean {
     return this.userLevel === Userlevel.Admin;
@@ -30,16 +28,20 @@ export class User {
     return this.firstName + ' ' + this.lastName;
   }
 
-  getUID (): number {
-    return this.id;
-  }
-
   getSession (): number {
     return this.sessionID;
   }
 
   getLastOnline(): DateTimeFormat {
     return this.lastLogin;
+  }
+
+  setName(name: string){
+    this.firstName = name;
+  }
+
+  setPhone(number: number){
+    this.phone = number;
   }
 
 
