@@ -12,6 +12,7 @@ import {RegisterComponent} from './components/body/register/register.component';
 import {LoginComponent} from './components/body/login/login.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
 import {IndexComponent} from './components/body/index/index.component';
+import {ProductmanagementComponent} from './components/navbar/admin/productmanagement/productmanagement.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: RegisterComponent},
   {path: 'recover', component: PasswordrecoveryComponent},
-  {path: '', component: IndexComponent}
+  {path: '', component: IndexComponent},
+  {path: 'prodmanagement', component: ProductmanagementComponent}
 ];
 
 @NgModule({

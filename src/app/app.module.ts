@@ -21,6 +21,9 @@ import { IndexComponent } from './components/body/index/index.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FastAddComponent } from './components/navbar/admin/fast-add/fast-add.component';
 import { AdminBtnComponent } from './components/navbar/admin/admin-btn/admin-btn.component';
+import {NgbDatepickerModule, NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
+import { ProductmanagementComponent } from './components/navbar/admin/productmanagement/productmanagement.component';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { AdminBtnComponent } from './components/navbar/admin/admin-btn/admin-btn
     IndexComponent,
     FooterComponent,
     FastAddComponent,
-    AdminBtnComponent
+    AdminBtnComponent,
+    ProductmanagementComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -47,9 +52,11 @@ import { AdminBtnComponent } from './components/navbar/admin/admin-btn/admin-btn
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
+    NgbDatepickerModule,
+    NgbModalModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
