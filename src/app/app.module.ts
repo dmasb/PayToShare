@@ -18,6 +18,7 @@ import {RegisterComponent} from './components/body/register/register.component';
 import {LoginComponent} from './components/body/login/login.component';
 import { PasswordrecoveryComponent } from './components/body/passwordrecovery/passwordrecovery.component';
 import { IndexComponent } from './components/body/index/index.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { IndexComponent } from './components/body/index/index.component';
     WeeklydealsComponent,
     MypageComponent,
     PasswordrecoveryComponent,
-    IndexComponent
+    IndexComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
