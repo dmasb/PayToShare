@@ -19,7 +19,8 @@ import {LoginComponent} from './components/body/login/login.component';
 import { PasswordrecoveryComponent } from './components/body/passwordrecovery/passwordrecovery.component';
 import { IndexComponent } from './components/body/index/index.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { AdminComponent } from './components/navbar/admin/admin.component';
+import { FastAddComponent } from './components/navbar/admin/fast-add/fast-add.component';
+import { AdminBtnComponent } from './components/navbar/admin/admin-btn/admin-btn.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AdminComponent } from './components/navbar/admin/admin.component';
     PasswordrecoveryComponent,
     IndexComponent,
     FooterComponent,
-    AdminComponent
+    FastAddComponent,
+    AdminBtnComponent
   ],
   imports: [
     BrowserModule,
