@@ -23,6 +23,17 @@ export class AuthGuard implements CanActivate {
     }));
   }
 
+  isAdmin(): Observable<boolean> {
+    return this.afAuth.authState.pipe(map(auth => {
+      if (!auth) {
+        this.router.navigate(['/login']);
+        return false;
+      } else {
+        return true;
+      }
+    }));
+  }
+
   getAuth() {
     return this.afAuth.authState.pipe(map(auth => auth));
   }
