@@ -21,7 +21,7 @@ import { IndexComponent } from './components/body/index/index.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FastAddComponent } from './components/navbar/admin/fast-add/fast-add.component';
 import { AdminBtnComponent } from './components/navbar/admin/admin-btn/admin-btn.component';
-import {NgbDatepickerModule, NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDatepickerModule, NgbModalModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { ProductmanagementComponent } from './components/navbar/admin/productmanagement/productmanagement.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -56,7 +56,8 @@ import { far } from '@fortawesome/free-regular-svg-icons';
     AppRoutingModule,
     NgbDatepickerModule,
     NgbModalModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgbPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent],
