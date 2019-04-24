@@ -29,8 +29,6 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import {AngularFireDatabase} from '@angular/fire/database';
 
-import { TempCatServiceComponent } from './components/body/temp-cat-service/temp-cat-service.component';
-
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -45,13 +43,9 @@ import { TempCatServiceComponent } from './components/body/temp-cat-service/temp
     PasswordrecoveryComponent,
     IndexComponent,
     FooterComponent,
-<<<<<<< HEAD
     FastAddComponent,
     AdminBtnComponent,
     ProductmanagementComponent,
-=======
-    TempCatServiceComponent
->>>>>>> 97a82329e55456aaf98fe3403dbd06af0f81f51b
   ],
   imports: [
     BrowserModule,
