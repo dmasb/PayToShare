@@ -16,13 +16,15 @@ export class MypageComponent implements OnInit {
 
   constructor(private authInfo: AuthGuard, private roleGuard: RoleGuardService) {
     this.userEmail = this.authInfo.getFireBaseUser().email;
-    this.roleGuard.getUser().then( (user) => this.user = user, () => console.log('Error: User not fetched.'));
+    this.roleGuard.getUser().subscribe((val) => {
+      this.user = val;
+    })
   }
   ngOnInit() {
   }
 
   isAdmin(): boolean {
-
+    console.log(this.user.rank);
     return this.user.rank == Userrank.Admin;
   }
 
