@@ -1,48 +1,118 @@
 <div class="container">
   <p style="text-align: center">LOL <code>TOPKEK</code> LULZ</p>
-  <form ngFormOptions="">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th scope="col"><label>
-          <input type="checkbox">
-        </label></th>
-        <th scope="col">Product Name</th>
-        <th scope="col">Price</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Actions</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let country of countries">
-        <th scope="row"><label>
-          <input type="checkbox">
-        </label></th>
-        <td>
-          <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2"
-               style="width: 20px">
-          {{ country.name }}
-        </td>
-        <td>{{ country.price | number}}</td>
-        <td>{{ country.quantity | number }}</td>
-        <td><fa-icon [icon]="['fas', 'edit']" size="lg" class="mr-2"></fa-icon>
-          <fa-icon [icon]="['fas', 'trash-alt']" size="lg"></fa-icon>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    
-    <div class="d-flex justify-content-between p-2">
-      <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
-      </ngb-pagination>
 
-      <label>
-        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
-          <option [ngValue]="2">2 items per page</option>
-          <option [ngValue]="4">4 items per page</option>
-          <option [ngValue]="6">6 items per page</option>
-        </select>
-      </label>
-    </div>
-  </form>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col"><label>
+        <input type="checkbox" name="MAIN">
+      </label></th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let country of countries; index as i">
+      <th scope="row"><label>
+        <input type="checkbox" name="checkbox + {{ i + 1}}">
+      </label></th>
+      <td>
+        <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2"
+             style="width: 20px" alt="">
+        {{ country.name }}
+      </td>
+      <td>{{ country.price | number}}</td>
+      <td>{{ country.quantity | number }}</td>
+      <td>
+        <div class="row">
+          <div class="col-1">
+            <form ngFormOptions="standalone">
+              <a role="button" style="cursor: pointer;" (click)="openVerticallyCentered(content)"><fa-icon [icon]="['fas', 'edit']" size="lg"></fa-icon></a>
+            </form>
+          </div>
+          <div class="col-2">
+            <form ngFormOptions="standalone">
+              <a role="button" style="cursor: pointer;"><fa-icon [icon]="['fas', 'trash-alt']" size="lg"></fa-icon></a>
+          </form>
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+    </ngb-pagination>
+
+    <label>
+      <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+        <option [ngValue]="2">2 items per page</option>
+        <option [ngValue]="4">4 items per page</option>
+        <option [ngValue]="6">6 items per page</option>
+      </select>
+    </label>
+  </div>
 </div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Product</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Product name</label>
+          <input type="text" class="form-control" id="inputEmail4" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress">Description</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+      </div>
+      <div class="form-group">
+        <label for="inputAddress2">Address 2</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">City</label>
+          <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputState">State</label>
+          <select id="inputState" class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputZip">Zip</label>
+          <input type="text" class="form-control" id="inputZip">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck">
+          <label class="form-check-label" for="gridCheck">
+            Check me out
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlFile1">Example file input</label>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Add</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<pre>{{closeResult}}</pre>

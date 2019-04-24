@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {asyncFallback} from '@angular/core/testing/src/async_fallback';
 
 @Component({
   selector: 'app-fast-add',
@@ -8,7 +9,9 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class FastAddComponent implements OnInit {
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal) {
+  }
+
   closeResult: string;
 
   private static getDismissReason(reason: any): string {
@@ -17,12 +20,12 @@ export class FastAddComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 
   openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true });
+    this.modalService.open(content, {centered: true});
   }
 
   ngOnInit(): void {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 interface Country {
   id?: number;
@@ -99,10 +100,18 @@ export class ProductmanagementComponent {
   page = 1;
   pageSize = 4;
   collectionSize = COUNTRIES.length;
+  name: any;
+  closeResult: string;
+
+  constructor(private modalService: NgbModal) {}
 
   get countries(): Country[] {
     return COUNTRIES
       .map((country, i) => ({id: i + 1, ...country}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
+  }
+
 }
