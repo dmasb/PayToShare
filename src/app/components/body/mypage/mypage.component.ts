@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthGuard} from '../../../services/authentication/auth-guard.service';
-import {User} from "../../../models/user";
+import {IUser} from "../../../models/user";
+import {RoleGuardService} from "../../../services/authentication/role-guard.service";
+import {Userrank} from "../../../models/userrank";
 
 @Component({
   selector: 'app-mypage',
@@ -10,15 +12,18 @@ import {User} from "../../../models/user";
 export class MypageComponent implements OnInit {
 
   userEmail: string;
-  user: User;
+  user: IUser
 
-  constructor(private authInfo: AuthGuard) {
+  constructor(private authInfo: AuthGuard, private roleGuard: RoleGuardService) {
     this.userEmail = this.authInfo.getFireBaseUser().email;
-    //this.user = this.authInfo.getFireBaseUser();
-
+    this.roleGuard.getUser().then( (user) => this.user = user, () => console.log('Error: User not fetched.'));
+  }
+  ngOnInit() {
   }
 
-  ngOnInit() {
+  isAdmin(): boolean {
+
+    return this.user.rank == Userrank.Admin;
   }
 
 }

@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from './services/authentication/auth-guard.service';
+import {RoleGuardService} from "./services/authentication/role-guard.service";
 
 import {HomeComponent} from './components/body/home/home.component';
 import {FeaturesComponent} from './components/body/features/features.component';
@@ -35,7 +36,7 @@ const routes: Routes = [
   exports: [
     RouterModule
   ],
-  providers: [AuthGuard]
+  providers: [AuthGuard, RoleGuardService]
 })
 export class AppRoutingModule {
 }
