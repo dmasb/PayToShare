@@ -20,6 +20,8 @@ import { PasswordrecoveryComponent } from './components/body/passwordrecovery/pa
 import { IndexComponent } from './components/body/index/index.component';
 import { FooterComponent } from './components/footer/footer.component';
 
+import { TempCatServiceComponent } from './components/body/temp-cat-service/temp-cat-service.component';
+
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -33,7 +35,8 @@ import { FooterComponent } from './components/footer/footer.component';
     MypageComponent,
     PasswordrecoveryComponent,
     IndexComponent,
-    FooterComponent
+    FooterComponent,
+    TempCatServiceComponent
   ],
   imports: [
     BrowserModule,
