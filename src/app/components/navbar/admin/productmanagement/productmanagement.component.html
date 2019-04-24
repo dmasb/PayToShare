@@ -48,7 +48,7 @@
     </ngb-pagination>
 
     <label>
-      <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+      <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (click)="onSubmit();">
         <option [ngValue]="2">2 items per page</option>
         <option [ngValue]="4">4 items per page</option>
         <option [ngValue]="6">6 items per page</option>

@@ -1,5 +1,15 @@
-import { Component } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {Component} from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+
+interface Product {
+  name: string;
+  description: string;
+  price: number;
+  quantity: number;
+}
 
 interface Country {
   id?: number;
@@ -95,6 +105,8 @@ const COUNTRIES: Country[] = [
   templateUrl: './productmanagement.component.html',
   styleUrls: ['./productmanagement.component.scss']
 })
+
+
 export class ProductmanagementComponent {
 
   page = 1;
@@ -103,15 +115,24 @@ export class ProductmanagementComponent {
   name: any;
   closeResult: string;
 
-  constructor(private modalService: NgbModal) {}
+  prod: Product;
+
+  constructor(private modalService: NgbModal, private db: AngularFirestore) {
+  }
 
   get countries(): Country[] {
     return COUNTRIES
       .map((country, i) => ({id: i + 1, ...country}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
+
   openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true });
+    this.modalService.open(content, {centered: true});
   }
 
+  /*onSubmit(id: string) {
+    this.db.doc(`davids/${id}`).delete();
+  }*/
 }
+
+
