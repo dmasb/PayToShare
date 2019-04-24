@@ -23,7 +23,10 @@ import { FastAddComponent } from './components/navbar/admin/fast-add/fast-add.co
 import { AdminBtnComponent } from './components/navbar/admin/admin-btn/admin-btn.component';
 import {NgbDatepickerModule, NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 import { ProductmanagementComponent } from './components/navbar/admin/productmanagement/productmanagement.component';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,6 @@ import { ProductmanagementComponent } from './components/navbar/admin/productman
     FastAddComponent,
     AdminBtnComponent,
     ProductmanagementComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -53,10 +55,14 @@ import { ProductmanagementComponent } from './components/navbar/admin/productman
     FormsModule,
     AppRoutingModule,
     NgbDatepickerModule,
-    NgbModalModule
+    NgbModalModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {
+  constructor() {
+    library.add(fas, far);
+  }
 }
