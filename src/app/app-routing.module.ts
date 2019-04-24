@@ -14,6 +14,7 @@ import {PasswordrecoveryComponent} from './components/body/passwordrecovery/pass
 import {IndexComponent} from './components/body/index/index.component';
 import {ProductmanagementComponent} from './components/navbar/admin/productmanagement/productmanagement.component';
 
+
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'recover', component: PasswordrecoveryComponent},
   {path: '', component: IndexComponent},
   {path: 'prodmanagement', component: ProductmanagementComponent}
+
 ];
 
 @NgModule({
