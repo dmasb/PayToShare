@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../../../models/category';
-import { AddCategoryService } from 'src/app/services/CRUD/add-category.service';
+import { AddCategoryService } from 'src/app/services/crud/add-category.service';
 
 @Component({
   selector: 'app-temp-cat-service',

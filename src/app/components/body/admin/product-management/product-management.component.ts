@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 
 interface Product {
   name: string;
@@ -101,13 +99,13 @@ const COUNTRIES: Country[] = [
 ];
 
 @Component({
-  selector: 'app-productmanagement',
-  templateUrl: './productmanagement.component.html',
-  styleUrls: ['./productmanagement.component.scss']
+  selector: 'app-product-management',
+  templateUrl: './product-management.component.html',
+  styleUrls: ['./product-management.component.scss']
 })
 
 
-export class ProductmanagementComponent {
+export class ProductManagementComponent {
 
   page = 1;
   pageSize = 4;
@@ -134,5 +132,4 @@ export class ProductmanagementComponent {
     this.db.doc(`davids/${id}`).delete();
   }*/
 }
-
 

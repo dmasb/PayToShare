@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {asyncFallback} from '@angular/core/testing/src/async_fallback';
+import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-fast-add',
-  templateUrl: './fast-add.component.html',
-  styleUrls: ['./fast-add.component.scss']
+  selector: 'app-quick-add',
+  templateUrl: './quick-add.component.html',
+  styleUrls: ['./quick-add.component.scss']
 })
-export class FastAddComponent implements OnInit {
+export class QuickAddComponent implements OnInit {
 
   constructor(private modalService: NgbModal) {
   }
@@ -30,4 +29,5 @@ export class FastAddComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductmanagementComponent } from './productmanagement.component';
+import { QuickAddComponent } from './quick-add.component';
 
-describe('ProductmanagementComponent', () => {
-  let component: ProductmanagementComponent;
-  let fixture: ComponentFixture<ProductmanagementComponent>;
+describe('QuickAddComponent', () => {
+  let component: QuickAddComponent;
+  let fixture: ComponentFixture<QuickAddComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductmanagementComponent ]
+      declarations: [ QuickAddComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductmanagementComponent);
+    fixture = TestBed.createComponent(QuickAddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
