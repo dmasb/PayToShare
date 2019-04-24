@@ -9,6 +9,7 @@ import { Category } from '../../models/category';
 })
 
 export class AddCategoryService {
+  
   röv: AngularFirestoreCollection<Category>;
   categories: Observable<any[]>;
 
