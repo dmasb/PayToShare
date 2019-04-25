@@ -24,6 +24,7 @@ export class AddComponent implements OnInit {
   addCategory() {
     const category: Category = {title: this.newCategoryForm.controls.categoryName.value};
     this.categoryService.addCategory(category);
+    this.modalService.dismissAll();
   }
 
   openCenteredDialog(addCategoryModal) {

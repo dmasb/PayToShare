@@ -48,7 +48,6 @@ export class CategoryService implements OnInit {
   }
 
   updateCategory(category: Category) {
-    console.log(category.title + ' aaaaaand ' + category.id);
     this.afs.doc(`categories/${category.id}`).update(category);
   }
 }

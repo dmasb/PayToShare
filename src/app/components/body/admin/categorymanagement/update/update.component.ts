@@ -33,7 +33,7 @@ export class UpdateComponent implements OnInit {
       id: this.id,
       title: this.newCategoryNameForm.controls.categoryName.value
     };
-    console.log(category.id + '  --------- ' + category.title);
     this.categoryService.updateCategory(category);
+    this.modalService.dismissAll();
   }
 }

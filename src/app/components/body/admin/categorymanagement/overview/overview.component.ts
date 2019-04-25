@@ -14,7 +14,6 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class OverviewComponent implements OnInit {
 
   categories: Category[];
-  closeResult: string;
   newCategoryForm = new FormGroup({
     categoryName: new FormControl(''),
   });
