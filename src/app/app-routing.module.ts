@@ -21,14 +21,14 @@ export const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
-  {path: 'mypage', component: MypageComponent, canActivate: [AuthGuard], canActivateChild: [RoleGuardService]},
+  {path: 'mypage', component: MypageComponent, canActivate: [AuthGuard]},
   {path: 'pricing', component: PricingComponent},
   {path: 'features', component: FeaturesComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: RegisterComponent},
   {path: 'recover', component: PasswordrecoveryComponent},
-  {path: 'adminpanel', component: PanelComponent},
+  {path: 'adminpanel', component: PanelComponent, canActivate: [AuthGuard], canActivateChild: [RoleGuardService]},
   {path: '**', component: Error404Component},
 ];
 
