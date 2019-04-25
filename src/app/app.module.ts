@@ -27,12 +27,14 @@ import {far} from '@fortawesome/free-regular-svg-icons';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {QuickAddComponent} from './components/body/admin/quick-add/quick-add.component';
 import {ProductManagementComponent} from './components/body/admin/product-management/product-management.component';
+import {ItemService} from "./services/item/item.service";
 import {Error404Component} from './components/body/error404/error404.component';
 import {DecimalPipe} from '@angular/common';
 import {OverviewComponent} from './components/body/admin/categorymanagement/overview/overview.component';
 import {AddComponent} from './components/body/admin/categorymanagement/add/add.component';
 import {DeleteComponent} from './components/body/admin/categorymanagement/delete/delete.component';
 import {UpdateComponent} from './components/body/admin/categorymanagement/update/update.component';
+import { AddItemsComponent } from './components/body/admin/product-management/add-items/add-items.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import {UpdateComponent} from './components/body/admin/categorymanagement/update
     OverviewComponent,
     AddComponent,
     DeleteComponent,
-    UpdateComponent
+    UpdateComponent,
+    AddItemsComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,7 @@ import {UpdateComponent} from './components/body/admin/categorymanagement/update
     NgbPaginationModule,
     NgbModule,
   ],
-  providers: [AngularFireDatabase, DecimalPipe, NgbActiveModal],
+  providers: [AngularFireDatabase, DecimalPipe, NgbActiveModal, ItemService],
   bootstrap: [AppComponent],
 })
 export class AppModule {
