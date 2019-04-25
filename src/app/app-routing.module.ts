@@ -13,24 +13,22 @@ import {PasswordrecoveryComponent} from './components/body/passwordrecovery/pass
 import {Error404Component} from './components/body/error404/error404.component';
 import {CategoryOverviewComponent} from './components/body/admin/categorymanagement/overview/category-overview.component';
 import {ProductOverviewComponent} from './components/body/admin/productmanagement/overview/product-overview.component';
-import { RoleGuardService } from './services/authentication/role-guard.service';
+import {RoleGuardService} from './services/authentication/role-guard.service';
+import {PanelComponent} from './components/body/admin/panel/panel.component';
 
 
 export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
-  {path: 'mypage', component: MypageComponent, canActivate: [AuthGuard] , canActivateChild : [RoleGuardService]},
+  {path: 'mypage', component: MypageComponent, canActivate: [AuthGuard], canActivateChild: [RoleGuardService]},
   {path: 'pricing', component: PricingComponent},
   {path: 'features', component: FeaturesComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: RegisterComponent},
   {path: 'recover', component: PasswordrecoveryComponent},
-  // Admin paths begin here [Needs a better solution, perhaps children?]
-  {path: 'productmanagement', component: ProductOverviewComponent},
-  {path: 'categorymanagement', component: CategoryOverviewComponent},
-  // Admin paths ends here
+  {path: 'adminpanel', component: PanelComponent},
   {path: '**', component: Error404Component},
 ];
 

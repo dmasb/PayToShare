@@ -3,6 +3,8 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Product} from '../../../../../models/product';
 import {ProductsService} from '../../../../../services/crud/products.service';
+import {CategoryService} from '../../../../../services/crud/category.service';
+import {Category} from '../../../../../models/category';
 
 @Component({
   selector: 'app-add-product',
@@ -10,7 +12,10 @@ import {ProductsService} from '../../../../../services/crud/products.service';
   styleUrls: ['./add.component.scss']
 })
 export class AddProductComponent implements OnInit {
-  newProductForm = new FormGroup({
+
+  private categories: Category[];
+
+  private newProductForm = new FormGroup({
     productTitle: new FormControl(''),
     productCategory: new FormControl(''),
     productPrice: new FormControl(''),
@@ -18,9 +23,16 @@ export class AddProductComponent implements OnInit {
     productDescription: new FormControl('')
 
   });
-  closeResult: string;
 
-  constructor(private productsService: ProductsService, private modalService: NgbModal) {
+  constructor(private productsService: ProductsService, private modalService: NgbModal, private categoryService: CategoryService) {
+    this.categoryService.getCategories().subscribe(category => {
+      this.categories = category.map(obj => {
+        return {
+          id: obj.payload.doc.id,
+          ...obj.payload.doc.data()
+        } as Category;
+      });
+    });
   }
 
   ngOnInit() {
@@ -40,5 +52,6 @@ export class AddProductComponent implements OnInit {
 
   openCenteredDialog(addProductModal) {
     this.modalService.open(addProductModal, {centered: true});
+    return false;
   }
 }

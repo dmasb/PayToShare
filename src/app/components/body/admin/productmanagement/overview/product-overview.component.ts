@@ -16,6 +16,7 @@ export class ProductOverviewComponent implements OnInit {
   pageSize = 4;
   name: any;
   products: Product[];
+  collectionSize: number;
 
   constructor(private modalService: NgbModal, private db: AngularFirestore, private productsService: ProductsService) {
     this.productsService.getProducts().subscribe(products => {
@@ -41,16 +42,7 @@ export class ProductOverviewComponent implements OnInit {
     console.log(this.products);
   }
 
-
-  openVerticallyCentered(content) {
-    this.modalService.open(content, {centered: true});
-  }
-
-  /*onSubmit(id: string) {
-    this.db.doc(`davids/${id}`).delete();
-  }*/
-
   onSubmit() {
-
+    // pages
   }
 }

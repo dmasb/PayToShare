@@ -1,5 +1,4 @@
 <div class="container">
-  <app-add></app-add>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -11,7 +10,11 @@
     </thead>
     <tbody>
     <tr *ngFor="let category of categories; index as i">
-      <th scope="row">{{ category.id }}</th>
+      <th scope="row">
+        <label>
+          <input type="checkbox" name="checkbox + {{ i + 1}}">
+        </label>
+      </th>
       <td>{{ category.title }}</td>
       <td>--</td>
       <td>
