@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DecimalPipe} from '@angular/common';
 import {CategoryService} from '../../../../../services/crud/category.service';
 import {Category} from '../../../../../models/category';
@@ -40,31 +40,5 @@ export class OverviewComponent implements OnInit {
         } as Category;
       });
     });
-  }
-
-  openCenteredDialog(dialog) {
-    this.modalService.open(dialog, {centered: true});
-  }
-
-  addCategory() {
-    this.activeCategory = {title: this.newCategoryForm.controls.categoryName.value};
-    this.categoryService.addCategory(this.activeCategory);
-    this.activeCategory = null;
-  }
-
-  requestCategoryDelete(categoryId) {
-    this.categoryService.available(categoryId);
-  }
-
-  confirmDelete() {
-    this.categoryService.remove();
-  }
-
-  cancelDelete() {
-    this.categoryService.cancel();
-  }
-
-  editCategory() {
-
   }
 }
