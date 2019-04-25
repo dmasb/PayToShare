@@ -16,6 +16,7 @@
         <div class="form-group col-md-6">
           <label for="productCategory">Product Category</label>
           <select class="form-control" id="productCategory" formControlName="productCategory">
+            <option value="" selected disabled hidden>Choose here</option>
             <option *ngFor="let category of categories" [value]="category.title">
               {{category.title}}
             </option>

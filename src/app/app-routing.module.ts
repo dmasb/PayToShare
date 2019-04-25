@@ -11,15 +11,15 @@ import {RegisterComponent} from './components/body/register/register.component';
 import {LoginComponent} from './components/body/login/login.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
 import {Error404Component} from './components/body/error404/error404.component';
-import {CategoryOverviewComponent} from './components/body/admin/categorymanagement/overview/category-overview.component';
-import {ProductOverviewComponent} from './components/body/admin/productmanagement/overview/product-overview.component';
 import {RoleGuardService} from './services/authentication/role-guard.service';
 import {PanelComponent} from './components/body/admin/panel/panel.component';
+import {ProductsComponent} from './components/body/products/products.component';
 
 
 export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
+  {path: 'products', component: ProductsComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
   {path: 'mypage', component: MypageComponent, canActivate: [AuthGuard], canActivateChild: [RoleGuardService]},
   {path: 'pricing', component: PricingComponent},

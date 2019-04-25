@@ -35,6 +35,7 @@ import {UpdateCategoryComponent} from './components/body/admin/categorymanagemen
 import {UpdateProductComponent} from './components/body/admin/productmanagement/update/update.component';
 import {ProductOverviewComponent} from './components/body/admin/productmanagement/overview/product-overview.component';
 import { PanelComponent } from './components/body/admin/panel/panel.component';
+import { ProductsComponent } from './components/body/products/products.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { PanelComponent } from './components/body/admin/panel/panel.component';
     UpdateProductComponent,
     DeleteProductComponent,
     AddProductComponent,
-    PanelComponent
+    PanelComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
