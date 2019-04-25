@@ -13,13 +13,14 @@ import {PasswordrecoveryComponent} from './components/body/passwordrecovery/pass
 import {Error404Component} from './components/body/error404/error404.component';
 import {CategoryOverviewComponent} from './components/body/admin/categorymanagement/overview/category-overview.component';
 import {ProductOverviewComponent} from './components/body/admin/productmanagement/overview/product-overview.component';
+import { RoleGuardService } from './services/authentication/role-guard.service';
 
 
 export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
-  {path: 'mypage', component: MypageComponent, canActivate: [AuthGuard]},
+  {path: 'mypage', component: MypageComponent, canActivate: [AuthGuard] , canActivateChild : [RoleGuardService]},
   {path: 'pricing', component: PricingComponent},
   {path: 'features', component: FeaturesComponent},
   {path: 'register', component: RegisterComponent},
@@ -42,7 +43,7 @@ export const routes: Routes = [
   exports: [
     RouterModule
   ],
-  providers: [AuthGuard]
+  providers: [AuthGuard, RoleGuardService]
 })
 export class AppRoutingModule {
 }

@@ -42,7 +42,8 @@ export class AuthGuard implements CanActivate {
     this.afAuth.auth.signOut();
   }
 
-  getUser() {
-    return this.afAuth.auth.currentUser;
+  getFireBaseUser() {
+    return this.afAuth.auth.currentUser
   }
+
 }

@@ -1,52 +1,56 @@
-import {Userlevel} from './userlevel';
+import {Userrank} from './userrank';
 import {Sex} from "./sex";
 import DateTimeFormat = Intl.DateTimeFormat;
 
+export interface IUser {
 
-export class User {
+  rank: Userrank;
+  firstName?: string;
+  lastName?: string;
+  city?: string;
+  address?: string;
+  phone: number;
+  sex?: Sex;
+  lastLogin?: DateTimeFormat;
+  loggedIn?: boolean;
+  sessionID?: number;
 
-  private userLevel: Userlevel;
-  private id: number;
-  private firstName: String;
-  private lastName: String;
-  private city: string;
-  private socialSecurityNr: number;
-  private address: String;
-  private zipCode: number;
-  private sex: Sex;
-  private lastLogin: DateTimeFormat;
-  private loggedIn: boolean;
-  private sessionID: number;
+}
+
+export class User implements IUser{
+
+  constructor(private data: IUser){
+
+  }
+
+  get rank(): Userrank { return this.data.rank}
+  get firstname(): string { return this.data.firstName}
+  get lastname(): string { return this.data.lastName}
+  get city(): string {return this.data.city}
+  get address(): string { return this.data.address}
+  get phone(): number { return this.data.phone}
+  get sex(): Sex { return this.data.sex}
+  get lastlogin(): DateTimeFormat { return this.data.lastLogin}
+  get loggedin(): boolean { return this.data.loggedIn}
+  get session(): number { return this.data.sessionID}
 
   isAdmin (): boolean {
-    return this.userLevel === Userlevel.Admin;
+    return this.rank === Userrank.Admin;
   }
 
   isLoggedIn (): boolean {
-    return this.loggedIn;
+    return this.loggedin;
   }
 
   getFullName(): string {
-    return this.firstName + ' ' + this.lastName;
-  }
-
-  getUID (): number {
-    return this.id;
+    return this.firstname + ' ' + this.lastname;
   }
 
   getSession (): number {
-    return this.sessionID;
+    return this.session;
   }
 
   getLastOnline(): DateTimeFormat {
-    return this.lastLogin;
+    return this.lastlogin;
   }
-
-
-
-
-
-
-
-
 }
