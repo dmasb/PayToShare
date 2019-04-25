@@ -1,33 +1,45 @@
-import {Component, OnInit} from '@angular/core';
-import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Component} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Product} from '../../../../models/product';
+import {ProductsService} from '../../../../services/crud/products.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-quick-add',
   templateUrl: './quick-add.component.html',
   styleUrls: ['./quick-add.component.scss']
 })
-export class QuickAddComponent implements OnInit {
+export class QuickAddComponent {
+  newQuickProductForm = new FormGroup({
+    productTitle: new FormControl(''),
+    productCategory: new FormControl(''),
+    productPrice: new FormControl(''),
+    productQuantity: new FormControl(''),
+    productDescription: new FormControl('')
 
-  constructor(private modalService: NgbModal) {
-  }
+  });
 
   closeResult: string;
 
-  private static getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+  constructor(private productsService: ProductsService, private modalService: NgbModal) {
   }
 
-  openVerticallyCentered(content) {
-    this.modalService.open(content, {centered: true});
+
+  addProduct() {
+    const product: Product = {
+      title: this.newQuickProductForm.controls.productTitle.value,
+      category: this.newQuickProductForm.controls.productCategory.value,
+      description: this.newQuickProductForm.controls.productDescription.value,
+      price: this.newQuickProductForm.controls.productPrice.value,
+      quantity: this.newQuickProductForm.controls.productQuantity.value
+    };
+    this.productsService.addProduct(product);
+    this.modalService.dismissAll();
   }
 
-  ngOnInit(): void {
+  openVerticallyCentered(addProductModal) {
+    this.modalService.open(addProductModal, {centered: true});
   }
+
 
 }

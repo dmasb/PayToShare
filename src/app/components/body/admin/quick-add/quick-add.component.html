@@ -6,61 +6,47 @@
     </button>
   </div>
   <div class="modal-body">
-    <form>
+    <form [formGroup]="newQuickProductForm" (ngSubmit)="addProduct()">
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="inputEmail4">Product name</label>
-          <input type="text" class="form-control" id="inputEmail4" placeholder="Email">
+          <label for="productTitle">Product title</label>
+          <input type="text" class="form-control" id="productTitle" placeholder="title"
+                 formControlName="productTitle">
         </div>
         <div class="form-group col-md-6">
-          <label for="inputPassword4">Password</label>
-          <input type="text" class="form-control" id="inputPassword4" placeholder="Password">
+          <label for="productCategory">Product Category</label>
+          <input type="text" class="form-control" id="productCategory" placeholder="Category"
+                 formControlName="productCategory">
         </div>
-      </div>
-      <div class="form-group">
-        <label for="inputAddress">Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-      </div>
-      <div class="form-group">
-        <label for="inputAddress2">Address 2</label>
-        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="inputCity">City</label>
-          <input type="text" class="form-control" id="inputCity">
+          <label for="productPrice">Product Price</label>
+          <input type="text" class="form-control" id="productPrice" placeholder="Price"
+                 formControlName="productPrice">
         </div>
-        <div class="form-group col-md-4">
-          <label for="inputState">State</label>
-          <select id="inputState" class="form-control">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
-        </div>
-        <div class="form-group col-md-2">
-          <label for="inputZip">Zip</label>
-          <input type="text" class="form-control" id="inputZip">
+        <div class="form-group col-md-6">
+          <label for="productQuantity">Product Quantity</label>
+          <input type="text" class="form-control" id="productQuantity" placeholder="Quantity"
+                 formControlName="productQuantity">
         </div>
       </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck">
-          <label class="form-check-label" for="gridCheck">
-            Check me out
-          </label>
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="productDescription">Product Description</label>
+          <input type="text" class="form-control" id="productDescription" placeholder="Description"
+                 formControlName="productDescription">
         </div>
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlFile1">Example file input</label>
-        <input type="file" class="form-control-file" id="exampleFormControlFile1">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Add</button>
+        <button type="submit" class="btn btn-outline-dark">Add</button>
       </div>
     </form>
   </div>
 
 </ng-template>
+
+<pre>{{closeResult}}</pre>
+
 <a class="dropdown-item" (click)="openVerticallyCentered(content)">Add Product</a>
-<!-- <pre>{{closeResult}}</pre> -->
