@@ -1,0 +1,56 @@
+import {Component, OnInit} from '@angular/core';
+import {Product} from '../../../../../models/product';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {ProductsService} from '../../../../../services/crud/products.service';
+
+@Component({
+  selector: 'app-product-management',
+  templateUrl: './product-overview.component.html',
+  styleUrls: ['./product-overview.component.scss']
+})
+
+export class ProductOverviewComponent implements OnInit {
+
+  page = 1;
+  pageSize = 4;
+  name: any;
+  products: Product[];
+
+  constructor(private modalService: NgbModal, private db: AngularFirestore, private productsService: ProductsService) {
+    this.productsService.getProducts().subscribe(products => {
+      this.products = products.map(obj => {
+        return {
+          id: obj.payload.doc.id,
+          ...obj.payload.doc.data()
+        } as Product;
+      });
+    });
+  }
+
+  ngOnInit() {
+    this.productsService.getProducts().subscribe(products => {
+      this.products = products.map(obj => {
+        return {
+          id: obj.payload.doc.id,
+          ...obj.payload.doc.data()
+        } as Product;
+      });
+    });
+
+    console.log(this.products);
+  }
+
+
+  openVerticallyCentered(content) {
+    this.modalService.open(content, {centered: true});
+  }
+
+  /*onSubmit(id: string) {
+    this.db.doc(`davids/${id}`).delete();
+  }*/
+
+  onSubmit() {
+
+  }
+}

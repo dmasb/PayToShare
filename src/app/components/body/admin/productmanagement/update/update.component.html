@@ -1,0 +1,51 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update Product</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editProductForm" (ngSubmit)="editProduct()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="productTitle">Product title</label>
+          <input type="text" class="form-control" id="productTitle"
+                 formControlName="productTitle" [(ngModel)]="title">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="productCategory">Product Category</label>
+          <input type="text" class="form-control" id="productCategory"
+                 formControlName="productCategory" [(ngModel)]="category">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="productPrice">Product Price</label>
+          <input type="text" class="form-control" id="productPrice"
+                 formControlName="productPrice" [(ngModel)]="price">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="productQuantity">Product Quantity</label>
+          <input type="text" class="form-control" id="productQuantity"
+                 formControlName="productQuantity" [(ngModel)]="quantity">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="productDescription">Product Description</label>
+          <input type="text" class="form-control" id="productDescription"
+                 formControlName="productDescription" [(ngModel)]="description">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+        <button type="submit" class="btn btn-outline-dark">Save</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<a role="button" style="cursor: pointer;" (click)="openCenteredDialog(content)">
+  <fa-icon [icon]="['fas', 'edit']" size="lg"></fa-icon>
+</a>

@@ -6,12 +6,12 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'app-overview',
-  templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.scss']
+  selector: 'app-overview-category',
+  templateUrl: './category-overview.component.html',
+  styleUrls: ['./category-overview.component.scss']
 })
 
-export class OverviewComponent implements OnInit {
+export class CategoryOverviewComponent implements OnInit {
 
   categories: Category[];
   newCategoryForm = new FormGroup({

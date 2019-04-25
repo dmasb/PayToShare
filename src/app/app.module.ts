@@ -26,15 +26,17 @@ import {fas} from '@fortawesome/free-solid-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {QuickAddComponent} from './components/body/admin/quick-add/quick-add.component';
-import {ProductManagementComponent} from './components/body/admin/product-management/product-management.component';
-import {ItemService} from "./services/item/item.service";
 import {Error404Component} from './components/body/error404/error404.component';
 import {DecimalPipe} from '@angular/common';
-import {OverviewComponent} from './components/body/admin/categorymanagement/overview/overview.component';
-import {AddComponent} from './components/body/admin/categorymanagement/add/add.component';
-import {DeleteComponent} from './components/body/admin/categorymanagement/delete/delete.component';
-import {UpdateComponent} from './components/body/admin/categorymanagement/update/update.component';
-import { AddItemsComponent } from './components/body/admin/product-management/add-items/add-items.component';
+import {CategoryOverviewComponent} from './components/body/admin/categorymanagement/overview/category-overview.component';
+import {AddCategoryComponent} from './components/body/admin/categorymanagement/add/add-category.component';
+import {AddProductComponent} from './components/body/admin/productmanagement/add/add.component';
+
+import {DeleteCategoryComponent} from './components/body/admin/categorymanagement/delete/delete-category.component';
+import {DeleteProductComponent} from './components/body/admin/productmanagement/delete/delete.component';
+import {UpdateCategoryComponent} from './components/body/admin/categorymanagement/update/update-category.component';
+import {UpdateProductComponent} from './components/body/admin/productmanagement/update/update.component';
+import {ProductOverviewComponent} from './components/body/admin/productmanagement/overview/product-overview.component';
 
 @NgModule({
   declarations: [
@@ -52,13 +54,15 @@ import { AddItemsComponent } from './components/body/admin/product-management/ad
     FooterComponent,
     AdminBtnComponent,
     QuickAddComponent,
-    ProductManagementComponent,
     Error404Component,
-    OverviewComponent,
-    AddComponent,
-    DeleteComponent,
-    UpdateComponent,
-    AddItemsComponent
+    CategoryOverviewComponent,
+    ProductOverviewComponent,
+    AddCategoryComponent,
+    DeleteCategoryComponent,
+    UpdateCategoryComponent,
+    UpdateProductComponent,
+    DeleteProductComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +78,7 @@ import { AddItemsComponent } from './components/body/admin/product-management/ad
     NgbPaginationModule,
     NgbModule,
   ],
-  providers: [AngularFireDatabase, DecimalPipe, NgbActiveModal, ItemService],
+  providers: [AngularFireDatabase, DecimalPipe, NgbActiveModal],
   bootstrap: [AppComponent],
 })
 export class AppModule {

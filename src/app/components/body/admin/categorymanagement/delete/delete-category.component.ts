@@ -3,11 +3,11 @@ import {CategoryService} from '../../../../../services/crud/category.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-delete',
-  templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
+  selector: 'app-delete-category',
+  templateUrl: './delete-category.component.html',
+  styleUrls: ['./delete-category.component.scss']
 })
-export class DeleteComponent implements OnInit {
+export class DeleteCategoryComponent implements OnInit {
   @Input() id: string;
   @Input() title: string;
 

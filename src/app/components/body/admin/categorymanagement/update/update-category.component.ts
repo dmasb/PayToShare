@@ -5,11 +5,11 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Category} from '../../../../../models/category';
 
 @Component({
-  selector: 'app-update',
-  templateUrl: './update.component.html',
-  styleUrls: ['./update.component.scss']
+  selector: 'app-update-category',
+  templateUrl: './update-category.component.html',
+  styleUrls: ['./update-category.component.scss']
 })
-export class UpdateComponent implements OnInit {
+export class UpdateCategoryComponent implements OnInit {
   @Input() id: string;
   @Input() title: string;
 

@@ -10,9 +10,9 @@ import {MypageComponent} from './components/body/mypage/mypage.component';
 import {RegisterComponent} from './components/body/register/register.component';
 import {LoginComponent} from './components/body/login/login.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
-import {ProductManagementComponent} from './components/body/admin/product-management/product-management.component';
 import {Error404Component} from './components/body/error404/error404.component';
-import {OverviewComponent} from './components/body/admin/categorymanagement/overview/overview.component';
+import {CategoryOverviewComponent} from './components/body/admin/categorymanagement/overview/category-overview.component';
+import {ProductOverviewComponent} from './components/body/admin/productmanagement/overview/product-overview.component';
 
 
 export const routes: Routes = [
@@ -27,8 +27,8 @@ export const routes: Routes = [
   {path: 'logout', component: RegisterComponent},
   {path: 'recover', component: PasswordrecoveryComponent},
   // Admin paths begin here [Needs a better solution, perhaps children?]
-  {path: 'productmanagement', component: ProductManagementComponent},
-  {path: 'categorymanagement', component: OverviewComponent},
+  {path: 'productmanagement', component: ProductOverviewComponent},
+  {path: 'categorymanagement', component: CategoryOverviewComponent},
   // Admin paths ends here
   {path: '**', component: Error404Component},
 ];

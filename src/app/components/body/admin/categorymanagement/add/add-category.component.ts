@@ -6,10 +6,10 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  templateUrl: './add-category.component.html',
+  styleUrls: ['./add-category.component.scss']
 })
-export class AddComponent implements OnInit {
+export class AddCategoryComponent implements OnInit {
   newCategoryForm = new FormGroup({
     categoryName: new FormControl(''),
   });
