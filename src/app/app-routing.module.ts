@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from './services/authentication/auth-guard.service';
-
 import {HomeComponent} from './components/body/home/home.component';
 import {FeaturesComponent} from './components/body/features/features.component';
 import {WeeklydealsComponent} from './components/body/weeklydeals/weeklydeals.component';
@@ -11,12 +10,14 @@ import {MypageComponent} from './components/body/mypage/mypage.component';
 import {RegisterComponent} from './components/body/register/register.component';
 import {LoginComponent} from './components/body/login/login.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
-import {IndexComponent} from './components/body/index/index.component';
 import {ProductManagementComponent} from './components/body/admin/product-management/product-management.component';
+import {Error404Component} from './components/body/error404/error404.component';
+import {OverviewComponent} from './components/body/admin/categorymanagement/overview/overview.component';
 
 
-const routes: Routes = [
-  {path: '', component: HomeComponent},
+export const routes: Routes = [
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
   {path: 'mypage', component: MypageComponent, canActivate: [AuthGuard]},
   {path: 'pricing', component: PricingComponent},
@@ -25,9 +26,11 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: RegisterComponent},
   {path: 'recover', component: PasswordrecoveryComponent},
-  {path: '', component: IndexComponent},
-  {path: 'admin', component: ProductManagementComponent}
-
+  // Admin paths begin here [Needs a better solution, perhaps children?]
+  {path: 'productmanagement', component: ProductManagementComponent},
+  {path: 'categorymanagement', component: OverviewComponent},
+  // Admin paths ends here
+  {path: '**', component: Error404Component},
 ];
 
 @NgModule({

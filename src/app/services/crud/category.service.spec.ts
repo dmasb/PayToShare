@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AddCategoryService } from './add-category.service';
+import { CategoryService } from './category.service';
 
-describe('AddCategoryService', () => {
+describe('CategoryService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: AddCategoryService = TestBed.get(AddCategoryService);
+    const service: CategoryService = TestBed.get(CategoryService);
     expect(service).toBeTruthy();
   });
 });

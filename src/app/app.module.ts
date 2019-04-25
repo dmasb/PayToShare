@@ -19,15 +19,20 @@ import {PasswordrecoveryComponent} from './components/body/passwordrecovery/pass
 import {IndexComponent} from './components/body/index/index.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {AdminBtnComponent} from './components/navbar/admin/admin-btn/admin-btn.component';
-import {NgbDatepickerModule, NgbModalModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal, NgbDatepickerModule, NgbModalModule, NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
 import {AngularFireDatabase} from '@angular/fire/database';
-import { QuickAddComponent } from './components/body/admin/quick-add/quick-add.component';
-import { CategoryManagementComponent } from './components/body/admin/category-management/category-management.component';
+import {QuickAddComponent} from './components/body/admin/quick-add/quick-add.component';
 import {ProductManagementComponent} from './components/body/admin/product-management/product-management.component';
+import {Error404Component} from './components/body/error404/error404.component';
+import {DecimalPipe} from '@angular/common';
+import {OverviewComponent} from './components/body/admin/categorymanagement/overview/overview.component';
+import {AddComponent} from './components/body/admin/categorymanagement/add/add.component';
+import {DeleteComponent} from './components/body/admin/categorymanagement/delete/delete.component';
+import {UpdateComponent} from './components/body/admin/categorymanagement/update/update.component';
 
 @NgModule({
   declarations: [
@@ -45,8 +50,12 @@ import {ProductManagementComponent} from './components/body/admin/product-manage
     FooterComponent,
     AdminBtnComponent,
     QuickAddComponent,
-    CategoryManagementComponent,
-    ProductManagementComponent
+    ProductManagementComponent,
+    Error404Component,
+    OverviewComponent,
+    AddComponent,
+    DeleteComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -59,9 +68,10 @@ import {ProductManagementComponent} from './components/body/admin/product-manage
     NgbDatepickerModule,
     NgbModalModule,
     FontAwesomeModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    NgbModule,
   ],
-  providers: [AngularFireDatabase],
+  providers: [AngularFireDatabase, DecimalPipe, NgbActiveModal],
   bootstrap: [AppComponent],
 })
 export class AppModule {

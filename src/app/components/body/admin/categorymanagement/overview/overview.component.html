@@ -1,0 +1,33 @@
+<div class="container">
+  <app-add></app-add>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Category Name</th>
+      <th scope="col">Items</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let category of categories; index as i">
+      <th scope="row">{{ category.id }}</th>
+      <td>{{ category.title }}</td>
+      <td>--</td>
+      <td>
+        <div class="row">
+          <div class="col-1">
+            <app-update [id]=category.id [title]="category.title"></app-update>
+          </div>
+          <div class="col-2">
+            <app-delete [id]=category.id [title]="category.title"></app-delete>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    </tbody>
+  </table>
+
+</div>

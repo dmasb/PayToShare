@@ -1,0 +1,26 @@
+<ng-template #addCategoryModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Category</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="newCategoryForm" (ngSubmit)="addCategory()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="category">Category name</label>
+          <input type="text" class="form-control" id="category" placeholder="category" formControlName="categoryName">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+        <button type="submit" class="btn btn-outline-dark">Add</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<pre>{{closeResult}}</pre>
+
+<button type="button" class="btn btn-outline-primary pull-right" (click)="openCenteredDialog(addCategoryModal)">Add
+</button>
