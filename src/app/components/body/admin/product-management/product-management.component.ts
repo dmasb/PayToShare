@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {ItemService} from "../../../../services/item/item.service";
+import {Item} from "../../../../models/Item";
 
 interface Product {
   name: string;
@@ -114,8 +116,16 @@ export class ProductManagementComponent {
   closeResult: string;
 
   prod: Product;
+  items: Item[];
 
-  constructor(private modalService: NgbModal, private db: AngularFirestore) {
+  constructor(private modalService: NgbModal, private db: AngularFirestore, private itemService: ItemService) {
+  }
+
+  ngOnInit() {
+    this.itemService.getItems().subscribe(items =>{
+      //console.log(items);
+      this.items = items;
+    });
   }
 
   get countries(): Country[] {

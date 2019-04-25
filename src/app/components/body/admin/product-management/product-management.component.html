@@ -1,4 +1,18 @@
 <div class="container">
+ <app-add-items></app-add-items>
+  <div *ngIf="items?.length > 0;else noItems">
+    <ul *ngFor="let item of items">
+      <li> <strong>{{item.title}}: </strong> {{item.description}} </li>
+
+    </ul>
+  </div>
+  <ng-template #noItems>
+    <hr>
+    <h5>There are no items ot list</h5>
+  </ng-template>
+</div>
+
+<div class="container">
   <p style="text-align: center">LOddddddddddL <code>TOPKEK</code> LULZ</p>
 
   <table class="table table-striped">
