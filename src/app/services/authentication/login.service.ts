@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase';
-import {Observable} from "rxjs";
-import {User} from "../../models/user";
-import {AngularFirestore} from "@angular/fire/firestore";
+import {Observable} from 'rxjs';
+import {User} from '../../models/user';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +26,9 @@ export class LoginService {
     });
   }
 
-  queryUserExists(uid: string) : boolean {
-    let userRef = this.afs.collection('users').doc(uid);
-    let getDoc = userRef.get()
+  queryUserExists(uid: string): boolean {
+    const userRef = this.afs.collection('users').doc(uid);
+    userRef.get()
       .subscribe(doc => {
         if (!doc.exists) {
           console.log('No such document!');
@@ -43,13 +43,15 @@ export class LoginService {
 
   loginGoogle() {
     this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
-    this.afAuth.authState.subscribe( (id) => {
-      if(id) {
+    this.afAuth.authState.subscribe((id) => {
+      if (id) {
         this.uid = id.uid;
         alert(this.uid);
       }
-    })
-    if(this.queryUserExists(this.uid)) alert(this.uid);
+    });
+    if (this.queryUserExists(this.uid)) {
+      alert(this.uid);
+    }
   }
 
   getLoggedInGoogleUser() {
