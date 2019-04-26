@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
     if (pass !== passConfirm) {
       console.warn('NO MATCH');
     } else {
-      this.registerService.addUser(email, pass, name, phone);
+      this.registerService.addUserWithInfo(email, pass, name, phone);
     }
   }
 }

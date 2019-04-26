@@ -1,10 +1,16 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase';
+<<<<<<< HEAD
 import {Observable} from 'rxjs';
 import {IUser, User} from '../../models/user';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Userrank} from '../../models/userrank';
+=======
+import {RegisterService} from "./register.service";
+import {AngularFirestore} from '@angular/fire/firestore';
+import {IUser} from "../../models/user";
+>>>>>>> 64502dcaf28f2a2286947725f6741ddd0cc1f756
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +19,7 @@ export class LoginService {
 
   uid: string;
 
-  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
+  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore, private regService: RegisterService) {
   }
 
   login(email: string, password: string) {
@@ -30,23 +36,9 @@ export class LoginService {
     });
   }
 
-  queryUserExists(uid: string): boolean {
-    const userRef = this.afs.collection('users').doc(uid);
-    userRef.get()
-      .subscribe(doc => {
-        if (!doc.exists) {
-          console.log('No such document!');
-          return false;
-        } else {
-          console.log('User exists');
-          return true;
-        }
-      });
-    return false;
-  }
-
   loginGoogle() {
     this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
+<<<<<<< HEAD
     this.afAuth.auth.getRedirectResult().then(success => {
       console.log(this.afAuth.auth.currentUser.uid);
       const tempUser: IUser = {
@@ -63,6 +55,14 @@ export class LoginService {
         sessionID: null
       };
       return this.afs.collection('users').add(tempUser);
+=======
+    this.afAuth.auth.getRedirectResult().then(cred => {
+      if(cred){
+        if (!this.regService.userExists(cred.user.uid)) {
+          this.regService.addUserNoInfo(cred);
+        }
+      }
+>>>>>>> 64502dcaf28f2a2286947725f6741ddd0cc1f756
     });
   }
 
@@ -72,6 +72,7 @@ export class LoginService {
 
   loginFacebook() {
     this.afAuth.auth.signInWithRedirect(new auth.FacebookAuthProvider());
+<<<<<<< HEAD
     this.afAuth.auth.getRedirectResult().then(success => {
       const tempUser: IUser = {
         id: this.afAuth.auth.currentUser.uid,
@@ -87,6 +88,14 @@ export class LoginService {
         sessionID: null
       };
       return this.afs.collection('users').add(tempUser);
+=======
+    this.afAuth.auth.getRedirectResult().then(cred => {
+      if(cred){
+        if (!this.regService.userExists(cred.user.uid)) {
+          this.regService.addUserNoInfo(cred);
+        }
+      }
+>>>>>>> 64502dcaf28f2a2286947725f6741ddd0cc1f756
     });
   }
 
