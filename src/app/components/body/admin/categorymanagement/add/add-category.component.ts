@@ -13,8 +13,6 @@ export class AddCategoryComponent implements OnInit {
   newCategoryForm = new FormGroup({
     categoryName: new FormControl(''),
   });
-  closeResult: string;
-
   constructor(private categoryService: CategoryService, private modalService: NgbModal) {
   }
 
@@ -29,5 +27,6 @@ export class AddCategoryComponent implements OnInit {
 
   openCenteredDialog(addCategoryModal) {
     this.modalService.open(addCategoryModal, {centered: true});
+    return false;
   }
 }
