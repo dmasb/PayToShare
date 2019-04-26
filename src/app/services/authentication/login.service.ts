@@ -4,6 +4,8 @@ import {auth} from 'firebase';
 import {Observable} from "rxjs";
 import {User} from "../../models/user";
 import {AngularFirestore} from "@angular/fire/firestore";
+import {RegisterService} from "./register.service";
+import {tryCatch} from "rxjs/internal-compatibility";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class LoginService {
 
   uid: string;
 
-  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
+  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore, private regService: RegisterService) {
   }
 
   login(email: string, password: string) {
@@ -26,30 +28,24 @@ export class LoginService {
     });
   }
 
-  queryUserExists(uid: string) : boolean {
-    let userRef = this.afs.collection('users').doc(uid);
-    let getDoc = userRef.get()
-      .subscribe(doc => {
-        if (!doc.exists) {
-          console.log('No such document!');
-          return false;
-        } else {
-          console.log('User exists');
-          return true;
-        }
-      });
-    return false;
-  }
 
-  loginGoogle() {
-    this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
-    this.afAuth.authState.subscribe( (id) => {
-      if(id) {
-        this.uid = id.uid;
-        alert(this.uid);
-      }
+  async loginGoogle() {
+    this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider()).then( () => {
+      this.afAuth.auth.currentUser.getIdToken().then((cred) => {
+        if(cred)
+          this.uid = cred;
+        console.log('ID:' + this.uid)
+      });
+
+
     })
-    if(this.queryUserExists(this.uid)) alert(this.uid);
+
+
+
+    if (!this.regService.userExists(this.uid)) {
+      this.regService.addUserNoInfo();
+    }
+    console.log(this.uid);
   }
 
   getLoggedInGoogleUser() {
