@@ -3,13 +3,13 @@ import {Sex} from './sex';
 import DateTimeFormat = Intl.DateTimeFormat;
 
 export interface IUser {
-
+  id: string;
   rank: Userrank;
   firstName?: string;
   lastName?: string;
   city?: string;
   address?: string;
-  phone: number;
+  phone?: number;
   sex?: Sex;
   lastLogin?: DateTimeFormat;
   loggedIn?: boolean;
@@ -17,9 +17,18 @@ export interface IUser {
 }
 
 export class User implements IUser {
+  id: string;
+  firstName?: string;
+  lastName?: string;
+  lastLogin?: DateTimeFormat;
+  loggedIn?: boolean;
+  sessionID?: number;
 
   constructor(private data: IUser) {
-
+    this.id = data.id;
+    this.firstName = data.firstName;
+    this.loggedIn = data.loggedIn;
+    this.sessionID = data.sessionID;
   }
 
   get rank(): Userrank {

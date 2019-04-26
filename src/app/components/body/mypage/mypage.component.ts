@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthGuard} from '../../../services/authentication/auth-guard.service';
-import {IUser} from "../../../models/user";
-import {RoleGuardService} from "../../../services/authentication/role-guard.service";
-import {Userrank} from "../../../models/userrank";
+import {IUser} from '../../../models/user';
+import {RoleGuardService} from '../../../services/authentication/role-guard.service';
+import {Userrank} from '../../../models/userrank';
+import {LoginService} from '../../../services/authentication/login.service';
 
 @Component({
   selector: 'app-mypage',
@@ -12,20 +13,23 @@ import {Userrank} from "../../../models/userrank";
 export class MypageComponent implements OnInit {
 
   userEmail: string;
-  user: IUser
+  user: IUser;
+  userId: string;
 
-  constructor(private authInfo: AuthGuard, private roleGuard: RoleGuardService) {
+  constructor(private authInfo: AuthGuard, private roleGuard: RoleGuardService, private loginService: LoginService) {
     this.userEmail = this.authInfo.getFireBaseUser().email;
     this.roleGuard.getUser().subscribe((val) => {
       this.user = val;
-    })
+    });
+    this.userId = this.loginService.uid;
   }
+
   ngOnInit() {
+    console.log(this.userId);
   }
 
   isAdmin(): boolean {
-    console.log(this.user.rank);
-    return this.user.rank == Userrank.Admin;
+    // console.log(this.user.rank);
+    return this.user.rank === Userrank.Admin;
   }
-
 }
