@@ -57,7 +57,7 @@ export class NavbarComponent implements OnInit {
   }
 
   glogin() {
-    this.loginService.loginGoogle();
+    let promise = this.loginService.loginGoogle();
   }
 
   fblogin() {

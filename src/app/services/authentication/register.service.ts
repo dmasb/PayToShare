@@ -14,9 +14,7 @@ export class RegisterService {
   constructor(private afAuth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
   }
 
-
   user: IUser;
-  uid: string
 
   addUserWithInfo(email: string, password: string, name: string, phone: number): void {
     this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(cred => {
@@ -29,8 +27,8 @@ export class RegisterService {
       * */
       this.user = <IUser> {
         rank: Userrank.User,
-        phone: null,
-        firstName: null,
+        phone: phone,
+        firstName: name,
         lastName: null,
         city: null,
         address: null,
@@ -49,7 +47,7 @@ export class RegisterService {
     });
   }
 
-  addUserNoInfo() {
+  async addUserNoInfo(user) {
     /* Creates unique entry for User in FireStore
       *  This connects the oAuth User with the FireStore user meaning that
       *  we can provide additional information about the user in FireStore with the same Unique ID.
@@ -66,7 +64,8 @@ export class RegisterService {
         loggedIn: null,
         sessionID: null
       };
-      this.afs.collection('users').doc(this.uid).set(Object.assign( {}, this.user));
+      return this.afs.collection('users').doc(user.user.uid).set(Object.assign( {}, this.user));
+
   }
 
   userExists(uid: string): boolean {

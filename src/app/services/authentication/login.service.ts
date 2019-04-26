@@ -3,6 +3,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase';
 import {RegisterService} from "./register.service";
 import {AngularFirestore} from '@angular/fire/firestore';
+import {IUser} from "../../models/user";
 
 @Injectable({
   providedIn: 'root'
@@ -25,18 +26,15 @@ export class LoginService {
     });
   }
 
-  async loginGoogle() {
-    this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider()).then(() => {
-      this.afAuth.auth.currentUser.getIdToken().then((cred) => {
-        if (cred)
-          this.uid = cred;
-        console.log('ID:' + this.uid)
-      });
+  loginGoogle() {
+    this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
+    this.afAuth.auth.getRedirectResult().then(cred => {
+      if(cred){
+        if (!this.regService.userExists(cred.user.uid)) {
+          this.regService.addUserNoInfo(cred);
+        }
+      }
     });
-
-    if (!this.regService.userExists(this.uid)) {
-      this.regService.addUserNoInfo();
-    }
   }
 
   getLoggedInGoogleUser() {

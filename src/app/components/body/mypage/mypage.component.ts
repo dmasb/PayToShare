@@ -3,6 +3,7 @@ import {AuthGuard} from '../../../services/authentication/auth-guard.service';
 import {IUser} from "../../../models/user";
 import {RoleGuardService} from "../../../services/authentication/role-guard.service";
 import {Userrank} from "../../../models/userrank";
+import {AngularFireAuth} from "@angular/fire/auth";
 
 @Component({
   selector: 'app-mypage',
@@ -12,9 +13,9 @@ import {Userrank} from "../../../models/userrank";
 export class MypageComponent implements OnInit {
 
   userEmail: string;
-  user: IUser
+  user: IUser;
 
-  constructor(private authInfo: AuthGuard, private roleGuard: RoleGuardService) {
+  constructor(private afAuth: AngularFireAuth, private authInfo: AuthGuard, private roleGuard: RoleGuardService) {
     this.userEmail = this.authInfo.getFireBaseUser().email;
     this.roleGuard.getUser().subscribe((val) => {
       this.user = val;
