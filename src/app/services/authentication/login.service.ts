@@ -43,6 +43,13 @@ export class LoginService {
 
   loginFacebook() {
     this.afAuth.auth.signInWithRedirect(new auth.FacebookAuthProvider());
+    this.afAuth.auth.getRedirectResult().then(cred => {
+      if(cred){
+        if (!this.regService.userExists(cred.user.uid)) {
+          this.regService.addUserNoInfo(cred);
+        }
+      }
+    });
   }
 
   getLoggedInFacebookUser() {
