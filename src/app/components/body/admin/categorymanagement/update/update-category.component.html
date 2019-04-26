@@ -1,0 +1,32 @@
+<ng-template #editCategoryModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Category</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="newCategoryNameForm" (ngSubmit)="editCategory()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="categoryId">Category ID</label>
+          <input type="text" class="form-control" id="categoryId" placeholder="category"
+                 formControlName="categoryId" [value]="id" disabled>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="categoryName">Category Name</label>
+          <input type="text" class="form-control" id="categoryName" placeholder="category"
+                 formControlName="categoryName" [value]="title">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+        <button type="submit" class="btn btn-outline-dark" data-dismiss="modal">Save</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<a role="button" style="cursor: pointer;" (click)="openCenteredDialog(editCategoryModal)">
+  <fa-icon [icon]="['fas', 'edit']" size="lg"></fa-icon>
+</a>
