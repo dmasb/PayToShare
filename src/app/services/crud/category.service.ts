@@ -18,7 +18,6 @@ export class CategoryService implements OnInit {
 
   getCategories() {
     return this.afs.collection('categories').snapshotChanges();
-
   }
 
   addCategory(category: Category) {

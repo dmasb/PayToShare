@@ -14,7 +14,6 @@ export interface IUser {
   lastLogin?: DateTimeFormat;
   loggedIn?: boolean;
   sessionID?: number;
-
 }
 
 export class User implements IUser {

@@ -18,25 +18,24 @@ import {LoginComponent} from './components/body/login/login.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
 import {IndexComponent} from './components/body/index/index.component';
 import {FooterComponent} from './components/footer/footer.component';
-import {AdminBtnComponent} from './components/navbar/admin/admin-btn/admin-btn.component';
 import {NgbActiveModal, NgbDatepickerModule, NgbModalModule, NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
 import {AngularFireDatabase} from '@angular/fire/database';
-import {QuickAddComponent} from './components/body/admin/quick-add/quick-add.component';
 import {Error404Component} from './components/body/error404/error404.component';
 import {DecimalPipe} from '@angular/common';
 import {CategoryOverviewComponent} from './components/body/admin/categorymanagement/overview/category-overview.component';
 import {AddCategoryComponent} from './components/body/admin/categorymanagement/add/add-category.component';
 import {AddProductComponent} from './components/body/admin/productmanagement/add/add.component';
-
 import {DeleteCategoryComponent} from './components/body/admin/categorymanagement/delete/delete-category.component';
 import {DeleteProductComponent} from './components/body/admin/productmanagement/delete/delete.component';
 import {UpdateCategoryComponent} from './components/body/admin/categorymanagement/update/update-category.component';
 import {UpdateProductComponent} from './components/body/admin/productmanagement/update/update.component';
 import {ProductOverviewComponent} from './components/body/admin/productmanagement/overview/product-overview.component';
+import { PanelComponent } from './components/body/admin/panel/panel.component';
+import { ProductsComponent } from './components/body/products/products.component';
 
 @NgModule({
   declarations: [
@@ -52,8 +51,6 @@ import {ProductOverviewComponent} from './components/body/admin/productmanagemen
     PasswordrecoveryComponent,
     IndexComponent,
     FooterComponent,
-    AdminBtnComponent,
-    QuickAddComponent,
     Error404Component,
     CategoryOverviewComponent,
     ProductOverviewComponent,
@@ -62,7 +59,9 @@ import {ProductOverviewComponent} from './components/body/admin/productmanagemen
     UpdateCategoryComponent,
     UpdateProductComponent,
     DeleteProductComponent,
-    AddProductComponent
+    AddProductComponent,
+    PanelComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

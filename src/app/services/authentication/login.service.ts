@@ -1,11 +1,8 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase';
-import {Observable} from "rxjs";
-import {User} from "../../models/user";
-import {AngularFirestore} from "@angular/fire/firestore";
 import {RegisterService} from "./register.service";
-import {tryCatch} from "rxjs/internal-compatibility";
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -28,24 +25,18 @@ export class LoginService {
     });
   }
 
-
   async loginGoogle() {
-    this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider()).then( () => {
+    this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider()).then(() => {
       this.afAuth.auth.currentUser.getIdToken().then((cred) => {
-        if(cred)
+        if (cred)
           this.uid = cred;
         console.log('ID:' + this.uid)
       });
-
-
-    })
-
-
+    });
 
     if (!this.regService.userExists(this.uid)) {
       this.regService.addUserNoInfo();
     }
-    console.log(this.uid);
   }
 
   getLoggedInGoogleUser() {
