@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {Router} from '@angular/router';
 import {AngularFirestore} from "@angular/fire/firestore";
-import {IUser, User} from "../../models/user";
+import {IUser} from "../../models/user";
 import {Userrank} from "../../models/userrank";
 
 @Injectable({
@@ -35,14 +35,12 @@ export class RegisterService {
         sex: null,
         lastLogin: null,
         loggedIn: null,
-        sessionID: null
+        sessionID: null,
+        country: null,
+        zipcode: null
       };
       return this.afs.collection('users').doc(cred.user.uid).set(Object.assign({}, this.user));
     }).catch((error) => {
-      // Registration failed.
-      // this.router.navigate(['/login']);
-      const errorCode = error.code;
-      const errorMessage = errorCode.message;
       alert(error);
     });
   }
@@ -63,7 +61,9 @@ export class RegisterService {
       sex: null,
       lastLogin: null,
       loggedIn: null,
-      sessionID: null
+      sessionID: null,
+      country: null,
+      zipcode: null
     };
     await this.afs.collection('users').doc(user.user.uid).set(Object.assign({}, this.user)).then(() => {
       console.log('User registered in db.')
@@ -74,7 +74,7 @@ export class RegisterService {
 
   userExists(uid: string): boolean {
     let userRef = this.afs.collection('users').doc(uid);
-    let getDoc = userRef.get()
+    userRef.get()
       .subscribe(doc => {
         if (!doc.exists) {
           console.log('No such document!');

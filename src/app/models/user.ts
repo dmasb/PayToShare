@@ -8,8 +8,10 @@ export interface IUser {
   firstName?: string;
   lastName?: string;
   city?: string;
+  country?: string;
   address?: string;
   phone: number;
+  zipcode: number;
   sex?: Sex;
   lastLogin?: DateTimeFormat;
   loggedIn?: boolean;
@@ -50,35 +52,11 @@ export class User implements IUser {
     return this.data.sex;
   }
 
-  get lastlogin(): DateTimeFormat {
-    return this.data.lastLogin;
+  get zipcode(): number {
+    return this.data.zipcode;
   }
 
-  get loggedin(): boolean {
-    return this.data.loggedIn;
-  }
-
-  get session(): number {
-    return this.data.sessionID;
-  }
-
-  isAdmin(): boolean {
-    return this.rank === Userrank.Admin;
-  }
-
-  isLoggedIn(): boolean {
-    return this.loggedin;
-  }
-
-  getFullName(): string {
-    return this.firstname + ' ' + this.lastname;
-  }
-
-  getSession(): number {
-    return this.session;
-  }
-
-  getLastOnline(): DateTimeFormat {
-    return this.lastlogin;
+  get country(): string {
+    return this.data.country;
   }
 }
