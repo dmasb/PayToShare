@@ -8,9 +8,6 @@
   padding-left: 0;
 }
 
-.dropdown-toggle {
-  cursor: pointer;
-}
 .form-group {
   min-width: 250px;
   overflow:hidden;
@@ -116,21 +113,91 @@ img {
 }
 
 .navbar {
-  background-color: #dcdddd;
+  background-color: rgba(220, 220, 221, 0.7);
+  font-family: Montserrat, sans-serif;
+  margin-bottom: 0;
+  background-color: #2d2d30;
+  border: 0;
+  font-size: 11px !important;
+  letter-spacing: 4px;
+  opacity: 0.9;
 }
 
+
 .navbar.navbar-expand-lg.navbar-light li a {
+  color: white;
+}
+
+.navbar-nav li.active a {
+  color: #fff !important;
+  background-color: #29292c !important;
+}
+
+.navbar.navbar-expand-lg.navbar-light li a:hover{
   color: #059b46;
-  font-size: 1.3em;
-  text-shadow: 0.5px 0.5px black;
+}
+
+.navbar.navbar-expand-lg.navbar-light li a:visited{
+  color: #059b46;
 }
 
 .fa.fa-user-plus.fa-2x {
   color: #059b46;
 }
 
+// Centers the search bar
+#search{
+  margin: 0 auto;
+}
 
 
+.navbar {
+  font-family: Montserrat, sans-serif;
+  margin-bottom: 0;
+  background-color: #2d2d30;
+  border: 0;
+  font-size: 11px !important;
+  letter-spacing: 4px;
+  opacity: 0.9;
+}
+.navbar li a, .navbar .navbar-brand {
+  color: #d5d5d5 !important;
+}
+.navbar-nav li a:hover {
+  color: #fff !important;
+}
+.navbar-nav li.active a {
+  color: #fff !important;
+  background-color: #29292c !important;
+}
+.navbar-default .navbar-toggle {
+  border-color: transparent;
+}
+.open .dropdown-toggle {
+  color: #fff;
+  background-color: #555 !important;
+}
+
+.dropdown-menu{
+  background-color: #29292c !important;
+}
+
+.dropdown-menu li a {
+  color: #000 !important;
+}
+.dropdown-menu li a:hover {
+  background-color: red !important;
+}
+#header {
+  text-decoration: solid;
+  letter-spacing: 4px;
+  opacity: 0.9;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+#search {
+  color:white;
+  background: white;
+}
 
 
 
