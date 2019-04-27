@@ -1,93 +1,42 @@
 import {Userrank} from './userrank';
 import {Sex} from './sex';
-import DateTimeFormat = Intl.DateTimeFormat;
+import {firestore} from 'firebase/app';
+import Timestamp = firestore.Timestamp;
 
 export interface IUser {
-  id: string;
-  rank: Userrank;
+  id?: string;
+  rank?: Userrank;
+  email?: string;
   firstName?: string;
   lastName?: string;
-  city?: string;
-  address?: string;
-  phone?: number;
   sex?: Sex;
-  lastLogin?: DateTimeFormat;
+  address?: string;
+  city?: string;
+  phone?: number;
   loggedIn?: boolean;
+  lastLogin?: Timestamp;
   sessionID?: number;
 }
 
 export class User implements IUser {
-  id: string;
+  id?: string;
+  rank?: Userrank;
+  email?: string;
   firstName?: string;
   lastName?: string;
-  lastLogin?: DateTimeFormat;
+  sex?: Sex;
+  address?: string;
+  city?: string;
+  phone?: number;
   loggedIn?: boolean;
+  lastLogin?: Timestamp;
   sessionID?: number;
+
 
   constructor(private data: IUser) {
     this.id = data.id;
     this.firstName = data.firstName;
     this.loggedIn = data.loggedIn;
     this.sessionID = data.sessionID;
-  }
-
-  get rank(): Userrank {
-    return this.data.rank;
-  }
-
-  get firstname(): string {
-    return this.data.firstName;
-  }
-
-  get lastname(): string {
-    return this.data.lastName;
-  }
-
-  get city(): string {
-    return this.data.city;
-  }
-
-  get address(): string {
-    return this.data.address;
-  }
-
-  get phone(): number {
-    return this.data.phone;
-  }
-
-  get sex(): Sex {
-    return this.data.sex;
-  }
-
-  get lastlogin(): DateTimeFormat {
-    return this.data.lastLogin;
-  }
-
-  get loggedin(): boolean {
-    return this.data.loggedIn;
-  }
-
-  get session(): number {
-    return this.data.sessionID;
-  }
-
-  isAdmin(): boolean {
-    return this.rank === Userrank.Admin;
-  }
-
-  isLoggedIn(): boolean {
-    return this.loggedin;
-  }
-
-  getFullName(): string {
-    return this.firstname + ' ' + this.lastname;
-  }
-
-  getSession(): number {
-    return this.session;
-  }
-
-  getLastOnline(): DateTimeFormat {
-    return this.lastlogin;
   }
 }

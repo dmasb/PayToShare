@@ -1,10 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthGuard} from '../../../services/authentication/auth-guard.service';
-
 import {IUser} from '../../../models/user';
-import {RoleGuardService} from '../../../services/authentication/role-guard.service';
-import {Userrank} from '../../../models/userrank';
-import {AngularFireAuth} from '@angular/fire/auth';
+import {UserSessionService} from '../../../services/user-session.service';
 
 
 @Component({
@@ -14,23 +10,15 @@ import {AngularFireAuth} from '@angular/fire/auth';
 })
 export class MypageComponent implements OnInit {
 
-  userEmail: string;
-  user: IUser;
+  private currentUser: IUser;
 
+  constructor(private userSessionService: UserSessionService) {
 
-  constructor(private afAuth: AngularFireAuth, private authInfo: AuthGuard, private roleGuard: RoleGuardService) {
-
-    this.userEmail = this.authInfo.getFireBaseUser().email;
-    this.roleGuard.getUser().subscribe((val) => {
-      this.user = val;
-    });
   }
 
   ngOnInit() {
+    // We subscribe to the observable user
+    this.userSessionService.currentUser().subscribe(j => this.currentUser = j);
   }
 
-  isAdmin(): boolean {
-    // console.log(this.user.rank);
-    return this.user.rank === Userrank.Admin;
-  }
 }

@@ -11,7 +11,7 @@ import {AuthGuard} from '../../../services/authentication/auth-guard.service';
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean;
-
+  str: string;
   user: firebase.User;
 
   profileForm = new FormGroup({
@@ -24,6 +24,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.authGuard.getAuth().subscribe(auth => {
       this.isLoggedIn = !!auth;
     });
@@ -51,13 +52,15 @@ export class NavbarComponent implements OnInit {
   }
 
   onLogoutClick() {
+    console.log(this.str);
     this.loginService.logout();
     this.isLoggedIn = false;
     this.router.navigate(['/']);
   }
 
   glogin() {
-    let promise = this.loginService.loginGoogle();
+    this.str = 'google';
+    this.loginService.loginGoogle();
   }
 
   fblogin() {
