@@ -14,12 +14,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): Observable<boolean> {
     return this.afAuth.authState.pipe(map(auth => {
-      if (!auth) {
-        this.router.navigate(['/login']);
-        return false;
-      } else {
-        return true;
-      }
+      return auth.uid != null;
     }));
   }
 
@@ -30,9 +25,4 @@ export class AuthGuard implements CanActivate {
   logout() {
     this.afAuth.auth.signOut();
   }
-
-  getFireBaseUser() {
-    return this.afAuth.auth.currentUser;
-  }
-
 }

@@ -10,12 +10,14 @@ import {Observable} from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   private currentUser: IUser;
+  private loading: boolean;
 
   constructor(private userSessionService: UserSessionService) {
   }
 
   ngOnInit() {
-    this.userSessionService.currentUser().subscribe(j => this.currentUser = j);
+    if (this.userSessionService.currentUser()) {
+      this.userSessionService.currentUser().subscribe(j => this.currentUser = j);
+    }
   }
-
 }

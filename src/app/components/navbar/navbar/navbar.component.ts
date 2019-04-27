@@ -3,6 +3,8 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {LoginService} from '../../../services/authentication/login.service';
 import {Router} from '@angular/router';
 import {AuthGuard} from '../../../services/authentication/auth-guard.service';
+import {UserSessionService} from '../../../services/user-session.service';
+import {Userrank} from '../../../models/userrank';
 
 @Component({
   selector: 'app-navbar',
@@ -11,16 +13,17 @@ import {AuthGuard} from '../../../services/authentication/auth-guard.service';
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean;
-  str: string;
-  user: firebase.User;
+  isAdmin: boolean;
 
   profileForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
   });
 
-
-  constructor(private authGuard: AuthGuard, private loginService: LoginService, private router: Router) {
+  constructor(private loginService: LoginService,
+              private router: Router,
+              private authGuard: AuthGuard,
+              private userSessionService: UserSessionService) {
   }
 
   ngOnInit() {
@@ -28,15 +31,12 @@ export class NavbarComponent implements OnInit {
     this.authGuard.getAuth().subscribe(auth => {
       this.isLoggedIn = !!auth;
     });
-
-    this.loginService.getLoggedInGoogleUser().subscribe(user => {
-      this.user = user;
-    });
-
-    this.loginService.getLoggedInFacebookUser().subscribe(user => {
-      this.user = user;
-    });
-
+    // Wait for the user document to be fetched before accessing data.
+    if (this.userSessionService.currentUser()) {
+      this.userSessionService.currentUser().subscribe(res => {
+        this.isAdmin = (res.rank === Userrank.Admin);
+      });
+    }
   }
 
   onSubmit() {
@@ -52,18 +52,16 @@ export class NavbarComponent implements OnInit {
   }
 
   onLogoutClick() {
-    console.log(this.str);
     this.loginService.logout();
     this.isLoggedIn = false;
     this.router.navigate(['/']);
   }
 
-  glogin() {
-    this.str = 'google';
+  loginWithGoogle() {
     this.loginService.loginGoogle();
   }
 
-  fblogin() {
+  loginWithFacebook() {
     this.loginService.loginFacebook();
   }
 }
