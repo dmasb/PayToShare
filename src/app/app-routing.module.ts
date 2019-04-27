@@ -17,7 +17,7 @@ import {ProductsComponent} from './components/body/products/products.component';
 
 
 export const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '', redirectTo: '', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
@@ -28,7 +28,7 @@ export const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: RegisterComponent},
   {path: 'recover', component: PasswordrecoveryComponent},
-  {path: 'adminpanel', component: PanelComponent, canActivate: [AuthGuard], canActivateChild: [RoleGuardService]},
+  {path: 'adminpanel', component: PanelComponent, canActivate: [AuthGuard]},
   {path: '**', component: Error404Component},
 ];
 

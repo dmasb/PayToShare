@@ -76,7 +76,7 @@
             <i class="fa fa-user fa-lg"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right border border-secondary">
-            <a class="nav-link" routerLink="/adminpanel">Admin panel</a><!-- ng if admin here -->
+            <a *ngIf="isAdmin()" class="nav-link" routerLink="/adminpanel">Admin panel</a><!-- ng if admin here -->
             <a class="nav-link" routerLink="/mypage">My Page</a>
             <a class="nav-link" routerLink="/" (click)="onLogoutClick()">Logout</a>
           </div>

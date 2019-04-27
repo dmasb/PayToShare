@@ -16,7 +16,7 @@ export class RoleGuardService {
   constructor(private auth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
   }
 
-  // Get user from Auth-service
+  // Get user from Database
   getUser() {
     try {
       this.user = this.afs.collection('users').doc<IUser>(this.auth.auth.currentUser.uid).valueChanges();

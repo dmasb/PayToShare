@@ -38,6 +38,7 @@ export class ProductOverviewComponent implements OnInit {
       });
     });
 
+    // TODO: Fix: This produces undefined in console.
     console.log(this.products);
   }
 

@@ -3,7 +3,6 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase';
 import {RegisterService} from "./register.service";
 import {AngularFirestore} from '@angular/fire/firestore';
-import {IUser} from "../../models/user";
 
 @Injectable({
   providedIn: 'root'
@@ -26,12 +25,13 @@ export class LoginService {
     });
   }
 
-  loginGoogle() {
-    this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
+  async loginGoogle() {
+    await this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
     this.afAuth.auth.getRedirectResult().then(cred => {
-      if(cred){
+      if (cred) {
         if (!this.regService.userExists(cred.user.uid)) {
-          this.regService.addUserNoInfo(cred);
+          this.regService.addUserNoInfo(cred).then(() => console.log('Successfully added user.'))
+            .catch((err) => console.log('Could not add user. ' + err.toString()));
         }
       }
     });
@@ -41,10 +41,11 @@ export class LoginService {
     return this.afAuth.authState;
   }
 
-  loginFacebook() {
-    this.afAuth.auth.signInWithRedirect(new auth.FacebookAuthProvider());
+  async loginFacebook() {
+    await this.afAuth.auth.signInWithRedirect(new auth.FacebookAuthProvider());
+    // cant get redirect results if sign-in not awaited.
     this.afAuth.auth.getRedirectResult().then(cred => {
-      if(cred){
+      if (cred) {
         if (!this.regService.userExists(cred.user.uid)) {
           this.regService.addUserNoInfo(cred);
         }
