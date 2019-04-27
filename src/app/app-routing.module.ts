@@ -17,8 +17,7 @@ import {ProductsComponent} from './components/body/products/products.component';
 
 
 export const routes: Routes = [
-  {path: '', redirectTo: '', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
+  {path: '', redirectTo: '', component:HomeComponent, pathMatch: 'full'},
   {path: 'products', component: ProductsComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
   {path: 'mypage', component: MypageComponent, canActivate: [AuthGuard]},
