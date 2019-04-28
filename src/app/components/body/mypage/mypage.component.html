@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container" id="outer">
   <span>Account Settings</span>
   <div *ngIf="user == null " class="alert alert-danger" role="alert">
@@ -73,3 +74,23 @@
   </div>
 </div>
 
+=======
+<div class="container" *ngIf="currentUser">
+  <ul>
+    <li><img src='{{currentUser.photoURL}}' alt="" style="width: 80px; height: 80px"></li>
+    <li><code>ID:</code> {{currentUser.id}}</li>
+    <li><code>Rank:</code> {{currentUser.rank}}</li>
+    <li><code>Email:</code> {{currentUser.email}}</li>
+    <li><code>FirstName:</code> {{currentUser.firstName}}</li>
+    <li><code>LastName:</code> {{currentUser.lastName}}</li>
+    <li><code>Sex:</code> {{currentUser.sex}}</li>
+    <li><code>Address:</code> {{currentUser.address}}</li>
+    <li><code>City:</code> {{currentUser.city}}</li>
+    <li><code>Phone:</code> {{currentUser.phone}}</li>
+    <li><code>LoggedIn:</code> {{currentUser.loggedIn}}</li>
+    <li><code>Last login:</code> {{currentUser.lastLogin.toDate() | date:'MMM d, y, HH:mm'}}</li>
+    <li><code>Register date:</code> {{currentUser.registerDate | date:'MMM d, y, HH:mm'}}</li>
+    <li><code>SessionId:</code> {{currentUser.sessionID}}</li>
+  </ul>
+</div>
+>>>>>>> developer

@@ -1,10 +1,15 @@
 import {Component, OnInit} from '@angular/core';
+<<<<<<< HEAD
 import {AuthGuard} from '../../../services/authentication/auth-guard.service';
 import {IUser} from "../../../models/user";
 import {RoleGuardService} from "../../../services/authentication/role-guard.service";
 import {Userrank} from "../../../models/userrank";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {FormControl, FormGroup} from "@angular/forms";
+=======
+import {IUser} from '../../../models/user';
+import {UserSessionService} from '../../../services/user-session.service';
+>>>>>>> developer
 
 @Component({
   selector: 'app-mypage',
@@ -16,6 +21,7 @@ export class MypageComponent implements OnInit {
   userEmail: string;
   user: IUser;
 
+<<<<<<< HEAD
   profile = new FormGroup({
     email: new FormControl(),
     firstname: new FormControl(),
@@ -42,6 +48,14 @@ export class MypageComponent implements OnInit {
   }
 
   onSubmit(){
+=======
+  constructor(private userSessionService: UserSessionService) {
+  }
+
+  ngOnInit() {
+    // We subscribe to the observable user value changes
+    this.userSessionService.currentUser().subscribe(j => this.currentUser = j);
+>>>>>>> developer
   }
 
 }

@@ -27,7 +27,11 @@ export const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: RegisterComponent},
   {path: 'recover', component: PasswordrecoveryComponent},
+<<<<<<< HEAD
   {path: 'adminpanel', component: PanelComponent, canActivate: [AuthGuard]},
+=======
+  {path: 'adminpanel', component: PanelComponent, canActivate: [RoleGuardService]},
+>>>>>>> developer
   {path: '**', component: Error404Component},
 ];
 
