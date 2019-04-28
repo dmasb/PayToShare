@@ -119,7 +119,7 @@ export class AuthService {
     this.data.id = user.uid;
     this.data.email = user.email;
     this.data.firstName = displayName[0];
-    this.data.lastName = displayName[1];
+    (displayName[1]) ? this.data.lastName = displayName[1] : this.data.lastName = '';
     this.data.photoURL = user.photoURL;
     this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
     this.data.registerDate = this.afAuth.auth.currentUser.metadata.creationTime;
