@@ -66,7 +66,10 @@ export class AuthService {
   login(email: string, password: string) {
     return new Promise(() => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
-        .then(success => {
+        .then(async success => {
+          await this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update(
+            {lastLogin: firebase.firestore.Timestamp.fromDate(new Date())}
+          );
           this.router.navigate(['/mypage']);
         }, failed => {
           console.warn('Wrong email or password');
@@ -96,7 +99,8 @@ export class AuthService {
       this.data.email = credential.currentUser.email;
       this.data.firstName = user.firstName;
       this.data.lastName = user.lastName;
-      this.data.registerDate = firebase.firestore.Timestamp.fromDate(new Date());
+      this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
+      this.data.registerDate = cred.user.metadata.creationTime;
 
       this.router.navigate(['/mypage']);
       return this.afs.collection('users').doc(cred.user.uid).set(this.data);
@@ -113,7 +117,8 @@ export class AuthService {
     this.data.firstName = displayName[0];
     this.data.lastName = displayName[1];
     this.data.photoURL = user.photoURL;
-    this.data.registerDate = firebase.firestore.Timestamp.fromDate(new Date());
+    this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
+    this.data.registerDate = this.afAuth.auth.currentUser.metadata.creationTime;
     this.data.loggedIn = true;
     userRef.set(this.data, {merge: true});
     this.router.navigate(['/mypage']);

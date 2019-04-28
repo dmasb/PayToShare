@@ -24,7 +24,7 @@ import {fas} from '@fortawesome/free-solid-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {Error404Component} from './components/body/error404/error404.component';
-import {DecimalPipe} from '@angular/common';
+import {DecimalPipe, registerLocaleData} from '@angular/common';
 import {CategoryOverviewComponent} from './components/body/admin/categorymanagement/overview/category-overview.component';
 import {AddCategoryComponent} from './components/body/admin/categorymanagement/add/add-category.component';
 import {AddProductComponent} from './components/body/admin/productmanagement/add/add.component';

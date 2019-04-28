@@ -11,7 +11,8 @@
     <li><code>City:</code> {{currentUser.city}}</li>
     <li><code>Phone:</code> {{currentUser.phone}}</li>
     <li><code>LoggedIn:</code> {{currentUser.loggedIn}}</li>
-    <li><code>Register date:</code> {{currentUser.registerDate.toDate() | date: 'dd/MM/yyyy'}}</li>
+    <li><code>Last login:</code> {{currentUser.lastLogin.toDate() | date:'MMM d, y, HH:mm'}}</li>
+    <li><code>Register date:</code> {{currentUser.registerDate | date:'MMM d, y, HH:mm'}}</li>
     <li><code>SessionId:</code> {{currentUser.sessionID}}</li>
   </ul>
 </div>
