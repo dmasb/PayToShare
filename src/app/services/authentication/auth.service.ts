@@ -68,7 +68,10 @@ export class AuthService {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
         .then(async success => {
           await this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update(
-            {lastLogin: firebase.firestore.Timestamp.fromDate(new Date())}
+            {
+              lastLogin: firebase.firestore.Timestamp.fromDate(new Date()),
+              loggedIn: true
+            }
           );
           this.router.navigate(['/mypage']);
         }, failed => {
