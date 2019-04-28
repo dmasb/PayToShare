@@ -1,10 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {RegisterService} from '../../../services/authentication/register.service';
-import {IUser} from '../../../models/user';
 import {Userrank} from '../../../models/userrank';
-import Timestamp = firebase.firestore.Timestamp;
-import * as firebase from 'firebase';
+import {AuthService} from '../../../services/authentication/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -19,10 +16,9 @@ export class RegisterComponent implements OnInit {
     firstname: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required])
-
   });
 
-  constructor(private registerService: RegisterService) {
+  constructor(private auth: AuthService) {
   }
 
   ngOnInit() {
@@ -36,19 +32,19 @@ export class RegisterComponent implements OnInit {
     const lastname = this.profileForm.controls.lastname.value;
     const userPhone = this.profileForm.controls.phone.value;
 
-    const user: IUser = {
+    const user = {
       rank: Userrank.User,
       email: userEmail,
       firstName: firstname,
       lastName: lastname,
-      loggedIn: false,
-      lastLogin: Timestamp.now(),
-      phone: userPhone,
+      phone: userPhone
     };
+
+
     if (pass !== passConfirm) {
       console.warn('NO MATCH');
     } else {
-      this.registerService.addUserWithInfo(user, pass);
+      this.auth.addUserWithInfo(user, pass);
     }
   }
 }

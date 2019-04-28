@@ -12,12 +12,10 @@ export class MypageComponent implements OnInit {
 
   private currentUser: IUser;
 
-  constructor(private userSessionService: UserSessionService) {
-
-  }
+  constructor(private userSessionService: UserSessionService) {}
 
   ngOnInit() {
-    // We subscribe to the observable user
+    // We subscribe to the observable user value changes
     this.userSessionService.currentUser().subscribe(j => this.currentUser = j);
   }
 

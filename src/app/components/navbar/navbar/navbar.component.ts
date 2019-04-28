@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {LoginService} from '../../../services/authentication/login.service';
 import {Router} from '@angular/router';
-import {AuthGuard} from '../../../services/authentication/auth-guard.service';
-import {UserSessionService} from '../../../services/user-session.service';
 import {Userrank} from '../../../models/userrank';
+import {AuthService} from '../../../services/authentication/auth.service';
+import {Observable} from 'rxjs';
+import {IUser} from '../../../models/user';
 
 @Component({
   selector: 'app-navbar',
@@ -12,37 +12,37 @@ import {Userrank} from '../../../models/userrank';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  isLoggedIn: boolean;
-  isAdmin: boolean;
 
+  private user$: Observable<IUser>;
+  private isAdmin = false;
+  private isLoggedIn = false;
+  private navBarLoading = false;
   profileForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
   });
 
-  constructor(private loginService: LoginService,
-              private router: Router,
-              private authGuard: AuthGuard,
-              private userSessionService: UserSessionService) {
+  constructor(private auth: AuthService,
+              private router: Router) {
+    this.user$ = this.auth.getCurrentUser();
   }
 
-  ngOnInit() {
-
-    this.authGuard.getAuth().subscribe(auth => {
-      this.isLoggedIn = !!auth;
+  async ngOnInit() {
+    // During the time navBarLoading is true, we can easily view spinning objects
+    this.navBarLoading = true;
+    await this.user$.subscribe(user => {
+      if (user) {
+        this.isAdmin = user.rank === Userrank.Admin;
+        this.isLoggedIn = user.loggedIn;
+      }
     });
-    // Wait for the user document to be fetched before accessing data.
-    if (this.userSessionService.currentUser()) {
-      this.userSessionService.currentUser().subscribe(res => {
-        this.isAdmin = (res.rank === Userrank.Admin);
-      });
-    }
+    this.navBarLoading = false;
   }
 
   onSubmit() {
     const email = this.profileForm.controls.email.value;
     const password = this.profileForm.controls.password.value;
-    this.loginService.login(email, password).then(() => {
+    this.auth.login(email, password).then(() => {
         this.isLoggedIn = true;
         this.router.navigate(['/mypage']);
       }, () => {
@@ -52,16 +52,14 @@ export class NavbarComponent implements OnInit {
   }
 
   onLogoutClick() {
-    this.loginService.logout();
-    this.isLoggedIn = false;
-    this.router.navigate(['/']);
+    this.auth.signOut();
   }
 
   loginWithGoogle() {
-    this.loginService.loginGoogle();
+    this.auth.googleLogin();
   }
 
   loginWithFacebook() {
-    this.loginService.loginFacebook();
+    this.auth.facebookLogin();
   }
 }
