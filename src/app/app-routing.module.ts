@@ -8,7 +8,6 @@ import {WeeklydealsComponent} from './components/body/weeklydeals/weeklydeals.co
 import {PricingComponent} from './components/body/pricing/pricing.component';
 import {MypageComponent} from './components/body/mypage/mypage.component';
 import {RegisterComponent} from './components/body/register/register.component';
-import {LoginComponent} from './components/body/login/login.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
 import {Error404Component} from './components/body/error404/error404.component';
 import {RoleGuardService} from './services/authentication/role-guard.service';
@@ -24,14 +23,9 @@ export const routes: Routes = [
   {path: 'pricing', component: PricingComponent},
   {path: 'features', component: FeaturesComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent},
   {path: 'logout', component: RegisterComponent},
   {path: 'recover', component: PasswordrecoveryComponent},
-<<<<<<< HEAD
-  {path: 'adminpanel', component: PanelComponent, canActivate: [AuthGuard]},
-=======
   {path: 'adminpanel', component: PanelComponent, canActivate: [RoleGuardService]},
->>>>>>> developer
   {path: '**', component: Error404Component},
 ];
 

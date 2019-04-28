@@ -14,7 +14,6 @@ import {WeeklydealsComponent} from './components/body/weeklydeals/weeklydeals.co
 import {PricingComponent} from './components/body/pricing/pricing.component';
 import {MypageComponent} from './components/body/mypage/mypage.component';
 import {RegisterComponent} from './components/body/register/register.component';
-import {LoginComponent} from './components/body/login/login.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
 import {IndexComponent} from './components/body/index/index.component';
 import {FooterComponent} from './components/footer/footer.component';
@@ -42,7 +41,6 @@ import { SidepanelComponent } from './components/navbar/sidepanel/sidepanel.comp
   declarations: [
     NavbarComponent,
     AppComponent,
-    LoginComponent,
     RegisterComponent,
     HomeComponent,
     PricingComponent,

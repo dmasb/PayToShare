@@ -1,5 +1,5 @@
 <!-- HIDDEN ADMIN PANEL-->
-  <div class="collapse" id="toggleAdmin" *ngIf="isAdmin()">
+  <div class="collapse" id="toggleAdmin" *ngIf="isAdmin">
     <nav class="uk-navbar-container" uk-navbar id="adminpanel">
       <div class="uk-navbar-center">
         <ul class="uk-navbar-nav">
@@ -58,7 +58,7 @@
       <ul class="navbar-nav">
 
         <!--        ADMIN ITEM-->
-        <li class="nav-item" *ngIf="_isAdmin">
+        <li class="nav-item" *ngIf="isAdmin">
           <a uk-icon="icon: cog" class="nav-link"
              data-toggle="collapse" data-target="#toggleAdmin" aria-controls="toggleAdmin" aria-expanded="false"
              routerLink="/"></a>
@@ -103,8 +103,8 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <button type="button" class="loginBtn loginBtn--google" (click)="glogin()"> Google</button>
-                  <button type="button" class="loginBtn loginBtn--facebook" (click)="fblogin()"> Facebook</button>
+                  <button type="button" class="loginBtn loginBtn--google" (click)="loginWithGoogle()"> Google</button>
+                  <button type="button" class="loginBtn loginBtn--facebook" (click)="loginWithFacebook()"> Facebook</button>
                 </div>
               </div>
             </form>
@@ -116,16 +116,9 @@
           <a uk-icon="icon: user" class="nav-link dropdown-toggle" role="button"
              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           </a>
-<<<<<<< HEAD
-
 <!--          ADMIN PANEL LINK-->
           <div class="dropdown-menu dropdown-menu-right border border-secondary" id="dropdown">
             <a class="nav-link" routerLink="/profile">Profile</a>
-=======
-          <div class="dropdown-menu dropdown-menu-right border border-secondary">
-            <a *ngIf="isAdmin" class="nav-link" routerLink="/adminpanel">Admin panel</a><!-- ng if admin here -->
-            <a class="nav-link" routerLink="/mypage">My Page</a>
->>>>>>> developer
             <a class="nav-link" routerLink="/" (click)="onLogoutClick()">Logout</a>
           </div>
         <li *ngIf="!isLoggedIn">
@@ -134,3 +127,4 @@
       </ul>
     </div>
   </div>
+</nav>
