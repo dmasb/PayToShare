@@ -28,10 +28,8 @@ export class UserSessionService implements OnInit {
   currentUser(): Observable<IUser> {
     if (this.afAuth.auth.currentUser) {
       this.userID = this.afAuth.auth.currentUser.uid;
-      this.collection = this.afs.collection('users');
-
       // We make a new fetch of the user document to avoid type-casting from IUser to observable<IUser>
-      this.user = this.afs.doc<IUser>(`users/${this.afAuth.auth.currentUser.uid}`).valueChanges();
+      this.user = this.afs.doc<IUser>(`users/${this.userID}`).valueChanges();
       return this.user;
     }
     return null;

@@ -24,7 +24,7 @@ import {fas} from '@fortawesome/free-solid-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {Error404Component} from './components/body/error404/error404.component';
-import {DecimalPipe, registerLocaleData} from '@angular/common';
+import {DecimalPipe} from '@angular/common';
 import {CategoryOverviewComponent} from './components/body/admin/categorymanagement/overview/category-overview.component';
 import {AddCategoryComponent} from './components/body/admin/categorymanagement/add/add-category.component';
 import {AddProductComponent} from './components/body/admin/productmanagement/add/add.component';
@@ -35,6 +35,7 @@ import {UpdateProductComponent} from './components/body/admin/productmanagement/
 import {ProductOverviewComponent} from './components/body/admin/productmanagement/overview/product-overview.component';
 import {PanelComponent} from './components/body/admin/panel/panel.component';
 import {ProductsComponent} from './components/body/products/products.component';
+import { MessageComponent } from './components/body/message/message.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {ProductsComponent} from './components/body/products/products.component';
     DeleteProductComponent,
     AddProductComponent,
     PanelComponent,
-    ProductsComponent
+    ProductsComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
