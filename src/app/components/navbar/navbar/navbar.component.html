@@ -1,5 +1,5 @@
 <!-- HIDDEN ADMIN PANEL-->
-  <div class="collapse" id="toggleAdmin">
+  <div class="collapse" id="toggleAdmin" *ngIf="_isAdmin">
     <nav class="uk-navbar-container" uk-navbar id="adminpanel">
       <div class="uk-navbar-center">
         <ul class="uk-navbar-nav">
@@ -58,7 +58,7 @@
       <ul class="navbar-nav">
 
         <!--        ADMIN ITEM-->
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="_isAdmin">
           <a uk-icon="icon: cog" class="nav-link"
              data-toggle="collapse" data-target="#toggleAdmin" aria-controls="toggleAdmin" aria-expanded="false"
              routerLink="/"></a>
