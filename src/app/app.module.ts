@@ -14,6 +14,7 @@ import {WeeklydealsComponent} from './components/body/weeklydeals/weeklydeals.co
 import {PricingComponent} from './components/body/pricing/pricing.component';
 import {MypageComponent} from './components/body/mypage/mypage.component';
 import {RegisterComponent} from './components/body/register/register.component';
+import {LoginComponent} from './components/body/login/login.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
 import {IndexComponent} from './components/body/index/index.component';
 import {FooterComponent} from './components/footer/footer.component';
@@ -24,7 +25,7 @@ import {fas} from '@fortawesome/free-solid-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {Error404Component} from './components/body/error404/error404.component';
-import {DecimalPipe, registerLocaleData} from '@angular/common';
+import {DecimalPipe} from '@angular/common';
 import {CategoryOverviewComponent} from './components/body/admin/categorymanagement/overview/category-overview.component';
 import {AddCategoryComponent} from './components/body/admin/categorymanagement/add/add-category.component';
 import {AddProductComponent} from './components/body/admin/productmanagement/add/add.component';
@@ -33,13 +34,15 @@ import {DeleteProductComponent} from './components/body/admin/productmanagement/
 import {UpdateCategoryComponent} from './components/body/admin/categorymanagement/update/update-category.component';
 import {UpdateProductComponent} from './components/body/admin/productmanagement/update/update.component';
 import {ProductOverviewComponent} from './components/body/admin/productmanagement/overview/product-overview.component';
-import {PanelComponent} from './components/body/admin/panel/panel.component';
-import {ProductsComponent} from './components/body/products/products.component';
+import { PanelComponent } from './components/body/admin/panel/panel.component';
+import { ProductsComponent } from './components/body/products/products.component';
+import { SidepanelComponent } from './components/navbar/sidepanel/sidepanel.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     AppComponent,
+    LoginComponent,
     RegisterComponent,
     HomeComponent,
     PricingComponent,
@@ -60,6 +63,7 @@ import {ProductsComponent} from './components/body/products/products.component';
     AddProductComponent,
     PanelComponent,
     ProductsComponent,
+    SidepanelComponent
   ],
   imports: [
     BrowserModule,

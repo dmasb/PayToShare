@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {IUser} from '../../../models/user';
-import {UserSessionService} from '../../../services/user-session.service';
-
+import {AuthGuard} from '../../../services/authentication/auth-guard.service';
+import {IUser} from "../../../models/user";
+import {RoleGuardService} from "../../../services/authentication/role-guard.service";
+import {Userrank} from "../../../models/userrank";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-mypage',
@@ -10,11 +13,35 @@ import {UserSessionService} from '../../../services/user-session.service';
 })
 export class MypageComponent implements OnInit {
 
-  private currentUser: IUser;
-  constructor(private userSessionService: UserSessionService) {}
+  userEmail: string;
+  user: IUser;
 
-  ngOnInit() {
-    // We subscribe to the observable user value changes
-    this.userSessionService.currentUser().subscribe(j => this.currentUser = j);
+  profile = new FormGroup({
+    email: new FormControl(),
+    firstname: new FormControl(),
+    lastname: new FormControl(),
+    address: new FormControl(),
+    city: new FormControl(),
+    country: new FormControl(),
+    zipcode: new FormControl(),
+    passconfirm: new FormControl()
+  });
+
+
+  constructor(private afAuth: AngularFireAuth, private authInfo: AuthGuard, private roleGuard: RoleGuardService) {
+    this.userEmail = this.authInfo.getFireBaseUser().email;
+    this.roleGuard.getUser().subscribe((val) => {
+      this.user = val;
+    })
   }
+  ngOnInit() {
+  }
+
+  isAdmin(): string {
+    return this.user.rank == Userrank.Admin ? 'Admin': 'User';
+  }
+
+  onSubmit(){
+  }
+
 }
