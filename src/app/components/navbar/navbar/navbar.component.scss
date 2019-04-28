@@ -116,7 +116,6 @@ img {
   background-color: rgba(220, 220, 221, 0.7);
   font-family: Montserrat, sans-serif;
   margin-bottom: 0;
-  background-color: #2d2d30;
   border: 0;
   font-size: 11px !important;
   letter-spacing: 4px;
@@ -133,23 +132,49 @@ img {
   background-color: #29292c !important;
 }
 
-.navbar.navbar-expand-lg.navbar-light li a:hover{
-  color: #059b46;
+// ADMIN PANEL OPTIONS ///////////
+
+#adminpanel{
+  font-family: Montserrat, sans-serif;
+  margin-bottom: 0;
+  background-color: #2d2d30;
+  border: 0;
+  font-size: 11px !important;
+  letter-spacing: 4px;
+  opacity: 0.9;
+  padding: 0;
 }
 
-.navbar.navbar-expand-lg.navbar-light li a:visited{
-  color: #059b46;
+
+#adminpanel li a {
+  color: white;
+}
+#adminpanel li.active a {
+  color: #fff !important;
+  background-color: #29292c !important;
 }
 
-.fa.fa-user-plus.fa-2x {
-  color: #059b46;
+#adminpanel li a, .navbar .navbar-brand {
+  color: #d5d5d5 !important;
+}
+#adminpanel li a:hover {
+  color: #fff !important;
+}
+#adminpanel li.active a {
+  color: #fff !important;
+  background-color: #29292c !important;
 }
 
-// Centers the search bar
+//////////////////////////////
+
+///// SEARCH BAR
 #search{
   margin: 0 auto;
+  color:white;
+  background: white;
 }
 
+////////////////
 
 .navbar {
   font-family: Montserrat, sans-serif;
@@ -188,16 +213,7 @@ img {
 .dropdown-menu li a:hover {
   background-color: red !important;
 }
-#header {
-  text-decoration: solid;
-  letter-spacing: 4px;
-  opacity: 0.9;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-}
-#search {
-  color:white;
-  background: white;
-}
+
 
 
 
