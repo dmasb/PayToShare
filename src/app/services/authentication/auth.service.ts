@@ -124,7 +124,7 @@ export class AuthService {
     this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
     this.data.registerDate = this.afAuth.auth.currentUser.metadata.creationTime;
     this.data.loggedIn = true;
-    userRef.set(this.data, {merge: true});
+    userRef.set(Object.assign({}, this.data), {merge: true});
     this.router.navigate(['/mypage']);
 
   }
