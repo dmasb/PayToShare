@@ -66,7 +66,7 @@ export class AuthService {
   login(email: string, password: string) {
     return new Promise(() => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
-        .then(async success => {
+        .then(async () => {
           await this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update(
             {
               lastLogin: firebase.firestore.Timestamp.fromDate(new Date()),
@@ -74,7 +74,7 @@ export class AuthService {
             }
           );
           this.router.navigate(['/mypage']);
-        }, failed => {
+        }, () => {
           console.warn('Wrong email or password');
         });
     });
