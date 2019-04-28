@@ -111,20 +111,22 @@ export class AuthService {
   }
 
   private updateUserData(user) {
-    const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${user.uid}`);
-    const displayName = user.displayName.split(' ', 2);
+    if (user) {
+      const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${user.uid}`);
+      const displayName = user.displayName.split(' ', 2);
 
-    // Adding required information to the user document data set mentioned earlier.
-    this.data.id = user.uid;
-    this.data.email = user.email;
-    this.data.firstName = displayName[0];
-    this.data.lastName = displayName[1];
-    this.data.photoURL = user.photoURL;
-    this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
-    this.data.registerDate = this.afAuth.auth.currentUser.metadata.creationTime;
-    this.data.loggedIn = true;
-    userRef.set(this.data, {merge: true});
-    this.router.navigate(['/mypage']);
+      // Adding required information to the user document data set mentioned earlier.
+      this.data.id = user.uid;
+      this.data.email = user.email;
+      this.data.firstName = displayName[0];
+      this.data.lastName = displayName[1];
+      this.data.photoURL = user.photoURL;
+      this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
+      this.data.registerDate = this.afAuth.auth.currentUser.metadata.creationTime;
+      this.data.loggedIn = true;
+      userRef.set(this.data, {merge: true});
+      this.router.navigate(['/mypage']);
+    }
   }
 
   async signOut() {
