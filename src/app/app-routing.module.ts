@@ -8,26 +8,23 @@ import {WeeklydealsComponent} from './components/body/weeklydeals/weeklydeals.co
 import {PricingComponent} from './components/body/pricing/pricing.component';
 import {MypageComponent} from './components/body/mypage/mypage.component';
 import {RegisterComponent} from './components/body/register/register.component';
-import {LoginComponent} from './components/body/login/login.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
 import {Error404Component} from './components/body/error404/error404.component';
 import {RoleGuardService} from './services/authentication/role-guard.service';
 import {PanelComponent} from './components/body/admin/panel/panel.component';
 import {ProductsComponent} from './components/body/products/products.component';
 
-
 export const routes: Routes = [
-  {path: '', redirectTo: '', component:HomeComponent, pathMatch: 'full'},
+  {path: '', redirectTo: '', component: HomeComponent, pathMatch: 'full'},
   {path: 'products', component: ProductsComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
   {path: 'mypage', component: MypageComponent, canActivate: [AuthGuard]},
   {path: 'pricing', component: PricingComponent},
   {path: 'features', component: FeaturesComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent},
   {path: 'logout', component: RegisterComponent},
   {path: 'recover', component: PasswordrecoveryComponent},
-  {path: 'adminpanel', component: PanelComponent, canActivate: [AuthGuard]},
+  {path: 'adminpanel', component: PanelComponent, canActivate: [RoleGuardService]},
   {path: '**', component: Error404Component},
 ];
 
