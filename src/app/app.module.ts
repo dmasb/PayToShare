@@ -31,7 +31,7 @@ import { IndexComponent } from './components/body/index/index.component';
     WeeklydealsComponent,
     MypageComponent,
     PasswordrecoveryComponent,
-    IndexComponent
+    IndexComponent,
   ],
   imports: [
     BrowserModule,
