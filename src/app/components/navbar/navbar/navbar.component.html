@@ -63,7 +63,8 @@
                 <div class="col-12">
                   <!-- Have to fix PROPER login to facebook/google buttons -->
                   <button type="button" class="loginBtn loginBtn--google" (click)="loginWithGoogle()"> Google</button>
-                  <button type="button" class="loginBtn loginBtn--facebook" (click)="loginWithFacebook()"> Facebook</button>
+                  <button type="button" class="loginBtn loginBtn--facebook" (click)="loginWithFacebook()"> Facebook
+                  </button>
                 </div>
               </div>
             </form>
@@ -76,7 +77,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right border border-secondary">
             <a *ngIf="isAdmin" class="nav-link" routerLink="/adminpanel">Admin panel</a><!-- ng if admin here -->
-            <a class="nav-link" routerLink="/mypage">My Page</a>
+            <a class="nav-link" routerLink="/profile">My Page</a>
             <a class="nav-link" routerLink="/" (click)="onLogoutClick()">Logout</a>
           </div>
         <li *ngIf="!navBarLoading && !isLoggedIn">
