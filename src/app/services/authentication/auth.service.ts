@@ -71,17 +71,15 @@ export class AuthService {
   login(email: string, password: string) {
     return new Promise(() => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
-        .then(async user => {
-
+        .then(async () => {
           this.messageService.add('Login success', alerts.success);
-
           await this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update(
             {
               lastLogin: firebase.firestore.Timestamp.fromDate(new Date()),
               loggedIn: true
             }
           );
-          this.router.navigate(['/mypage']);
+          this.router.navigate(['/profile']);
 
         }, () => {
           this.messageService.add('Wrong email or password', alerts.danger);
@@ -104,6 +102,7 @@ export class AuthService {
   addUserWithInfo(user: IUser, password: string) {
     this.afAuth.auth.createUserWithEmailAndPassword(user.email, password).then(async cred => {
       this.afAuth.auth.currentUser.sendEmailVerification();
+
       const credential = await this.afAuth.auth;
 
       // Adding required information to the user document data set mentioned earlier.
@@ -111,37 +110,40 @@ export class AuthService {
       this.data.email = credential.currentUser.email;
       this.data.firstName = user.firstName;
       this.data.lastName = user.lastName;
+      this.data.phone = user.phone;
       this.data.registerDate = cred.user.metadata.creationTime;
-      this.afs.collection('users').doc(cred.user.uid).set(this.data);
-      this.router.navigate(['/mypage']);
-      return await this.afs.doc(`users/${cred.user.uid}`).update(
-        {
-          lastLogin: firebase.firestore.Timestamp.fromDate(new Date()),
-          loggedIn: true
-        }
-      );
-    }).catch(error => {
-      this.messageService.add(error, alerts.danger);
+      this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
+      this.data.loggedIn = true;
+      await this.afs.collection('users').doc(cred.user.uid).set(this.data);
+      this.router.navigate(['/profile']);
     });
   }
 
   private updateUserData(user) {
 
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${user.uid}`);
-    const displayName = user.displayName.split(' ', 2);
+    userRef.ref.get().then(userDocument => {
 
-    // Adding required information to the user document data set mentioned earlier.
-    this.data.id = user.uid;
-    this.data.email = user.email;
-    this.data.firstName = displayName[0];
-    (displayName[1]) ? this.data.lastName = displayName[1] : this.data.lastName = '';
-    this.data.photoURL = user.photoURL;
-    this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
-    this.data.registerDate = this.afAuth.auth.currentUser.metadata.creationTime;
-    this.data.loggedIn = true;
-    userRef.set(Object.assign({}, this.data), {merge: true});
-    this.router.navigate(['/mypage']);
-
+      if (userDocument.exists) {
+        const now = firebase.firestore.Timestamp.fromDate(new Date());
+        this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update({
+          lastLogin: now,
+          loggedIn: true
+        });
+      } else {
+        const displayName = user.displayName.split(' ', 2);
+        this.data.id = user.uid;
+        this.data.email = user.email;
+        this.data.firstName = displayName[0];
+        (displayName[1]) ? this.data.lastName = displayName[1] : this.data.lastName = '';
+        this.data.photoURL = user.photoURL;
+        this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
+        this.data.registerDate = this.afAuth.auth.currentUser.metadata.creationTime;
+        this.data.loggedIn = true;
+        userRef.set(this.data);
+      }
+    });
+    this.router.navigate(['/profile']);
   }
 
   async signOut() {
