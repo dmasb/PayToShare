@@ -11,8 +11,8 @@ import {RegisterComponent} from './components/body/register/register.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
 import {Error404Component} from './components/body/error404/error404.component';
 import {RoleGuardService} from './services/authentication/role-guard.service';
-import {PanelComponent} from './components/body/admin/panel/panel.component';
 import {ProductsComponent} from './components/body/products/products.component';
+import {DashboardComponent} from './components/body/admin/dashboard/dashboard.component';
 
 
 export const routes: Routes = [
@@ -25,7 +25,7 @@ export const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'logout', component: RegisterComponent},
   {path: 'recover', component: PasswordrecoveryComponent},
-  {path: 'adminpanel', component: PanelComponent, canActivate: [RoleGuardService]},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuardService]},
   {path: '**', component: Error404Component},
 ];
 

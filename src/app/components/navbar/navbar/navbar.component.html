@@ -10,7 +10,7 @@
           <a>Orders</a>
         </li>
         <li class="nav-item">
-          <a routerLink="/adminpanel">Product Management</a>
+          <a routerLink="/dashboard">Dashboard</a>
         </li>
       </ul>
     </div>
@@ -74,12 +74,13 @@
           <!--        LOGIN DROPDOWN-->
         <li class="nav-item dropdown" *ngIf="!isLoggedIn">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
-             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="messageService.clear()">
             Login
           </a>
           <div class="dropdown-menu dropdown-menu-right border border-secondary">
             <form class="px-4 py-3" [formGroup]="profileForm" (ngSubmit)="onSubmit()" id="login">
               <h3>Sign in</h3>
+              <app-message></app-message>
               <div class="form-group mt-2">
                 <label class="sr-only" for="exampleDropdownFormEmail1">Email address</label>
                 <input type="email" class="form-control" id="exampleDropdownFormEmail1"
@@ -92,7 +93,7 @@
                        formControlName="password">
               </div>
               <p class="mb-2"><a id="forgot-password" routerLink="/recover">Forgot password?</a></p>
-              <button type="submit" class="btn btn-block btn-primary">Login</button>
+              <button type="submit" class="btn btn-block btn-primary" (click)="messageService.clear()">Login</button>
               <div class="form-check mt-1">
                 <input type="checkbox" class="form-check-input" id="dropdownCheck">
                 <label class="form-check-label" for="dropdownCheck">
