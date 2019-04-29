@@ -35,7 +35,6 @@ import {UpdateProductComponent} from './components/body/admin/productmanagement/
 import {ProductOverviewComponent} from './components/body/admin/productmanagement/overview/product-overview.component';
 import { PanelComponent } from './components/body/admin/panel/panel.component';
 import { ProductsComponent } from './components/body/products/products.component';
-import { SidepanelComponent } from './components/navbar/sidepanel/sidepanel.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +60,6 @@ import { SidepanelComponent } from './components/navbar/sidepanel/sidepanel.comp
     AddProductComponent,
     PanelComponent,
     ProductsComponent,
-    SidepanelComponent
   ],
   imports: [
     BrowserModule,

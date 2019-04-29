@@ -215,6 +215,30 @@ img {
   background-color: red !important;
 }
 
+//// SIDEBAR SETTINGS
+.uk-open>.uk-offcanvas-bar {
+  top: 7%;
+  padding: 0;
+  margin: 0;
+  width: 18em;
+  background-color: rgba(142, 142, 142, 0.7);
+}
+
+.uk-offcanvas-bar-animation {
+  transition: left 0.1s ease-out;
+  position: absolute;
+  top: 7%;
+  padding: 0;
+  margin: 0;
+  width: 18em;
+  background-color: rgba(142, 142, 142, 0.7);
+}
+.uk-offcanvas-overlay {
+  width: 0px;
+  touch-action: none;
+}
+
+
 
 
 
