@@ -73,7 +73,7 @@ export class AuthService {
               loggedIn: true
             }
           );
-          this.router.navigate(['/mypage']);
+          this.router.navigate(['/profile']);
         }, () => {
           console.warn('Wrong email or password');
         });
@@ -105,7 +105,7 @@ export class AuthService {
       this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
       this.data.registerDate = cred.user.metadata.creationTime;
 
-      this.router.navigate(['/mypage']);
+      this.router.navigate(['/profile']);
       return this.afs.collection('users').doc(cred.user.uid).set(this.data);
     });
   }
@@ -125,7 +125,7 @@ export class AuthService {
     this.data.registerDate = this.afAuth.auth.currentUser.metadata.creationTime;
     this.data.loggedIn = true;
     userRef.set(Object.assign({}, this.data), {merge: true});
-    this.router.navigate(['/mypage']);
+    this.router.navigate(['/profile']);
 
   }
 
