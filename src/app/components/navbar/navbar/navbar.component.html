@@ -71,14 +71,14 @@
         <li class="nav-item">
           <a uk-icon="icon: cart" class="nav-link" routerLink="/features"></a>
 
-          <!--        USER DROPDOWN-->
+          <!--        LOGIN DROPDOWN-->
         <li class="nav-item dropdown" *ngIf="!isLoggedIn">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Login
           </a>
           <div class="dropdown-menu dropdown-menu-right border border-secondary">
-            <form class="px-4 py-3" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <form class="px-4 py-3" [formGroup]="profileForm" (ngSubmit)="onSubmit()" id="login">
               <h3>Sign in</h3>
               <div class="form-group mt-2">
                 <label class="sr-only" for="exampleDropdownFormEmail1">Email address</label>
