@@ -15,16 +15,17 @@ export class MypageComponent implements OnInit {
   currentUser: IUser;
 
   profile = new FormGroup({
-    email: new FormControl(),
-    firstname: new FormControl(),
-    lastname: new FormControl(),
-    address: new FormControl(),
-    city: new FormControl(),
-    country: new FormControl(),
-    zipcode: new FormControl(),
-    passconfirm: new FormControl()
+    email: new FormControl(''),
+    firstname: new FormControl(''),
+    lastname: new FormControl(''),
+    address: new FormControl(''),
+    city: new FormControl(''),
+    country: new FormControl(''),
+    zipcode: new FormControl(''),
+    passconfirm: new FormControl('')
   });
 
+  //const userEmail = this.profile.controls.email.value;
 
   constructor(private userSessionService: UserSessionService) {
   }
@@ -32,12 +33,16 @@ export class MypageComponent implements OnInit {
   ngOnInit() {
     // We subscribe to the observable user value changes
     this.userSessionService.currentUser().subscribe(j => this.currentUser = j);
+    if(this.currentUser){
+      this.profile.controls.email.value.setValue(this.currentUser.email);
+    }
   }
-  // TODO: submit form
+
   onSubmit(){
+    // TODO: UPDATE DB WITH NEW INFO
   }
 
   isAdmin(): string {
-    return this.currentUser.rank === Userrank.Admin ? 'Admin': 'User';
+    return this.currentUser.rank == Userrank.Admin ? 'Admin': 'User';
   }
 }
