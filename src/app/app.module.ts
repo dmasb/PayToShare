@@ -33,8 +33,9 @@ import {DeleteProductComponent} from './components/body/admin/productmanagement/
 import {UpdateCategoryComponent} from './components/body/admin/categorymanagement/update/update-category.component';
 import {UpdateProductComponent} from './components/body/admin/productmanagement/update/update.component';
 import {ProductOverviewComponent} from './components/body/admin/productmanagement/overview/product-overview.component';
-import { PanelComponent } from './components/body/admin/panel/panel.component';
-import { ProductsComponent } from './components/body/products/products.component';
+import {PanelComponent} from './components/body/admin/panel/panel.component';
+import {ProductsComponent} from './components/body/products/products.component';
+import { MessageComponent } from './components/body/message/message.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { ProductsComponent } from './components/body/products/products.component
     DeleteProductComponent,
     AddProductComponent,
     PanelComponent,
-    ProductsComponent
+    ProductsComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
