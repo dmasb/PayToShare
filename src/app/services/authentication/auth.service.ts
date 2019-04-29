@@ -1,13 +1,15 @@
 import {Injectable} from '@angular/core';
+import * as firebase from 'firebase';
 import {auth, User} from 'firebase';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {IUser} from '../../models/user';
 import {Userrank} from '../../models/userrank';
-import * as firebase from 'firebase';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
+import {MessageService} from '../message.service';
+import {alerts} from '../../models/alerts';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +42,8 @@ export class AuthService {
 
   constructor(private afAuth: AngularFireAuth,
               private afs: AngularFirestore,
-              private router: Router) {
+              private router: Router,
+              private messageService: MessageService) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -67,6 +70,9 @@ export class AuthService {
     return new Promise(() => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
         .then(async () => {
+
+          this.messageService.add('Login success', alerts.success);
+
           await this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update(
             {
               lastLogin: firebase.firestore.Timestamp.fromDate(new Date()),
@@ -74,8 +80,9 @@ export class AuthService {
             }
           );
           this.router.navigate(['/mypage']);
+
         }, () => {
-          console.warn('Wrong email or password');
+          this.messageService.add('Wrong email or password', alerts.danger);
         });
     });
   }
@@ -102,11 +109,17 @@ export class AuthService {
       this.data.email = credential.currentUser.email;
       this.data.firstName = user.firstName;
       this.data.lastName = user.lastName;
-      this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
       this.data.registerDate = cred.user.metadata.creationTime;
-
+      this.afs.collection('users').doc(cred.user.uid).set(this.data);
       this.router.navigate(['/mypage']);
-      return this.afs.collection('users').doc(cred.user.uid).set(this.data);
+      return await this.afs.doc(`users/${cred.user.uid}`).update(
+        {
+          lastLogin: firebase.firestore.Timestamp.fromDate(new Date()),
+          loggedIn: true
+        }
+      );
+    }).catch(error => {
+      this.messageService.add(error, alerts.danger);
     });
   }
 

@@ -32,12 +32,13 @@
           <a class="nav-link" routerLink="/features">Features</a>
         <li class="nav-item dropdown" *ngIf="!navBarLoading && !isLoggedIn">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
-             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="messageService.clear()">
             Login
           </a>
           <div class="dropdown-menu dropdown-menu-right border border-secondary">
             <form class="px-4 py-3" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
               <h3>Sign in</h3>
+              <app-message></app-message>
               <div class="form-group mt-2">
                 <label class="sr-only" for="exampleDropdownFormEmail1">Email address</label>
                 <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com"
@@ -49,7 +50,7 @@
                        formControlName="password">
               </div>
               <p class="mb-2"><a id="forgot-password" routerLink="/recover">Forgot password?</a></p>
-              <button type="submit" class="btn btn-block btn-primary">Login</button>
+              <button type="submit" class="btn btn-block btn-primary" (click)="messageService.clear()">Login</button>
               <div class="form-check mt-1">
                 <input type="checkbox" class="form-check-input" id="dropdownCheck">
                 <label class="form-check-label" for="dropdownCheck">
@@ -80,7 +81,7 @@
             <a class="nav-link" routerLink="/" (click)="onLogoutClick()">Logout</a>
           </div>
         <li *ngIf="!navBarLoading && !isLoggedIn">
-          <a class="nav-link" routerLink="/register"><i class="fa fa-user-plus fa-lg" aria-hidden="true"></i></a>
+          <a class="nav-link" routerLink="/register" (click)="messageService.clear()"><i class="fa fa-user-plus fa-lg" aria-hidden="true"></i></a>
         </li>
       </ul>
 
