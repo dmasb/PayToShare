@@ -13,6 +13,36 @@
   overflow:hidden;
 }
 
+// h6 - heading with lines on the side!
+h6 {
+  overflow: hidden;
+  text-align: center;
+}
+h6:before,
+h6:after {
+  background-color: #dcdcdd;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+h6:before {
+  right: 1em;
+  margin-left: -50%;
+}
+h6:after {
+  left: 1em;
+  margin-right: -50%;
+
+}
+
+p {
+  margin-top: -10px;
+}
+
+
 // CSS FOR GOOGLE FACEBOOK
 /* Shared */
 .loginBtn {
@@ -76,38 +106,6 @@
 .loginBtn--google:hover,
 .loginBtn--google:focus {
   background: #E74B37;
-}
-
-// h6 - heading with lines on the side!
-h6 {
-  overflow: hidden;
-  text-align: center;
-  color:#dcdcdd;
-}
-h3{
-  color:#dcdcdd;
-}
-.form-check-label{
-  color: #dcdcdd;
-}
-h6:before,
-h6:after {
-  background-color: #dcdcdd;
-  content: "";
-  display: inline-block;
-  height: 1px;
-  position: relative;
-  vertical-align: middle;
-  width: 50%;
-}
-h6:before {
-  right: 1em;
-  margin-left: -50%;
-}
-h6:after {
-  left: 1em;
-  margin-right: -50%;
-
 }
 
 p {
@@ -211,10 +209,12 @@ img {
   background-color: #555 !important;
 }
 
-.dropdown-menu{
+.dropdown-menu, h3, h6{
+  top: 45px;
   background-color: #29292c;
   font-family: Montserrat, sans-serif;
   letter-spacing: 0px;
+  color: #dcdcdd;
 }
 
 .dropdown-menu li a {
