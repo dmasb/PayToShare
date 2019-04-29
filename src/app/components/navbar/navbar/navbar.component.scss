@@ -1,16 +1,18 @@
+.navbar {
+  z-index: 5;
+}
+
 .form-group {
   width: 255px;
   height: 50px;
   margin: 0;
 }
+
 #forgot-password {
   padding-top: 0;
   padding-left: 0;
 }
 
-.dropdown-toggle {
-  cursor: pointer;
-}
 .form-group {
   min-width: 250px;
   overflow:hidden;
@@ -116,20 +118,107 @@ img {
 }
 
 .navbar {
-  background-color: #dcdddd;
+  background-color: rgba(220, 220, 221, 0.7);
+  font-family: Montserrat, sans-serif;
+  margin-bottom: 0;
+  border: 0;
+  font-size: 11px !important;
+  letter-spacing: 4px;
+  opacity: 0.9;
 }
+
 
 .navbar.navbar-expand-lg.navbar-light li a {
-  color: #059b46;
-  font-size: 1.3em;
-  text-shadow: 0.5px 0.5px black;
+  color: white;
 }
 
-.fa.fa-user-plus.fa-2x {
-  color: #059b46;
+.navbar-nav li.active a {
+  color: #fff !important;
+  background-color: #29292c !important;
+}
+
+// ADMIN PANEL OPTIONS ///////////
+
+#adminpanel{
+  font-family: Montserrat, sans-serif;
+  margin-bottom: 0;
+  background-color: #2d2d30;
+  border: 0;
+  font-size: 11px !important;
+  letter-spacing: 4px;
+  opacity: 0.9;
+  padding: 0;
 }
 
 
+#adminpanel li a {
+  color: white;
+}
+#adminpanel li.active a {
+  color: #fff !important;
+  background-color: #29292c !important;
+}
+
+#adminpanel li a, .navbar .navbar-brand {
+  color: #d5d5d5 !important;
+}
+#adminpanel li a:hover {
+  color: #fff !important;
+}
+#adminpanel li.active a {
+  color: #fff !important;
+  background-color: #29292c !important;
+}
+
+//////////////////////////////
+
+///// SEARCH BAR
+#search {
+  margin: 0 auto;
+  color: white;
+  background: white;
+  font-size: 20px;
+}
+
+////////////////
+
+.navbar {
+  font-family: Montserrat, sans-serif;
+  margin-bottom: 0;
+  background-color: #2d2d30;
+  border: 0;
+  font-size: 11px !important;
+  letter-spacing: 4px;
+  opacity: 0.9;
+}
+.navbar li a, .navbar .navbar-brand {
+  color: #d5d5d5 !important;
+}
+.navbar-nav li a:hover {
+  color: #fff !important;
+}
+.navbar-nav li.active a {
+  color: #fff !important;
+  background-color: #29292c !important;
+}
+.navbar-default .navbar-toggle {
+  border-color: transparent;
+}
+.open .dropdown-toggle {
+  color: #fff;
+  background-color: #555 !important;
+}
+
+.dropdown-menu{
+  background-color: #29292c !important;
+}
+
+.dropdown-menu li a {
+  color: #000 !important;
+}
+.dropdown-menu li a:hover {
+  background-color: red !important;
+}
 
 
 

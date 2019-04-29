@@ -1,7 +1,8 @@
 import {Userrank} from './userrank';
 import {Sex} from './sex';
-import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
+import {firestore} from "firebase/app";
+
 
 export interface IUser {
   id?: string;

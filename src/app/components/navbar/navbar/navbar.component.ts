@@ -47,7 +47,7 @@ export class NavbarComponent implements OnInit {
     const password = this.profileForm.controls.password.value;
     this.auth.login(email, password).then(() => {
         this.isLoggedIn = true;
-        this.router.navigate(['/mypage']);
+        this.router.navigate(['/profile']);
       }, () => {
         console.log('failed');
       }

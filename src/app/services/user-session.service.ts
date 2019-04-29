@@ -3,9 +3,6 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {IUser} from '../models/user';
 import {Observable} from 'rxjs';
-import {Userrank} from '../models/userrank';
-import Timestamp = firebase.firestore.Timestamp;
-import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +31,4 @@ export class UserSessionService implements OnInit {
     }
     return null;
   }
-
-
 }
