@@ -1,1 +1,18 @@
-<p style="font-size: 80px; font-weight: bold; text-align: center; margin-top: 200px;">OMG <br> {{userEmail}}</p>
+<div class="container" *ngIf="currentUser">
+  <ul>
+    <li><img src='{{currentUser.photoURL}}' alt="" style="width: 80px; height: 80px"></li>
+    <li><code>ID:</code> {{currentUser.id}}</li>
+    <li><code>Rank:</code> {{currentUser.rank}}</li>
+    <li><code>Email:</code> {{currentUser.email}}</li>
+    <li><code>FirstName:</code> {{currentUser.firstName}}</li>
+    <li><code>LastName:</code> {{currentUser.lastName}}</li>
+    <li><code>Sex:</code> {{currentUser.sex}}</li>
+    <li><code>Address:</code> {{currentUser.address}}</li>
+    <li><code>City:</code> {{currentUser.city}}</li>
+    <li><code>Phone:</code> {{currentUser.phone}}</li>
+    <li><code>LoggedIn:</code> {{currentUser.loggedIn}}</li>
+    <li><code>Last login:</code> {{currentUser.lastLogin.toDate() | date:'MMM d, y, HH:mm'}}</li>
+    <li><code>Register date:</code> {{currentUser.registerDate | date:'MMM d, y, HH:mm'}}</li>
+    <li><code>SessionId:</code> {{currentUser.sessionID}}</li>
+  </ul>
+</div>
