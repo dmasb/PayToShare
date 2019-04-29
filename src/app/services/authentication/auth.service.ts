@@ -31,6 +31,8 @@ export class AuthService {
     photoURL: null,
     registerDate: null,
     sex: null,
+    zipcode: null,
+    country: null,
     address: 'N/A',
     city: 'N/A',
     phone: null,
@@ -113,6 +115,8 @@ export class AuthService {
       this.data.registerDate = cred.user.metadata.creationTime;
       this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
       this.data.loggedIn = true;
+      this.data.country = user.country;
+      this.data.zipcode = user.zipcode;
       await this.afs.collection('users').doc(cred.user.uid).set(this.data);
       this.router.navigate(['/profile']);
     });

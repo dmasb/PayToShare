@@ -3,9 +3,16 @@
   <div *ngIf="!currentUser" class="alert alert-danger" role="alert">
     There was an error while loading user settings. Please try again later!
   </div>
+
+<!--  INFORMATION SUCCESSFULLY UPDATED -->
+  <div *ngIf="profileUpdated" class="alert alert-info">
+    <strong>Info!</strong> Indicates a neutral informative change or action.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
   <div class="container" id="inner">
     <form [formGroup]="profile" (ngSubmit)="onSubmit()">
-
       <!-- MAIL -->
       <div class="form-group row" >
         <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
@@ -22,24 +29,24 @@
         <div class="col">
           <label for="firstname">First name</label>
           <input [value]="currentUser.firstName" type="email" class="form-control" id="firstname" aria-describedby="emailHelp"
-                 placeholder="John" formControlName="">
+                 placeholder="John" formControlName="firstname">
         </div>
         <div class="col">
           <label for="lastname">Last name</label>
           <input [value]="currentUser.lastName" type="email" class="form-control" id="lastname" aria-describedby="emailHelp"
-                 placeholder="Doe" formControlName="currentUser.lastName">
+                 placeholder="Doe" formControlName="lastname">
         </div>
       </div>
       <div class="row">
         <div class="col-sm">
           <label for="address">Address</label>
           <input [value]="currentUser.address" type="email" class="form-control" id="address" aria-describedby="emailHelp"
-                 placeholder="Santa Monica Boulevard 221" formControlName="currentUser.address">
+                 placeholder="Santa Monica Boulevard 221" formControlName="address">
         </div>
         <div class="col-sm-4">
           <label for="zip">Zipcode</label>
           <input [value]="currentUser.zipcode" type="zip" class="form-control" id="zip" aria-describedby="emailHelp"
-                 placeholder="695 166" formControlName="zipcode">
+                 formControlName="zipcode">
         </div>
       </div>
 
@@ -47,33 +54,27 @@
       <div class="row">
         <div class="col-sm-4">
           <label for="city">City</label>
-          <input vatype="text" class="form-control" id="city" placeholder="Stockholm" formControlNam="city">
+          <input [value]="currentUser.city" type="text" class="form-control" id="city" placeholder="Stockholm" formControlNam="city">
         </div>
         <div class="col-sm-4">
           <label for="country">Country</label>
-          <input type="text" class="form-control" id="country" placeholder="Sweden" formControlName="country">
+          <input [value]="currentUser.country" type="text" class="form-control" id="country" placeholder="Sweden" formControlName="country">
         </div>
 
         <div class="col-sm-2">
           <label for="rank" class="col-sm-2 col-form-label">Rank</label>
-          <input [value]="isAdmin()" type="text" readonly class="form-control-plaintext" id="rank">
+          <input [value]="isAdmin" type="text" readonly class="form-control-plaintext" id="rank">
         </div>
 
       </div>
       <hr>
 
-      <div class="row">
-        <div class="col-sm-4">
-          <label for="confirm">Confirm password</label>
-          <input type="password" class="form-control" id="confirm" placeholder="Password">
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary">Update</button>
+      <button type="submit" class="btn btn-primary">Update profile settings</button>
 
     </form>
   </div>
 </div>
 
-<span *ngIf="isAdmin() == 'Admin'">
+<span *ngIf="currentUser.rank == 2">
   Debug: {{ currentUser | json}}
 </span>

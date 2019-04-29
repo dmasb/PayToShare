@@ -11,8 +11,9 @@ import {Userrank} from "../../../models/userrank";
 })
 export class MypageComponent implements OnInit {
 
-  userEmail: string;
   currentUser: IUser;
+  isAdmin: string;
+  profileUpdated: boolean = false;
 
   profile = new FormGroup({
     email: new FormControl(''),
@@ -34,7 +35,7 @@ export class MypageComponent implements OnInit {
     // We subscribe to the observable user value changes
     this.userSessionService.currentUser().subscribe(j => this.currentUser = j);
     if(this.currentUser){
-      this.profile.controls.email.value.setValue(this.currentUser.email);
+      this.isAdminString();
     }
   }
 
@@ -42,7 +43,7 @@ export class MypageComponent implements OnInit {
     // TODO: UPDATE DB WITH NEW INFO
   }
 
-  isAdmin(): string {
-    return this.currentUser.rank == Userrank.Admin ? 'Admin': 'User';
+  isAdminString(){
+    this.isAdmin = this.currentUser.rank === Userrank.Admin ? 'Admin': 'User';
   }
 }

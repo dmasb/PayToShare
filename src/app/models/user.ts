@@ -15,6 +15,8 @@ export interface IUser {
   sex?: Sex;
   address?: string;
   city?: string;
+  zipcode?: number;
+  country?: string;
   phone?: number;
   loggedIn?: boolean;
   lastLogin?: Timestamp;
