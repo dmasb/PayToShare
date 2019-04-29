@@ -8,59 +8,64 @@
     <div class="col-2">
     </div> <!-- First COL -->
     <div class="col">
-  <div class="card bg-light">
-    <article class="card-body mx-auto my-auto" style="max-width: 400px;">
-      <h4 class="card-title mt-3 text-center">Create Account</h4>
-      <p class="text-center">Get started with your free account</p>
-        <hr>
-      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-        <div class="form-group input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-          </div>
-          <input class="form-control" class="form-control" placeholder="Full name" type="text" formControlName="fullname">
-        </div> <!-- form-group// -->
-        <div class="form-group input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-          </div>
-          <input name="" class="form-control" placeholder="Email address" type="email" formControlName="email">
-        </div> <!-- form-group// -->
-        <div class="form-group input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
-          </div>
-          <select class="custom-select" style="max-width: 80px;">
-            <option selected="">+46</option>
-            <option value="1">+47</option>
-            <option value="2">+48</option>
-            <option value="3">+45</option>
-          </select>
-          <input class="form-control" class="form-control" placeholder="Phone number" formControlName="phone">
-        </div> <!-- form-group// -->
-        <div class="form-group input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-          </div>
-          <input class="form-control" placeholder="Create password" type="password" formControlName="password">
-        </div> <!-- form-group// -->
-        <div class="form-group input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-          </div>
-          <input class="form-control" placeholder="Repeat password" type="password" formControlName="passwordRepeated">
-        </div> <!-- form-group// -->
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
-        </div> <!-- form-group// -->
-        <p class="text-center">Have an account? <a href="">Log In</a> </p> <!-- Look to see if we want to keep or not! -->
-      </form>
-    </article>
-  </div> <!-- card.// -->
-  </div> <!-- Second COL -->
+      <div class="card bg-light">
+        <article class="card-body mx-auto my-auto" style="max-width: 400px;">
+          <h4 class="card-title mt-3 text-center">Create Account</h4>
+          <p class="text-center">Get started with your free account</p>
+          <hr>
+          <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+              </div>
+              <input class="form-control" class="form-control" placeholder="First name" type="text"
+                     formControlName="firstname">
+              <input class="form-control" class="form-control" placeholder="Last name" type="text"
+                     formControlName="lastname">
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+              </div>
+              <input name="" class="form-control" placeholder="Email address" type="email" formControlName="email">
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+              </div>
+              <select class="custom-select" style="max-width: 80px;">
+                <option selected="">+46</option>
+                <option value="1">+47</option>
+                <option value="2">+48</option>
+                <option value="3">+45</option>
+              </select>
+              <input class="form-control" class="form-control" placeholder="Phone number" formControlName="phone">
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+              </div>
+              <input class="form-control" placeholder="Create password" type="password" formControlName="password">
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+              </div>
+              <input class="form-control" placeholder="Repeat password" type="password"
+                     formControlName="passwordRepeated">
+            </div> <!-- form-group// -->
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block"> Create Account</button>
+            </div> <!-- form-group// -->
+            <p class="text-center">Have an account? <a href="">Log In</a></p>
+            <!-- Look to see if we want to keep or not! -->
+          </form>
+        </article>
+      </div> <!-- card.// -->
+    </div> <!-- Second COL -->
     <div class="col-3">
     </div>
-</div> <!-- Row.// -->
+  </div> <!-- Row.// -->
 </div> <!-- Container.// -->
 
 
