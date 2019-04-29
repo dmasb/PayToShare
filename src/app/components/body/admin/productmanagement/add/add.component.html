@@ -1,0 +1,55 @@
+<ng-template #addProductModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Product</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="newProductForm" (ngSubmit)="addProduct()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="productTitle">Product title</label>
+          <input type="text" class="form-control" id="productTitle" placeholder="title"
+                 formControlName="productTitle">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="productCategory">Product Category</label>
+          <select class="form-control" id="productCategory" formControlName="productCategory">
+            <option value="" selected disabled hidden>Choose here</option>
+            <option *ngFor="let category of categories" [value]="category.title">
+              {{category.title}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="productPrice">Product Price</label>
+          <input type="text" class="form-control" id="productPrice" placeholder="Price"
+                 formControlName="productPrice">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="productQuantity">Product Quantity</label>
+          <input type="text" class="form-control" id="productQuantity" placeholder="Quantity"
+                 formControlName="productQuantity">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="productDescription">Product Description</label>
+          <input type="text" class="form-control" id="productDescription" placeholder="Description"
+                 formControlName="productDescription">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+        <button type="submit" class="btn btn-outline-dark">Add</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<div class="nav flex-column nav-pills" id="v-pills-tab" aria-orientation="vertical">
+  <a class="btn btn-outline-dark" id="key" role="tab" aria-selected="true" href="#"
+     (click)="openCenteredDialog(addProductModal)">Add product</a>
+</div>

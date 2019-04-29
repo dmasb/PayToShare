@@ -1,0 +1,15 @@
+#outer{
+  width: 100%;
+  align-items: center;
+  border-style: solid;
+}
+#inner{
+  width: 80%;
+  display: block;
+  margin-top: 50px;
+  border-style: solid;
+}
+
+.name{
+  display: inline-block;
+}

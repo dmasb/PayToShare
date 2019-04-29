@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RegisterService } from './register.service';
+import { RecoverpwService } from './recoverpw.service';
 
-describe('RegisterService', () => {
+describe('RecoverpwService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: RegisterService = TestBed.get(RegisterService);
+    const service: RecoverpwService = TestBed.get(RecoverpwService);
     expect(service).toBeTruthy();
   });
 });
