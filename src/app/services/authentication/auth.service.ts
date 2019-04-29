@@ -38,6 +38,8 @@ export class AuthService {
     lastLogin: null,
     sessionID: null,
   };
+
+
   private user$: Observable<IUser>;
 
   constructor(private afAuth: AngularFireAuth,
@@ -69,7 +71,7 @@ export class AuthService {
   login(email: string, password: string) {
     return new Promise(() => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
-        .then(async () => {
+        .then(async user => {
 
           this.messageService.add('Login success', alerts.success);
 
