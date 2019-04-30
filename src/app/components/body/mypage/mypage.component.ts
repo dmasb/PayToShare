@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IUser} from "../../../models/user";
 import {UserSessionService} from '../../../services/user-session.service';
-import {FormControl, FormGroup} from "@angular/forms";
-import {Userrank} from "../../../models/userrank";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-mypage',
@@ -11,39 +10,45 @@ import {Userrank} from "../../../models/userrank";
 })
 export class MypageComponent implements OnInit {
 
-  currentUser: IUser;
   isAdmin: string;
-  profileUpdated: boolean = false;
+  currentUser: IUser = null;
+  profileUpdated: boolean;
+  userLoaded = false;
+  profile: FormGroup;
 
-  profile = new FormGroup({
-    email: new FormControl(''),
-    firstname: new FormControl(''),
-    lastname: new FormControl(''),
-    address: new FormControl(''),
-    city: new FormControl(''),
-    country: new FormControl(''),
-    zipcode: new FormControl(''),
-    passconfirm: new FormControl('')
-  });
 
-  //const userEmail = this.profile.controls.email.value;
-
-  constructor(private userSessionService: UserSessionService) {
+  constructor(private fb: FormBuilder, private session: UserSessionService) {
+    this.profileUpdated = false;
   }
 
   ngOnInit() {
-    // We subscribe to the observable user value changes
-    this.userSessionService.currentUser().subscribe(j => this.currentUser = j);
-    if(this.currentUser){
-      this.isAdminString();
+    this.session.currentUser().subscribe(user => {
+      if (user) {
+        this.currentUser = user;
+        this.userLoaded = true;
+        this.profile = this.fb.group(user);
+      }
+    });
+
+    if (this.currentUser) {
+      this.isAdmin = this.isAdminString();
     }
   }
 
-  onSubmit(){
-    // TODO: UPDATE DB WITH NEW INFO
+  updateFormValues(){
+    this.currentUser.firstName = this.profile.controls.firstName.value;
+    this.currentUser.lastName = this.profile.controls.lastName.value;
+    this.currentUser.address = this.profile.controls.address.value;
+    this.currentUser.city = this.profile.controls.city.value;
+    this.currentUser.country = this.profile.controls.country.value;
+    this.currentUser.zipcode = this.profile.controls.zipcode.value;
+  }
+  onSubmit() {
+    this.updateFormValues();
+    this.session.updateUser(this.currentUser);
   }
 
-  isAdminString(){
-    this.isAdmin = this.currentUser.rank === Userrank.Admin ? 'Admin': 'User';
+  isAdminString() {
+    return this.currentUser.rank == 2 ? 'Admin': 'User';
   }
 }
