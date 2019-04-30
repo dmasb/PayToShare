@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlanPanelComponent } from './plan-panel.component';
+import { UpdateTagComponent } from './update-tag.component';
 
-describe('PlanPanelComponent', () => {
-  let component: PlanPanelComponent;
-  let fixture: ComponentFixture<PlanPanelComponent>;
+describe('UpdateTagComponent', () => {
+  let component: UpdateTagComponent;
+  let fixture: ComponentFixture<UpdateTagComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlanPanelComponent ]
+      declarations: [ UpdateTagComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlanPanelComponent);
+    fixture = TestBed.createComponent(UpdateTagComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

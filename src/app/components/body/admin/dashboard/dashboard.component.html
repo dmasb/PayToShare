@@ -1,13 +1,31 @@
 <div class="container">
   <div class="row">
     <div class="col-3">
+
+      <div id="accordion">
+        <div class="card mb-2 bg-transparent">
+          <a class="btn btn-outline-dark text-left" id="lol" data-toggle="collapse" href="#collapseThree" role="tab"
+             aria-selected="true" aria-expanded="true">Tag Management</a>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body ml-2 p-2">
+              <app-add-tag></app-add-tag>
+              <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                <a class="btn btn-outline-dark mt-2" id="v-pills-tags-tab" data-toggle="pill" href="#v-pills-tags"
+                   role="tab"
+                   aria-controls="v-pills-tags" aria-selected="false"><span uk-icon="icon: table; ratio: 1"
+                                                                            class="mr-2"></span>Overview</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <app-add-product></app-add-product>
+
+
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-
-        <app-add-product></app-add-product>
-
-        <app-add-category></app-add-category>
-
-        <a class="btn btn-outline-dark mt-2 mb-2" id="v-pills-tier4-tab" data-toggle="pill" href="#v-pills-tier4" role="tab"
+        <a class="btn btn-outline-dark mt-2 mb-2" id="v-pills-tier4-tab" data-toggle="pill" href="#v-pills-tier4"
+           role="tab"
            aria-controls="v-pills-tier4" aria-selected="false">Product Management</a>
 
 
@@ -22,6 +40,9 @@
         <a class="btn btn-outline-dark mb-2" id="v-pills-tier1-tab" data-toggle="pill" href="#v-pills-tier1" role="tab"
            aria-controls="v-pills-tier1" aria-selected="false">Plan Management</a>
 
+        <!--<a class="btn btn-outline-dark mb-2" id="v-pills-tags-tab" data-toggle="pill" href="#v-pills-tags" role="tab"
+           aria-controls="v-pills-tags" aria-selected="false">Tag Management</a>-->
+
       </div>
     </div>
     <div class="col-9">
@@ -32,15 +53,19 @@
         </div>
 
         <div class="tab-pane fade" id="v-pills-tier3" role="tabpanel" aria-labelledby="v-pills-tier3-tab">
-          <app-overview-category></app-overview-category>
+          Hi there
         </div>
 
         <div class="tab-pane fade" id="v-pills-tier2" role="tabpanel" aria-labelledby="v-pills-tier2-tab">
-          <app-license-panel></app-license-panel>
+          Good day mon
         </div>
 
         <div class="tab-pane fade" id="v-pills-tier1" role="tabpanel" aria-labelledby="v-pills-tier1-tab">
           <app-plan-builder></app-plan-builder>
+        </div>
+
+        <div class="tab-pane fade" id="v-pills-tags" role="tabpanel" aria-labelledby="v-pills-tags-tab">
+          <app-tag-overview></app-tag-overview>
         </div>
 
       </div>

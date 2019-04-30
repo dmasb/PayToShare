@@ -25,23 +25,19 @@ import {far} from '@fortawesome/free-regular-svg-icons';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {Error404Component} from './components/body/error404/error404.component';
 import {DecimalPipe} from '@angular/common';
-import {CategoryOverviewComponent} from './components/body/admin/categorymanagement/overview/category-overview.component';
-import {AddCategoryComponent} from './components/body/admin/categorymanagement/add/add-category.component';
 import {AddProductComponent} from './components/body/admin/productmanagement/add/add.component';
-import {DeleteCategoryComponent} from './components/body/admin/categorymanagement/delete/delete-category.component';
 import {DeleteProductComponent} from './components/body/admin/productmanagement/delete/delete.component';
-import {UpdateCategoryComponent} from './components/body/admin/categorymanagement/update/update-category.component';
 import {UpdateProductComponent} from './components/body/admin/productmanagement/update/update.component';
 import {ProductOverviewComponent} from './components/body/admin/productmanagement/overview/product-overview.component';
 import {ProductsComponent} from './components/body/products/products.component';
-import { MessageComponent } from './components/body/message/message.component';
-import { DashboardComponent } from './components/body/admin/dashboard/dashboard.component';
-import { PlanPanelComponent } from './components/body/admin/tiers/plan-panel/plan-panel.component';
-import { LicensePanelComponent } from './components/body/admin/tiers/license-panel/license-panel.component';
-import { FormatPanelComponent } from './components/body/admin/tiers/format-panel/format-panel.component';
-import { ObjectPanelComponent } from './components/body/admin/tiers/object-panel/object-panel.component';
-import { PlanCardComponent } from './components/body/admin/planmanagement/plancard/plan-card.component';
-import { PlanBuilderComponent } from './components/body/admin/planmanagement/planbuilder/plan-builder.component';
+import {MessageComponent} from './components/body/message/message.component';
+import {DashboardComponent} from './components/body/admin/dashboard/dashboard.component';
+import {PlanCardComponent} from './components/body/admin/planmanagement/plancard/plan-card.component';
+import {PlanBuilderComponent} from './components/body/admin/planmanagement/planbuilder/plan-builder.component';
+import {TagOverviewComponent} from './components/body/admin/tagmanagement/tag-overview/tag-overview.component';
+import {AddTagComponent} from './components/body/admin/tagmanagement/add-tag/add-tag.component';
+import {DeleteTagComponent} from './components/body/admin/tagmanagement/delete-tag/delete-tag.component';
+import {UpdateTagComponent} from './components/body/admin/tagmanagement/update-tag/update-tag.component';
 
 @NgModule({
   declarations: [
@@ -57,23 +53,19 @@ import { PlanBuilderComponent } from './components/body/admin/planmanagement/pla
     IndexComponent,
     FooterComponent,
     Error404Component,
-    CategoryOverviewComponent,
     ProductOverviewComponent,
-    AddCategoryComponent,
-    DeleteCategoryComponent,
-    UpdateCategoryComponent,
     UpdateProductComponent,
     DeleteProductComponent,
     AddProductComponent,
     ProductsComponent,
     MessageComponent,
     DashboardComponent,
-    PlanPanelComponent,
-    LicensePanelComponent,
-    FormatPanelComponent,
-    ObjectPanelComponent,
     PlanCardComponent,
     PlanBuilderComponent,
+    TagOverviewComponent,
+    AddTagComponent,
+    DeleteTagComponent,
+    UpdateTagComponent,
   ],
   imports: [
     BrowserModule,

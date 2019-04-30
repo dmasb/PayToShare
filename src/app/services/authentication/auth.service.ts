@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import * as firebase from 'firebase';
 import {auth, User} from 'firebase';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {IUser} from '../../models/user';
@@ -10,6 +9,8 @@ import {switchMap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {MessageService} from '../message.service';
 import {alerts} from '../../models/alerts';
+import {firestore} from 'firebase/app';
+import Timestamp = firestore.Timestamp;
 
 @Injectable({
   providedIn: 'root'
@@ -75,7 +76,7 @@ export class AuthService {
           this.messageService.add('Login success', alerts.success);
           await this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update(
             {
-              lastLogin: firebase.firestore.Timestamp.fromDate(new Date()),
+              lastLogin: Timestamp.now(),
               loggedIn: true
             }
           );
@@ -112,7 +113,7 @@ export class AuthService {
       this.data.lastName = user.lastName;
       this.data.phone = user.phone;
       this.data.registerDate = cred.user.metadata.creationTime;
-      this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
+      this.data.lastLogin = Timestamp.now();
       this.data.loggedIn = true;
       await this.afs.collection('users').doc(cred.user.uid).set(this.data);
       this.router.navigate(['/profile']);
@@ -125,9 +126,9 @@ export class AuthService {
     userRef.ref.get().then(userDocument => {
 
       if (userDocument.exists) {
-        const now = firebase.firestore.Timestamp.fromDate(new Date());
+
         this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update({
-          lastLogin: now,
+          lastLogin: Timestamp.now(),
           loggedIn: true
         });
       } else {
@@ -137,7 +138,7 @@ export class AuthService {
         this.data.firstName = displayName[0];
         (displayName[1]) ? this.data.lastName = displayName[1] : this.data.lastName = '';
         this.data.photoURL = user.photoURL;
-        this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
+        this.data.lastLogin = Timestamp.now();
         this.data.registerDate = this.afAuth.auth.currentUser.metadata.creationTime;
         this.data.loggedIn = true;
         userRef.set(this.data);
