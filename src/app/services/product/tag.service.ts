@@ -16,15 +16,15 @@ export class TagService implements OnInit {
   }
 
   getTags() {
-    return this.afs.collection('tag').snapshotChanges();
+    return this.afs.collection('tags').snapshotChanges();
   }
 
   addTag(tag: Tag) {
-    this.afs.collection('tag').add(tag);
+    this.afs.collection('tags').add(tag);
   }
 
   ngOnInit(): void {
-    this.tags = this.afs.doc<Tag[]>('tag').valueChanges();
+    this.tags = this.afs.doc<Tag[]>('tags').valueChanges();
   }
 
   available(tagID: string): boolean {
@@ -37,7 +37,7 @@ export class TagService implements OnInit {
   }
 
   remove() {
-    this.afs.doc(`tag/${this.tagBeingDeleted}`).delete();
+    this.afs.doc(`tags/${this.tagBeingDeleted}`).delete();
     this.tagBeingDeleted = null;
   }
 
@@ -46,7 +46,7 @@ export class TagService implements OnInit {
   }
 
   updateTag(tag: Tag) {
-    this.afs.doc(`tag/${tag.id}`).update(tag);
+    this.afs.doc(`tags/${tag.id}`).update(tag);
   }
 }
 
