@@ -1,0 +1,35 @@
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">
+        <label>
+          <input type="checkbox" name="checkAll">
+        </label>
+      </th>
+      <th scope="col">Tag name</th>
+      <th scope="col">Start</th>
+      <th scope="col">End</th>
+    
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tag of tags; index as i">
+      <th scope="row">
+        <label>
+          <input type="checkbox" name="checkbox + {{ i + 1}}">
+        </label>
+      </th>
+      <td>{{ tag.name }}</td>
+      <td>{{ tag.created.toDate() | date: 'yyyy-MM-dd'}}</td>
+      <td>{{ tag.created.toDate() | date: 'yyyy-MM-dd'}}</td>
+
+    </tr>
+    <tr>
+        
+    </tr>
+    <button type="button" class="btn btn-outline-dark mt-3">SALES</button>
+    </tbody>
+  </table>
+
+</div>

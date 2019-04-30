@@ -40,6 +40,25 @@
         <a class="btn btn-outline-dark mb-2" id="v-pills-tier1-tab" data-toggle="pill" href="#v-pills-tier1" role="tab"
            aria-controls="v-pills-tier1" aria-selected="false">Plan Management</a>
 
+
+           <div id="accordion">
+              <div class="card mb-2 bg-transparent">
+                <a class="btn btn-outline-dark text-left" id="dotd" data-toggle="collapse" href="#collapseDotd" role="tab"
+                   aria-selected="true" aria-expanded="true">Deal of the day Management</a>
+                <div id="collapseDotd" class="collapse" aria-labelledby="headingDotd" data-parent="#accordion">
+                  <div class="card-body ml-2 p-2">
+                  <app-add-dotd></app-add-dotd>
+                    <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                      <a class="btn btn-outline-dark mt-2" id="v-pills-dotd-tab" data-toggle="pill" href="#v-pills-dotd"
+                         role="tab"
+                         aria-controls="v-pills-tags" aria-selected="false"><span uk-icon="icon: table; ratio: 1"
+                         class="mr-2"></span>Overview</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
         <!--<a class="btn btn-outline-dark mb-2" id="v-pills-tags-tab" data-toggle="pill" href="#v-pills-tags" role="tab"
            aria-controls="v-pills-tags" aria-selected="false">Tag Management</a>-->
 
@@ -66,6 +85,10 @@
 
         <div class="tab-pane fade" id="v-pills-tags" role="tabpanel" aria-labelledby="v-pills-tags-tab">
           <app-tag-overview></app-tag-overview>
+        </div>
+
+        <div class="tab-pane fade" id="v-pills-dotd" role="tabpanel" aria-labelledby="v-pills-dotd-tab">
+          <app-dotd-overview></app-dotd-overview>
         </div>
 
       </div>

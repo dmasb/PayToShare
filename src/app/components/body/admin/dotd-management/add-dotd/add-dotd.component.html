@@ -1,0 +1,32 @@
+<ng-template #addDotdModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Sales</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="newDotdForm" (ngSubmit)="addDotd()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="category">Sales name</label>
+          <input type="text" class="form-control" id="sales" placeholder="Tier 1" formControlName="dotdNameOne">
+          <input type="text" class="form-control" id="sales" placeholder="Tier 2" formControlName="dotdNameTwo">
+          <input type="text" class="form-control" id="sales" placeholder="Tier 3" formControlName="dotdNameThree">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+        <button type="submit" class="btn btn-outline-dark">Add</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<div class="nav flex-column nav-pills m-0 p-0 bg-white" id="v-pills-tab" aria-orientation="vertical">
+  <a class="btn btn-outline-dark text-left" id="key" role="tab" aria-selected="true" href="#"
+     (click)="openCenteredDialog(addDotdModal)"><span uk-icon="icon:  plus-circle; ratio: 1" class="mr-2"></span>Add Sales 
+  </a>
+</div>
+
+

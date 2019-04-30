@@ -39,6 +39,9 @@ import {AddTagComponent} from './components/body/admin/tagmanagement/add-tag/add
 import {DeleteTagComponent} from './components/body/admin/tagmanagement/delete-tag/delete-tag.component';
 import {UpdateTagComponent} from './components/body/admin/tagmanagement/update-tag/update-tag.component';
 
+import {DotdOverviewComponent} from './components/body/admin/dotd-management/dotd-overview/dotd-overview.component';
+import { AddDotdComponent } from './components/body/admin/dotd-management/add-dotd/add-dotd.component';
+
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -66,6 +69,10 @@ import {UpdateTagComponent} from './components/body/admin/tagmanagement/update-t
     AddTagComponent,
     DeleteTagComponent,
     UpdateTagComponent,
+    
+    DotdOverviewComponent,
+    
+    AddDotdComponent,
   ],
   imports: [
     BrowserModule,
