@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {IUser} from '../../../models/user';
+import {IUser} from "../../../models/user";
 import {UserSessionService} from '../../../services/user-session.service';
+import {FormControl, FormGroup} from "@angular/forms";
+import {Userrank} from "../../../models/userrank";
 
 @Component({
   selector: 'app-mypage',
@@ -9,7 +11,20 @@ import {UserSessionService} from '../../../services/user-session.service';
 })
 export class MypageComponent implements OnInit {
 
-  private currentUser: IUser;
+  userEmail: string;
+  currentUser: IUser;
+
+  profile = new FormGroup({
+    email: new FormControl(),
+    firstname: new FormControl(),
+    lastname: new FormControl(),
+    address: new FormControl(),
+    city: new FormControl(),
+    country: new FormControl(),
+    zipcode: new FormControl(),
+    passconfirm: new FormControl()
+  });
+
 
   constructor(private userSessionService: UserSessionService) {
   }
@@ -18,5 +33,11 @@ export class MypageComponent implements OnInit {
     // We subscribe to the observable user value changes
     this.userSessionService.currentUser().subscribe(j => this.currentUser = j);
   }
+  // TODO: submit form
+  onSubmit(){
+  }
 
+  isAdmin(): string {
+    return this.currentUser.rank === Userrank.Admin ? 'Admin': 'User';
+  }
 }

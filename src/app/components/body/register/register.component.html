@@ -18,41 +18,51 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
               </div>
-              <input class="form-control" class="form-control" placeholder="First name" type="text"
-                     formControlName="firstname">
-              <input class="form-control" class="form-control" placeholder="Last name" type="text"
-                     formControlName="lastname">
+              <label for="firstName-field"></label><input id="firstName-field" class="form-control"
+                                                          placeholder="First name" type="text"
+                                                          formControlName="firstname">
+              <label for="lastName-field"></label><input id="lastName-field" class="form-control"
+                                                         placeholder="Last name" type="text"
+                                                         formControlName="lastname">
             </div> <!-- form-group// -->
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
               </div>
-              <input name="" class="form-control" placeholder="Email address" type="email" formControlName="email">
+              <label for="email-field"></label>
+              <input id="email-field" name="email-field" class="form-control" placeholder="Email address" type="email"
+                     formControlName="email">
+
             </div> <!-- form-group// -->
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
               </div>
-              <select class="custom-select" style="max-width: 80px;">
-                <option selected="">+46</option>
-                <option value="1">+47</option>
-                <option value="2">+48</option>
-                <option value="3">+45</option>
-              </select>
-              <input class="form-control" class="form-control" placeholder="Phone number" formControlName="phone">
+              <label for="countryCode-field"></label><select id="countryCode-field" class="custom-select"
+                                                             style="max-width: 80px;">
+              <option selected="">+46</option>
+              <option value="1">+47</option>
+              <option value="2">+48</option>
+              <option value="3">+45</option>
+            </select>
+              <label for="phoneNumber-field"></label><input id="phoneNumber-field" class="form-control"
+                                                            placeholder="Phone number" formControlName="phone">
             </div> <!-- form-group// -->
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
               </div>
-              <input class="form-control" placeholder="Create password" type="password" formControlName="password">
+              <label for="password-field"></label><input id="password-field" class="form-control"
+                                                         placeholder="Create password" type="password"
+                                                         formControlName="password">
             </div> <!-- form-group// -->
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
               </div>
-              <input class="form-control" placeholder="Repeat password" type="password"
-                     formControlName="passwordRepeated">
+              <label for="passwordAgain-field"></label><input id="passwordAgain-field" class="form-control"
+                                                              placeholder="Repeat password" type="password"
+                                                              formControlName="passwordRepeated">
             </div> <!-- form-group// -->
             <div class="form-group">
               <button type="submit" class="btn btn-primary btn-block"> Create Account</button>
@@ -67,41 +77,3 @@
     </div>
   </div> <!-- Row.// -->
 </div> <!-- Container.// -->
-
-
-<!-- Old form, can be change back.
-<div class="card">
-  <div class="card-header">
-    Register |
-  </div>
-  <div class="card-body">
-    <form [formGroup]="newCategoryForm" (ngSubmit)="onSubmit()">
-      <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-        <div class="col-sm-10">
-          <input type="email" class="form-control" id="inputEmail3" placeholder="Email" formControlName="email">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword3" placeholder="Password" formControlName="password">
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="inputPassword2" class="col-sm-2 col-form-label">Password again</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword2" placeholder="Password" formControlName="passwordRepeated">
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <div class="col-sm-10">
-          <button type="submit" class="btn btn-primary">Register</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
--->

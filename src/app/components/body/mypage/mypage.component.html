@@ -1,18 +1,77 @@
-<div class="container" *ngIf="currentUser">
-  <ul>
-    <li><img src='{{currentUser.photoURL}}' alt="" style="width: 80px; height: 80px"></li>
-    <li><code>ID:</code> {{currentUser.id}}</li>
-    <li><code>Rank:</code> {{currentUser.rank}}</li>
-    <li><code>Email:</code> {{currentUser.email}}</li>
-    <li><code>FirstName:</code> {{currentUser.firstName}}</li>
-    <li><code>LastName:</code> {{currentUser.lastName}}</li>
-    <li><code>Sex:</code> {{currentUser.sex}}</li>
-    <li><code>Address:</code> {{currentUser.address}}</li>
-    <li><code>City:</code> {{currentUser.city}}</li>
-    <li><code>Phone:</code> {{currentUser.phone}}</li>
-    <li><code>LoggedIn:</code> {{currentUser.loggedIn}}</li>
-    <li><code>Last login:</code> {{currentUser.lastLogin.toDate() | date:'MMM d, y, HH:mm'}}</li>
-    <li><code>Register date:</code> {{currentUser.registerDate | date:'MMM d, y, HH:mm'}}</li>
-    <li><code>SessionId:</code> {{currentUser.sessionID}}</li>
-  </ul>
+<div class="container" id="outer">
+  <span>Account Settings</span>
+  <div *ngIf="!currentUser" class="alert alert-danger" role="alert">
+    There was an error while loading user settings. Please try again later!
+  </div>
+  <div class="container" id="inner">
+    <form [formGroup]="profile" (ngSubmit)="onSubmit()">
+
+      <!-- MAIL -->
+      <div class="form-group row" >
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{currentUser.email}}">
+          <small id="tip1" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+      </div>
+
+      <!-- NAME -->
+      <div class="row">
+        <div class="col">
+          <label for="firstname">First name</label>
+          <input type="email" class="form-control" id="firstname" aria-describedby="emailHelp"
+                 placeholder="John" [(ngModel)]="currentUser.firstName">
+        </div>
+        <div class="col">
+          <label for="lastname">Last name</label>
+          <input type="email" class="form-control" id="lastname" aria-describedby="emailHelp"
+                 placeholder="Doe" [(ngModel)]="currentUser.lastName">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <label for="address">Address</label>
+          <input type="email" class="form-control" id="address" aria-describedby="emailHelp"
+                 placeholder="Santa Monica Boulevard 221" [(ngModel)]="currentUser.address">
+        </div>
+        <div class="col-sm-4">
+          <label for="zip">Zipcode</label>
+          <input type="zip" class="form-control" id="zip" aria-describedby="emailHelp"
+                 placeholder="695 166" >
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm-4">
+          <label for="city">City</label>
+          <input type="text" class="form-control" id="city" placeholder="Stockholm" [(ngModel)]="currentUser.city">
+        </div>
+        <div class="col-sm-4">
+          <label for="country">Country</label>
+          <input type="text" class="form-control" id="country" placeholder="Sweden" [(ngModel)]="currentUser">
+        </div>
+
+        <div class="col-sm-2">
+          <label for="rank" class="col-sm-2 col-form-label">Rank</label>
+          <input type="text" readonly class="form-control-plaintext" id="rank" value="{{isAdmin()}}">
+        </div>
+
+      </div>
+      <hr>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <label for="confirm">Confirm password</label>
+          <input type="password" class="form-control" id="confirm" placeholder="Password">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+
+    </form>
+  </div>
 </div>
+
+<span *ngIf="isAdmin() == 'Admin'">
+  Debug: {{ currentUser | json}}
+</span>

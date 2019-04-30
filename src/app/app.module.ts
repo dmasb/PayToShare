@@ -25,17 +25,19 @@ import {far} from '@fortawesome/free-regular-svg-icons';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {Error404Component} from './components/body/error404/error404.component';
 import {DecimalPipe} from '@angular/common';
-import {CategoryOverviewComponent} from './components/body/admin/categorymanagement/overview/category-overview.component';
-import {AddCategoryComponent} from './components/body/admin/categorymanagement/add/add-category.component';
 import {AddProductComponent} from './components/body/admin/productmanagement/add/add.component';
-import {DeleteCategoryComponent} from './components/body/admin/categorymanagement/delete/delete-category.component';
 import {DeleteProductComponent} from './components/body/admin/productmanagement/delete/delete.component';
-import {UpdateCategoryComponent} from './components/body/admin/categorymanagement/update/update-category.component';
 import {UpdateProductComponent} from './components/body/admin/productmanagement/update/update.component';
 import {ProductOverviewComponent} from './components/body/admin/productmanagement/overview/product-overview.component';
-import {PanelComponent} from './components/body/admin/panel/panel.component';
 import {ProductsComponent} from './components/body/products/products.component';
-import { MessageComponent } from './components/body/message/message.component';
+import {MessageComponent} from './components/body/message/message.component';
+import {DashboardComponent} from './components/body/admin/dashboard/dashboard.component';
+import {PlanCardComponent} from './components/body/admin/planmanagement/plancard/plan-card.component';
+import {PlanBuilderComponent} from './components/body/admin/planmanagement/planbuilder/plan-builder.component';
+import {TagOverviewComponent} from './components/body/admin/tagmanagement/tag-overview/tag-overview.component';
+import {AddTagComponent} from './components/body/admin/tagmanagement/add-tag/add-tag.component';
+import {DeleteTagComponent} from './components/body/admin/tagmanagement/delete-tag/delete-tag.component';
+import {UpdateTagComponent} from './components/body/admin/tagmanagement/update-tag/update-tag.component';
 
 @NgModule({
   declarations: [
@@ -51,17 +53,19 @@ import { MessageComponent } from './components/body/message/message.component';
     IndexComponent,
     FooterComponent,
     Error404Component,
-    CategoryOverviewComponent,
     ProductOverviewComponent,
-    AddCategoryComponent,
-    DeleteCategoryComponent,
-    UpdateCategoryComponent,
     UpdateProductComponent,
     DeleteProductComponent,
     AddProductComponent,
-    PanelComponent,
     ProductsComponent,
-    MessageComponent
+    MessageComponent,
+    DashboardComponent,
+    PlanCardComponent,
+    PlanBuilderComponent,
+    TagOverviewComponent,
+    AddTagComponent,
+    DeleteTagComponent,
+    UpdateTagComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,7 @@ import { MessageComponent } from './components/body/message/message.component';
     FontAwesomeModule,
     NgbPaginationModule,
     NgbModule,
+
   ],
   providers: [AngularFireDatabase, DecimalPipe, NgbActiveModal],
   bootstrap: [AppComponent],

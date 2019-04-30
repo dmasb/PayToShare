@@ -1,8 +1,7 @@
 import {Injectable, OnInit} from '@angular/core';
-import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {Category} from '../../models/category';
+import {Category} from '../../models/products/category';
 
 @Injectable({
   providedIn: 'root'

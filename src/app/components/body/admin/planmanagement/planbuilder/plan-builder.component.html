@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-7">
+    <div id="accordion">
+      <div class="card mb-1">
+        <div class="card-header p-0" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                    aria-controls="collapseOne">
+              Create new plan
+            </button>
+          </h5>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="formGroupExampleInput">Plan name</label>
+                <input [(ngModel)]="plan.title" type="text" class="form-control" id="formGroupExampleInput"
+                       placeholder="Example input" name="planName">
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Speed in mb/s</label>
+                <input [(ngModel)]="plan.speed" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input" name="speed">
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput3">Monthly charge</label>
+                <input [(ngModel)]="plan.charge" type="number" class="form-control" id="formGroupExampleInput3" placeholder="Another input" name="charge">
+              </div>
+              <div class="md-form">
+                <label for="form7">Material textarea</label>
+                <textarea [(ngModel)]="plan.description" id="form7" class="md-textarea form-control" rows="3" name="description"></textarea>
+              </div>
+              <button type="button" class="btn btn-outline-dark mt-3">Create</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header p-0" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo">
+              Select License(s)
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+            <label for="plans"></label><select class="form-control" id="plans">
+            <option>Default select</option>
+          </select>
+            <button type="button" class="btn btn-outline-dark mt-3">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-5">
+    <app-plan-card [title]="plan.title" [speed]="plan.speed" [charge]="plan.charge"
+                   [description]="plan.description"></app-plan-card>
+  </div>
+</div>
+

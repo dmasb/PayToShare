@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {Userrank} from '../../../models/userrank';
 import {AuthService} from '../../../services/authentication/auth.service';
+import {MessageService} from '../../../services/message.service';
+import {alerts} from '../../../models/alerts';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +20,7 @@ export class RegisterComponent implements OnInit {
     phone: new FormControl('', [Validators.required])
   });
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -42,7 +44,11 @@ export class RegisterComponent implements OnInit {
 
 
     if (pass !== passConfirm) {
-      console.warn('NO MATCH');
+      this.messageService.add('Passwords must match!', alerts.danger);
+    } else if (!user.firstName) {
+      this.messageService.add('First name is required!', alerts.danger);
+    } else if (!user.lastName) {
+      this.messageService.add('Last name is required!', alerts.danger);
     } else {
       this.auth.addUserWithInfo(user, pass);
     }

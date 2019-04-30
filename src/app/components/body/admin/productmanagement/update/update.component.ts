@@ -2,7 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ProductsService} from '../../../../../services/crud/products.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Product} from '../../../../../models/product';
+import {Product} from '../../../../../models/products/product';
 
 @Component({
   selector: 'app-update-product',
@@ -20,7 +20,7 @@ export class UpdateProductComponent implements OnInit {
 
   editProductForm = new FormGroup({
     productTitle: new FormControl(''),
-    productCategory: new FormControl(''),
+    productTag: new FormControl(''),
     productPrice: new FormControl(''),
     productQuantity: new FormControl(''),
     productDescription: new FormControl('')
@@ -36,7 +36,6 @@ export class UpdateProductComponent implements OnInit {
     const product: Product = {
       id: this.id,
       title: this.editProductForm.controls.productTitle.value,
-      category: this.editProductForm.controls.productCategory.value,
       description: this.editProductForm.controls.productDescription.value,
       price: this.editProductForm.controls.productPrice.value,
       quantity: this.editProductForm.controls.productQuantity.value
