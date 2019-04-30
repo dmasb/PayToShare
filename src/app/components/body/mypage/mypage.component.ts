@@ -12,9 +12,10 @@ export class MypageComponent implements OnInit {
 
   isAdmin: string;
   currentUser: IUser = null;
-  profileUpdated: boolean;
+  profileUpdated: boolean = false;
   userLoaded = false;
   profile: FormGroup;
+  error = false;
 
 
   constructor(private fb: FormBuilder, private session: UserSessionService) {
@@ -25,8 +26,10 @@ export class MypageComponent implements OnInit {
     this.session.currentUser().subscribe(user => {
       if (user) {
         this.currentUser = user;
-        this.userLoaded = true;
         this.profile = this.fb.group(user);
+      }
+      else{
+        this.error = true;
       }
     });
 
@@ -46,6 +49,7 @@ export class MypageComponent implements OnInit {
   onSubmit() {
     this.updateFormValues();
     this.session.updateUser(this.currentUser);
+    this.profileUpdated = true;
   }
 
   isAdminString() {
