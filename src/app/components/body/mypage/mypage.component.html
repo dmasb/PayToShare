@@ -3,7 +3,6 @@
   <div *ngIf="!currentUser" class="alert alert-danger" role="alert">
     There was an error while loading user settings. Please try again later!
   </div>
-
   <!--  INFORMATION SUCCESSFULLY UPDATED -->
   <div *ngIf="profileUpdated" class="alert alert-info">
     <strong>Info!</strong> Indicates a neutral informative change or action.
@@ -12,6 +11,7 @@
     </button>
   </div>
   <div class="container" id="inner">
+    <img src="{{currentUser.photoURL}}" id="mypage">
     <form [formGroup]="profile" (ngSubmit)="onSubmit()">
       <!-- MAIL -->
       <div class="form-group row">
