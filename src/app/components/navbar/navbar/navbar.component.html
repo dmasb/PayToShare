@@ -23,7 +23,7 @@
   <!--  SIDE BAR ICON-->
   <ul class="navbar-nav" style="padding-right: 30px;">
     <li class="nav-item">
-      <a uk-icon="icon: menu; ratio: 1.4;"></a>
+      <a href="#sidebar" uk-toggle uk-icon="icon: menu; ratio: 1.4;"></a>
     </li>
   </ul>
   <!--  BRAND ICON -->
@@ -71,19 +71,20 @@
         <li class="nav-item">
           <a uk-icon="icon: cart" class="nav-link" routerLink="/features"></a>
 
-          <!--        USER DROOPDOWN-->
+          <!--        LOGIN DROPDOWN-->
         <li class="nav-item dropdown" *ngIf="!isLoggedIn">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="messageService.clear()">
             Login
           </a>
           <div class="dropdown-menu dropdown-menu-right border border-secondary">
-            <form class="px-4 py-3" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <form class="px-4 py-3" [formGroup]="profileForm" (ngSubmit)="onSubmit()" id="login">
               <h3>Sign in</h3>
               <app-message></app-message>
               <div class="form-group mt-2">
                 <label class="sr-only" for="exampleDropdownFormEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com"
+                <input type="email" class="form-control" id="exampleDropdownFormEmail1"
+                       placeholder="email@example.com"
                        formControlName="email">
               </div>
               <div class="form-group">
@@ -118,10 +119,9 @@
           <a uk-icon="icon: user" class="nav-link dropdown-toggle" role="button"
              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           </a>
-          <div class="dropdown-menu dropdown-menu-right border border-secondary">
-            <a *ngIf="isAdmin" class="nav-link" routerLink="/adminpanel">Admin panel</a><!-- ng if admin here -->
-            <a class="nav-link" routerLink="/profile">My Page</a>
-
+          <!--          ADMIN PANEL LINK-->
+          <div class="dropdown-menu dropdown-menu-right border border-secondary" id="dropdown">
+            <a class="nav-link" routerLink="/profile">Profile</a>
             <a class="nav-link" routerLink="/" (click)="onLogoutClick()">Logout</a>
           </div>
         <li *ngIf="!isLoggedIn">
@@ -131,3 +131,13 @@
     </div>
   </div>
 </nav>
+<!-- This is the off-canvas -->
+<!--<div class="uk-offcanvas-content">-->
+<div id="sidebar" uk-offcanvas="overlay: true">
+  <div class="uk-offcanvas-bar">
+
+    <button class="uk-offcanvas-close" type="button" uk-close></button>
+
+  </div>
+</div>
+<!--</div>-->
