@@ -1,6 +1,6 @@
 <div class="container">
   <div class="card" style="width: 18rem;" *ngFor="let product of products">
-    <img class="card-img-top" src="../../../../assets/images/testimages/itemimg.svg" alt="Card image cap">
+    <img class="card-img-top" src="{{product.imageUrl}}" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{product.title}}</h5>
       <p class="card-text">Price: {{product.price | currency}}</p>

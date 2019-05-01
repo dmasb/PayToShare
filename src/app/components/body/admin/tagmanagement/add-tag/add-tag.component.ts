@@ -2,9 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {TagService} from '../../../../../services/product/tag.service';
-import {Tag} from '../../../../../models/products/tag';
-import {firestore} from 'firebase/app';
-import Timestamp = firestore.Timestamp;
+
 
 @Component({
   selector: 'app-add-tag',
@@ -24,8 +22,7 @@ export class AddTagComponent implements OnInit {
   }
 
   addTag() {
-    const tag: Tag = {name: this.newTagForm.controls.tagName.value, products: 0, created: Timestamp.now()};
-    this.tagService.addTag(tag);
+    this.tagService.addTag(this.newTagForm.controls.tagName.value);
     this.modalService.dismissAll();
   }
 

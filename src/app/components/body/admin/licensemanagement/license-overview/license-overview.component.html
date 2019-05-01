@@ -1,16 +1,16 @@
 <div class="row mt-5">
   <div class="col-3">
-    <app-add-tag></app-add-tag>
+    <app-add-license></app-add-license>
     <div class="nav flex-column nav-pills mt-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="btn btn-outline-dark text-left" id="v-pills-tags-tab" data-toggle="pill" href="#v-pills-tags" role="tab"
+      <a class="btn btn-outline-dark text-left" id="v-pills-licenses-tab" data-toggle="pill" href="#v-pills-licenses"
+         role="tab"
          aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon:  list; ratio: 1"
                                                                      class="mr-2"></span>Overview</a>
     </div>
   </div>
   <div class="col-9">
     <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade" id="v-pills-tags" role="tabpanel" aria-labelledby="v-pills-tags-tab">
-        xd
+      <div class="tab-pane fade" id="v-pills-licenses" role="tabpanel" aria-labelledby="v-pills-licenses-tab">
         <table class="table table-striped">
           <thead>
           <tr>
@@ -19,25 +19,27 @@
                 <input type="checkbox" name="checkAll">
               </label>
             </th>
-            <th scope="col">Tag name</th>
-            <th scope="col">Products</th>
+            <th scope="col">License name</th>
+            <th scope="col">Format</th>
+            <th scope="col">Tag</th>
             <th scope="col">Created</th>
             <th scope="col">Actions</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let tag of tags | async; index as i">
+          <tr *ngFor="let license of licenses | async; index as i">
             <th scope="row">
               <label>
                 <input type="checkbox" name="checkbox + {{ i + 1}}">
               </label>
             </th>
-            <td>{{ tag.name }}</td>
-            <td>{{ tag.products }}</td>
-            <td>{{ tag.created.toDate() | date: 'yyyy-MM-dd'}}</td>
+            <td>{{ license.name }}</td>
+            <td>{{ license.formatRef[0].name }}</td>
+            <td>{{ license.tagRef[0].name }}</td>
+            <td>{{ license.created.toDate() | date: 'yyyy-MM-dd'}}</td>
             <td>
-              <app-update-tag [id]=tag.id [name]="tag.name"></app-update-tag>
-              <app-delete-tag [id]=tag.id [name]="tag.name"></app-delete-tag>
+              <app-update-license [id]=license.id></app-update-license>
+              <app-delete-license [id]=license.id></app-delete-license>
             </td>
           </tr>
           <tr>

@@ -19,7 +19,7 @@ export const routes: Routes = [
   {path: '', redirectTo: '', component: HomeComponent, pathMatch: 'full'},
   {path: 'products', component: ProductsComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
-  {path: 'profile', component: MypageComponent, canActivate: [AuthGuard]},
+  {path: 'tags', component: MypageComponent, canActivate: [AuthGuard]},
   {path: 'pricing', component: PricingComponent},
   {path: 'features', component: FeaturesComponent},
   {path: 'register', component: RegisterComponent},
