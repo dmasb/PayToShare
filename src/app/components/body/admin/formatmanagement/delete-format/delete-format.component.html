@@ -1,4 +1,4 @@
-<ng-template #deleteFormatModal let-modal>
+<ng-template #confirmDeleteModal let-modal>
   <div class="modal-header">
     <h4 class="modal-title">Confirmation dialog</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -6,7 +6,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>Are you sure u want to delete <code>{{format}}</code> ?</p>
+    <p>Are you sure u want to delete <code>{{name}}</code> ?</p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-light" (click)="cancelDelete(); modal.close('Close click');">Cancel</button>
@@ -14,6 +14,6 @@
   </div>
 </ng-template>
 <a role="button" style="cursor: pointer;"
-   (click)="openCenteredDialog(deleteFormatModal); requestDeleteTag(id)">
+   (click)="openCenteredDialog(confirmDeleteModal); requestDeleteTag(id)">
   <span uk-icon="icon: trash"></span>
 </a>

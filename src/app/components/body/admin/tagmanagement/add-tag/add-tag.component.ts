@@ -12,7 +12,7 @@ import {TagService} from '../../../../../services/product/tag.service';
 export class AddTagComponent implements OnInit {
 
   newTagForm = new FormGroup({
-    formatName: new FormControl(''),
+    tagName: new FormControl(''),
   });
 
   constructor(private tagService: TagService, private modalService: NgbModal) {
@@ -22,7 +22,7 @@ export class AddTagComponent implements OnInit {
   }
 
   addTag() {
-    this.tagService.addTag(this.newTagForm.controls.formatName.value);
+    this.tagService.addTag(this.newTagForm.controls.tagName.value);
     this.modalService.dismissAll();
   }
 

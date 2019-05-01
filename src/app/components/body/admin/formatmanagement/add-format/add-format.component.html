@@ -10,17 +10,9 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="formatName">Format name</label>
-          <input type="text" class="form-control" id="formatName" placeholder="Format name"
-                 formControlName="formatName">
+          <input type="text" class="form-control" id="formatName" placeholder="Format name" formControlName="formatName">
         </div>
       </div>
-      <label for="productTag">Format Tags</label>
-      <select class="form-control" id="productTag" formControlName="tagID">
-        <option value="" selected disabled hidden>Choose here</option>
-        <option *ngFor="let tag of tags" [value]="tag.id">
-          {{tag.name}}
-        </option>
-      </select>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
         <button type="submit" class="btn btn-outline-dark">Add</button>
@@ -30,7 +22,6 @@
 </ng-template>
 <div class="nav flex-column nav-pills m-0 p-0 bg-white" id="v-pills-tab" aria-orientation="vertical">
   <a class="btn btn-outline-dark text-left" id="key" role="tab" aria-selected="true" href="#"
-     (click)="openCenteredDialog(addFormatModal)"><span uk-icon="icon:  plus-circle; ratio: 1" class="mr-2"></span>Add
-    Format
+     (click)="openCenteredDialog(addFormatModal)"><span uk-icon="icon:  plus-circle; ratio: 1" class="mr-2"></span>Add Format
   </a>
 </div>

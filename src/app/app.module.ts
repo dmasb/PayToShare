@@ -39,9 +39,13 @@ import {UpdateProductComponent} from './components/body/admin/productmanagement/
 import {DeleteProductComponent} from './components/body/admin/productmanagement/delete-product/delete-product.component';
 import {ProductOverviewComponent} from './components/body/admin/productmanagement/product-overview/product-overview.component';
 import { AddFormatComponent } from './components/body/admin/formatmanagement/add-format/add-format.component';
-import { DeleteFormatComponent } from './components/body/admin/formatmanagement/delete-format/delete-format.component';
-import { UpdateFormatComponent } from './components/body/admin/formatmanagement/update-format/update-format.component';
 import { FormatOverviewComponent } from './components/body/admin/formatmanagement/format-overview/format-overview.component';
+import { UpdateFormatComponent } from './components/body/admin/formatmanagement/update-format/update-format.component';
+import { DeleteFormatComponent } from './components/body/admin/formatmanagement/delete-format/delete-format.component';
+import { AddLicenseComponent } from './components/body/admin/licensemanagement/add-license/add-license.component';
+import { DeleteLicenseComponent } from './components/body/admin/licensemanagement/delete-license/delete-license.component';
+import { UpdateLicenseComponent } from './components/body/admin/licensemanagement/update-license/update-license.component';
+import { LicenseOverviewComponent } from './components/body/admin/licensemanagement/license-overview/license-overview.component';
 
 @NgModule({
   declarations: [
@@ -71,9 +75,13 @@ import { FormatOverviewComponent } from './components/body/admin/formatmanagemen
     DeleteProductComponent,
     ProductOverviewComponent,
     AddFormatComponent,
-    DeleteFormatComponent,
+    FormatOverviewComponent,
     UpdateFormatComponent,
-    FormatOverviewComponent
+    DeleteFormatComponent,
+    AddLicenseComponent,
+    DeleteLicenseComponent,
+    UpdateLicenseComponent,
+    LicenseOverviewComponent,
   ],
   imports: [
     BrowserModule,

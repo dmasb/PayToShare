@@ -14,8 +14,8 @@ export class UpdateTagComponent implements OnInit {
   @Input() name: string;
 
   newTagNameForm = new FormGroup({
-    tagID: new FormControl(''),
-    tagName: new FormControl('')
+    formatID: new FormControl(''),
+    formatName: new FormControl('')
   });
 
   constructor(private tagService: TagService, private modalService: NgbModal) {
@@ -30,8 +30,8 @@ export class UpdateTagComponent implements OnInit {
 
   editTag() {
     this.tagService.updateTag(
-      this.newTagNameForm.controls.tagID.value,
-      this.newTagNameForm.controls.tagName.value);
+      this.newTagNameForm.controls.formatID.value,
+      this.newTagNameForm.controls.formatName.value);
     this.modalService.dismissAll();
   }
 }

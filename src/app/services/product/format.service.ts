@@ -1,47 +1,40 @@
 import {Injectable, OnInit} from '@angular/core';
-import {Format} from '../../models/products/format';
-import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
-import {alerts} from '../../models/alerts';
-import {TagService} from './tag.service';
+import {AngularFirestore, DocumentReference} from '@angular/fire/firestore';
+import {Format} from '../../models/products/format';
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
-import {MessageService} from '../message.service';
+import {map} from 'rxjs/operators';
+import {Tag} from '../../models/products/tag';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormatService implements OnInit {
 
-  formats: Observable<Format[]>;
-  formatIDBeingDeleted: string;
+  formats: Observable<Format[] | undefined>;
+  formatBeingDeleted: string;
 
-  constructor(
-    private tagService: TagService,
-    private afs: AngularFirestore,
-    private messageService: MessageService) {
-    this.formatIDBeingDeleted = null;
+  constructor(private afs: AngularFirestore) {
+    this.formatBeingDeleted = null;
   }
 
+  getFormatDocReference(formatID: string): DocumentReference {
+    return this.afs.doc(`formats/${formatID}`).ref;
+  }
 
   getFormats() {
     return this.afs.collection('formats').snapshotChanges();
   }
 
-  addFormat(formatName: string, tagID: string) {
+  addTag(formatName: string) {
 
-    this.tagService.getTagDocReference(tagID).get().then(tagDoc => {
-      if (tagDoc.exists) {
-        const newFormat: Format = {
-          format: formatName,
-          tagRef: tagDoc.ref,
-          created: Timestamp.now()
-        };
-        this.afs.collection('formats').add(newFormat);
-      } else {
-        this.messageService.add('Invalid tag', alerts.danger);
-      }
-    });
+    const format: Format = {
+      name: formatName,
+      created: Timestamp.now()
+    };
+
+    this.afs.collection('formats').add(format);
   }
 
   ngOnInit(): void {
@@ -49,8 +42,8 @@ export class FormatService implements OnInit {
   }
 
   available(formatID: string): boolean {
-    if (this.formatIDBeingDeleted === null) {
-      this.formatIDBeingDeleted = formatID;
+    if (this.formatBeingDeleted === null) {
+      this.formatBeingDeleted = formatID;
       return true;
     } else {
       return false;
@@ -58,24 +51,18 @@ export class FormatService implements OnInit {
   }
 
   remove() {
-    this.afs.doc(`formats/${this.formatIDBeingDeleted}`).delete().then(success => {
-      this.messageService.add('Successfully removed', alerts.success);
-    });
-    this.formatIDBeingDeleted = null;
+    this.afs.doc(`formats/${this.formatBeingDeleted}`).delete();
+    this.formatBeingDeleted = null;
   }
 
   cancel() {
-    this.formatIDBeingDeleted = null;
+    this.formatBeingDeleted = null;
   }
 
-  updateFormat(formatID: string, formatName: string, tagID: string) {
+  updateFormat(formatID: string, formatName: string) {
     this.afs.doc(`formats/${formatID}`).update({
-      format: formatName,
-      tagRef: this.tagService.getTagDocReference(tagID)
-    }).then(() => {
-      this.messageService.add('Format successfully added', alerts.success);
-    }, () => {
-      this.messageService.add('Submission failed', alerts.danger);
+      name: formatName
     });
   }
 }
+

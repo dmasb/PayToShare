@@ -10,7 +10,7 @@ import {FormatService} from '../../../../../services/product/format.service';
 export class DeleteFormatComponent implements OnInit {
 
   @Input() id: string;
-  @Input() format: string;
+  @Input() name: string;
 
   constructor(private formatService: FormatService, private modalService: NgbModal) {
   }
@@ -22,8 +22,8 @@ export class DeleteFormatComponent implements OnInit {
     this.modalService.open(confirmDeleteTag, {centered: true});
   }
 
-  requestDeleteTag(tagID) {
-    this.formatService.available(tagID);
+  requestDeleteTag(formatID) {
+    this.formatService.available(formatID);
   }
 
   confirmDelete() {

@@ -6,18 +6,20 @@
     </button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="editProductForm" (ngSubmit)="editProduct()">
+    <form [formGroup]="updateProductForm" (ngSubmit)="editProduct()">
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="productTitle">Product title</label>
           <input type="text" class="form-control" id="productTitle"
                  formControlName="productTitle" [(ngModel)]="title">
         </div>
-        <div class="form-group col-md-6">
-          <label for="productCategory">Product Tag(s)</label>
-          <input type="text" class="form-control" id="productCategory"
-                 formControlName="productTag" [(ngModel)]="tags">
-        </div>
+        <label for="productTag">Product Tags</label>
+        <select class="form-control" id="productTag" formControlName="productTag" (click)="pushTag()">
+          <option value="" selected disabled hidden>Choose here</option>
+          <option *ngFor="let tag of tags" [value]="tag.name">
+            {{tag.name}}
+          </option>
+        </select>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -31,6 +33,13 @@
                  formControlName="productQuantity" [(ngModel)]="quantity">
         </div>
       </div>
+      <label for="productFormat">Product Format</label>
+      <select class="form-control" id="productFormat" formControlName="productFormat">
+        <option value="" selected disabled hidden>Choose here</option>
+        <option *ngFor="let format of formats" [value]="format.name">
+          {{format.name}}
+        </option>
+      </select>
       <div class="form-row">
         <div class="form-group col">
           <label for="productDescription">Product Description</label>
@@ -38,6 +47,10 @@
                  formControlName="productDescription" [(ngModel)]="description">
         </div>
       </div>
+      <span uk-icon="icon: tag; ratio: 1" class="mr-2"></span>Tags:
+      <hr class="mt-2 mb-2 p-0">
+      <span class="uk-label uk-label-success mr-2 mb-2 border-danger tag" *ngFor="let selected of selectedTags"
+            (click)="popTag(selected)">{{selected}}</span>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
         <button type="submit" class="btn btn-outline-dark">Save</button>

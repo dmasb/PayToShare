@@ -1,8 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Tag} from '../../../../../models/products/tag';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {TagService} from '../../../../../services/product/tag.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormatService} from '../../../../../services/product/format.service';
 
 @Component({
@@ -13,46 +11,27 @@ import {FormatService} from '../../../../../services/product/format.service';
 export class UpdateFormatComponent implements OnInit {
 
   @Input() id: string;
-  @Input() format: string;
-  @Input() currentTag: string;
-  @Input() tagID: string;
+  @Input() name: string;
 
-  private tags: Tag[];
-
-  private updateFormatForm = new FormGroup({
+  newFormatNameForm = new FormGroup({
     formatID: new FormControl(''),
-    formatName: new FormControl(''),
-    formatTagID: new FormControl(''),
+    formatName: new FormControl('')
   });
 
-  constructor(private modalService: NgbModal,
-              private tagService: TagService,
-              private formatService: FormatService) {
-
-    this.tagService.getTags().subscribe(tag => {
-      this.tags = tag.map(obj => {
-        return {
-          id: obj.payload.doc.id,
-          ...obj.payload.doc.data()
-        } as Tag;
-      });
-    });
+  constructor(private formatService: FormatService, private modalService: NgbModal) {
   }
 
   ngOnInit() {
   }
 
-  openCenteredDialog(editTagModal) {
-    this.modalService.open(editTagModal, {centered: true});
+  openCenteredDialog(editFormatModal) {
+    this.modalService.open(editFormatModal, {centered: true});
   }
 
   editFormat() {
     this.formatService.updateFormat(
-      this.updateFormatForm.controls.formatID.value,
-      this.updateFormatForm.controls.formatName.value,
-      this.updateFormatForm.controls.formatTagID.value || this.tagID,
-    );
+      this.newFormatNameForm.controls.formatID.value,
+      this.newFormatNameForm.controls.formatName.value);
     this.modalService.dismissAll();
   }
-
 }

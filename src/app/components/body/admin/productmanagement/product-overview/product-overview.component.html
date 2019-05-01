@@ -17,6 +17,7 @@
             <th scope="col">ID</th>
             <th scope="col">Title</th>
             <th scope="col">Tag(s)</th>
+            <th scope="col">Format</th>
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
             <th scope="col">Description</th>
@@ -32,13 +33,15 @@
             </th>
             <td>{{ product.title}}</td>
             <td>{{ product.tags | json}}</td>
+            <td>{{ product.format }}</td>
             <td>{{ product.price | number }}</td>
             <td>{{ product.quantity | number}}</td>
             <td class="productDescription">{{ product.description}}</td>
             <td>
               <app-update-product [description]="product.description" [id]=product.id
                                   [price]="product.price" [quantity]="product.quantity"
-                                  [tags]="product.tags"
+                                  [selectedTags]="product.tags"
+                                  [format]="product.format"
                                   [title]="product.title"></app-update-product>
 
               <app-delete-product [id]=product.id [title]="product.title"

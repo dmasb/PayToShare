@@ -19,12 +19,16 @@ export class TagService implements OnInit {
 
   getTagDocReference(tagID: string): DocumentReference {
     return this.afs.doc(`tags/${tagID}`).ref;
-    /*this.afs.doc(`tags/{${tagID}`)
-      .ref.get().then(doc => {
-      if (doc.exists) {
-        return doc.ref;
-      }
-    });*/
+  }
+
+  getTagName(tagID: string) {
+    return this.tags.forEach(tag => {
+      tag.map(field => {
+        if (field.id === tagID) {
+          return field.name;
+        }
+      });
+    });
   }
 
   getTags() {

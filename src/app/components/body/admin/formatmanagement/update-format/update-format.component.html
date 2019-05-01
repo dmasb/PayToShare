@@ -6,7 +6,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="updateFormatForm" (ngSubmit)="editFormat()">
+    <form [formGroup]="newFormatNameForm" (ngSubmit)="editFormat()">
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="formatID">Format ID</label>
@@ -14,23 +14,11 @@
                  formControlName="formatID" [(ngModel)]="id" disabled>
         </div>
         <div class="form-group col-md-6">
-          <label for="tagName">Current Tag</label>
-          <input type="text" class="form-control" id="tagName"
-                 [value]="currentTag" disabled>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="FormatName">Format name</label>
-          <input type="text" class="form-control" id="FormatName"
-                 formControlName="formatName" [(ngModel)]="format">
+          <label for="formatName">Format Name</label>
+          <input type="text" class="form-control" id="formatName"
+                 formControlName="formatName" [(ngModel)]="name">
         </div>
       </div>
-      <label for="formatTag">Change tag</label>
-      <select class="form-control" id="formatTag" formControlName="formatTagID">
-        <option value="" selected disabled hidden>Choose here</option>
-        <option *ngFor="let tag of tags" [value]="tag.id">
-          {{tag.name}}
-        </option>
-      </select>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
         <button type="submit" class="btn btn-outline-dark" data-dismiss="modal">Save</button>
