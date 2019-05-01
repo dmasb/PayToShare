@@ -6,6 +6,7 @@ import {TagService} from '../../../../../services/product/tag.service';
 import {FormatService} from '../../../../../services/product/format.service';
 import {LicenseService} from '../../../../../services/product/license.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-add-license',
@@ -14,8 +15,8 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class AddLicenseComponent implements OnInit {
 
-  private tags: Tag[];
-  private formats: Format[];
+  private tags: Observable<Tag[]>;
+  private formats: Observable<Format[]>;
 
   newLicenseForm = new FormGroup({
     licenseName: new FormControl(''),
@@ -31,28 +32,11 @@ export class AddLicenseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tagService.getTags().subscribe(tag => {
-      this.tags = tag.map(obj => {
-        return {
-          id: obj.payload.doc.id,
-          ...obj.payload.doc.data()
-        } as Tag;
-      });
-    });
-    this.formatService.getFormats().subscribe(format => {
-      this.formats = format.map(obj => {
-        return {
-          id: obj.payload.doc.id,
-          ...obj.payload.doc.data()
-        } as Format;
-      });
-    });
+    this.tags = this.tagService.getTags();
+    this.formats = this.formatService.getFormats();
   }
 
   addLicense() {
-    console.log(this.newLicenseForm.controls.licenseName.value);
-    console.log(this.newLicenseForm.controls.formatID.value);
-    console.log(this.newLicenseForm.controls.tagID.value);
     this.licenseService.addLicense(
       this.newLicenseForm.controls.licenseName.value,
       this.newLicenseForm.controls.formatID.value,

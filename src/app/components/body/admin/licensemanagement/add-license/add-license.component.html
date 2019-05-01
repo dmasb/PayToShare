@@ -17,14 +17,14 @@
       <label for="productFormat">License Format</label>
       <select class="form-control" id="productFormat" formControlName="formatID">
         <option value="" selected disabled hidden>Choose here</option>
-        <option *ngFor="let format of formats" [value]="format.id">
+        <option *ngFor="let format of formats | async" [value]="format.id">
           {{format.name}}
         </option>
       </select>
       <label for="productTag">License Tag</label>
       <select class="form-control" id="productTag" formControlName="tagID">
         <option value="" selected disabled hidden>Choose here</option>
-        <option *ngFor="let tag of tags" [value]="tag.id">
+        <option *ngFor="let tag of tags | async" [value]="tag.id">
           {{tag.name}}
         </option>
       </select>

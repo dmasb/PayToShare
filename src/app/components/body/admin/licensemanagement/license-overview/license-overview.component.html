@@ -34,8 +34,8 @@
               </label>
             </th>
             <td>{{ license.name }}</td>
-            <td>{{ getFormatName(license.formatRef.id) }}</td>
-            <td>{{license.tagRef.id }}</td>
+            <td>{{ license.formatRef[0].name }}</td>
+            <td>{{ license.tagRef[0].name }}</td>
             <td>{{ license.created.toDate() | date: 'yyyy-MM-dd'}}</td>
             <td>
               <app-update-license [id]=license.id></app-update-license>
