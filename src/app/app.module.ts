@@ -25,10 +25,6 @@ import {far} from '@fortawesome/free-regular-svg-icons';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {Error404Component} from './components/body/error404/error404.component';
 import {DecimalPipe} from '@angular/common';
-import {AddProductComponent} from './components/body/admin/productmanagement/add/add.component';
-import {DeleteProductComponent} from './components/body/admin/productmanagement/delete/delete.component';
-import {UpdateProductComponent} from './components/body/admin/productmanagement/update/update.component';
-import {ProductOverviewComponent} from './components/body/admin/productmanagement/overview/product-overview.component';
 import {ProductsComponent} from './components/body/products/products.component';
 import {MessageComponent} from './components/body/message/message.component';
 import {DashboardComponent} from './components/body/admin/dashboard/dashboard.component';
@@ -38,6 +34,18 @@ import {TagOverviewComponent} from './components/body/admin/tagmanagement/tag-ov
 import {AddTagComponent} from './components/body/admin/tagmanagement/add-tag/add-tag.component';
 import {DeleteTagComponent} from './components/body/admin/tagmanagement/delete-tag/delete-tag.component';
 import {UpdateTagComponent} from './components/body/admin/tagmanagement/update-tag/update-tag.component';
+import {AddProductComponent} from './components/body/admin/productmanagement/add-product/add-product.component';
+import {UpdateProductComponent} from './components/body/admin/productmanagement/update-product/update-product.component';
+import {DeleteProductComponent} from './components/body/admin/productmanagement/delete-product/delete-product.component';
+import {ProductOverviewComponent} from './components/body/admin/productmanagement/product-overview/product-overview.component';
+import { AddFormatComponent } from './components/body/admin/formatmanagement/add-format/add-format.component';
+import { FormatOverviewComponent } from './components/body/admin/formatmanagement/format-overview/format-overview.component';
+import { UpdateFormatComponent } from './components/body/admin/formatmanagement/update-format/update-format.component';
+import { DeleteFormatComponent } from './components/body/admin/formatmanagement/delete-format/delete-format.component';
+import { AddLicenseComponent } from './components/body/admin/licensemanagement/add-license/add-license.component';
+import { DeleteLicenseComponent } from './components/body/admin/licensemanagement/delete-license/delete-license.component';
+import { UpdateLicenseComponent } from './components/body/admin/licensemanagement/update-license/update-license.component';
+import { LicenseOverviewComponent } from './components/body/admin/licensemanagement/license-overview/license-overview.component';
 
 @NgModule({
   declarations: [
@@ -53,10 +61,6 @@ import {UpdateTagComponent} from './components/body/admin/tagmanagement/update-t
     IndexComponent,
     FooterComponent,
     Error404Component,
-    ProductOverviewComponent,
-    UpdateProductComponent,
-    DeleteProductComponent,
-    AddProductComponent,
     ProductsComponent,
     MessageComponent,
     DashboardComponent,
@@ -66,6 +70,18 @@ import {UpdateTagComponent} from './components/body/admin/tagmanagement/update-t
     AddTagComponent,
     DeleteTagComponent,
     UpdateTagComponent,
+    AddProductComponent,
+    UpdateProductComponent,
+    DeleteProductComponent,
+    ProductOverviewComponent,
+    AddFormatComponent,
+    FormatOverviewComponent,
+    UpdateFormatComponent,
+    DeleteFormatComponent,
+    AddLicenseComponent,
+    DeleteLicenseComponent,
+    UpdateLicenseComponent,
+    LicenseOverviewComponent,
   ],
   imports: [
     BrowserModule,

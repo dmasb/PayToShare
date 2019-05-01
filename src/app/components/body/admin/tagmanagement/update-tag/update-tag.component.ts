@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {TagService} from '../../../../../services/product/tag.service';
-import {Tag} from '../../../../../models/products/tag';
 
 @Component({
   selector: 'app-update-tag',
@@ -30,11 +29,9 @@ export class UpdateTagComponent implements OnInit {
   }
 
   editTag() {
-    const tag: Tag = {
-      id: this.id,
-      name: this.newTagNameForm.controls.tagName.value
-    };
-    this.tagService.updateTag(tag);
+    this.tagService.updateTag(
+      this.newTagNameForm.controls.tagID.value,
+      this.newTagNameForm.controls.tagName.value);
     this.modalService.dismissAll();
   }
 }
