@@ -2,7 +2,12 @@ table{
   table-layout: fixed;
 }
 
-.productDescription {
+table td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+table th {
   overflow: hidden;
   text-overflow: ellipsis;
 }

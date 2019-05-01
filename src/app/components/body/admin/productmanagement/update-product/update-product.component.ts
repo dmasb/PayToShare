@@ -1,19 +1,19 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ProductsService} from '../../../../../services/crud/products.service';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {ProductsService} from '../../../../../services/crud/products.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Product} from '../../../../../models/products/product';
 
 @Component({
   selector: 'app-update-product',
-  templateUrl: './update.component.html',
-  styleUrls: ['./update.component.scss']
+  templateUrl: './update-product.component.html',
+  styleUrls: ['./update-product.component.scss']
 })
 export class UpdateProductComponent implements OnInit {
 
   @Input() id: string;
   @Input() title: string;
-  @Input() category: string;
+  @Input() tags: string[];
   @Input() price: number;
   @Input() quantity: number;
   @Input() description: string;

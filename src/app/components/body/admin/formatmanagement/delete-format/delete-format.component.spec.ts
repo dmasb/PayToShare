@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteComponent } from './delete.component';
+import { DeleteFormatComponent } from './delete-format.component';
 
-describe('DeleteCategoryComponent', () => {
-  let component: DeleteComponent;
-  let fixture: ComponentFixture<DeleteComponent>;
+describe('DeleteFormatComponent', () => {
+  let component: DeleteFormatComponent;
+  let fixture: ComponentFixture<DeleteFormatComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeleteComponent ]
+      declarations: [ DeleteFormatComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeleteComponent);
+    fixture = TestBed.createComponent(DeleteFormatComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

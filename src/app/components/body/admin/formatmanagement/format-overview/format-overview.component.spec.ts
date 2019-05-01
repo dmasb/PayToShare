@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UpdateComponent } from './update.component';
+import { FormatOverviewComponent } from './format-overview.component';
 
-describe('UpdateCategoryComponent', () => {
-  let component: UpdateComponent;
-  let fixture: ComponentFixture<UpdateComponent>;
+describe('FormatOverviewComponent', () => {
+  let component: FormatOverviewComponent;
+  let fixture: ComponentFixture<FormatOverviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UpdateComponent ]
+      declarations: [ FormatOverviewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UpdateComponent);
+    fixture = TestBed.createComponent(FormatOverviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

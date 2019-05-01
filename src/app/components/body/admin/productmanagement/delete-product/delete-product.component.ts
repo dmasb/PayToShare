@@ -1,13 +1,14 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Component, Input, OnInit} from '@angular/core';
 import {ProductsService} from '../../../../../services/crud/products.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-delete-product',
-  templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
+  templateUrl: './delete-product.component.html',
+  styleUrls: ['./delete-product.component.scss']
 })
 export class DeleteProductComponent implements OnInit {
+
   @Input() id: string;
   @Input() title: string;
   @Input() description: string;

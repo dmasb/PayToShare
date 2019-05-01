@@ -1,15 +1,17 @@
 <div class="row mt-5">
   <div class="col-3">
-    <app-add-tag></app-add-tag>
+    <app-add-format></app-add-format>
     <div class="nav flex-column nav-pills mt-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="btn btn-outline-dark text-left" id="v-pills-tags-tab" data-toggle="pill" href="#v-pills-tags" role="tab"
+
+      <a class="btn btn-outline-dark text-left" id="v-pills-formats-tab" data-toggle="pill" href="#v-pills-formats"
+         role="tab"
          aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon:  list; ratio: 1"
                                                                      class="mr-2"></span>Overview</a>
     </div>
   </div>
   <div class="col-9">
     <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade" id="v-pills-tags" role="tabpanel" aria-labelledby="v-pills-tags-tab">
+      <div class="tab-pane fade" id="v-pills-formats" role="tabpanel" aria-labelledby="v-pills-formats-tab">
         <table class="table table-striped">
           <thead>
           <tr>
@@ -18,25 +20,27 @@
                 <input type="checkbox" name="checkAll">
               </label>
             </th>
-            <th scope="col">Tag name</th>
-            <th scope="col">Products</th>
+            <th scope="col">Format name</th>
+            <th scope="col">Format Tag</th>
             <th scope="col">Created</th>
             <th scope="col">Actions</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let tag of tags; index as i">
+          <tr *ngFor="let format of formats; index as i">
             <th scope="row">
               <label>
                 <input type="checkbox" name="checkbox + {{ i + 1}}">
               </label>
             </th>
-            <td>{{ tag.name }}</td>
-            <td>{{ tag.products }}</td>
-            <td>{{ tag.created.toDate() | date: 'yyyy-MM-dd'}}</td>
+            <td>{{ format.format }}</td>
+            <td>{{ getTagName(format.tagRef.id)}}</td>
+            <td>{{ format.created.toDate() | date: 'yyyy-MM-dd'}}</td>
             <td>
-              <app-update-tag [id]=tag.id [name]="tag.name"></app-update-tag>
-              <app-delete-tag [id]=tag.id [name]="tag.name"></app-delete-tag>
+              <app-update-format [id]=format.id [format]="format.format"
+                                 [currentTag]="getTagName(format.tagRef.id)"
+                                 [tagID]="format.tagRef.id"></app-update-format>
+              <app-delete-format [id]=format.id [format]="format.format"></app-delete-format>
             </td>
           </tr>
           <tr>

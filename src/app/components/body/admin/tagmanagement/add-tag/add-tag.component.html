@@ -9,8 +9,8 @@
     <form [formGroup]="newTagForm" (ngSubmit)="addTag()">
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="category">Tag name</label>
-          <input type="text" class="form-control" id="category" placeholder="category" formControlName="tagName">
+          <label for="tagName">Tag name</label>
+          <input type="text" class="form-control" id="tagName" placeholder="Tag name" formControlName="tagName">
         </div>
       </div>
       <div class="modal-footer">
@@ -25,5 +25,3 @@
      (click)="openCenteredDialog(addTagModal)"><span uk-icon="icon:  plus-circle; ratio: 1" class="mr-2"></span>Add Tag
   </a>
 </div>
-
-

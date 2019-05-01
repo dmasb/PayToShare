@@ -1,4 +1,4 @@
-<ng-template #content let-modal>
+<ng-template #updateProductModal let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Update Product</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -16,7 +16,7 @@
         <div class="form-group col-md-6">
           <label for="productCategory">Product Tag(s)</label>
           <input type="text" class="form-control" id="productCategory"
-                 formControlName="productCategory" [(ngModel)]="category">
+                 formControlName="productTag" [(ngModel)]="tags">
         </div>
       </div>
       <div class="form-row">
@@ -46,6 +46,6 @@
   </div>
 </ng-template>
 
-<a role="button" style="cursor: pointer;" (click)="openCenteredDialog(content)">
-  <fa-icon [icon]="['fas', 'edit']" size="lg"></fa-icon>
+<a class="mr-2" role="button" style="cursor: pointer;" (click)="openCenteredDialog(updateProductModal)">
+  <span uk-icon="icon: pencil"></span>
 </a>

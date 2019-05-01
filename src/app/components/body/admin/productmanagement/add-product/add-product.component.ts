@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {Product} from '../../../../../models/products/product';
-import {ProductsService} from '../../../../../services/crud/products.service';
-import {TagService} from '../../../../../services/product/tag.service';
+import { Component, OnInit } from '@angular/core';
 import {Tag} from '../../../../../models/products/tag';
+import {FormControl, FormGroup} from '@angular/forms';
+import {ProductsService} from '../../../../../services/crud/products.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {TagService} from '../../../../../services/product/tag.service';
+import {Product} from '../../../../../models/products/product';
 
 @Component({
   selector: 'app-add-product',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  templateUrl: './add-product.component.html',
+  styleUrls: ['./add-product.component.scss']
 })
 export class AddProductComponent implements OnInit {
 
