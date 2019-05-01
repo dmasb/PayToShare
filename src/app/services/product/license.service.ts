@@ -1,4 +1,4 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {AngularFirestore, DocumentReference} from '@angular/fire/firestore';
 import {firestore} from 'firebase/app';
@@ -11,7 +11,7 @@ import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class LicenseService implements OnInit {
+export class LicenseService {
 
   licenses: Observable<License[]>;
   licenseBeingDeleted: string;
@@ -22,12 +22,8 @@ export class LicenseService implements OnInit {
     this.licenseBeingDeleted = null;
   }
 
-  getLicenseDocRef(licenseID: string): DocumentReference {
-    return this.afs.doc(`licenses/${licenseID}`).ref;
-  }
-
   getLicenses(): Observable<License[]> {
-    return this.afs.collection('licenses').snapshotChanges().pipe(
+    return this.licenses = this.afs.collection('licenses').snapshotChanges().pipe(
       map(licenses => {
         return licenses.map(license => {
           return {
@@ -37,21 +33,34 @@ export class LicenseService implements OnInit {
         });
       })
     );
+
   }
 
-  addLicense(licenseName: string, formatID: string, tagID: string) {
+  getLicenseDoc(licenseID: string) {
+    return this.afs.doc(`licenses/${licenseID}`);
+  }
+
+  async addLicense(licenseName: string, formatID: string, tagID: string) {
+    const formatObj = await this.formatService.getFormatDoc(formatID).ref.get().then(format => {
+      return format.data();
+    });
+
+    const tagObj = await this.tagService.getTagDoc(tagID).ref.get().then(format => {
+      return format.data();
+    });
+
     const license: License = {
       name: licenseName,
-      formatRef: this.formatService.getFormatDocReference(formatID),
-      tagRef: this.tagService.getTagDocReference(tagID),
+      formatRef: [
+        formatObj
+      ],
+      tagRef: [
+        tagObj
+      ],
       created: Timestamp.now()
     };
 
     this.afs.collection('licenses').add(license);
-  }
-
-  ngOnInit(): void {
-    this.licenses = this.afs.doc<License[]>('licenses').valueChanges();
   }
 
   available(licenseID: string): boolean {

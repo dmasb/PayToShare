@@ -1,6 +1,6 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {AngularFirestore, DocumentReference} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {Format} from '../../models/products/format';
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
@@ -10,22 +10,32 @@ import {Tag} from '../../models/products/tag';
 @Injectable({
   providedIn: 'root'
 })
-export class FormatService implements OnInit {
+export class FormatService {
 
-  formats: Observable<Format[] | undefined>;
+  formats: Observable<Format[]>;
   formatBeingDeleted: string;
 
   constructor(private afs: AngularFirestore) {
     this.formatBeingDeleted = null;
   }
 
-  getFormatDocReference(formatID: string): DocumentReference {
-    return this.afs.doc(`formats/${formatID}`).ref;
+  getFormats(): Observable<Format[]> {
+    return this.formats = this.afs.collection('formats').snapshotChanges().pipe(
+      map(formats => {
+        return formats.map(format => {
+          return {
+            id: format.payload.doc.id,
+            ...format.payload.doc.data()
+          } as Tag;
+        });
+      })
+    );
   }
 
-  getFormats() {
-    return this.afs.collection('formats').snapshotChanges();
+  getFormatDoc(formatID: string) {
+    return this.afs.doc(`formats/${formatID}`);
   }
+
 
   addTag(formatName: string) {
 
@@ -35,10 +45,6 @@ export class FormatService implements OnInit {
     };
 
     this.afs.collection('formats').add(format);
-  }
-
-  ngOnInit(): void {
-    this.formats = this.afs.doc<Format[]>('formats').valueChanges();
   }
 
   available(formatID: string): boolean {

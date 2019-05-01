@@ -24,7 +24,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let format of formats; index as i">
+          <tr *ngFor="let format of formats | async; index as i">
             <th scope="row">
               <label>
                 <input type="checkbox" name="checkbox + {{ i + 1}}">

@@ -7,6 +7,7 @@ import {Tag} from '../../../../../models/products/tag';
 import {TagService} from '../../../../../services/product/tag.service';
 import {Format} from '../../../../../models/products/format';
 import {FormatService} from '../../../../../services/product/format.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-update-product',
@@ -23,8 +24,9 @@ export class UpdateProductComponent implements OnInit {
   @Input() quantity: number;
   @Input() description: string;
 
-  private tags: Tag[];
-  private formats: Format[];
+  private tags: Observable<Tag[]>;
+  private formats: Observable<Format[]>;
+
   updateProductForm = new FormGroup({
     productTitle: new FormControl(''),
     productTag: new FormControl(''),
@@ -41,22 +43,8 @@ export class UpdateProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tagService.getTags().subscribe(tag => {
-      this.tags = tag.map(obj => {
-        return {
-          id: obj.payload.doc.id,
-          ...obj.payload.doc.data()
-        } as Tag;
-      });
-    });
-    this.formatService.getFormats().subscribe(format => {
-      this.formats = format.map(obj => {
-        return {
-          id: obj.payload.doc.id,
-          ...obj.payload.doc.data()
-        } as Format;
-      });
-    });
+    this.formats = this.formatService.getFormats();
+    this.tags = this.tagService.getTags();
   }
 
 

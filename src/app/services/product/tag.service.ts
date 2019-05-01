@@ -1,14 +1,15 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Tag} from '../../models/products/tag';
-import {AngularFirestore, DocumentReference} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TagService implements OnInit {
+export class TagService {
 
   tags: Observable<Tag[]>;
   tagBeingDeleted: string;
@@ -17,22 +18,21 @@ export class TagService implements OnInit {
     this.tagBeingDeleted = null;
   }
 
-  getTagDocReference(tagID: string): DocumentReference {
-    return this.afs.doc(`tags/${tagID}`).ref;
+  getTags(): Observable<Tag[]> {
+    return this.tags = this.afs.collection('tags').snapshotChanges().pipe(
+      map(tags => {
+        return tags.map(tag => {
+          return {
+            id: tag.payload.doc.id,
+            ...tag.payload.doc.data()
+          } as Tag;
+        });
+      })
+    );
   }
 
-  getTagName(tagID: string) {
-    return this.tags.forEach(tag => {
-      tag.map(field => {
-        if (field.id === tagID) {
-          return field.name;
-        }
-      });
-    });
-  }
-
-  getTags() {
-    return this.afs.collection('tags').snapshotChanges();
+  getTagDoc(tagID: string) {
+    return this.afs.doc(`tags/${tagID}`);
   }
 
   addTag(tagName: string) {
@@ -43,10 +43,6 @@ export class TagService implements OnInit {
     };
 
     this.afs.collection('tags').add(tag);
-  }
-
-  ngOnInit(): void {
-    this.tags = this.afs.doc<Tag[]>('tags').valueChanges();
   }
 
   available(tagID: string): boolean {
