@@ -10,13 +10,13 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="categoryId">Tag ID</label>
-          <input type="text" class="form-control" id="categoryId" placeholder="category"
-                 formControlName="tagID" [value]="id" disabled>
+          <input type="text" class="form-control" id="categoryId" placeholder="Tag ID"
+                 formControlName="tagID" [(ngModel)]="id" disabled>
         </div>
         <div class="form-group col-md-6">
           <label for="categoryName">Tag Name</label>
-          <input type="text" class="form-control" id="categoryName" placeholder="category"
-                 formControlName="tagName" [value]="name">
+          <input type="text" class="form-control" id="categoryName" placeholder="Tag Name"
+                 formControlName="tagName" [(ngModel)]="name">
         </div>
       </div>
       <div class="modal-footer">

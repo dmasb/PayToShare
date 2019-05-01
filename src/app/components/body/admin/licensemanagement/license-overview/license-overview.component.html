@@ -27,14 +27,14 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let license of licenses; index as i">
+          <tr *ngFor="let license of licenses | async; index as i">
             <th scope="row">
               <label>
                 <input type="checkbox" name="checkbox + {{ i + 1}}">
               </label>
             </th>
             <td>{{ license.name }}</td>
-            <td>{{ license.formatRef.id }}</td>
+            <td>{{ getFormatName(license.formatRef.id) }}</td>
             <td>{{license.tagRef.id }}</td>
             <td>{{ license.created.toDate() | date: 'yyyy-MM-dd'}}</td>
             <td>

@@ -6,6 +6,7 @@ import Timestamp = firestore.Timestamp;
 import {License} from '../../models/products/license';
 import {TagService} from './tag.service';
 import {FormatService} from './format.service';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,14 +26,20 @@ export class LicenseService implements OnInit {
     return this.afs.doc(`licenses/${licenseID}`).ref;
   }
 
-  getLicenses() {
-    return this.afs.collection('licenses').snapshotChanges();
+  getLicenses(): Observable<License[]> {
+    return this.afs.collection('licenses').snapshotChanges().pipe(
+      map(licenses => {
+        return licenses.map(license => {
+          return {
+            id: license.payload.doc.id,
+            ...license.payload.doc.data()
+          } as License;
+        });
+      })
+    );
   }
 
   addLicense(licenseName: string, formatID: string, tagID: string) {
-    console.log('##########################3')
-    console.log(formatID);
-    console.log(this.formatService.getFormatDocReference(formatID));
     const license: License = {
       name: licenseName,
       formatRef: this.formatService.getFormatDocReference(formatID),

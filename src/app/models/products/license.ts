@@ -5,7 +5,7 @@ import Timestamp = firestore.Timestamp;
 export interface License {
   id?: string;
   name: string;
-  tagRef: DocumentReference;
-  formatRef: DocumentReference;
+  tagRef: object;
+  formatRef: object;
   created: Timestamp;
 }

@@ -4,8 +4,9 @@ import {License} from '../../../../../models/products/license';
 import {LicenseService} from '../../../../../services/product/license.service';
 import {FormatService} from '../../../../../services/product/format.service';
 import {TagService} from '../../../../../services/product/tag.service';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore, DocumentReference} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
+import {first, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-license-overview',
@@ -14,7 +15,9 @@ import {Observable} from 'rxjs';
 })
 export class LicenseOverviewComponent implements OnInit {
 
-  licenses: License[];
+  licenses: Observable<License[]>;
+  name: string;
+
   constructor(pipe: DecimalPipe,
               private licenseService: LicenseService,
               private formatService: FormatService,
@@ -23,21 +26,10 @@ export class LicenseOverviewComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.licenseService.getLicenses().subscribe(tag => {
-      this.licenses = tag.map(obj => {
-        console.log('hereeeeeeeeE?');
-        return {
-          id: obj.payload.doc.id,
-          ...obj.payload.doc.data()
-        } as License;
-      });
-    });
+    this.licenses = this.licenseService.getLicenses();
 
   }
 
-  getFormatName(id: string) {
-
+  getFormatName(formatID: string) {
   }
-
-
 }
