@@ -1,22 +1,22 @@
-<ng-template #editTagModal let-modal>
+<ng-template #editFormatModal let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Edit Tag</h4>
+    <h4 class="modal-title">Edit Format</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="newTagNameForm" (ngSubmit)="editTag()">
+    <form [formGroup]="newFormatNameForm" (ngSubmit)="editFormat()">
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="categoryId">Tag ID</label>
-          <input type="text" class="form-control" id="categoryId" placeholder="Tag ID"
-                 formControlName="tagID" [(ngModel)]="id" disabled>
+          <label for="formatID">Format ID</label>
+          <input type="text" class="form-control" id="formatID"
+                 formControlName="formatID" [(ngModel)]="id" disabled>
         </div>
         <div class="form-group col-md-6">
-          <label for="categoryName">Tag Name</label>
-          <input type="text" class="form-control" id="categoryName" placeholder="Tag Name"
-                 formControlName="tagName" [(ngModel)]="name">
+          <label for="formatName">Format Name</label>
+          <input type="text" class="form-control" id="formatName"
+                 formControlName="formatName" [(ngModel)]="name">
         </div>
       </div>
       <div class="modal-footer">
@@ -27,6 +27,6 @@
   </div>
 </ng-template>
 
-<a class="mr-3" role="button" style="cursor: pointer;" (click)="openCenteredDialog(editTagModal)">
+<a class="mr-3" role="button" style="cursor: pointer;" (click)="openCenteredDialog(editFormatModal)">
   <span uk-icon="icon: pencil"></span>
 </a>
