@@ -41,13 +41,9 @@ export class LicenseService {
   }
 
   async addLicense(licenseName: string, formatID: string, tagID: string) {
-    const formatObj = await this.formatService.getFormatDoc(formatID).ref.get().then(format => {
-      return format.data();
-    });
 
-    const tagObj = await this.tagService.getTagDoc(tagID).ref.get().then(format => {
-      return format.data();
-    });
+    const formatObj = await this.formatService.getFormatJson(formatID);
+    const tagObj = await this.tagService.getTagJson(tagID);
 
     const license: License = {
       name: licenseName,

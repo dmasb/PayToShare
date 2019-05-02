@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {DecimalPipe} from '@angular/common';
 import {Format} from '../../../../../models/products/format';
 import {FormatService} from '../../../../../services/product/format.service';
 import {Observable} from 'rxjs';
-import {Tag} from '../../../../../models/products/tag';
 
 @Component({
   selector: 'app-format-overview',
@@ -14,7 +12,7 @@ export class FormatOverviewComponent implements OnInit {
 
   private formats: Observable<Format[]>;
 
-  constructor(pipe: DecimalPipe, private formatService: FormatService) {
+  constructor(private formatService: FormatService) {
   }
 
   ngOnInit() {

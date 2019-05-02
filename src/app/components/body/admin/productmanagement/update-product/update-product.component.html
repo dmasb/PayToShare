@@ -16,8 +16,8 @@
         <label for="productTag">Product Tags</label>
         <select class="form-control" id="productTag" formControlName="productTag" (click)="pushTag()">
           <option value="" selected disabled hidden>Choose here</option>
-          <option *ngFor="let tag of tags | async" [value]="tag.name">
-            {{tag.name}}
+          <option *ngFor="let t of tags | async" [value]="t | json">
+            {{t.name}}
           </option>
         </select>
       </div>
@@ -50,7 +50,7 @@
       <span uk-icon="icon: tag; ratio: 1" class="mr-2"></span>Tags:
       <hr class="mt-2 mb-2 p-0">
       <span class="uk-label uk-label-success mr-2 mb-2 border-danger tag" *ngFor="let selected of selectedTags"
-            (click)="popTag(selected)">{{selected}}</span>
+            (click)="popTag(selected)">{{selected.name}}</span>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
         <button type="submit" class="btn btn-outline-dark">Save</button>
