@@ -38,16 +38,17 @@ import {AddProductComponent} from './components/body/admin/productmanagement/add
 import {UpdateProductComponent} from './components/body/admin/productmanagement/update-product/update-product.component';
 import {DeleteProductComponent} from './components/body/admin/productmanagement/delete-product/delete-product.component';
 import {ProductOverviewComponent} from './components/body/admin/productmanagement/product-overview/product-overview.component';
-import { AddFormatComponent } from './components/body/admin/formatmanagement/add-format/add-format.component';
-import { FormatOverviewComponent } from './components/body/admin/formatmanagement/format-overview/format-overview.component';
-import { UpdateFormatComponent } from './components/body/admin/formatmanagement/update-format/update-format.component';
-import { DeleteFormatComponent } from './components/body/admin/formatmanagement/delete-format/delete-format.component';
-import { AddLicenseComponent } from './components/body/admin/licensemanagement/add-license/add-license.component';
-import { DeleteLicenseComponent } from './components/body/admin/licensemanagement/delete-license/delete-license.component';
-import { UpdateLicenseComponent } from './components/body/admin/licensemanagement/update-license/update-license.component';
-import { LicenseOverviewComponent } from './components/body/admin/licensemanagement/license-overview/license-overview.component';
-import { ProductImageComponent } from './components/body/admin/productmanagement/product-image/product-image.component';
-import { AngularFireStorageModule } from "@angular/fire/storage";
+import {AddFormatComponent} from './components/body/admin/formatmanagement/add-format/add-format.component';
+import {FormatOverviewComponent} from './components/body/admin/formatmanagement/format-overview/format-overview.component';
+import {UpdateFormatComponent} from './components/body/admin/formatmanagement/update-format/update-format.component';
+import {DeleteFormatComponent} from './components/body/admin/formatmanagement/delete-format/delete-format.component';
+import {AddLicenseComponent} from './components/body/admin/licensemanagement/add-license/add-license.component';
+import {DeleteLicenseComponent} from './components/body/admin/licensemanagement/delete-license/delete-license.component';
+import {UpdateLicenseComponent} from './components/body/admin/licensemanagement/update-license/update-license.component';
+import {LicenseOverviewComponent} from './components/body/admin/licensemanagement/license-overview/license-overview.component';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {PlanOverviewComponent} from './components/body/admin/planmanagement/plan-overview/plan-overview.component';
+import {DeletePlanComponent} from './components/body/admin/planmanagement/delete-plan/delete-plan.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { AngularFireStorageModule } from "@angular/fire/storage";
     DeleteLicenseComponent,
     UpdateLicenseComponent,
     LicenseOverviewComponent,
-    ProductImageComponent,
+    PlanOverviewComponent,
+    DeletePlanComponent
   ],
   imports: [
     BrowserModule,

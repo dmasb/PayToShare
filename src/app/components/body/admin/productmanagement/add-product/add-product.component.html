@@ -56,7 +56,7 @@
             <h5 class="card-title">Select file for upload:</h5>
             <input type="file" (change)="getFile($event)" accept=".png,.jpg"/>
             <div class="btn-group" role="group">
-              <button type="button" class="btn btn-primary" (click)="startUpload()">Submit</button>
+              <button type="button" class="btn btn-primary" (click)="startUpload()" [value]="downloadURL | async" formControlName="url">Submit</button>
               <!--        <button type="button" class="btn btn-warning" (click)="st(downloadURL)">Delete</button>-->
             </div>
             <!--      <div class="progress">-->
