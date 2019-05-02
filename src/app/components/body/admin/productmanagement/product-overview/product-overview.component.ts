@@ -17,7 +17,7 @@ export class ProductOverviewComponent implements OnInit {
   collectionSize: number;
 
   constructor(private modalService: NgbModal, private productsService: ProductsService) {
-    this.productsService.getProducts().subscribe(products => {
+    this.productsService.getAdminProducts().subscribe(products => {
       this.products = products.map(obj => {
         return {
           id: obj.payload.doc.id,
@@ -28,7 +28,7 @@ export class ProductOverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productsService.getProducts().subscribe(products => {
+    this.productsService.getAdminProducts().subscribe(products => {
       this.products = products.map(obj => {
         return {
           id: obj.payload.doc.id,

@@ -13,9 +13,12 @@ export class ProductsService {
     this.productBeingDeleted = null;
   }
 
+  getAdminProducts(){
+    return this.afs.collection('products').snapshotChanges();
+  }
 
   getProducts() {
-    return this.afs.collection('products').snapshotChanges();
+    return this.afs.collection('products', ref =>ref.where('quantity','>','0')).snapshotChanges();
   }
 
   addProduct(product: Product) {
