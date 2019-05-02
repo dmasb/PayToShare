@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductsService} from '../../../services/crud/products.service';
 import {Product} from '../../../models/products/product';
+import {Observable} from 'rxjs';
+import {Plan} from '../../../models/products/plan';
+import {PlanService} from '../../../services/product/plan.service';
 
 @Component({
   selector: 'app-products',
@@ -9,20 +12,15 @@ import {Product} from '../../../models/products/product';
 })
 export class ProductsComponent implements OnInit {
 
-  private products: Product[];
-
-  constructor(private productsService: ProductsService) {
-    this.productsService.getProducts().subscribe(products => {
-      this.products = products.map(obj => {
-        return {
-          id: obj.payload.doc.id,
-          ...obj.payload.doc.data()
-        } as Product;
-      });
-    });
+  private plans: Observable<Plan[]>;
+  private products: Observable<Product[]>;
+  constructor(private productsService: ProductsService,
+              private planService: PlanService) {
   }
 
   ngOnInit() {
+    this.plans = this.planService.getPlans();
+    this.products = this.productsService.getProducts();
   }
 
 }

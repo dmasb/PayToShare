@@ -1,97 +1,75 @@
 <div class="container">
-  <div class="row">
-    <div class="col-3">
+  <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
 
-      <div id="accordion">
-        <div class="card mb-2 bg-transparent">
-          <a class="btn btn-outline-dark text-left" id="lol" data-toggle="collapse" href="#collapseThree" role="tab"
-             aria-selected="true" aria-expanded="true">Tag Management</a>
-          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-            <div class="card-body ml-2 p-2">
-              <app-add-tag></app-add-tag>
-              <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
-                <a class="btn btn-outline-dark mt-2" id="v-pills-tags-tab" data-toggle="pill" href="#v-pills-tags"
-                   role="tab"
-                   aria-controls="v-pills-tags" aria-selected="false"><span uk-icon="icon: table; ratio: 1"
-                                                                            class="mr-2"></span>Overview</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!--PLAN MANAGEMENT-->
+    <li class="nav-item">
+      <a class="nav-link text-secondary" id="plans-tab" data-toggle="tab" href="#plans" role="tab"
+         aria-controls="contact" aria-selected="false">Plans</a>
+    </li>
 
-      <app-add-product></app-add-product>
+    <!--LICENSE MANAGEMENT-->
+    <li class="nav-item">
+      <a class="nav-link text-secondary" id="licenses-tab" data-toggle="tab" href="#licenses" role="tab"
+         aria-controls="contact" aria-selected="false">Licenses</a>
+    </li>
 
+    <!--FORMAT MANAGEMENT-->
+    <li class="nav-item">
+      <a class="nav-link text-secondary" id="formats-tab" data-toggle="tab" href="#formats" role="tab"
+         aria-controls="contact" aria-selected="false">Formats</a>
+    </li>
 
-      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <a class="btn btn-outline-dark mt-2 mb-2" id="v-pills-tier4-tab" data-toggle="pill" href="#v-pills-tier4"
-           role="tab"
-           aria-controls="v-pills-tier4" aria-selected="false">Product Management</a>
+    <!--PRODUCT MANAGEMENT-->
+    <li class="nav-item">
+      <a class="nav-link text-secondary active" id="products-tab" data-toggle="tab" href="#products" role="tab"
+         aria-controls="home" aria-selected="false">Products</a>
+    </li>
 
+    <!--TAG MANAGEMENT-->
+    <li class="nav-item">
+      <a class="nav-link text-secondary" id="tags-tab" data-toggle="tab" href="#tags" role="tab"
+         aria-controls="profile" aria-selected="false">Tags</a>
+    </li>
 
-        <a class="btn btn-outline-dark mb-2" id="v-pills-tier3-tab" data-toggle="pill" href="#v-pills-tier3" role="tab"
-           aria-controls="v-pills-tier3" aria-selected="false">Format Management</a>
+     <!--DOTD MANAGEMENT-->
+     <li class="nav-item">
+      <a class="nav-link text-secondary" id="dotd-tab" data-toggle="tab" href="#dotd" role="tab"
+         aria-controls="contact" aria-selected="false">Sales</a>
+    </li>
+  </ul>
 
+  <div class="tab-content" id="myTabContent">
 
-        <a class="btn btn-outline-dark mb-2" id="v-pills-tier2-tab" data-toggle="pill" href="#v-pills-tier2" role="tab"
-           aria-controls="v-pills-tier2" aria-selected="false">License Management</a>
-
-
-        <a class="btn btn-outline-dark mb-2" id="v-pills-tier1-tab" data-toggle="pill" href="#v-pills-tier1" role="tab"
-           aria-controls="v-pills-tier1" aria-selected="false">Plan Management</a>
-
-
-           <div id="accordion">
-              <div class="card mb-2 bg-transparent">
-                <a class="btn btn-outline-dark text-left" id="dotd" data-toggle="collapse" href="#collapseDotd" role="tab"
-                   aria-selected="true" aria-expanded="true">Deal of the day Management</a>
-                <div id="collapseDotd" class="collapse" aria-labelledby="headingDotd" data-parent="#accordion">
-                  <div class="card-body ml-2 p-2">
-                  <app-add-dotd></app-add-dotd>
-                    <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
-                      <a class="btn btn-outline-dark mt-2" id="v-pills-dotd-tab" data-toggle="pill" href="#v-pills-dotd"
-                         role="tab"
-                         aria-controls="v-pills-tags" aria-selected="false"><span uk-icon="icon: table; ratio: 1"
-                         class="mr-2"></span>Overview</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-        <!--<a class="btn btn-outline-dark mb-2" id="v-pills-tags-tab" data-toggle="pill" href="#v-pills-tags" role="tab"
-           aria-controls="v-pills-tags" aria-selected="false">Tag Management</a>-->
-
-      </div>
+    <!--PLANS MANAGEMENT-->
+    <div class="tab-pane fade" id="plans" role="tabpanel" aria-labelledby="plans-tab">
+      <app-plan-builder></app-plan-builder>
     </div>
-    <div class="col-9">
-      <div class="tab-content" id="v-pills-tabContent">
 
-        <div class="tab-pane fade" id="v-pills-tier4" role="tabpanel" aria-labelledby="v-pills-tier4-tab">
-          <app-product-management></app-product-management>
-        </div>
-
-        <div class="tab-pane fade" id="v-pills-tier3" role="tabpanel" aria-labelledby="v-pills-tier3-tab">
-          Hi there
-        </div>
-
-        <div class="tab-pane fade" id="v-pills-tier2" role="tabpanel" aria-labelledby="v-pills-tier2-tab">
-          Good day mon
-        </div>
-
-        <div class="tab-pane fade" id="v-pills-tier1" role="tabpanel" aria-labelledby="v-pills-tier1-tab">
-          <app-plan-builder></app-plan-builder>
-        </div>
-
-        <div class="tab-pane fade" id="v-pills-tags" role="tabpanel" aria-labelledby="v-pills-tags-tab">
-          <app-tag-overview></app-tag-overview>
-        </div>
-
-        <div class="tab-pane fade" id="v-pills-dotd" role="tabpanel" aria-labelledby="v-pills-dotd-tab">
-          <app-dotd-overview></app-dotd-overview>
-        </div>
-
-      </div>
+    <!--LICENSE MANAGEMENT-->
+    <div class="tab-pane fade" id="licenses" role="tabpanel" aria-labelledby="licenses-tab">
+      <app-license-overview></app-license-overview>
     </div>
+
+
+    <!--FORMAT MANAGEMENT-->
+    <div class="tab-pane fade" id="formats" role="tabpanel" aria-labelledby="formats-tab">
+      <app-format-overview></app-format-overview>
+    </div>
+
+    <!--PRODUCT MANAGEMENT-->
+    <div class="tab-pane fade show active" id="products" role="tabpanel" aria-labelledby="products-tab">
+      <app-product-overview></app-product-overview>
+    </div>
+
+    <!--TAG MANAGEMENT-->
+    <div class="tab-pane fade" id="tags" role="tabpanel" aria-labelledby="tags-tab">
+      <app-tag-overview></app-tag-overview>
+    </div>
+
+     <!--DOTD MANAGEMENT-->
+     <div class="tab-pane fade" id="dotd" role="tabpanel" aria-labelledby="dotd-tab">
+      <app-dotd-overview></app-dotd-overview>
+    </div>
+
   </div>
 </div>

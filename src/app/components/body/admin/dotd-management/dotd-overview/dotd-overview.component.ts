@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {TagService} from '../../../../../services/product/tag.service';
-import {Tag} from '../../../../../models/products/tag';
-import {DecimalPipe} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {Sale} from '../../../../../models/products/sale';
+import {FormatService} from '../../../../../services/product/format.service';
+import {Observable} from 'rxjs';
+import { SalesService } from 'src/app/services/product/sales.service';
 
 @Component({
   selector: 'app-dotd-overview',
@@ -10,20 +11,14 @@ import {DecimalPipe} from '@angular/common';
 })
 export class DotdOverviewComponent implements OnInit {
 
-  tags: Tag[];
+  sales: Observable<Sale[]>;
+  name: string;
 
-  constructor(pipe: DecimalPipe, private tagService: TagService) {
+  constructor(private saleService: SalesService) {
   }
 
   ngOnInit() {
-    this.tagService.getTags().subscribe(tag => {
-      this.tags = tag.map(obj => {
-        return {
-          id: obj.payload.doc.id,
-          ...obj.payload.doc.data()
-        } as Tag;
-      });
-    });
+    this.sales = this.saleService.getSales();
   }
 
 }

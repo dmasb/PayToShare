@@ -1,30 +1,50 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Product} from '../../models/products/product';
+import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ProductsService {
+
+  private products: Observable<Product[]>;
   private productBeingDeleted: string;
 
   constructor(private afs: AngularFirestore) {
     this.productBeingDeleted = null;
   }
 
+  getProducts(): Observable<Product[]> {
+    return this.products = this.afs.collection('products').snapshotChanges().pipe(
+      map(products => {
+        return products.map(product => {
+          return {
+            id: product.payload.doc.id,
+            ...product.payload.doc.data()
+          } as Product;
+        });
+      })
+    );
+  }
 
-  getProducts() {
-    return this.afs.collection('products').snapshotChanges();
+  getProductDoc(productID: string) {
+    return this.afs.doc(`products/${productID}`);
+  }
+
+  getTagJson(productID: string) {
+    return this.afs.doc(`products/${productID}`).ref.get().then(product => {
+      return {
+        id: product.id,
+        ...product.data()
+      };
+    });
   }
 
   addProduct(product: Product) {
     this.afs.collection('products').add(product);
-
-  }
-
-  delete(id: string) {
-    this.afs.doc(`products/${id}`).delete();
   }
 
   available(productId: string): boolean {

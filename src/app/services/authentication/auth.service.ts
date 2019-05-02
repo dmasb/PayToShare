@@ -32,6 +32,8 @@ export class AuthService {
     photoURL: null,
     registerDate: null,
     sex: null,
+    zipcode: null,
+    country: null,
     address: 'N/A',
     city: 'N/A',
     phone: null,
@@ -114,7 +116,8 @@ export class AuthService {
       this.data.registerDate = cred.user.metadata.creationTime;
       this.data.lastLogin = Timestamp.now();
       this.data.loggedIn = true;
-
+      this.data.country = user.country;
+      this.data.zipcode = user.zipcode;
       await this.afs.collection('users').doc(cred.user.uid).set(this.data);
       this.router.navigate(['/profile']);
     });
@@ -124,7 +127,6 @@ export class AuthService {
 
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${user.uid}`);
     userRef.ref.get().then(userDocument => {
-
       if (userDocument.exists) {
         this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update({
           lastLogin: Timestamp.now(),

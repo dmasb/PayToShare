@@ -1,0 +1,68 @@
+<ng-template #addProductModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Product</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="newProductForm" (ngSubmit)="addProduct()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="productTitle">Product title</label>
+          <input type="text" class="form-control" id="productTitle" placeholder="title"
+                 formControlName="productTitle">
+        </div>
+        <div class="form-group col-md-6">
+
+          <label for="productTag">Product Tags</label>
+          <select class="form-control" id="productTag" formControlName="productTag" (click)="pushTag()">
+            <option value="" selected disabled hidden>Choose here</option>
+            <option *ngFor="let tag of tags | async" [value]="tag | json">
+              {{tag.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="productPrice">Product Price</label>
+          <input type="text" class="form-control" id="productPrice" placeholder="Price"
+                 formControlName="productPrice">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="productQuantity">Product Quantity</label>
+          <input type="text" class="form-control" id="productQuantity" placeholder="Quantity"
+                 formControlName="productQuantity">
+        </div>
+      </div>
+      <label for="productFormat">Product Format</label>
+      <select class="form-control" id="productFormat" formControlName="productFormat">
+        <option value="" selected disabled hidden>Choose here</option>
+        <option *ngFor="let format of formats | async" [value]="format.name">
+          {{format.name}}
+        </option>
+      </select>
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="productDescription">Product Description</label>
+          <input type="text" class="form-control" id="productDescription" placeholder="Description"
+                 formControlName="productDescription">
+        </div>
+      </div>
+      <span uk-icon="icon: tag; ratio: 1" class="mr-2"></span>Tags:
+      <hr class="mt-2 mb-2 p-0">
+      <span class="uk-label uk-label-success mr-2 mb-2 border-danger tag" *ngFor="let selected of selectedTags"
+            (click)="popTag(selected)">{{selected.name}}</span>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+        <button type="submit" class="btn btn-outline-dark">Add</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<div class="nav flex-column nav-pills" id="v-pills-tab" aria-orientation="vertical">
+  <a class="btn btn-outline-dark" id="key" role="tab" aria-selected="true" href="#"
+     (click)="openCenteredDialog(addProductModal)"><span uk-icon="icon:  plus-circle; ratio: 1" class="mr-2"></span>Add
+    Product</a>
+</div>

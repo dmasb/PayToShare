@@ -1,30 +1,57 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Tag} from '../../models/products/tag';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {Category} from '../../models/products/category';
+import {firestore} from 'firebase/app';
+import Timestamp = firestore.Timestamp;
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TagService implements OnInit {
+export class TagService {
 
-  tags: Observable<Tag[]>;
-  tagBeingDeleted: string;
+  private tags: Observable<Tag[]>;
+  private tagBeingDeleted: string;
 
   constructor(private afs: AngularFirestore) {
+    this.tagBeingDeleted = null;
   }
 
-  getTags() {
-    return this.afs.collection('tags').snapshotChanges();
+  getTags(): Observable<Tag[]> {
+    return this.tags = this.afs.collection('tags').snapshotChanges().pipe(
+      map(tags => {
+        return tags.map(tag => {
+          return {
+            id: tag.payload.doc.id,
+            ...tag.payload.doc.data()
+          } as Tag;
+        });
+      })
+    );
   }
 
-  addTag(tag: Tag) {
+  getTagDoc(tagID: string) {
+    return this.afs.doc(`tags/${tagID}`);
+  }
+
+  getTagJson(tagID: string) {
+    return this.afs.doc(`tags/${tagID}`).ref.get().then(tag => {
+      return {
+        id: tag.id,
+        ...tag.data()
+      };
+    });
+  }
+
+  addTag(tagName: string) {
+    const tag: Tag = {
+      name: tagName,
+      products: 0,
+      created: Timestamp.now()
+    };
+
     this.afs.collection('tags').add(tag);
-  }
-
-  ngOnInit(): void {
-    this.tags = this.afs.doc<Tag[]>('tags').valueChanges();
   }
 
   available(tagID: string): boolean {
@@ -45,8 +72,10 @@ export class TagService implements OnInit {
     this.tagBeingDeleted = null;
   }
 
-  updateTag(tag: Tag) {
-    this.afs.doc(`tags/${tag.id}`).update(tag);
+  updateTag(tagID: string, tagName: string) {
+    this.afs.doc(`tags/${tagID}`).update({
+      name: tagName
+    });
   }
 }
 

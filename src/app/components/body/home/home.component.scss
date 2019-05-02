@@ -1,4 +1,28 @@
+.wrapper {
+  text-align: center;
+  margin: 0 auto;
+
+}
+
 .colStyle{
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.carousel-inner > .carousel-item > img {
+  width: 1170px;
+  height: 420px;
+}
+
+container-fluid {
+  text-align: center;
+}
+
+#deals{
+  display: inline;
+}
+
+#card {
+  width: 80%;
+  height: 50%;
 }
