@@ -9,6 +9,7 @@ import {Format} from '../../../../../models/products/format';
 import {FormatService} from '../../../../../services/product/format.service';
 import {Observable} from 'rxjs';
 
+
 @Component({
   selector: 'app-update-product',
   templateUrl: './update-product.component.html',
@@ -23,6 +24,7 @@ export class UpdateProductComponent implements OnInit {
   @Input() price: number;
   @Input() quantity: number;
   @Input() description: string;
+  @Input() imageUrl: string; //
 
   private tags: Observable<Tag[]>;
   private formats: Observable<Format[]>;
@@ -33,13 +35,15 @@ export class UpdateProductComponent implements OnInit {
     productFormat: new FormControl(''),
     productPrice: new FormControl(''),
     productQuantity: new FormControl(''),
-    productDescription: new FormControl('')
+    productDescription: new FormControl(''),
+    productImageUrl: new FormControl('') //
   });
 
   constructor(private productService: ProductsService,
               private modalService: NgbModal,
               private tagService: TagService,
-              private formatService: FormatService) {
+              private formatService: FormatService
+              ) { //
   }
 
   ngOnInit(): void {
@@ -72,7 +76,8 @@ export class UpdateProductComponent implements OnInit {
       format: this.updateProductForm.controls.productFormat.value || this.format,
       description: this.updateProductForm.controls.productDescription.value,
       price: this.updateProductForm.controls.productPrice.value,
-      quantity: this.updateProductForm.controls.productQuantity.value
+      quantity: this.updateProductForm.controls.productQuantity.value,
+     // imageUrl: string
     };
     this.productService.update(product);
     this.modalService.dismissAll();

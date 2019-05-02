@@ -28,10 +28,12 @@ export class AddProductComponent implements OnInit {
     productDescription: new FormControl('')
   });
 
+
   constructor(private productsService: ProductsService,
               private modalService: NgbModal,
               private tagService: TagService,
-              private formatService: FormatService) {
+              private formatService: FormatService,
+             ) {
   }
 
   ngOnInit() {
@@ -62,7 +64,8 @@ export class AddProductComponent implements OnInit {
       format: this.newProductForm.controls.productFormat.value,
       description: this.newProductForm.controls.productDescription.value,
       price: this.newProductForm.controls.productPrice.value,
-      quantity: this.newProductForm.controls.productQuantity.value
+      quantity: this.newProductForm.controls.productQuantity.value,
+      // imageUrl: this.imageRef
     };
     this.productsService.addProduct(product);
     this.selectedTags = [];
@@ -73,4 +76,5 @@ export class AddProductComponent implements OnInit {
     this.modalService.open(addProductModal, {centered: true});
     return false;
   }
+
 }
