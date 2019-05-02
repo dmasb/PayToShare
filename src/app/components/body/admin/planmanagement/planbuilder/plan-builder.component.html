@@ -16,19 +16,19 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="planName">Plan name</label>
-                  <input [(ngModel)]="plan.title" type="text" class="form-control" id="planName"
+                  <input [(ngModel)]="tempPlan.title" type="text" class="form-control" id="planName"
                          formControlName="planName">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="planSpeed">Speed in mb/s</label>
-                  <input [(ngModel)]="plan.speed" type="text" class="form-control" id="planSpeed"
+                  <input [(ngModel)]="tempPlan.speed" type="text" class="form-control" id="planSpeed"
                          formControlName="planSpeed">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="price">Monthly charge</label>
-                  <input [(ngModel)]="plan.price" type="number" class="form-control" id="price"
+                  <input [(ngModel)]="tempPlan.price" type="number" class="form-control" id="price"
                          formControlName="planPrice">
                 </div>
                 <div class="form-group col-md-6">
@@ -51,7 +51,7 @@
               </div>
               <div class="form-group">
                 <label for="planDesc">Material textarea</label>
-                <textarea [(ngModel)]="plan.description" id="planDesc" class="md-textarea form-control" rows="3"
+                <textarea [(ngModel)]="tempPlan.description" id="planDesc" class="md-textarea form-control" rows="3"
                           formControlName="planDesc"></textarea>
               </div>
               <div class="modal-footer">
@@ -76,17 +76,14 @@
           </h5>
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-          <div class="card-body">
-            SELECT HEREEEEEEEEEEEEEEEEEEEEE
-
-          </div>
+          <app-plan-overview></app-plan-overview>
         </div>
       </div>
     </div>
   </div>
   <div class="col-5">
-    <app-plan-card [title]="plan.title" [speed]="plan.speed" [charge]="plan.price"
-                   [description]="plan.description" [licenses]="selectedLicenses"></app-plan-card>
+    <app-plan-card [title]="tempPlan.title" [speed]="tempPlan.speed" [charge]="tempPlan.price"
+                   [description]="tempPlan.description" [licenses]="selectedLicenses"></app-plan-card>
   </div>
 </div>
 

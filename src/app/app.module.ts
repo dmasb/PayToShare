@@ -46,6 +46,8 @@ import { AddLicenseComponent } from './components/body/admin/licensemanagement/a
 import { DeleteLicenseComponent } from './components/body/admin/licensemanagement/delete-license/delete-license.component';
 import { UpdateLicenseComponent } from './components/body/admin/licensemanagement/update-license/update-license.component';
 import { LicenseOverviewComponent } from './components/body/admin/licensemanagement/license-overview/license-overview.component';
+import { PlanOverviewComponent } from './components/body/admin/planmanagement/plan-overview/plan-overview.component';
+import { DeletePlanComponent } from './components/body/admin/planmanagement/delete-plan/delete-plan.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +84,8 @@ import { LicenseOverviewComponent } from './components/body/admin/licensemanagem
     DeleteLicenseComponent,
     UpdateLicenseComponent,
     LicenseOverviewComponent,
+    PlanOverviewComponent,
+    DeletePlanComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,8 +13,7 @@ import {PlanService} from '../../../../../services/product/plan.service';
 })
 export class PlanBuilderComponent implements OnInit {
 
-  private plan: Plan = {
-    id: '123',
+  private tempPlan: Plan = {
     title: 'Xtreme plus',
     speed: 2000,
     price: 99,
@@ -61,11 +60,11 @@ export class PlanBuilderComponent implements OnInit {
 
   createPlan() {
     console.log('CLICKED');
-    this.plan.title = this.newPlanForm.controls.planName.value;
-    this.plan.speed = this.newPlanForm.controls.planSpeed.value;
-    this.plan.price = this.newPlanForm.controls.planPrice.value;
-    this.plan.description = this.newPlanForm.controls.planDesc.value;
-    this.plan.licenses = this.selectedLicenses;
-    this.planService.addPlan(this.plan);
+    this.tempPlan.title = this.newPlanForm.controls.planName.value;
+    this.tempPlan.speed = this.newPlanForm.controls.planSpeed.value;
+    this.tempPlan.price = this.newPlanForm.controls.planPrice.value;
+    this.tempPlan.description = this.newPlanForm.controls.planDesc.value;
+    this.tempPlan.licenses = this.selectedLicenses;
+    this.planService.addPlan(this.tempPlan);
   }
 }

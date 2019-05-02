@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Plan} from '../../models/products/plan';
 import {map} from 'rxjs/operators';
-
 
 
 @Injectable({
@@ -20,11 +19,11 @@ export class PlanService {
 
   getPlans(): Observable<Plan[]> {
     return this.plans = this.afs.collection('plans').snapshotChanges().pipe(
-      map(tags => {
-        return tags.map(tag => {
+      map(plans => {
+        return plans.map(plan => {
           return {
-            id: tag.payload.doc.id,
-            ...tag.payload.doc.data()
+            id: plan.payload.doc.id,
+            ...plan.payload.doc.data()
           } as Plan;
         });
       })
@@ -59,6 +58,8 @@ export class PlanService {
   }
 
   remove() {
+    console.log('HEREEEEEEEEEEE');
+    console.log('ID: ' + this.planBeingDeleted);
     this.afs.doc(`plans/${this.planBeingDeleted}`).delete();
     this.planBeingDeleted = null;
   }
@@ -68,7 +69,7 @@ export class PlanService {
   }
 
   updatePlan(planID: string, planName: string) {
-    this.afs.doc(`tags/${planID}`).update({
+    this.afs.doc(`plans/${planID}`).update({
       name: planName
     });
   }
