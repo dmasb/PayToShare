@@ -23,7 +23,7 @@ export class AddDotdComponent implements OnInit {
 
   newSalesForm = new FormGroup({
     salesName: new FormControl(''),
-    licensID: new FormControl(''),
+    licenseID: new FormControl(''),
     formatID: new FormControl(''),
     tagID: new FormControl('')
   });
