@@ -8,6 +8,8 @@ import {Product} from '../../../../../models/products/product';
 import {Format} from '../../../../../models/products/format';
 import {FormatService} from '../../../../../services/product/format.service';
 import {Observable} from 'rxjs';
+import {AngularFireStorage, AngularFireUploadTask} from "@angular/fire/storage";
+import {finalize, map} from "rxjs/operators";
 
 @Component({
   selector: 'app-add-product',
@@ -25,15 +27,15 @@ export class AddProductComponent implements OnInit {
     productFormat: new FormControl(''),
     productPrice: new FormControl(''),
     productQuantity: new FormControl(''),
-    productDescription: new FormControl('')
+    productDescription: new FormControl(''),
+    productImageUrl: new FormControl('')
   });
-
 
   constructor(private productsService: ProductsService,
               private modalService: NgbModal,
               private tagService: TagService,
               private formatService: FormatService,
-             ) {
+              private storage: AngularFireStorage) {
   }
 
   ngOnInit() {
@@ -65,7 +67,7 @@ export class AddProductComponent implements OnInit {
       description: this.newProductForm.controls.productDescription.value,
       price: this.newProductForm.controls.productPrice.value,
       quantity: this.newProductForm.controls.productQuantity.value,
-      // imageUrl: this.imageRef
+      // imageUrl: this.downloadURL.pipe(map(o=> {return o}))
     };
     this.productsService.addProduct(product);
     this.selectedTags = [];
@@ -77,4 +79,42 @@ export class AddProductComponent implements OnInit {
     return false;
   }
 
+  // Main task
+  task: AngularFireUploadTask;
+
+  // Progress monitoring
+  percentage: Observable<number>;
+
+  snapshot: Observable<any>;
+  // File
+  file;
+
+  // Download URL
+  downloadURL: Observable<string>;
+
+
+  getFile(event) {
+    this.file = event.target.files[0];
+  }
+
+  startUpload() {
+
+
+    // Client-side validation example
+    if (this.file.type.split('/')[0] !== 'image') {
+      console.error('unsupported file type :( ');
+      return;
+    }
+
+    // The storage path
+    const path = `productImage/${new Date().getTime()}_${this.file.name}`;
+
+
+    // Progress monitoring
+    this.percentage = this.task.percentageChanges();
+    this.snapshot   = this.task.snapshotChanges();
+
+    // The file's download URL
+    this.snapshot.pipe(finalize(() => this.downloadURL = this.storage.ref(path).getDownloadURL())).subscribe();
+  }
 }
