@@ -48,6 +48,9 @@ import { UpdateLicenseComponent } from './components/body/admin/licensemanagemen
 import { LicenseOverviewComponent } from './components/body/admin/licensemanagement/license-overview/license-overview.component';
 import { PlanOverviewComponent } from './components/body/admin/planmanagement/plan-overview/plan-overview.component';
 import { DeletePlanComponent } from './components/body/admin/planmanagement/delete-plan/delete-plan.component';
+import { AngularFireStorageModule} from "@angular/fire/storage";
+import { AddImageComponent } from './components/body/admin/productmanagement/add-product/add-image/add-image.component';
+import { AddImageTaskComponent } from './components/body/admin/productmanagement/add-product/add-image-task/add-image-task.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +89,8 @@ import { DeletePlanComponent } from './components/body/admin/planmanagement/dele
     LicenseOverviewComponent,
     PlanOverviewComponent,
     DeletePlanComponent,
+    AddImageComponent,
+    AddImageTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -100,6 +105,7 @@ import { DeletePlanComponent } from './components/body/admin/planmanagement/dele
     FontAwesomeModule,
     NgbPaginationModule,
     NgbModule,
+    AngularFireStorageModule
 
   ],
   providers: [AngularFireDatabase, DecimalPipe, NgbActiveModal],

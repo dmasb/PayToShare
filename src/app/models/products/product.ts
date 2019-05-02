@@ -8,6 +8,9 @@ export interface Product {
   description?: string;
   price?: number;
   quantity?: number;
-  imageUrl?: string;
+  imageUrl?: {
+    downloadURL: string,
+    path: string
+  }
 }
 
