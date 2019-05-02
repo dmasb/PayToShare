@@ -5,15 +5,14 @@ import {Format} from '../../models/products/format';
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
 import {map} from 'rxjs/operators';
-import {Tag} from '../../models/products/tag';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormatService {
 
-  formats: Observable<Format[]>;
-  formatBeingDeleted: string;
+  private formats: Observable<Format[]>;
+  private formatBeingDeleted: string;
 
   constructor(private afs: AngularFirestore) {
     this.formatBeingDeleted = null;
@@ -26,7 +25,7 @@ export class FormatService {
           return {
             id: format.payload.doc.id,
             ...format.payload.doc.data()
-          } as Tag;
+          } as Format;
         });
       })
     );
@@ -36,6 +35,14 @@ export class FormatService {
     return this.afs.doc(`formats/${formatID}`);
   }
 
+  getFormatJson(formatID: string) {
+    return this.afs.doc(`formats/${formatID}`).ref.get().then(format => {
+      return {
+        id: format.id,
+        ...format.data()
+      };
+    });
+  }
 
   addTag(formatName: string) {
 

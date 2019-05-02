@@ -18,7 +18,7 @@ export class UpdateProductComponent implements OnInit {
 
   @Input() id: string;
   @Input() title: string;
-  @Input() selectedTags: string[];
+  @Input() selectedTags: Tag[];
   @Input() format: string;
   @Input() price: number;
   @Input() quantity: number;
@@ -42,24 +42,29 @@ export class UpdateProductComponent implements OnInit {
               private formatService: FormatService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.formats = this.formatService.getFormats();
     this.tags = this.tagService.getTags();
   }
 
-
-  popTag(name: string) {
-    this.selectedTags = this.selectedTags.filter(tag => tag !== name);
-  }
-
   pushTag() {
-    const selected = this.updateProductForm.controls.productTag.value;
-    if (this.selectedTags.indexOf(selected) === -1 && selected) {
+    const selected: Tag = JSON.parse(this.updateProductForm.controls.productTag.value);
+    if (this.selectedTags.findIndex(obj => obj.id === selected.id) === -1 && selected.id) {
       this.selectedTags.push(selected);
     }
+    console.log('###############################################');
+    this.selectedTags.forEach(s => console.log(s));
+    console.log('###############################################');
+
   }
 
+  popTag(selectedTag: object) {
+    this.selectedTags = this.selectedTags.filter(tag => tag !== selectedTag);
+  }
+
+
   editProduct() {
+
     const product: Product = {
       id: this.id,
       title: this.updateProductForm.controls.productTitle.value,
