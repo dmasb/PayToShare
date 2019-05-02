@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
-import { firestore } from 'firebase/app';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {AngularFirestore, DocumentReference} from '@angular/fire/firestore';
+import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
-import { LicenseService } from './license.service';
-import { TagService } from './tag.service';
-import { FormatService } from './format.service';
-import { map } from 'rxjs/operators';
-import { Sale } from '../../models/products/sale';
+import {LicenseService} from './license.service';
+import {TagService} from './tag.service';
+import {FormatService} from './format.service';
+import {map} from 'rxjs/operators';
+import {Sale} from '../../models/products/sale';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +18,9 @@ export class SalesService {
   salesBeingDeleted: string;
 
   constructor(private afs: AngularFirestore,
-    private formatService: FormatService,
-    private tagService: TagService,
-    private licenseService: LicenseService) {
+              private formatService: FormatService,
+              private tagService: TagService,
+              private licenseService: LicenseService) {
     this.salesBeingDeleted = null;
   }
 
@@ -89,7 +89,6 @@ export class SalesService {
       tagRef: tagReference
     });
   }
-
 
 
 }
