@@ -36,6 +36,7 @@
               </label>
             </th>
             <td>{{ sale.name }}</td>
+            <td>{{ sale.licenseRef.name}}</td>
             <td>{{ sale.formatRef.name }}</td>
             <td>{{ sale.tagRef.name }}</td>
             <td>{{ sale.created.toDate() | date: 'yyyy-MM-dd'}}</td>
