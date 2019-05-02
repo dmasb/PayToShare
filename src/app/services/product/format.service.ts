@@ -40,7 +40,7 @@ export class FormatService {
       return {
         id: format.id,
         ...format.data()
-      };
+      } as Format;
     });
   }
 

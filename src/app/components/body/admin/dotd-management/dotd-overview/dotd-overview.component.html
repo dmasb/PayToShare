@@ -35,12 +35,13 @@
                 <input type="checkbox" name="checkbox + {{ i + 1}}">
               </label>
             </th>
+            <td>{{ sale.name }}</td>
+            <td>{{ sale.formatRef.name }}</td>
+            <td>{{ sale.tagRef.name }}</td>
+            <td>{{ sale.created.toDate() | date: 'yyyy-MM-dd'}}</td>
 
-            <!--<td>
-              <app-update-license [id]=license.id></app-update-license>
-              <app-delete-license [id]=license.id [name]=license.name></app-delete-license>
-            
-            </td>-->
+              <!--<app-update-license [id]=license.id></app-update-license>
+              <app-delete-license [id]=license.id [name]=license.name></app-delete-license>-->
           </tr>
           <tr>
           </tr>

@@ -45,7 +45,7 @@ export class LicenseService {
       return {
         id: license.id,
         ...license.data()
-      };
+      } as License;
     });
   }
 
@@ -56,9 +56,7 @@ export class LicenseService {
 
     const license: License = {
       name: licenseName,
-      formatRef: [
-        formatObj
-      ],
+      formatRef: formatObj,
       tagRef: [
         tagObj
       ],

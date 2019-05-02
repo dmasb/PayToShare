@@ -50,15 +50,9 @@ export class SalesService {
 
     const sale: Sale = {
       name: saleName,
-      licenseRef: [
-        licenseObj
-      ],
-      formatRef: [
-        formatObj
-      ],
-      tagRef: [
-        tagObj
-      ],
+      licenseRef: licenseObj,
+      formatRef: formatObj,
+      tagRef: tagObj,
       created: Timestamp.now()
     };
 

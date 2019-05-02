@@ -5,9 +5,9 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  
+
   <div class="modal-body">
-    
+
     <form [formGroup]="newSalesForm" (ngSubmit)="addSale()">
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -24,7 +24,7 @@
           {{license.name}}
         </option>
       </select>
-      
+
       <label for="productFormat">Format</label>
       <select class="form-control" id="productFormat" formControlName="formatID">
         <option value="" selected disabled hidden>Choose here</option>
