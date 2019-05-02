@@ -46,8 +46,8 @@ import { AddLicenseComponent } from './components/body/admin/licensemanagement/a
 import { DeleteLicenseComponent } from './components/body/admin/licensemanagement/delete-license/delete-license.component';
 import { UpdateLicenseComponent } from './components/body/admin/licensemanagement/update-license/update-license.component';
 import { LicenseOverviewComponent } from './components/body/admin/licensemanagement/license-overview/license-overview.component';
-import { PlanOverviewComponent } from './components/body/admin/planmanagement/plan-overview/plan-overview.component';
-import { DeletePlanComponent } from './components/body/admin/planmanagement/delete-plan/delete-plan.component';
+import { ProductImageComponent } from './components/body/admin/productmanagement/product-image/product-image.component';
+import { AngularFireStorageModule } from "@angular/fire/storage";
 
 @NgModule({
   declarations: [
@@ -84,14 +84,14 @@ import { DeletePlanComponent } from './components/body/admin/planmanagement/dele
     DeleteLicenseComponent,
     UpdateLicenseComponent,
     LicenseOverviewComponent,
-    PlanOverviewComponent,
-    DeletePlanComponent,
+    ProductImageComponent,
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
