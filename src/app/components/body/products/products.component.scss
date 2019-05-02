@@ -37,13 +37,14 @@ p {
 
 .card-top {
   height: 40%;
+  max-height: 40%;
+  max-width: 100%;
 }
 
 .card-body{
   border-style: solid;
   height: 70px;
   overflow: hidden;
-
 }
 .card-buttons{
   bottom: 0px;
