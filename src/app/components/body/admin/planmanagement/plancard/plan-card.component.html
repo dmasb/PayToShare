@@ -1,9 +1,21 @@
-<div class="card border-dark mb-3" style="max-width: 18rem;">
-  <div class="card-header bg-transparent border-dark">{{title}}</div>
-  <div class="card-body text-dark">
-    <h5 class="card-title">{{speed}} mb/s</h5>
-    <p class="card-text">{{description}}</p>
-    <h5 class="card-title">${{charge}}/month</h5>
+<div class="card cardStyle shadow">
+  <img class="card-img" src="../../../../../../assets/images/testimages/gd.png" alt="Product Image">
+  <div class="card-body">
+    <h4 class="card-title mt-1">{{title}}</h4>
+    <h6>Speed: {{speed}} mb/s</h6>
+    <p class="card-text"> {{description}}
+    <p>Included licenses:</p>
+    <div *ngFor="let license of licenses">
+      <p>({{license.name}}: {{license.tagRef[0].name}} - {{license.formatRef[0].name}})</p>
+    </div>
+    <div class="buy d-flex justify-content-between allign-items-center">
+      <h5 class="mt-4">${{charge}}/month</h5>
+      <h5 class="mt-4" style="color:red">N/A</h5>
+      <a href="#" class="btn button bg-primary mt-3">
+        Add To Cart</a>
+    </div>
+    <div class="align-items-center">
+      <h6 class="text-success">in stock</h6>
+    </div>
   </div>
-  <div class="card-footer bg-transparent border-dark">PayToShare</div>
 </div>

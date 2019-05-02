@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {License} from '../../../../../models/products/license';
 
 @Component({
   selector: 'app-plan-card',
@@ -9,6 +10,7 @@ export class PlanCardComponent implements OnInit {
   @Input() private title: string;
   @Input() private speed: number;
   @Input() private charge: number;
+  @Input() private licenses: License[];
   @Input() private description: string;
 
   constructor() {
@@ -18,3 +20,6 @@ export class PlanCardComponent implements OnInit {
   }
 
 }
+
+/*
+This plans is specifically tailored for nerds, especially those who play nab moba-like games and like to share garbage memes */

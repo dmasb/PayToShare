@@ -1,6 +1,12 @@
 <div class="container">
   <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
 
+    <!--PLAN MANAGEMENT-->
+    <li class="nav-item">
+      <a class="nav-link text-secondary" id="plans-tab" data-toggle="tab" href="#plans" role="tab"
+         aria-controls="contact" aria-selected="false">Plans</a>
+    </li>
+
     <!--LICENSE MANAGEMENT-->
     <li class="nav-item">
       <a class="nav-link text-secondary" id="licenses-tab" data-toggle="tab" href="#licenses" role="tab"
@@ -27,6 +33,11 @@
   </ul>
 
   <div class="tab-content" id="myTabContent">
+
+    <!--PLANS MANAGEMENT-->
+    <div class="tab-pane fade" id="plans" role="tabpanel" aria-labelledby="plans-tab">
+      <app-plan-builder></app-plan-builder>
+    </div>
 
     <!--LICENSE MANAGEMENT-->
     <div class="tab-pane fade" id="licenses" role="tabpanel" aria-labelledby="licenses-tab">
