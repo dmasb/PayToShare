@@ -35,10 +35,14 @@ p {
   padding-bottom: 10px;
 }
 
-.card-top {
+.card-top{
   height: 40%;
   max-height: 40%;
   max-width: 100%;
+}
+img{
+  max-height:100%;
+  width: 100%;
 }
 
 .card-body{
