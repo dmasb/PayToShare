@@ -20,20 +20,21 @@ export class ProductsService {
     this.productBeingDeleted = null;
   }
 
-  getProductsDashboard(n: number): Observable<Product[]>{
-    if(n == 0){
-    return this.products = this.afs.collection('products', ref => ref.orderBy('price')).snapshotChanges().pipe(
-      map(products => {
-        return products.map(product => {
-          return {
-            id: product.payload.doc.id,
-            ...product.payload.doc.data()
-          } as Product;
-        });
-      })
-    );
+  getProductsDashboard(n: number): Observable<Product[]> {
+    if (n === 0) {
+      return this.products = this.afs.collection('products', ref => ref.orderBy('price')).snapshotChanges().pipe(
+        map(products => {
+          return products.map(product => {
+            return {
+              id: product.payload.doc.id,
+              ...product.payload.doc.data()
+            } as Product;
+          });
+        })
+      );
     }
-    if(n == 1){
+    // tslint:disable-next-line:triple-equals
+    if (n === 1) {
       return this.products = this.afs.collection('products', ref => ref.orderBy('title')).snapshotChanges().pipe(
         map(products => {
           return products.map(product => {
@@ -44,20 +45,19 @@ export class ProductsService {
           });
         })
       );
-      }
-      if(n == 2){
-        return this.products = this.afs.collection('products', ref => ref.orderBy('quantity')).snapshotChanges().pipe(
-          map(products => {
-            return products.map(product => {
-              return {
-                id: product.payload.doc.id,
-                ...product.payload.doc.data()
-              } as Product;
-            });
-          })
-        );
-        }
-    else{
+    }
+    if (n == 2) {
+      return this.products = this.afs.collection('products', ref => ref.orderBy('quantity')).snapshotChanges().pipe(
+        map(products => {
+          return products.map(product => {
+            return {
+              id: product.payload.doc.id,
+              ...product.payload.doc.data()
+            } as Product;
+          });
+        })
+      );
+    } else {
       return this.products = this.afs.collection('products').snapshotChanges().pipe(
         map(products => {
           return products.map(product => {
@@ -72,7 +72,7 @@ export class ProductsService {
   }
 
   getProducts(): Observable<Product[]> {
-    return this.products = this.afs.collection('products',ref => ref.where('quantity','>','0')).snapshotChanges().pipe(
+    return this.products = this.afs.collection('products', ref => ref.where('quantity', '>', '0')).snapshotChanges().pipe(
       map(products => {
         return products.map(product => {
           return {
@@ -93,6 +93,19 @@ export class ProductsService {
             ...product.payload.doc.data()
           } as Product;
         }).filter(s => s.tags.find(tag => tag.name === 'Deal of the Day'));
+      })
+    );
+  }
+
+  getRegularItems(): Observable<Product[]> {
+    return this.products = this.afs.collection('products').snapshotChanges().pipe(
+      map(products => {
+        return products.map(product => {
+          return {
+            id: product.payload.doc.id,
+            ...product.payload.doc.data()
+          } as Product;
+        }).filter(s => s.tags.find(tag => tag.name !== 'Deal of the Day'));
       })
     );
   }

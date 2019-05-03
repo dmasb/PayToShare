@@ -28,11 +28,11 @@ export class ProductOverviewComponent implements OnInit {
     this.products = this.productsService.getProductsDashboard(0);
   }
 
-  sort(){
-    var value = (document.getElementById("sortID") as HTMLSelectElement);
+  sort() {
+    const value = (document.getElementById('sortID') as HTMLSelectElement);
     this.products = this.productsService.getProductsDashboard(value.selectedIndex);
   }
- 
+
   checkProduct(productID: string) {
 
     if (this.selectedProducts.findIndex(id => id === productID) === -1 && productID) {
