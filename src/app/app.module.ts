@@ -89,7 +89,6 @@ import {ImageUploadTemplateComponent} from './components/body/admin/image-upload
     PlanOverviewComponent,
     DeletePlanComponent,
     ImageUploadTemplateComponent
-
   ],
   imports: [
     BrowserModule,
