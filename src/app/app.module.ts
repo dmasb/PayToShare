@@ -50,6 +50,8 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {PlanOverviewComponent} from './components/body/admin/planmanagement/plan-overview/plan-overview.component';
 import {DeletePlanComponent} from './components/body/admin/planmanagement/delete-plan/delete-plan.component';
 import {ImageUploadTemplateComponent} from './components/body/admin/image-upload-template/image-upload-template.component';
+import {DotdOverviewComponent} from './components/body/admin/dotd-management/dotd-overview/dotd-overview.component';
+import {AddDotdComponent} from './components/body/admin/dotd-management/add-dotd/add-dotd.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +90,9 @@ import {ImageUploadTemplateComponent} from './components/body/admin/image-upload
     LicenseOverviewComponent,
     PlanOverviewComponent,
     DeletePlanComponent,
-    ImageUploadTemplateComponent
+    ImageUploadTemplateComponent,
+    DotdOverviewComponent,
+    AddDotdComponent,
   ],
   imports: [
     BrowserModule,
