@@ -1,8 +1,0 @@
-<div class="file">
-  <label class="file-label">
-    <input type="file" class="file-input" (change)="onDrop($event.target.files)">
-  </label>
-</div>
-<div *ngFor="let file of files">
-  <app-add-image-task [file]="file" ></app-add-image-task>
-</div>

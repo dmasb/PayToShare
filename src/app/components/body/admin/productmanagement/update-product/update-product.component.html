@@ -47,21 +47,17 @@
                  formControlName="productDescription" [(ngModel)]="description">
         </div>
       </div>
-      <div class="class">
-        <div class="class-header">
-          <div class="card body">
-            <h5 class="card-title">Select file for upload:</h5>
-            <input type="file" (change)="getFile($event)" accept=".png,.jpg"/>
-            <div class="btn-group" role="group">
-              <button type="button" class="btn btn-primary" (click)="startUpload()">Submit</button>
-              <button type="button" class="btn btn-warning" (click)="deleteFile(downloadURL)">Delete</button>
-            </div>
-            <div *ngIf="downloadURL | async" class="alert alert-info" role="alert">
-              File Uploaded: <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
-            </div>
-          </div>
-        </div>
+      <div class="file">
+        <label class="file-label">
+          <input type="file" class="file-input" (change)="uploadImage($event)"
+                 formControlName="productImageUrl">
+        </label>
       </div>
+      <app-image-upload-template [percentage]="getPercentage()"
+                                 [snapshot]="getSnapshot()"
+                                 [url]="getImageUrl()"
+                                 [task]="getTask()">
+      </app-image-upload-template>
       <span uk-icon="icon: tag; ratio: 1" class="mr-2"></span>Tags:
       <hr class="mt-2 mb-2 p-0">
       <span class="uk-label uk-label-success mr-2 mb-2 border-danger tag" *ngFor="let selected of selectedTags"

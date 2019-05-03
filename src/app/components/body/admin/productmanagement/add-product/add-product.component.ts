@@ -8,8 +8,10 @@ import {Product} from '../../../../../models/products/product';
 import {Format} from '../../../../../models/products/format';
 import {FormatService} from '../../../../../services/product/format.service';
 import {Observable} from 'rxjs';
-import {AngularFireStorage, AngularFireUploadTask} from '@angular/fire/storage';
-import {finalize, map} from 'rxjs/operators';
+import {AngularFireUploadTask} from '@angular/fire/storage';
+import {UploadImageService} from '../../../../../services/upload-image.service';
+import {UploadTaskSnapshot} from '@angular/fire/storage/interfaces';
+import * as url from 'url';
 
 @Component({
   selector: 'app-add-product',
@@ -17,18 +19,7 @@ import {finalize, map} from 'rxjs/operators';
   styleUrls: ['./add-product.component.scss']
 })
 export class AddProductComponent implements OnInit {
-// Main task
-  task: AngularFireUploadTask;
 
-  // Progress monitoring
-  percentage: Observable<number>;
-
-  snapshot: Observable<any>;
-  // File
-  file;
-
-  // Download URL
-  downloadURL: Observable<string>;
   private tags: Observable<Tag[]>;
   private formats: Observable<Format[]>;
   private selectedTags: Tag[] = [];
@@ -42,11 +33,12 @@ export class AddProductComponent implements OnInit {
     productImageUrl: new FormControl('')
   });
 
+
   constructor(private productsService: ProductsService,
               private modalService: NgbModal,
               private tagService: TagService,
               private formatService: FormatService,
-              private storage: AngularFireStorage) {
+              private uploadImageService: UploadImageService) {
   }
 
   ngOnInit() {
@@ -70,8 +62,6 @@ export class AddProductComponent implements OnInit {
   }
 
   addProduct() {
-
-
     const product: Product = {
       title: this.newProductForm.controls.productTitle.value,
       tags: this.selectedTags,
@@ -79,7 +69,7 @@ export class AddProductComponent implements OnInit {
       description: this.newProductForm.controls.productDescription.value,
       price: this.newProductForm.controls.productPrice.value,
       quantity: this.newProductForm.controls.productQuantity.value,
-      imageUrl: null
+      imageUrl: this.getImageUrl()
     };
     this.productsService.addProduct(product);
     this.selectedTags = [];
@@ -91,32 +81,28 @@ export class AddProductComponent implements OnInit {
     return false;
   }
 
-
-
-
-  getFile(event) {
-    this.file = event.target.files[0];
+  /*
+  ALL BELOW IS IMAGE RELATED
+   */
+  uploadImage(fileInput: Event) {
+    const target = fileInput.target as HTMLInputElement;
+    const file: File = (target.files as FileList)[0];
+    this.uploadImageService.startUpload(file, 'productImage');
   }
 
-  startUpload() {
+  getTask(): AngularFireUploadTask {
+    return this.uploadImageService.getTask();
+  }
 
+  getSnapshot(): Observable<UploadTaskSnapshot> {
+    return this.uploadImageService.getSnapshot();
+  }
 
-    // Client-side validation example
-    if (this.file.type.split('/')[0] !== 'image') {
-      console.error('unsupported file type :( ');
-      return;
-    }
+  getPercentage(): Observable<number> {
+    return this.uploadImageService.getPercentage();
+  }
 
-    // The storage path
-    const path = `productImage/${new Date().getTime()}_${this.file.name}`;
-
-
-    // Progress monitoring
-    //this.percentage = this.task.percentageChanges();
-    this.snapshot = this.task.snapshotChanges();
-
-    // The file's download URL
-    this.snapshot.pipe(finalize(() => this.downloadURL = this.storage.ref(path).getDownloadURL())).subscribe();
-    this.downloadURL.subscribe(s => console.log('******' + s + '**********'));
+  getImageUrl(): url {
+    return this.uploadImageService.getImageUrl();
   }
 }

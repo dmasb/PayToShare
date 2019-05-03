@@ -49,6 +49,7 @@ import {LicenseOverviewComponent} from './components/body/admin/licensemanagemen
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {PlanOverviewComponent} from './components/body/admin/planmanagement/plan-overview/plan-overview.component';
 import {DeletePlanComponent} from './components/body/admin/planmanagement/delete-plan/delete-plan.component';
+import {ImageUploadTemplateComponent} from './components/body/admin/image-upload-template/image-upload-template.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,9 @@ import {DeletePlanComponent} from './components/body/admin/planmanagement/delete
     UpdateLicenseComponent,
     LicenseOverviewComponent,
     PlanOverviewComponent,
-    DeletePlanComponent
+    DeletePlanComponent,
+    ImageUploadTemplateComponent
+
   ],
   imports: [
     BrowserModule,
