@@ -33,6 +33,19 @@ export class ProductsService {
     );
   }
 
+  getSalesItems(): Observable<Product[]> {
+    return this.products = this.afs.collection('products').snapshotChanges().pipe(
+      map(products => {
+        return products.map(product => {
+          return {
+            id: product.payload.doc.id,
+            ...product.payload.doc.data()
+          } as Product;
+        }).filter(s => s.tags.find(tag => tag.name === 'Deal of the Day'));
+      })
+    );
+  }
+
   getProductDoc(productID: string) {
     return this.afs.doc(`products/${productID}`);
   }

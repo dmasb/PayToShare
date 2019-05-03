@@ -10,8 +10,8 @@
       <p class="card-text">Category:
         <span *ngFor="let tag of product.tags">{{tag.name}} </span></p>
       <p class="card-text">Info: {{product.description}}</p>
-
     </div>
+    <a href="javascript:void(0)" class="badge badge-danger mt-3 mb-3">DEAL OF THE DAY</a>
     <div class="card-stock">Stock: {{product.quantity}}</div>
     <div class="card-buttons">
       <a href="javascript:void(0)" class="btn btn-secondary">Add to cart</a>
