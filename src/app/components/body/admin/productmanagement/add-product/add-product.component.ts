@@ -23,6 +23,7 @@ export class AddProductComponent implements OnInit {
   private tags: Observable<Tag[]>;
   private formats: Observable<Format[]>;
   private selectedTags: Tag[] = [];
+  
   private newProductForm = new FormGroup({
     productTitle: new FormControl(''),
     productTag: new FormControl(''),

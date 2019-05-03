@@ -22,13 +22,19 @@
     <!--PRODUCT MANAGEMENT-->
     <li class="nav-item">
       <a class="nav-link text-secondary active" id="products-tab" data-toggle="tab" href="#products" role="tab"
-         aria-controls="home" aria-selected="true">Products</a>
+         aria-controls="home" aria-selected="false">Products</a>
     </li>
 
     <!--TAG MANAGEMENT-->
     <li class="nav-item">
       <a class="nav-link text-secondary" id="tags-tab" data-toggle="tab" href="#tags" role="tab"
          aria-controls="profile" aria-selected="false">Tags</a>
+    </li>
+
+     <!--DOTD MANAGEMENT-->
+     <li class="nav-item">
+      <a class="nav-link text-secondary" id="dotd-tab" data-toggle="tab" href="#dotd" role="tab"
+         aria-controls="contact" aria-selected="false">Sales</a>
     </li>
   </ul>
 
@@ -58,6 +64,11 @@
     <!--TAG MANAGEMENT-->
     <div class="tab-pane fade" id="tags" role="tabpanel" aria-labelledby="tags-tab">
       <app-tag-overview></app-tag-overview>
+    </div>
+
+     <!--DOTD MANAGEMENT-->
+     <div class="tab-pane fade" id="dotd" role="tabpanel" aria-labelledby="dotd-tab">
+      <app-dotd-overview></app-dotd-overview>
     </div>
 
   </div>

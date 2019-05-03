@@ -40,6 +40,15 @@ export class LicenseService {
     return this.afs.doc(`licenses/${licenseID}`);
   }
 
+  getLicenseJson(licenseID: string) {
+    return this.afs.doc(`licenses/${licenseID}`).ref.get().then(license => {
+      return {
+        id: license.id,
+        ...license.data()
+      } as License;
+    });
+  }
+
   async addLicense(licenseName: string, formatID: string, tagID: string) {
 
     const formatObj = await this.formatService.getFormatJson(formatID);

@@ -10,6 +10,7 @@ import * as url from 'url';
   providedIn: 'root'
 })
 export class UploadImageService {
+
   private task: AngularFireUploadTask;
   private percentage: Observable<number>;
   private snapshot: Observable<UploadTaskSnapshot>;

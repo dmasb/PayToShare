@@ -4,6 +4,8 @@ import {Product} from '../../../models/products/product';
 import {Observable} from 'rxjs';
 import {Plan} from '../../../models/products/plan';
 import {PlanService} from '../../../services/product/plan.service';
+import {map} from 'rxjs/operators';
+import {Tag} from '../../../models/products/tag';
 
 @Component({
   selector: 'app-products',
@@ -14,13 +16,13 @@ export class ProductsComponent implements OnInit {
 
   private plans: Observable<Plan[]>;
   private products: Observable<Product[]>;
+
   constructor(private productsService: ProductsService,
               private planService: PlanService) {
   }
 
   ngOnInit() {
     this.plans = this.planService.getPlans();
-    this.products = this.productsService.getProducts();
+    this.products = this.productsService.getSalesItems();
   }
-
 }
