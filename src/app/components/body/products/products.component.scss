@@ -1,24 +1,60 @@
-.container {
-  width: 100%;
-  text-align: center;
-  margin-top: 50px;
-  border: 1px solid black;
+.col-sm-3 {
+  padding: 10px;
+  float: left;
+}
+.card {
+  width: 18rem;
+  max-width: 18rem;
+  height: 25em;
+  max-height: 25em;
 }
 
-.card {
-  display: inline-block;
-  margin: 20px;
+.card:hover{
+  border-color: black;
+}
+
+.card-stock{
+  bottom: 0px;
+  float: left;
+  text-align: left;
+  padding-left: 20px;
+}
+
+p {
+  padding: 0;
+  margin: 0;
 }
 
 .card-title {
-  text-align: left;
-  font-weight: bold;
-}
-
+   text-align: left;
+   font-weight: bold;
+   font-size: 14px;
+ }
 .card-text {
   text-align: left;
+  padding-bottom: 10px;
 }
 
-.btn {
-  margin-right: 10px;
+.card-top{
+  height: 40%;
+  max-height: 40%;
+  max-width: 100%;
+}
+img{
+  max-height:100%;
+  width: 100%;
+}
+
+.card-body{
+  border-style: solid;
+  height: 70px;
+  overflow: hidden;
+}
+.card-buttons{
+  bottom: 0px;
+  margin: 0 auto;
+}
+.btn btn-primary{
+  margin-left: 10px;
+  padding-left: 20px;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from '../../../../../models/products/product';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ProductsService} from '../../../../../services/crud/products.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-product-overview',
@@ -13,33 +13,22 @@ export class ProductOverviewComponent implements OnInit {
   page = 1;
   pageSize = 4;
   name: any;
-  products: Product[];
+  private products: Observable<Product[]>;
   collectionSize: number;
 
-  constructor(private modalService: NgbModal, private productsService: ProductsService) {
-    this.productsService.getAdminProducts().subscribe(products => {
-      this.products = products.map(obj => {
-        return {
-          id: obj.payload.doc.id,
-          ...obj.payload.doc.data()
-        } as Product;
-      });
-    });
+  constructor(private productsService: ProductsService) {
+
   }
 
   ngOnInit() {
-    this.productsService.getAdminProducts().subscribe(products => {
-      this.products = products.map(obj => {
-        return {
-          id: obj.payload.doc.id,
-          ...obj.payload.doc.data()
-        } as Product;
-      });
-    });
-
-    // TODO: Fix: This produces undefined in console.
-    console.log(this.products);
+    this.products = this.productsService.getProductsDashboard(0);
   }
+
+  sort(){
+    var value = (document.getElementById("sortID") as HTMLSelectElement);
+    this.products = this.productsService.getProductsDashboard(value.selectedIndex);
+  }
+ 
 
   onSubmit() {
     // pages

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {DecimalPipe} from '@angular/common';
 import {License} from '../../../../../models/products/license';
 import {LicenseService} from '../../../../../services/product/license.service';
 import {Observable} from 'rxjs';
@@ -14,8 +13,7 @@ export class LicenseOverviewComponent implements OnInit {
   licenses: Observable<License[]>;
   name: string;
 
-  constructor(pipe: DecimalPipe,
-              private licenseService: LicenseService) {
+  constructor(private licenseService: LicenseService) {
   }
 
   ngOnInit() {

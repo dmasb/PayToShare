@@ -18,8 +18,7 @@ export class AddProductComponent implements OnInit {
 
   private tags: Observable<Tag[]>;
   private formats: Observable<Format[]>;
-  private selectedTags: string[] = [];
-
+  private selectedTags: Tag[] = [];
   private newProductForm = new FormGroup({
     productTitle: new FormControl(''),
     productTag: new FormControl(''),
@@ -41,17 +40,22 @@ export class AddProductComponent implements OnInit {
   }
 
   pushTag() {
-    const selected = this.newProductForm.controls.productTag.value;
-    if (this.selectedTags.indexOf(selected) === -1 && selected) {
+
+    const selected: Tag = JSON.parse(this.newProductForm.controls.productTag.value);
+    if (this.selectedTags.findIndex(obj => obj.id === selected.id) === -1 && selected.id) {
       this.selectedTags.push(selected);
     }
+    console.log('###############################################');
+    this.selectedTags.forEach(s => console.log(s));
+    console.log('###############################################');
   }
 
-  popTag(name: string) {
-    this.selectedTags = this.selectedTags.filter(tag => tag !== name);
+  popTag(selectedTag: object) {
+    this.selectedTags = this.selectedTags.filter(tag => tag !== selectedTag);
   }
 
   addProduct() {
+
     const product: Product = {
       title: this.newProductForm.controls.productTitle.value,
       tags: this.selectedTags,

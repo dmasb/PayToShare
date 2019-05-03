@@ -1,0 +1,28 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Title</th>
+    <th scope="col">Speed mb/S</th>
+    <th scope="col">Price</th>
+    <th scope="col">Licenses</th>
+    <th scope="col">Action(s)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let plan of plans | async; index as i">
+    <td>{{ plan.title}}</td>
+    <td>{{ plan.speed | number}}</td>
+    <td>{{ plan.price | number}}</td>
+    <div *ngFor="let license of plan.licenses; index as j">
+      <td>{{ plan.licenses[j].name}}: {{plan.licenses[j].tagRef[0].name}} - {{plan.licenses[j].formatRef[0].name }}</td>
+    </div>
+    <td>
+      <a class="mr-3" role="button" style="cursor: pointer;" href="javascript:void(0)">
+        <span uk-icon="icon: pencil"></span>
+      </a>
+
+      <app-delete-plan [id]=plan.id [title]="plan.title"></app-delete-plan>
+    </td>
+  </tr>
+  </tbody>
+</table>

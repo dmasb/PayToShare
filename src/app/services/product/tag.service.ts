@@ -11,8 +11,8 @@ import {map} from 'rxjs/operators';
 })
 export class TagService {
 
-  tags: Observable<Tag[]>;
-  tagBeingDeleted: string;
+  private tags: Observable<Tag[]>;
+  private tagBeingDeleted: string;
 
   constructor(private afs: AngularFirestore) {
     this.tagBeingDeleted = null;
@@ -33,6 +33,15 @@ export class TagService {
 
   getTagDoc(tagID: string) {
     return this.afs.doc(`tags/${tagID}`);
+  }
+
+  getTagJson(tagID: string) {
+    return this.afs.doc(`tags/${tagID}`).ref.get().then(tag => {
+      return {
+        id: tag.id,
+        ...tag.data()
+      };
+    });
   }
 
   addTag(tagName: string) {

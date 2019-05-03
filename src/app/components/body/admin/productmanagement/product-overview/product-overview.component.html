@@ -11,6 +11,14 @@
   <div class="col-9">
     <div class="tab-content" id="v-pills-tabContent">
       <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+        <div>
+          <label>Sort by:</label>
+            <select (change)="sort()" id="sortID">
+              <option>Price</option>
+              <option>Title</option>
+              <option>Quantity</option>
+            </select>
+        </div>
         <table class="table table-striped">
           <thead>
           <tr>
@@ -25,7 +33,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let product of products; index as i">
+          <tr *ngFor="let product of products | async; index as i">
             <th scope="row">
               <label class="col-0">
                 <input type="checkbox" name="checkbox + {{ i + 1}}">
@@ -40,7 +48,7 @@
             <td>
               <app-update-product [description]="product.description" [id]=product.id
                                   [price]="product.price" [quantity]="product.quantity"
-                                  [selectedTags]="product.tags"
+                                  [selectedTags]=" product.tags"
                                   [format]="product.format"
                                   [title]="product.title"></app-update-product>
 

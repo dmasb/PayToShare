@@ -39,7 +39,7 @@
             <td>{{ license.created.toDate() | date: 'yyyy-MM-dd'}}</td>
             <td>
               <app-update-license [id]=license.id></app-update-license>
-              <app-delete-license [id]=license.id></app-delete-license>
+              <app-delete-license [id]=license.id [name]=license.name></app-delete-license>
             </td>
           </tr>
           <tr>
