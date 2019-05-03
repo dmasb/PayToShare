@@ -3,6 +3,9 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {Product} from '../../models/products/product';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {Tag} from '../../models/products/tag';
+import {firestore} from 'firebase/app';
+import Timestamp = firestore.Timestamp;
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +42,7 @@ export class ProductsService {
       return {
         id: product.id,
         ...product.data()
-      };
+      } as Product;
     });
   }
 
@@ -56,6 +59,7 @@ export class ProductsService {
       return false;
     }
   }
+
   remove() {
     this.afs.doc(`products/${this.productBeingDeleted}`).delete();
     this.productBeingDeleted = null;
@@ -67,5 +71,28 @@ export class ProductsService {
 
   update(product: Product) {
     this.afs.doc(`products/${product.id}`).update(product);
+  }
+
+  markAsDeals(productIDs: string[]) {
+    productIDs.forEach(id => {
+      this.afs.collection('products').doc(id).update({test: 'testing'});
+    });
+
+    productIDs.forEach(id => {
+      const product = this.getTagJson(id);
+      product.then(s => {
+        if (s.tags.findIndex(res => res.name === 'Deal of the Day') === -1) {
+          const tag: Tag = {
+            name: 'Deal of the Day',
+            products: 0,
+            created: Timestamp.now()
+          };
+          s.tags.push(tag);
+          this.afs.collection('products').doc(id).update({
+            tags: s.tags
+          });
+        }
+      });
+    });
   }
 }

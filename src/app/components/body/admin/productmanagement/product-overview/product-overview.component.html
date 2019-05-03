@@ -14,7 +14,7 @@
         <table class="table table-striped">
           <thead>
           <tr>
-            <th scope="col">ID</th>
+            <th scope="col"><button type="button" class="btn btn-outline-secondary" (click)="markAsDeals()">Sale</button></th>
             <th scope="col">Title</th>
             <th scope="col">Tag(s)</th>
             <th scope="col">Format</th>
@@ -27,8 +27,8 @@
           <tbody>
           <tr *ngFor="let product of products | async; index as i">
             <th scope="row">
-              <label class="col-0">
-                <input type="checkbox" name="checkbox + {{ i + 1}}">
+              <label class="col-6 ml-2">
+                <input type="checkbox" (change)="checkProduct(product.id)">
               </label>
             </th>
             <td>{{ product.title}}</td>
