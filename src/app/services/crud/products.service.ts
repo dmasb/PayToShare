@@ -92,7 +92,7 @@ export class ProductsService {
             id: product.payload.doc.id,
             ...product.payload.doc.data()
           } as Product;
-        }).filter(s => s.tags.find(tag => tag.name === 'Deal of the Day'));
+        }).filter(s => s.tags.find(tag => tag.name === 'Deal of the Day') && s.quantity > 0);
       })
     );
   }
@@ -105,7 +105,7 @@ export class ProductsService {
             id: product.payload.doc.id,
             ...product.payload.doc.data()
           } as Product;
-        }).filter(s => s.tags.every(o => o.name !== 'Deal of the Day'));
+        }).filter(s => s.tags.every(o => o.name !== 'Deal of the Day') && s.quantity > 0);
       })
     );
   }
