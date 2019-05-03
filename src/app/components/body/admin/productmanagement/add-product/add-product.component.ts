@@ -69,7 +69,8 @@ export class AddProductComponent implements OnInit {
       description: this.newProductForm.controls.productDescription.value,
       price: this.newProductForm.controls.productPrice.value,
       quantity: this.newProductForm.controls.productQuantity.value,
-      imageUrl: this.getImageUrl()
+      imageUrl: this.getImageUrl() || 'https://firebasestorage.googleapis.com/v0/b/paytoshare-b4cd1.appspot.com/o/' +
+        'productImage%2Fitemimg.svg?alt=media&token=130ed9f0-6e1a-4d93-abf3-62d77de18599'
     };
     this.productsService.addProduct(product);
     this.selectedTags = [];

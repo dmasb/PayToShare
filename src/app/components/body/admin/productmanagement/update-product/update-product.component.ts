@@ -83,9 +83,11 @@ export class UpdateProductComponent implements OnInit {
       price: this.updateProductForm.controls.productPrice.value,
       quantity: this.updateProductForm.controls.productQuantity.value,
     };
+
     if (this.getImageUrl()) {
       product.imageUrl = this.getImageUrl();
     }
+
     this.productService.update(product);
     this.modalService.dismissAll();
   }
