@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {Tag} from '../../models/products/tag';
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Injectable({
   providedIn: 'root'
@@ -84,7 +85,7 @@ export class ProductsService {
     );
   }
 
-  getSalesItems(): Observable<Product[]> {
+  getProductsByTag(filter: string): Observable<Product[]> {
     return this.products = this.afs.collection('products').snapshotChanges().pipe(
       map(products => {
         return products.map(product => {
@@ -92,20 +93,8 @@ export class ProductsService {
             id: product.payload.doc.id,
             ...product.payload.doc.data()
           } as Product;
-        }).filter(s => s.tags.find(tag => tag.name === 'Deal of the Day'));
-      })
-    );
-  }
-
-  getRegularItems(): Observable<Product[]> {
-    return this.products = this.afs.collection('products').snapshotChanges().pipe(
-      map(products => {
-        return products.map(product => {
-          return {
-            id: product.payload.doc.id,
-            ...product.payload.doc.data()
-          } as Product;
-        }).filter(s => s.tags.find(tag => tag.name !== 'Deal of the Day'));
+        }).filter(s => s.tags.find(tag => tag.name !== filter) && s.quantity > 0
+        );
       })
     );
   }

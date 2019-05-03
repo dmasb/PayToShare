@@ -21,7 +21,6 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.plans = this.planService.getPlans();
-    this.regularProducts = this.productsService.getRegularItems();
-    this.salesProducts = this.productsService.getSalesItems();
+    this.salesProducts = this.productsService.getProductsByTag('Deal of the day');
   }
 }
