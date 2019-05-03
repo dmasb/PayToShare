@@ -49,6 +49,8 @@ import { LicenseOverviewComponent } from './components/body/admin/licensemanagem
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import {AddImageComponent} from "./components/body/admin/productmanagement/add-product/add-image/add-image.component";
 import {AddImageTaskComponent} from "./components/body/admin/productmanagement/add-product/add-image-task/add-image-task.component";
+import {PlanOverviewComponent} from "./components/body/admin/planmanagement/plan-overview/plan-overview.component";
+import {DeletePlanComponent} from "./components/body/admin/planmanagement/delete-plan/delete-plan.component";
 
 @NgModule({
   declarations: [
@@ -86,7 +88,9 @@ import {AddImageTaskComponent} from "./components/body/admin/productmanagement/a
     UpdateLicenseComponent,
     LicenseOverviewComponent,
     AddImageComponent,
-    AddImageTaskComponent
+    AddImageTaskComponent,
+    PlanOverviewComponent,
+    DeletePlanComponent
   ],
   imports: [
     BrowserModule,
