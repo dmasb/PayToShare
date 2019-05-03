@@ -1,4 +1,5 @@
-<div class="col-sm-3" *ngFor="let product of products | async" id="products">
+<div class="row">
+<div class="col-lg-4 col-sm-6 float-left mt-2" *ngFor="let product of products | async" id="products">
   <div class="card">
     <div class="card-top">
       <img *ngIf="product.imageUrl == null" class="card-img-top" src="../assets/images/testimages/gd.png"
@@ -18,4 +19,5 @@
       <a href="javascript:void(0)" class="btn btn-primary">Buy</a>
     </div>
   </div>
+</div>
 </div>
