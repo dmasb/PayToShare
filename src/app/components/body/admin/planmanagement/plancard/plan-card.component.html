@@ -6,7 +6,7 @@
     <p class="card-text"> {{description}}
     <p>Included licenses:</p>
     <div *ngFor="let license of licenses">
-      <p>({{license.name}}: {{license.tagRef[0].name}} - {{license.formatRef[0].name}})</p>
+      <p>({{license.name}}: {{license.tagRef.name}} - {{license.formatRef.name}})</p>
     </div>
     <div class="buy d-flex justify-content-between allign-items-center">
       <h5 class="mt-4">${{charge}}/month</h5>

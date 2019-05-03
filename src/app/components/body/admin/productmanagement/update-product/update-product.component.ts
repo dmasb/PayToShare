@@ -48,7 +48,8 @@ export class UpdateProductComponent implements OnInit {
               private tagService: TagService,
               private formatService: FormatService,
               private uploadImageService: UploadImageService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.formats = this.formatService.getFormats();
@@ -81,8 +82,10 @@ export class UpdateProductComponent implements OnInit {
       description: this.updateProductForm.controls.productDescription.value,
       price: this.updateProductForm.controls.productPrice.value,
       quantity: this.updateProductForm.controls.productQuantity.value,
-      imageUrl: this.getImageUrl()
     };
+    if (this.getImageUrl()) {
+      product.imageUrl = this.getImageUrl();
+    }
     this.productService.update(product);
     this.modalService.dismissAll();
   }

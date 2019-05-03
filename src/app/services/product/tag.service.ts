@@ -40,7 +40,7 @@ export class TagService {
       return {
         id: tag.id,
         ...tag.data()
-      };
+      } as Tag;
     });
   }
 
