@@ -30,7 +30,16 @@ export class ProductOverviewComponent implements OnInit {
 
   sort(){
     var value = (document.getElementById("sortID") as HTMLSelectElement);
-    this.products = this.productsService.getProductsDashboard(value.selectedIndex);
+    var selected = value.selectedIndex;
+    if(selected === 0){
+      this.products = this.productsService.sortByPrice();
+    }
+    else if(selected === 1){
+      this.products = this.productsService.sortByTitle();
+    }
+    else if(selected === 2){
+      this.products = this.productsService.sortByQuantity();
+    }
   }
  
   checkProduct(productID: string) {
