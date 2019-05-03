@@ -46,8 +46,9 @@ import { AddLicenseComponent } from './components/body/admin/licensemanagement/a
 import { DeleteLicenseComponent } from './components/body/admin/licensemanagement/delete-license/delete-license.component';
 import { UpdateLicenseComponent } from './components/body/admin/licensemanagement/update-license/update-license.component';
 import { LicenseOverviewComponent } from './components/body/admin/licensemanagement/license-overview/license-overview.component';
-import { ProductImageComponent } from './components/body/admin/productmanagement/product-image/product-image.component';
 import { AngularFireStorageModule } from "@angular/fire/storage";
+import {AddImageComponent} from "./components/body/admin/productmanagement/add-product/add-image/add-image.component";
+import {AddImageTaskComponent} from "./components/body/admin/productmanagement/add-product/add-image-task/add-image-task.component";
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { AngularFireStorageModule } from "@angular/fire/storage";
     DeleteLicenseComponent,
     UpdateLicenseComponent,
     LicenseOverviewComponent,
-    ProductImageComponent,
+    AddImageComponent,
+    AddImageTaskComponent
   ],
   imports: [
     BrowserModule,

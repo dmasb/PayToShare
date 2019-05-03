@@ -50,27 +50,7 @@
                  formControlName="productDescription">
         </div>
       </div>
-      <div class="class">
-        <div class="class-header">
-          <div class="card body">
-            <h5 class="card-title">Select file for upload:</h5>
-            <input type="file" (change)="getFile($event)" accept=".png,.jpg"/>
-            <div class="btn-group" role="group">
-              <button type="button" class="btn btn-primary" (click)="startUpload()">Submit</button>
-              <!--        <button type="button" class="btn btn-warning" (click)="st(downloadURL)">Delete</button>-->
-            </div>
-            <!--      <div class="progress">-->
-            <!--        <div class="progress-bar progress bar-striped bg-success" role="progressbar"-->
-            <!--             [style.width]="(uploadPercent | async) + '%'" [attr.aria-valuenow]="(uploadPercent | async)" aria-valuemin="0" aria-valuemax="100">-->
-            <!--        </div>-->
-            <!--      </div>-->
-
-            <div *ngIf="downloadURL | async" class="alert alert-info" role="alert">
-              File Uploaded: <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-add-image></app-add-image>
       <span uk-icon="icon: tag; ratio: 1" class="mr-2"></span>Tags:
       <hr class="mt-2 mb-2 p-0">
       <span class="uk-label uk-label-success mr-2 mb-2 border-danger tag" *ngFor="let selected of selectedTags"
