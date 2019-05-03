@@ -94,6 +94,7 @@ export class ProductsService {
     });
   }
 
+
   addProduct(product: Product) {
     this.afs.collection('products').add(product);
   }
@@ -106,7 +107,6 @@ export class ProductsService {
       return false;
     }
   }
-
   remove() {
     this.afs.doc(`products/${this.productBeingDeleted}`).delete();
     this.productBeingDeleted = null;

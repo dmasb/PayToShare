@@ -47,12 +47,8 @@ export class LicenseService {
 
     const license: License = {
       name: licenseName,
-      formatRef: [
-        formatObj
-      ],
-      tagRef: [
-        tagObj
-      ],
+      formatRef: formatObj,
+      tagRef: tagObj,
       created: Timestamp.now()
     };
 

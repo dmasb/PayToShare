@@ -1,4 +1,5 @@
 import {Tag} from './tag';
+import * as url from 'url';
 
 export interface Product {
   id?: string;
@@ -8,6 +9,6 @@ export interface Product {
   description?: string;
   price?: number;
   quantity?: number;
-  imageUrl?: string;
+  imageUrl?: url;
 }
 

@@ -8,6 +8,11 @@ import {TagService} from '../../../../../services/product/tag.service';
 import {Format} from '../../../../../models/products/format';
 import {FormatService} from '../../../../../services/product/format.service';
 import {Observable} from 'rxjs';
+import {AngularFireUploadTask} from '@angular/fire/storage';
+import {UploadTaskSnapshot} from '@angular/fire/storage/interfaces';
+import * as url from 'url';
+import {UploadImageService} from '../../../../../services/upload-image.service';
+
 
 @Component({
   selector: 'app-update-product',
@@ -23,6 +28,7 @@ export class UpdateProductComponent implements OnInit {
   @Input() price: number;
   @Input() quantity: number;
   @Input() description: string;
+  @Input() imageUrl: string; //
 
   private tags: Observable<Tag[]>;
   private formats: Observable<Format[]>;
@@ -33,13 +39,16 @@ export class UpdateProductComponent implements OnInit {
     productFormat: new FormControl(''),
     productPrice: new FormControl(''),
     productQuantity: new FormControl(''),
-    productDescription: new FormControl('')
+    productDescription: new FormControl(''),
+    productImageUrl: new FormControl('') //
   });
 
   constructor(private productService: ProductsService,
               private modalService: NgbModal,
               private tagService: TagService,
-              private formatService: FormatService) {
+              private formatService: FormatService,
+              private uploadImageService: UploadImageService
+  ) {
   }
 
   ngOnInit(): void {
@@ -72,13 +81,43 @@ export class UpdateProductComponent implements OnInit {
       format: this.updateProductForm.controls.productFormat.value || this.format,
       description: this.updateProductForm.controls.productDescription.value,
       price: this.updateProductForm.controls.productPrice.value,
-      quantity: this.updateProductForm.controls.productQuantity.value
+      quantity: this.updateProductForm.controls.productQuantity.value,
     };
+
+    if (this.getImageUrl()) {
+      product.imageUrl = this.getImageUrl();
+    }
+
     this.productService.update(product);
     this.modalService.dismissAll();
   }
 
   openCenteredDialog(addProductModal) {
     this.modalService.open(addProductModal, {centered: true});
+  }
+
+  /*
+  ALL BELOW IS IMAGE RELATED
+   */
+  uploadImage(fileInput: Event) {
+    const target = fileInput.target as HTMLInputElement;
+    const file: File = (target.files as FileList)[0];
+    this.uploadImageService.startUpload(file, 'productImage');
+  }
+
+  getTask(): AngularFireUploadTask {
+    return this.uploadImageService.getTask();
+  }
+
+  getSnapshot(): Observable<UploadTaskSnapshot> {
+    return this.uploadImageService.getSnapshot();
+  }
+
+  getPercentage(): Observable<number> {
+    return this.uploadImageService.getPercentage();
+  }
+
+  getImageUrl(): url {
+    return this.uploadImageService.getImageUrl();
   }
 }

@@ -50,6 +50,17 @@
                  formControlName="productDescription">
         </div>
       </div>
+      <div class="file">
+        <label class="file-label">
+          <input type="file" class="file-input" (change)="uploadImage($event)"
+                 formControlName="productImageUrl">
+        </label>
+      </div>
+      <app-image-upload-template [percentage]="getPercentage()"
+                                 [snapshot]="getSnapshot()"
+                                 [url]="getImageUrl()"
+                                 [task]="getTask()">
+      </app-image-upload-template>
       <span uk-icon="icon: tag; ratio: 1" class="mr-2"></span>Tags:
       <hr class="mt-2 mb-2 p-0">
       <span class="uk-label uk-label-success mr-2 mb-2 border-danger tag" *ngFor="let selected of selectedTags"

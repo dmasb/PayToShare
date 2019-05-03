@@ -1,12 +1,12 @@
 <div class="card cardStyle shadow" *ngFor="let plan of plans | async">
-  <img class="card-img" src="../../../../../../assets/images/testimages/gd.png" alt="Product Image">
+  <img class="card-img" src="{{plan.imageUrl}}" alt="Product Image">
   <div class="card-body">
     <h4 class="card-title mt-1">{{plan.title}}</h4>
     <h6>Speed: {{plan.speed}} mb/s</h6>
     <p class="card-text"> {{plan.description}}
     <p>Included licenses:</p>
     <div *ngFor="let license of plan.licenses">
-      <p>({{license.name}}: {{license.tagRef[0].name}} - {{license.formatRef[0].name}})</p>
+      <p>({{license.name}}: {{license.tagRef.name}} - {{license.formatRef.name}})</p>
     </div>
     <div class="buy d-flex justify-content-between allign-items-center">
       <h5 class="mt-4">${{plan.price}}/month</h5>
