@@ -20,7 +20,9 @@ export class ShoppingcartComponent implements OnInit {
 
   ngOnInit() {
     this.session.currentUser().pipe(map( (user) => this.user = user));
-    this.cart = this.user.cart;
+    this.cart = <Cart>this.user.cart; // Casting ICart->Cart to access class methods.
+
+
     // LOAD SHOPPING CART FROM SERVICE HERE.
 
     // MOVE OBSERVABLE DATA TO CART OBJECT

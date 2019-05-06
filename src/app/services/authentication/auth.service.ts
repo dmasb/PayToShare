@@ -11,6 +11,7 @@ import {MessageService} from '../message.service';
 import {alerts} from '../../models/alerts';
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
+import {ICart} from "../../models/products/cart";
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,7 @@ export class AuthService {
     loggedIn: false,
     lastLogin: null,
     sessionID: null,
+    cart: null
   };
 
 

@@ -3,7 +3,7 @@ import {firestore} from "firebase";
 import Timestamp = firestore.Timestamp;
 
 
-export interface Cart {
+export interface ICart {
   numberOfItems?: number;
   totalPrice?: number;
   items?: Product[];
