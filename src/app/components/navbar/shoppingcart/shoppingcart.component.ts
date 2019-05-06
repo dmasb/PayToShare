@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Cart} from "../../../models/products/cart";
 import {Observable} from "rxjs";
 import {Product} from "../../../models/products/product";
+import {UserSessionService} from "../../../services/user-session.service";
+import {map} from "rxjs/operators";
+import {IUser} from "../../../models/user";
 
 @Component({
   selector: 'app-shoppingcart',
@@ -10,13 +13,14 @@ import {Product} from "../../../models/products/product";
 })
 export class ShoppingcartComponent implements OnInit {
 
-  cart$: Observable<Cart>;
+  user: IUser;
   cart: Cart = new Cart();
 
-  constructor() { }
+  constructor(private session: UserSessionService) { }
 
   ngOnInit() {
-
+    this.session.currentUser().pipe(map( (user) => this.user = user));
+    this.cart = this.user.cart;
     // LOAD SHOPPING CART FROM SERVICE HERE.
 
     // MOVE OBSERVABLE DATA TO CART OBJECT

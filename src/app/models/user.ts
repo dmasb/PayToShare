@@ -2,6 +2,7 @@ import {Userrank} from './userrank';
 import {Sex} from './sex';
 import Timestamp = firestore.Timestamp;
 import {firestore} from 'firebase/app';
+import {Cart} from "./products/cart";
 
 
 export interface IUser {
@@ -21,4 +22,5 @@ export interface IUser {
   loggedIn?: boolean;
   lastLogin?: Timestamp;
   sessionID?: number;
+  cart?: Cart;
 }

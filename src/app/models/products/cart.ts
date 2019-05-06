@@ -10,12 +10,12 @@ export interface Cart {
   created?: Timestamp;
 }
 
-export class Cart{
+export class Cart {
 
   numberOfItems?: number = 0;
   totalPrice?: number = 0;
-  items?: Product[];
-  created?: Timestamp
+  items?: Product[] = null;
+  created?: Timestamp = firestore.Timestamp.now();
 
 
   getItems(): Product[]{

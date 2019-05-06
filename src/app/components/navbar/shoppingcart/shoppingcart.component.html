@@ -1,4 +1,8 @@
-<span *ngFor="let item of cart$ | async"></span>
+<div *ngFor="let item of cart.items">
+  <span>{{item.title}}</span>
+
+</div>
+
 
 
 
