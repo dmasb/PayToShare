@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Sale} from '../../../../../models/products/sale';
-import {FormatService} from '../../../../../services/product/format.service';
 import {Observable} from 'rxjs';
 import { SalesService } from 'src/app/services/product/sales.service';
 
@@ -11,14 +10,14 @@ import { SalesService } from 'src/app/services/product/sales.service';
 })
 export class DotdOverviewComponent implements OnInit {
 
-  sales: Observable<Sale[]>;
+  sales: Sale[];
   name: string;
 
   constructor(private saleService: SalesService) {
   }
 
   ngOnInit() {
-    this.sales = this.saleService.getSales();
+    this.saleService.getSales().subscribe(sales => this.sales = sales);
   }
 
 }

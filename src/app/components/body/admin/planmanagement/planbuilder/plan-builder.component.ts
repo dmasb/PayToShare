@@ -28,8 +28,9 @@ export class PlanBuilderComponent implements OnInit {
       'productImage%2Fitemimg.svg?alt=media&token=130ed9f0-6e1a-4d93-abf3-62d77de18599'
   };
 
-  private licenses: Observable<License[]>;
+  private licenses: License[];
   private selectedLicenses: License[] = [];
+
   private newPlanForm = new FormGroup({
     planName: new FormControl(''),
     planSpeed: new FormControl(''),
@@ -45,20 +46,20 @@ export class PlanBuilderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.licenses = this.licenseService.getLicenses();
+    this.licenseService.getLicenses().subscribe(licenses => this.licenses = licenses);
   }
 
   pushLicense() {
-
-    const selected: License = JSON.parse(this.newPlanForm.controls.planLicense.value);
-    if (this.selectedLicenses.findIndex(obj => obj.id === selected.id) === -1 && selected.id) {
-      this.selectedLicenses.push(selected);
+    if (this.newPlanForm.controls.planLicense.value) {
+      const selected: License = JSON.parse(this.newPlanForm.controls.planLicense.value);
+      if (this.selectedLicenses.findIndex(obj => obj.id === selected.id) === -1 && selected.id) {
+        this.selectedLicenses.push(selected);
+      }
+      console.log('###############################################');
+      console.log(selected.tagRef.name);
+      this.selectedLicenses.forEach(s => console.log(s));
+      console.log('###############################################');
     }
-
-    console.log('###############################################');
-    console.log(selected.tagRef.name);
-    this.selectedLicenses.forEach(s => console.log(s));
-    console.log('###############################################');
   }
 
   popLicense(selectedLicense: License) {

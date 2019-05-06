@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Tag} from '../../../../../models/products/tag';
-import {DecimalPipe} from '@angular/common';
 import {TagService} from '../../../../../services/product/tag.service';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-tag-overview',
@@ -11,12 +9,12 @@ import {Observable} from 'rxjs';
 })
 export class TagOverviewComponent implements OnInit {
 
-  tags: Observable<Tag[]>;
+  private tags: Tag[];
 
-  constructor(pipe: DecimalPipe, private tagService: TagService) {
+  constructor(private tagService: TagService) {
   }
 
   ngOnInit() {
-    this.tags = this.tagService.getTags();
+    this.tagService.getTags().subscribe(tags => this.tags = tags);
   }
 }

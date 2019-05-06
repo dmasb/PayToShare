@@ -12,17 +12,18 @@
     <div class="tab-content" id="v-pills-tabContent">
       <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
         <div>
-          <label>Sort by:</label>
-            <select (change)="sort()" id="sortID">
-              <option>Price</option>
-              <option>Title</option>
-              <option>Quantity</option>
-            </select>
+          <label for="sortID">Sort by:</label><select id="sortID" class="form-control-sm ml-3" (change)="sort()">
+            <option>Price</option>
+            <option>Title</option>
+            <option>Quantity</option>
+          </select>
         </div>
         <table class="table table-striped">
           <thead>
           <tr>
-            <th scope="col"><button type="button" class="btn btn-outline-secondary" (click)="markAsDeals()">Sale</button></th>
+            <th scope="col">
+              <button type="button" class="btn btn-outline-secondary" (click)="markAsDeals()">Sale</button>
+            </th>
             <th scope="col">Title</th>
             <th scope="col">Tag(s)</th>
             <th scope="col">Format</th>
@@ -33,7 +34,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let product of products | async; index as i">
+          <tr *ngFor="let product of products; index as i">
             <th scope="row">
               <label class="col-6 ml-2">
                 <input type="checkbox" (change)="checkProduct(product.id)">

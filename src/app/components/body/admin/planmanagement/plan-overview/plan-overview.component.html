@@ -9,7 +9,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let plan of plans | async; index as i">
+  <tr *ngFor="let plan of plans; index as i">
     <td>{{ plan.title}}</td>
     <td>{{ plan.speed | number}}</td>
     <td>{{ plan.price | number}}</td>

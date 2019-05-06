@@ -30,8 +30,8 @@ export class UpdateProductComponent implements OnInit {
   @Input() description: string;
   @Input() imageUrl: string; //
 
-  private tags: Observable<Tag[]>;
-  private formats: Observable<Format[]>;
+  private tags: Tag[];
+  private formats: Format[];
 
   updateProductForm = new FormGroup({
     productTitle: new FormControl(''),
@@ -52,8 +52,8 @@ export class UpdateProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formats = this.formatService.getFormats();
-    this.tags = this.tagService.getTags();
+    this.formatService.getFormats().subscribe(formats => this.formats = formats);
+    this.tagService.getTags().subscribe(tags => this.tags = tags);
   }
 
   pushTag() {

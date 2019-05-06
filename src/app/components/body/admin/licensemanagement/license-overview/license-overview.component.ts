@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {License} from '../../../../../models/products/license';
 import {LicenseService} from '../../../../../services/product/license.service';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-license-overview',
@@ -10,14 +9,14 @@ import {Observable} from 'rxjs';
 })
 export class LicenseOverviewComponent implements OnInit {
 
-  licenses: Observable<License[]>;
+  licenses: License[];
   name: string;
 
   constructor(private licenseService: LicenseService) {
   }
 
   ngOnInit() {
-    this.licenses = this.licenseService.getLicenses();
+    this.licenseService.getLicenses().subscribe(licenses => this.licenses = licenses);
 
   }
 }

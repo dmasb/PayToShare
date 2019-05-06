@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Format} from '../../../../../models/products/format';
 import {FormatService} from '../../../../../services/product/format.service';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-format-overview',
@@ -10,13 +9,13 @@ import {Observable} from 'rxjs';
 })
 export class FormatOverviewComponent implements OnInit {
 
-  private formats: Observable<Format[]>;
+  private formats: Format[];
 
   constructor(private formatService: FormatService) {
   }
 
   ngOnInit() {
-    this.formats = this.formatService.getFormats();
+    this.formatService.getFormats().subscribe(formats => this.formats = formats);
   }
 
 }

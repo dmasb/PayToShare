@@ -36,7 +36,7 @@
                   <select class="form-control mb-3" id="productFormat" formControlName="planLicense"
                           (click)="pushLicense()">
                     <option value="" selected disabled hidden>Choose here</option>
-                    <option *ngFor="let license of licenses | async" [value]="license | json">
+                    <option *ngFor="let license of licenses" [value]="license | json">
                       {{license.name}}
                     </option>
                   </select>

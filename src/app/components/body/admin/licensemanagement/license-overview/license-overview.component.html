@@ -27,7 +27,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let license of licenses | async; index as i">
+          <tr *ngFor="let license of licenses; index as i">
             <th scope="row">
               <label>
                 <input type="checkbox" name="checkbox + {{ i + 1}}">

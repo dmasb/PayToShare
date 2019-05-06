@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from './services/authentication/auth-guard.service';
-import {HomeComponent} from './components/body/home/home.component';
 import {FeaturesComponent} from './components/body/features/features.component';
 import {WeeklydealsComponent} from './components/body/weeklydeals/weeklydeals.component';
 import {PricingComponent} from './components/body/pricing/pricing.component';
@@ -13,10 +12,11 @@ import {Error404Component} from './components/body/error404/error404.component';
 import {RoleGuardService} from './services/authentication/role-guard.service';
 import {ProductsComponent} from './components/body/products/products.component';
 import {DashboardComponent} from './components/body/admin/dashboard/dashboard.component';
+import {SalesComponent} from './components/body/sales/sales.component';
 
 
 export const routes: Routes = [
-  {path: '', redirectTo: '', component: HomeComponent, pathMatch: 'full'},
+  {path: '', redirectTo: '', component: SalesComponent, pathMatch: 'full'},
   {path: 'products', component: ProductsComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
   {path: 'profile', component: MypageComponent, canActivate: [AuthGuard]},

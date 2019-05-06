@@ -6,7 +6,6 @@ import {Observable} from 'rxjs';
 import {Tag} from '../../models/products/tag';
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
-import {forEach} from '@angular/router/src/utils/collection';
 
 @Injectable({
   providedIn: 'root'
@@ -21,85 +20,21 @@ export class ProductsService {
     this.productBeingDeleted = null;
   }
 
-  getProductsDashboard(n: number): Observable<Product[]> {
-    if (n === 0) {
-      return this.products = this.afs.collection('products', ref => ref.orderBy('price')).snapshotChanges().pipe(
-        map(products => {
-          return products.map(product => {
-            return {
-              id: product.payload.doc.id,
-              ...product.payload.doc.data()
-            } as Product;
-          });
-        })
-      );
-    }
-
-    if (n === 1) {
-      return this.products = this.afs.collection('products', ref => ref.orderBy('title')).snapshotChanges().pipe(
-        map(products => {
-          return products.map(product => {
-            return {
-              id: product.payload.doc.id,
-              ...product.payload.doc.data()
-            } as Product;
-          });
-        })
-      );
-    }
-    if (n === 2) {
-      return this.products = this.afs.collection('products', ref => ref.orderBy('quantity')).snapshotChanges().pipe(
-        map(products => {
-          return products.map(product => {
-            return {
-              id: product.payload.doc.id,
-              ...product.payload.doc.data()
-            } as Product;
-          });
-        })
-      );
-    } else {
-      return this.products = this.afs.collection('products').snapshotChanges().pipe(
-        map(products => {
-          return products.map(product => {
-            return {
-              id: product.payload.doc.id,
-              ...product.payload.doc.data()
-            } as Product;
-          });
-        })
-      );
-    }
-  }
-
-  getProducts(): Observable<Product[]> {
-    return this.products = this.afs.collection('products', ref =>
-      ref.where('quantity', '>', '0')).snapshotChanges().pipe(
-      map(products => {
-        return products.map(product => {
-          return {
-            id: product.payload.doc.id,
-            ...product.payload.doc.data()
-          } as Product;
-        });
-      })
-    );
-  }
-
-
   /*
   to be fixed {Suitable for the search by tag functionality]
    */
-  getProductsByTag(filter: string): Observable<Product[]> {
+  getProductsByTag(tags: string[]): Observable<Product[]> {
     return this.products = this.afs.collection('products', ref =>
-      ref.where('tags', 'array-contains', `${filter}`)).snapshotChanges().pipe(
+      ref.where('quantity', '>', 0)).snapshotChanges().pipe(
       map(products => {
         return products.map(product => {
           return {
             id: product.payload.doc.id,
             ...product.payload.doc.data()
           } as Product;
-        });
+        }).filter(
+          product => product.tags.find(tag => (tags.length > 0) ? tags.includes(tag.name) : true)
+        );
       })
     );
   }

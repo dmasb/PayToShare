@@ -20,6 +20,3 @@ export class PlanCardComponent implements OnInit {
   }
 
 }
-
-/*
-This plans is specifically tailored for nerds, especially those who play nab moba-like games and like to share garbage memes */

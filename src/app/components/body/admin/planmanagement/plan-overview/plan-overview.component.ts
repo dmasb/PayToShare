@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {PlanService} from '../../../../../services/product/plan.service';
-import {Observable} from 'rxjs';
 import {Plan} from '../../../../../models/products/plan';
 
 @Component({
@@ -9,11 +8,11 @@ import {Plan} from '../../../../../models/products/plan';
   styleUrls: ['./plan-overview.component.scss']
 })
 export class PlanOverviewComponent implements OnInit {
-  private plans: Observable<Plan[]>;
+  private plans: Plan[];
   constructor(private planService: PlanService) { }
 
   ngOnInit() {
-    this.plans = this.planService.getPlans();
+    this.planService.getPlans().subscribe(plans => this.plans = plans);
   }
 
 }
