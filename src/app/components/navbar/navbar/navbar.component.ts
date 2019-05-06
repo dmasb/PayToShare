@@ -5,6 +5,7 @@ import {Userrank} from '../../../models/userrank';
 import {AuthService} from '../../../services/authentication/auth.service';
 import {Observable} from 'rxjs';
 import {IUser} from '../../../models/user';
+import {MessageService} from '../../../services/message.service';
 
 @Component({
   selector: 'app-navbar',
@@ -24,7 +25,8 @@ export class NavbarComponent implements OnInit {
   });
 
   constructor(private auth: AuthService,
-              private router: Router) {
+              private router: Router,
+              private messageService: MessageService) {
     this.user$ = this.auth.getCurrentUser();
   }
 
@@ -45,7 +47,7 @@ export class NavbarComponent implements OnInit {
     const password = this.profileForm.controls.password.value;
     this.auth.login(email, password).then(() => {
         this.isLoggedIn = true;
-        this.router.navigate(['/mypage']);
+        this.router.navigate(['/profile']);
       }, () => {
         console.log('failed');
       }

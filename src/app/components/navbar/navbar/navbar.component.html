@@ -1,46 +1,90 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" routerLink='/'><img src="assets/images/logo.png" alt=""></a>
+<!-- HIDDEN ADMIN PANEL-->
+<div class="collapse" id="toggleAdmin" *ngIf="isAdmin">
+  <nav class="uk-navbar-container" uk-navbar id="adminpanel">
+    <div class="uk-navbar-center">
+      <ul class="uk-navbar-nav">
+        <li class="nav-item">
+          <a>Manage Users</a>
+        </li>
+        <li class="nav-item">
+          <a>Orders</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/dashboard">Dashboard</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<!--MAIN NAVBAR, COLLAPSEABLE-->
+<nav class="navbar navbar-expand-lg navbar-light" id="header">
+
+  <!--  SIDE BAR ICON-->
+  <ul class="navbar-nav" style="padding-right: 30px;">
+    <li class="nav-item">
+      <a href="#sidebar" uk-toggle uk-icon="icon: menu; ratio: 1.4;"></a>
+    </li>
+  </ul>
+  <!--  BRAND ICON -->
+  <a class="navbar-brand" routerLink='/'><img src="assets/images/p2s.png" alt=""></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
           aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
+  <!--  MAIN NAVBAR COLLAPASABLE-->
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/products">Products <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/products">PRODUCTS <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/weeklydeals">Weekly deals</a>
+        <a uk-icon="icon: star" class="nav-link" routerLink="/weeklydeals">WEEKLY DEALS</a>
       </li>
     </ul>
-    <div class="col-md-5">
-      <form class="navbar-form" role="search">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search" name="q">
-          <div class="input-group-btn">
-            <button type="button" class="btn btn-default"><i class="fa fa-search fa-lg"></i></button>
-          </div>
-        </div>
+
+
+    <!--    SEARCH BAR- CENTERED -->
+    <div class="uk-navbar-center" id="search">
+      <form class="uk-search uk-search-navbar">
+        <span uk-search-icon></span>
+        <input class="uk-input uk-form-width-large" type="search" placeholder="">
       </form>
     </div>
+
+
     <div class="ml-auto">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/pricing">Pricing</a>
+
+        <!--        ADMIN ITEM-->
+        <li class="nav-item" *ngIf="isAdmin">
+          <a uk-icon="icon: cog" class="nav-link"
+             data-toggle="collapse" data-target="#toggleAdmin" aria-controls="toggleAdmin" aria-expanded="false"
+             routerLink="/"></a>
         </li>
+        <!--        HELP ITEM-->
         <li class="nav-item">
-          <a class="nav-link" routerLink="/features">Features</a>
-        <li class="nav-item dropdown" *ngIf="!navBarLoading && !isLoggedIn">
+          <a uk-icon="icon: question" class="nav-link" routerLink="/pricing"></a>
+        </li>
+        <!--        CART ITEM-->
+        <li class="nav-item">
+          <a uk-icon="icon: cart" class="nav-link" routerLink="/features"></a>
+
+          <!--        LOGIN DROPDOWN-->
+        <li class="nav-item dropdown" *ngIf="!isLoggedIn">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
-             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="messageService.clear()">
             Login
           </a>
           <div class="dropdown-menu dropdown-menu-right border border-secondary">
-            <form class="px-4 py-3" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <form class="px-4 py-3" [formGroup]="profileForm" (ngSubmit)="onSubmit()" id="login">
               <h3>Sign in</h3>
+              <app-message></app-message>
               <div class="form-group mt-2">
                 <label class="sr-only" for="exampleDropdownFormEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com"
+                <input type="email" class="form-control" id="exampleDropdownFormEmail1"
+                       placeholder="email@example.com"
                        formControlName="email">
               </div>
               <div class="form-group">
@@ -49,7 +93,7 @@
                        formControlName="password">
               </div>
               <p class="mb-2"><a id="forgot-password" routerLink="/recover">Forgot password?</a></p>
-              <button type="submit" class="btn btn-block btn-primary">Login</button>
+              <button type="submit" class="btn btn-block btn-primary" (click)="messageService.clear()">Login</button>
               <div class="form-check mt-1">
                 <input type="checkbox" class="form-check-input" id="dropdownCheck">
                 <label class="form-check-label" for="dropdownCheck">
@@ -61,31 +105,39 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <!-- Have to fix PROPER login to facebook/google buttons -->
                   <button type="button" class="loginBtn loginBtn--google" (click)="loginWithGoogle()"> Google</button>
-                  <button type="button" class="loginBtn loginBtn--facebook" (click)="loginWithFacebook()"> Facebook</button>
+                  <button type="button" class="loginBtn loginBtn--facebook" (click)="loginWithFacebook()"> Facebook
+                  </button>
                 </div>
               </div>
             </form>
           </div>
         </li>
-        <li class="nav-item" *ngIf="!navBarLoading && isLoggedIn">
-          <a class="nav-link dropdown-toggle" role="button"
+
+        <!--        USER DROPDOWN-->
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a uk-icon="icon: user" class="nav-link dropdown-toggle" role="button"
              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user fa-lg"></i>
           </a>
-          <div class="dropdown-menu dropdown-menu-right border border-secondary">
-            <a *ngIf="isAdmin" class="nav-link" routerLink="/adminpanel">Admin panel</a><!-- ng if admin here -->
-            <a class="nav-link" routerLink="/mypage">My Page</a>
+          <!--          ADMIN PANEL LINK-->
+          <div class="dropdown-menu dropdown-menu-right border border-secondary" id="dropdown">
+            <a class="nav-link" routerLink="/profile">Profile</a>
             <a class="nav-link" routerLink="/" (click)="onLogoutClick()">Logout</a>
           </div>
-        <li *ngIf="!navBarLoading && !isLoggedIn">
+        <li *ngIf="!isLoggedIn">
           <a class="nav-link" routerLink="/register"><i class="fa fa-user-plus fa-lg" aria-hidden="true"></i></a>
         </li>
       </ul>
-
     </div>
   </div>
-
-
 </nav>
+<!-- This is the off-canvas -->
+<!--<div class="uk-offcanvas-content">-->
+<div id="sidebar" uk-offcanvas="overlay: true">
+  <div class="uk-offcanvas-bar">
+
+    <button class="uk-offcanvas-close" type="button" uk-close></button>
+
+  </div>
+</div>
+<!--</div>-->

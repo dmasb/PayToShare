@@ -3,11 +3,14 @@ import {auth, User} from 'firebase';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {IUser} from '../../models/user';
 import {Userrank} from '../../models/userrank';
-import * as firebase from 'firebase';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
+import {MessageService} from '../message.service';
+import {alerts} from '../../models/alerts';
+import {firestore} from 'firebase/app';
+import Timestamp = firestore.Timestamp;
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +32,8 @@ export class AuthService {
     photoURL: null,
     registerDate: null,
     sex: null,
+    zipcode: null,
+    country: null,
     address: 'N/A',
     city: 'N/A',
     phone: null,
@@ -36,11 +41,14 @@ export class AuthService {
     lastLogin: null,
     sessionID: null,
   };
+
+
   private user$: Observable<IUser>;
 
   constructor(private afAuth: AngularFireAuth,
               private afs: AngularFirestore,
-              private router: Router) {
+              private router: Router,
+              private messageService: MessageService) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -67,15 +75,16 @@ export class AuthService {
     return new Promise(() => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
         .then(async () => {
+          this.messageService.add('Login success', alerts.success);
           await this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update(
             {
-              lastLogin: firebase.firestore.Timestamp.fromDate(new Date()),
+              lastLogin: Timestamp.now(),
               loggedIn: true
             }
           );
-          this.router.navigate(['/mypage']);
+          this.router.navigate(['/profile']);
         }, () => {
-          console.warn('Wrong email or password');
+          this.messageService.add('Wrong email or password', alerts.danger);
         });
     });
   }
@@ -95,6 +104,7 @@ export class AuthService {
   addUserWithInfo(user: IUser, password: string) {
     this.afAuth.auth.createUserWithEmailAndPassword(user.email, password).then(async cred => {
       this.afAuth.auth.currentUser.sendEmailVerification();
+
       const credential = await this.afAuth.auth;
 
       // Adding required information to the user document data set mentioned earlier.
@@ -102,31 +112,40 @@ export class AuthService {
       this.data.email = credential.currentUser.email;
       this.data.firstName = user.firstName;
       this.data.lastName = user.lastName;
-      this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
+      this.data.phone = user.phone;
       this.data.registerDate = cred.user.metadata.creationTime;
-
-      this.router.navigate(['/mypage']);
-      return this.afs.collection('users').doc(cred.user.uid).set(this.data);
+      this.data.lastLogin = Timestamp.now();
+      this.data.loggedIn = true;
+      this.data.country = user.country;
+      this.data.zipcode = user.zipcode;
+      await this.afs.collection('users').doc(cred.user.uid).set(this.data);
+      this.router.navigate(['/profile']);
     });
   }
 
   private updateUserData(user) {
 
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${user.uid}`);
-    const displayName = user.displayName.split(' ', 2);
-
-    // Adding required information to the user document data set mentioned earlier.
-    this.data.id = user.uid;
-    this.data.email = user.email;
-    this.data.firstName = displayName[0];
-    (displayName[1]) ? this.data.lastName = displayName[1] : this.data.lastName = '';
-    this.data.photoURL = user.photoURL;
-    this.data.lastLogin = firebase.firestore.Timestamp.fromDate(new Date());
-    this.data.registerDate = this.afAuth.auth.currentUser.metadata.creationTime;
-    this.data.loggedIn = true;
-    userRef.set(Object.assign({}, this.data), {merge: true});
-    this.router.navigate(['/mypage']);
-
+    userRef.ref.get().then(userDocument => {
+      if (userDocument.exists) {
+        this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update({
+          lastLogin: Timestamp.now(),
+          loggedIn: true
+        });
+      } else {
+        const displayName = user.displayName.split(' ', 2);
+        this.data.id = user.uid;
+        this.data.email = user.email;
+        this.data.firstName = displayName[0];
+        (displayName[1]) ? this.data.lastName = displayName[1] : this.data.lastName = '';
+        this.data.photoURL = user.photoURL;
+        this.data.lastLogin = Timestamp.now();
+        this.data.registerDate = this.afAuth.auth.currentUser.metadata.creationTime;
+        this.data.loggedIn = true;
+        userRef.set(this.data);
+      }
+    });
+    this.router.navigate(['/profile']);
   }
 
   async signOut() {

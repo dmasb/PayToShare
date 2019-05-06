@@ -1,18 +1,83 @@
-<div class="container" *ngIf="currentUser">
-  <ul>
-    <li><img src='{{currentUser.photoURL}}' alt="" style="width: 80px; height: 80px"></li>
-    <li><code>ID:</code> {{currentUser.id}}</li>
-    <li><code>Rank:</code> {{currentUser.rank}}</li>
-    <li><code>Email:</code> {{currentUser.email}}</li>
-    <li><code>FirstName:</code> {{currentUser.firstName}}</li>
-    <li><code>LastName:</code> {{currentUser.lastName}}</li>
-    <li><code>Sex:</code> {{currentUser.sex}}</li>
-    <li><code>Address:</code> {{currentUser.address}}</li>
-    <li><code>City:</code> {{currentUser.city}}</li>
-    <li><code>Phone:</code> {{currentUser.phone}}</li>
-    <li><code>LoggedIn:</code> {{currentUser.loggedIn}}</li>
-    <li><code>Last login:</code> {{currentUser.lastLogin.toDate() | date:'MMM d, y, HH:mm'}}</li>
-    <li><code>Register date:</code> {{currentUser.registerDate | date:'MMM d, y, HH:mm'}}</li>
-    <li><code>SessionId:</code> {{currentUser.sessionID}}</li>
-  </ul>
+<div class="container" id="outer">
+  <span>Account Settings</span>
+  <div *ngIf="error" class="alert alert-danger" role="alert" ng-cloak>
+  There was an error while loading user settings. Please try again later!
 </div>
+  <!--  INFORMATION SUCCESSFULLY UPDATED -->
+  <div *ngIf="profileUpdated == true" class="alert alert-info">
+    <strong>Info!</strong> Profile successfully updated.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="container" id="inner">
+    <img src="{{currentUser.photoURL}}" id="mypage">
+    <form [formGroup]="profile" (ngSubmit)="onSubmit()">
+      <!-- MAIL -->
+      <div class="form-group row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input
+            [value]="currentUser.email"
+            type="text" readonly class="form-control-plaintext" id="staticEmail" formControlName="email">
+          <small id="tip1" class="form-text text-muted">Psst! We'll never share your email with anyone else.</small>
+        </div>
+      </div>
+
+      <!-- NAME -->
+      <div class="row">
+        <div class="col">
+          <label for="firstname">First name</label>
+          <input [value]="currentUser.firstName" type="email" class="form-control" id="firstName"
+                 aria-describedby="emailHelp"
+                 formControlName="firstName">
+        </div>
+        <div class="col">
+          <label for="lastname">Last name</label>
+          <input [value]="currentUser.lastName" type="email" class="form-control" id="lastName"
+                 aria-describedby="emailHelp"
+                 formControlName="lastName">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <label for="address">Address</label>
+          <input [value]="currentUser.address" type="email" class="form-control" id="address"
+                 aria-describedby="emailHelp"
+                 formControlName="address">
+        </div>
+        <div class="col-sm-4">
+          <label for="zip">Zipcode</label>
+          <input [value]="currentUser.zipcode" type="zip" class="form-control" id="zip" aria-describedby="emailHelp"
+                 formControlName="zipcode">
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm-4">
+          <label for="city">City</label>
+          <input [value]="currentUser.city" type="text" class="form-control" id="city" formControlName="city">
+        </div>
+        <div class="col-sm-4">
+          <label for="country">Country</label>
+          <input [value]="currentUser.country" type="text" class="form-control" id="country" formControlName="country">
+        </div>
+
+        <div class="col-sm-2">
+          <label for="rank" class="col-sm-2 col-form-label">Rank</label>
+          <input style="text-align: center" [value]="isAdminString()" type="text" readonly class="form-control-plaintext" id="rank">
+        </div>
+
+      </div>
+      <hr>
+
+      <button type="submit" [disabled]="!userLoaded || profile.pristine" class="btn btn-primary">Update profile settings</button>
+
+    </form>
+  </div>
+</div>
+
+<span *ngIf="isAdmin == 2">
+  Debug: {{ currentUser | json}}
+</span>

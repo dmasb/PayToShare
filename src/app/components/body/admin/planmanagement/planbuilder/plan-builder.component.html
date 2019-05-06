@@ -1,0 +1,100 @@
+<div class="row mt-5 ml-2">
+  <div class="col-7">
+    <div id="accordion">
+      <div class="card mb-1">
+        <div class="card-header p-0" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                    aria-controls="collapseOne">
+              Create new plan
+            </button>
+          </h5>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <form [formGroup]="newPlanForm" (ngSubmit)="createPlan()">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="planName">Plan name</label>
+                  <input [(ngModel)]="tempPlan.title" type="text" class="form-control" id="planName"
+                         formControlName="planName">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="planSpeed">Speed in mb/s</label>
+                  <input [(ngModel)]="tempPlan.speed" type="text" class="form-control" id="planSpeed"
+                         formControlName="planSpeed">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="price">Monthly charge</label>
+                  <input [(ngModel)]="tempPlan.price" type="number" class="form-control" id="price"
+                         formControlName="planPrice">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="productFormat">Plan Licenses</label>
+                  <select class="form-control mb-3" id="productFormat" formControlName="planLicense"
+                          (click)="pushLicense()">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <option *ngFor="let license of licenses" [value]="license | json">
+                      {{license.name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <span uk-icon="icon: tag; ratio: 1"></span>Licenses:
+                <hr class="mt-2 mb-2 p-0">
+                <span class="uk-label uk-label-success mr-2 mb-2 border-danger tag"
+                      *ngFor="let selected of selectedLicenses"
+                      (click)="popLicense(selected)">{{selected.name}}</span>
+              </div>
+              <div class="form-group">
+                <label for="planDesc">Material textarea</label>
+                <textarea [(ngModel)]="tempPlan.description" id="planDesc" class="md-textarea form-control" rows="3"
+                          formControlName="planDesc"></textarea>
+              </div>
+              <div class="file">
+                <label class="file-label">
+                  <input type="file" class="file-input" (change)="uploadImage($event)"
+                         formControlName="productImageUrl">
+                </label>
+              </div>
+              <app-image-upload-template [percentage]="getPercentage()"
+                                         [snapshot]="getSnapshot()"
+                                         [url]="getImageUrl()"
+                                         [task]="getTask()">
+              </app-image-upload-template>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-dark mt-3" data-toggle="collapse"
+                        data-target="#collapseTwo"
+                        aria-expanded="false"
+                        aria-controls="collapseTwo">Create
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header p-0" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo">
+              View existing plans
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <app-plan-overview></app-plan-overview>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-5">
+    <app-plan-card [title]="tempPlan.title" [speed]="tempPlan.speed" [charge]="tempPlan.price"
+                   [description]="tempPlan.description" [licenses]="selectedLicenses"></app-plan-card>
+  </div>
+</div>
+

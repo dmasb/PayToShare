@@ -1,11 +1,16 @@
 #page-container {
   position: relative;
   min-height: 100vh;
+  background: white;
 }
+
 body {
   overflow-y: scroll;
 }
 #content-wrap {
   padding-bottom: 3.5em;    /* Footer height */
-}/* You can add global styles to this file, and also import other style files */
+}
+
+
+/* You can pushTag global styles to this file, and also import other style files */
 

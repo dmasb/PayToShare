@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {IUser} from '../../../models/user';
+import {IUser} from "../../../models/user";
 import {UserSessionService} from '../../../services/user-session.service';
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-mypage',
@@ -9,14 +10,50 @@ import {UserSessionService} from '../../../services/user-session.service';
 })
 export class MypageComponent implements OnInit {
 
-  private currentUser: IUser;
+  isAdmin: string;
+  currentUser: IUser = null;
+  profileUpdated: boolean = false;
+  userLoaded = false;
+  profile: FormGroup;
+  error = false;
 
-  constructor(private userSessionService: UserSessionService) {
+
+  constructor(private fb: FormBuilder, private session: UserSessionService) {
+    this.profileUpdated = false;
   }
 
   ngOnInit() {
-    // We subscribe to the observable user value changes
-    this.userSessionService.currentUser().subscribe(j => this.currentUser = j);
+    this.session.currentUser().subscribe(user => {
+      if (user) {
+        this.currentUser = user;
+        this.profile = this.fb.group(user);
+        this.userLoaded = true;
+      }
+      else{
+        this.error = true;
+      }
+    });
+
+    if (this.currentUser) {
+      this.isAdmin = this.isAdminString();
+    }
   }
 
+  updateFormValues(){
+    this.currentUser.firstName = this.profile.controls.firstName.value;
+    this.currentUser.lastName = this.profile.controls.lastName.value;
+    this.currentUser.address = this.profile.controls.address.value;
+    this.currentUser.city = this.profile.controls.city.value;
+    this.currentUser.country = this.profile.controls.country.value;
+    this.currentUser.zipcode = this.profile.controls.zipcode.value;
+  }
+  onSubmit() {
+    this.updateFormValues();
+    this.session.updateUser(this.currentUser);
+    this.profileUpdated = true;
+  }
+
+  isAdminString() {
+    return this.currentUser.rank == 2 ? 'Admin': 'User';
+  }
 }

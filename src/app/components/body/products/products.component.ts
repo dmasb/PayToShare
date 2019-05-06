@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductsService} from '../../../services/crud/products.service';
-import {Product} from '../../../models/product';
+import {Product} from '../../../models/products/product';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -9,20 +10,16 @@ import {Product} from '../../../models/product';
 })
 export class ProductsComponent implements OnInit {
 
-  private products: Product[];
+  private salesProducts: Observable<Product[]>;
+  private regularProducts: Observable<Product[]>;
 
   constructor(private productsService: ProductsService) {
-    this.productsService.getProducts().subscribe(products => {
-      this.products = products.map(obj => {
-        return {
-          id: obj.payload.doc.id,
-          ...obj.payload.doc.data()
-        } as Product;
-      });
-    });
   }
 
   ngOnInit() {
-  }
 
+    this.salesProducts = this.productsService.getProductsByTag(['Deal of the Day']);
+
+    this.regularProducts = this.productsService.getProductsByTag([]);
+  }
 }

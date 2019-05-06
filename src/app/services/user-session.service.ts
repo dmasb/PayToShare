@@ -1,11 +1,9 @@
 import {Injectable, OnInit} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {IUser} from '../models/user';
 import {Observable} from 'rxjs';
-import {Userrank} from '../models/userrank';
-import Timestamp = firebase.firestore.Timestamp;
-import * as firebase from 'firebase';
+import {FormGroup} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +11,7 @@ import * as firebase from 'firebase';
 
 export class UserSessionService implements OnInit {
 
-  private user: Observable<IUser>;
+  private user$: Observable<IUser>;
   private userID;
   private collection;
 
@@ -29,11 +27,21 @@ export class UserSessionService implements OnInit {
     if (this.afAuth.auth.currentUser) {
       this.userID = this.afAuth.auth.currentUser.uid;
       // We make a new fetch of the user document to avoid type-casting from IUser to observable<IUser>
-      this.user = this.afs.doc<IUser>(`users/${this.userID}`).valueChanges();
-      return this.user;
+      this.user$ = this.afs.doc<IUser>(`users/${this.userID}`).valueChanges();
+      return this.user$;
     }
     return null;
   }
 
+  updateUser(updatedUser: IUser): boolean{
+    let userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${this.userID}`);
+    userRef.ref.get().then(userDocument => {
+      if (userDocument.exists) {
+        userRef.update(Object.assign({}, updatedUser));
+        return true;
+      }
+  })
+    return false;
+  };
 
 }
