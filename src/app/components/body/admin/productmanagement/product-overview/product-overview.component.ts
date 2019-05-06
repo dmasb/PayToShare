@@ -25,7 +25,7 @@ export class ProductOverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.products = this.productsService.getProductsDashboard(0);
+    this.products = this.productsService.getProductsDashboard();
   }
 
   sort(){
@@ -41,7 +41,7 @@ export class ProductOverviewComponent implements OnInit {
       this.products = this.productsService.sortByQuantity();
     }
   }
- 
+
   checkProduct(productID: string) {
 
     if (this.selectedProducts.findIndex(id => id === productID) === -1 && productID) {

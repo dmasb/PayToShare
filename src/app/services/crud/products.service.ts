@@ -17,7 +17,7 @@ export class ProductsService {
     this.productBeingDeleted = null;
   }
 
-  getProductsDashboard(n: number): Observable<Product[]>{
+  getProductsDashboard(): Observable<Product[]>{
     return this.products = this.afs.collection('products', ref => ref.orderBy('price')).snapshotChanges().pipe(
       map(products => {
         return products.map(product => {
@@ -29,7 +29,6 @@ export class ProductsService {
       })
     );
   }
-
   sortByPrice(): Observable<Product[]>{
     return this.products = this.afs.collection('products', ref => ref.orderBy('price')).snapshotChanges().pipe(
       map(products => {
@@ -42,7 +41,6 @@ export class ProductsService {
       })
     );
   }
-
   sortByTitle(): Observable<Product[]>{
     return this.products = this.afs.collection('products', ref => ref.orderBy('title')).snapshotChanges().pipe(
       map(products => {
@@ -77,6 +75,19 @@ export class ProductsService {
             ...product.payload.doc.data()
           } as Product;
         });
+      })
+    );
+  }
+
+  getRegularItems(): Observable<Product[]> {
+    return this.products = this.afs.collection('products').snapshotChanges().pipe(
+      map(products => {
+        return products.map(product => {
+          return {
+            id: product.payload.doc.id,
+            ...product.payload.doc.data()
+          } as Product;
+        }).filter(s => s.tags.find(tag => tag.name !== 'Deal of the Day'));
       })
     );
   }
