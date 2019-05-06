@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-3 col-sm-6 float-left mt-2" *ngFor="let product of salesProducts | async" id="products">
+  <div class="col-lg-3 col-sm-6 float-left mt-2" *ngFor="let product of salesProducts | async">
     <div class="card-group display-flex">
       <div class="card">
         <div class="card-top">
@@ -24,10 +24,9 @@
     </div>
   </div>
 </div>
-<hr>
-<hr>
-<div class="row">
-  <div class="col-lg-3 col-sm-6 float-left mt-2" *ngFor="let product of regularProducts | async" id="pp">
+
+<div class="row mt-5" >
+  <div class="col-lg-3 col-sm-6 float-left mt-2" *ngFor="let product of regularProducts | async">
     <div class="card-group display-flex">
       <div class="card">
         <div class="card-top">
