@@ -23,7 +23,7 @@ export class AddProductComponent implements OnInit {
   private tags: Observable<Tag[]>;
   private formats: Observable<Format[]>;
   private selectedTags: Tag[] = [];
-  
+
   private newProductForm = new FormGroup({
     productTitle: new FormControl(''),
     productTag: new FormControl(''),
@@ -50,6 +50,7 @@ export class AddProductComponent implements OnInit {
   pushTag() {
 
     const selected: Tag = JSON.parse(this.newProductForm.controls.productTag.value);
+    console.log(selected);
     if (this.selectedTags.findIndex(obj => obj.id === selected.id) === -1 && selected.id) {
       this.selectedTags.push(selected);
     }

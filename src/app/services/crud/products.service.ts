@@ -3,6 +3,10 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {Product} from '../../models/products/product';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {Tag} from '../../models/products/tag';
+import {firestore} from 'firebase/app';
+import Timestamp = firestore.Timestamp;
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Injectable({
   providedIn: 'root'
@@ -79,15 +83,19 @@ export class ProductsService {
     );
   }
 
-  getRegularItems(): Observable<Product[]> {
-    return this.products = this.afs.collection('products').snapshotChanges().pipe(
+  /*
+  to be fixed {Suitable for the search by tag functionality]
+   */
+  getProductsByTag(filter: string): Observable<Product[]> {
+    return this.products = this.afs.collection('products', ref =>
+      ref.where('tags', 'array-contains', `${filter}`)).snapshotChanges().pipe(
       map(products => {
         return products.map(product => {
           return {
             id: product.payload.doc.id,
             ...product.payload.doc.data()
           } as Product;
-        }).filter(s => s.tags.find(tag => tag.name !== 'Deal of the Day'));
+        });
       })
     );
   }

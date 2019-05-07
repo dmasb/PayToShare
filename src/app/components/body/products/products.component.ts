@@ -4,6 +4,9 @@ import {Product} from '../../../models/products/product';
 import {Observable} from 'rxjs';
 import {Plan} from '../../../models/products/plan';
 import {PlanService} from '../../../services/product/plan.service';
+import {map} from 'rxjs/operators';
+import {Tag} from '../../../models/products/tag';
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -21,7 +24,17 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.plans = this.planService.getPlans();
-    this.regularProducts = this.productsService.getRegularItems();
-    this.salesProducts = this.productsService.getSalesItems();
+    this.salesProducts = this.sales();
+    this.regularProducts = this.regular();
+  }
+
+  regular(): Observable<Product[]> {
+    return this.productsService.getProducts().pipe(
+      map(s => s.filter(r => r.tags.every(o => o.name !== 'Deal of the Day'))));
+  }
+
+  sales(): Observable<Product[]> {
+    return this.productsService.getProducts().pipe(
+      map(s => s.filter(r => r.tags.every(o => o.name === 'Deal of the Day'))));
   }
 }
