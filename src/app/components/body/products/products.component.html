@@ -1,21 +1,26 @@
 <div class="container">
-  <div class="card-deck">
-    <div class="card mb-2 mt-5" *ngFor="let product of regularProducts | async">
-      <img *ngIf="product.imageUrl == null" class="card-img-top img-fluid" src="../assets/images/testimages/gd.png"
-        alt="Card image cap">
-      <img *ngIf="product.imageUrl != null" class="card-img-top img-fluid" src="{{product.imageUrl}}"
-        alt="Card image cap">
-      <h5 class="card-title mt-2">{{product.title}}</h5>
-      <p class="card-text">
-        <span *ngFor="let tag of product.tags">{{tag.name}} </span></p>
-      <p class="card-text">Info: {{product.description}}</p>
-      <p class="card-stock">Stock: {{product.quantity}}</p>
-      <div class="card-footer">
-        <p class="price">{{product.price | currency}}
-          <a href="javascript:void(0)" class="btn btn-dark btn-sm float-right">
-            Buy
-          </a>
-        </p>
+  <div class="card-columns">
+    <div class="card mb-4 mt-3" *ngFor="let product of regularProducts | async">
+      <div class="card-body">
+        <img *ngIf="product.imageUrl == null" class="card-img-top img-fluid" src="../assets/images/testimages/gd.png"
+          alt="Card image cap">
+        <img *ngIf="product.imageUrl != null" class="card-img-top img-fluid" src="{{product.imageUrl}}"
+          alt="Card image cap">
+        <h5 class="card-title mt-2">{{product.title}}</h5>
+        <p class="card-text">
+          <span *ngFor="let tag of product.tags">
+            <h3>{{tag.name}}</h3>
+          </span></p>
+        <p class="card-text">{{product.description}}</p>
+        <p *ngIf="product.quantity == null" class="card-stock"><i class="fa fa-square null"></i> {{product.quantity}} out of stock</p>
+        <p *ngIf="product.quantity != null" class="card-stock"><i class="fa fa-square"></i> {{product.quantity}} in stock</p>
+        <div class="card-footer">
+          <p class="price">{{product.price | currency}}
+            <a href="javascript:void(0)" class="btn btn-sm float-right">
+              Buy
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   </div>
