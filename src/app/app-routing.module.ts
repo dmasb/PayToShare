@@ -13,13 +13,11 @@ import {RoleGuardService} from './services/authentication/role-guard.service';
 import {ProductsComponent} from './components/body/products/products.component';
 import {DashboardComponent} from './components/body/admin/dashboard/dashboard.component';
 import {SalesComponent} from './components/body/sales/sales.component';
-import {ShoppingcartComponent} from "./components/navbar/shoppingcart/shoppingcart.component";
 
 
 export const routes: Routes = [
   {path: '', redirectTo: '', component: SalesComponent, pathMatch: 'full'},
   {path: 'products', component: ProductsComponent},
-  {path: 'cart', component: ShoppingcartComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
   {path: 'profile', component: MypageComponent, canActivate: [AuthGuard]},
   {path: 'pricing', component: PricingComponent},

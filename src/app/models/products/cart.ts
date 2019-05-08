@@ -14,7 +14,7 @@ export class Cart {
 
   numberOfItems?: number = 0;
   totalPrice?: number = 0;
-  items?: Product[] = null;
+  items?: Product[] = [];
   created?: Timestamp = firestore.Timestamp.now();
 
 

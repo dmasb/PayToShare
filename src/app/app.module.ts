@@ -51,7 +51,6 @@ import {ImageUploadTemplateComponent} from './components/body/admin/image-upload
 import {DotdOverviewComponent} from './components/body/admin/dotd-management/dotd-overview/dotd-overview.component';
 import {AddDotdComponent} from './components/body/admin/dotd-management/add-dotd/add-dotd.component';
 import {SalesComponent} from './components/body/sales/sales.component';
-import { ShoppingcartComponent } from './components/navbar/shoppingcart/shoppingcart.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +91,6 @@ import { ShoppingcartComponent } from './components/navbar/shoppingcart/shopping
     DotdOverviewComponent,
     AddDotdComponent,
     SalesComponent,
-    ShoppingcartComponent,
   ],
   imports: [
     BrowserModule,

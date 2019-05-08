@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {FormGroup} from "@angular/forms";
 import {map} from "rxjs/operators";
 import {Cart} from "../models/products/cart";
+import {Product} from "../models/products/product";
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,7 @@ export class UserSessionService implements OnInit {
   ngOnInit(): void {
     this.userID = this.afAuth.auth.currentUser.uid;
     this.collection = this.afs.collection('users');
-
-    this.fetchCart().then( () => console.log('Cart fetched.'));
+    this.fetchCart();
   }
 
   currentUser(): Observable<IUser> {
@@ -39,11 +39,19 @@ export class UserSessionService implements OnInit {
     return null;
   }
 
-  async fetchCart(){
+  private fetchCart(){
 
-    await this.user$.pipe(map( (user) => this.user = user));
+    this.user$.pipe(map( (user) => this.user = user));
     this.cart = <Cart>this.user.cart; // Casting ICart->Cart to access class methods.
   }
+
+  addToCart(product: Product){
+    this.cart.add(product);
+    console.log(this.cart);
+    console.log('test');
+    console.log(this.cart.items);
+  }
+
   updateUser(updatedUser: IUser): boolean{
     let userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${this.userID}`);
     userRef.ref.get().then(userDocument => {
