@@ -1,26 +1,40 @@
-
-<div class="row mt-5" >
-  <div class="col-lg-3 col-sm-6 float-left mt-2" *ngFor="let product of regularProducts | async">
-    <div class="card-group display-flex">
-      <div class="card">
-        <div class="card-top">
-          <img *ngIf="product.imageUrl == null" class="card-img-top" src="../assets/images/testimages/gd.png"
-               alt="Card image cap">
-          <img *ngIf="product.imageUrl != null" class="card-img-top" src="{{product.imageUrl}}" alt="Card image cap">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{product.title}}</h5>
-          <p class="card-text">Price: {{product.price | currency}}</p>
-          <p class="card-text">Category:
-            <span *ngFor="let tag of product.tags">{{tag.name}} </span></p>
-          <p class="card-text">Info: {{product.description}}</p>
-        </div>
-        <div class="card-stock">Stock: {{product.quantity}}</div>
-        <div class="card-buttons">
-          <a href="javascript:void(0)" class="btn btn-secondary">Add to cart</a>
-          <a href="javascript:void(0)" class="btn btn-primary">Buy</a>
-        </div>
+<div class="container">
+  <div class="card-deck">
+    <div class="card mb-2 mt-5" *ngFor="let product of regularProducts | async">
+      <img *ngIf="product.imageUrl == null" class="card-img-top img-fluid" src="../assets/images/testimages/gd.png"
+        alt="Card image cap">
+      <img *ngIf="product.imageUrl != null" class="card-img-top img-fluid" src="{{product.imageUrl}}"
+        alt="Card image cap">
+      <h5 class="card-title mt-2">{{product.title}}</h5>
+      <p class="card-text">
+        <span *ngFor="let tag of product.tags">{{tag.name}} </span></p>
+      <p class="card-text">Info: {{product.description}}</p>
+      <p class="card-stock">Stock: {{product.quantity}}</p>
+      <div class="card-footer">
+        <p class="price">{{product.price | currency}}
+          <a href="javascript:void(0)" class="btn btn-dark btn-sm float-right">
+            Buy
+          </a>
+        </p>
       </div>
     </div>
   </div>
 </div>
+
+<!-- <div class="container mt-5">
+  <h2 class="mb-5 text-center">Products</h2>
+  <div class="card-deck">
+    <div class="theProduct" *ngFor="let product of regularProducts | async">
+      <div class="card">
+        <div class="card-body">
+          <img *ngIf="product.imageUrl == null" src="../assets/images/testimages/gd.png" class="img-fluid"
+            alt="Card image cap">
+          <img *ngIf="product.imageUrl != null" src="{{product.imageUrl}}" class="img-fluid" alt="Card image cap">
+          <h5 class="card-title">{{product.title}}</h5>
+          <p class="card-subtitle">Info:{{product.description}}</p>
+          <a href="#" class="btn btn-dark btn-sm float-right">Buy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
