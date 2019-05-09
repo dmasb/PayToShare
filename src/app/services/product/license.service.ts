@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {License} from '../../models/products/license';
 import {map} from 'rxjs/operators';
+import {MessageService} from '../message.service';
+import {alerts} from '../../models/alerts';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,8 @@ export class LicenseService {
 
   private licenses: Observable<License[]>;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore,
+              private messageService: MessageService) {
   }
 
   getLicenses(): Observable<License[]> {
@@ -30,17 +33,19 @@ export class LicenseService {
 
   addLicense(license: License) {
     this.afs.collection('licenses').add(Object.assign({}, license));
+    this.messageService.add(license.name + ' was successfully added!', alerts.success);
   }
 
-  confirmDelete(license: License) {
-    const usedInPlans = this.afs.collection('plans').ref.where('licenseIDs', 'array-contains', license.id)
+  async confirmDelete(license: License) {
+    const usedInPlans = await this.afs.collection('plans').ref.where('licenseIDs', 'array-contains', license.id)
       .get().then(res => {
         return !res.empty as boolean;
       });
     if (usedInPlans) {
-      console.log('License is used in a plan, please remove plan first');
+      this.messageService.add(license.name + ' is used in a plan, please remove plan first', alerts.danger);
     } else {
       this.afs.collection('licenses').doc(license.id).delete();
+      this.messageService.add(license.name + ' was successfully deleted!', alerts.success);
     }
   }
 }

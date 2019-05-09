@@ -5,6 +5,7 @@ export interface PlanModel {
   title?: string;
   speed: number;
   price?: number;
+  quantity: number;
   salesID?: string;
   licenseIDs: string[];
   description?: string;
@@ -19,7 +20,8 @@ export class Plan implements PlanModel {
   title = 'Plan name';
   speed = 500;
   price = 199;
-  salesID?: null;
+  quantity = 0;
+  salesID = 'none';
   licenseIDs: string[];
   description = 'Plan description';
   imageUrl = 'https://firebasestorage.googleapis.com/v0/b/paytoshare-b4cd1.appspot.com/o/' +

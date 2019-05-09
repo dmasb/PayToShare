@@ -12,6 +12,7 @@
   <div class="col-9">
     <div class="tab-content" id="v-pills-tabContent">
       <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+        <app-message></app-message>
         <div>
           <label for="sortID">Sort by:</label><select id="sortID" class="form-control-sm ml-3" (change)="sort()">
           <option>Price</option>
@@ -55,8 +56,7 @@
             <td>
               <app-update-product [product]="product"></app-update-product>
 
-              <app-delete-product [id]=product.id [title]="product.title"
-                                  [description]="product.description"></app-delete-product>
+              <app-delete-product [product]="product"></app-delete-product>
             </td>
           </tr>
           </tbody>

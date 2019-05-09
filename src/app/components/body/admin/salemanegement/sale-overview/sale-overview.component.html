@@ -2,17 +2,22 @@
   <div class="col-3">
     <div class="nav flex-column nav-pills mt-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
-      <a class="btn btn-outline-dark text-left" id="v-pills-planSales-tab" data-toggle="pill" href="#v-pills-planSales"
+      <a (click)="messageService.clear()" class="btn btn-outline-dark text-left" id="v-pills-planSales-tab"
+         data-toggle="pill" href="#v-pills-planSales"
          role="tab"
          aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon:  plus-circle; ratio: 1"
-                                                                     class="mr-2"></span>Plan sale</a>
-      <a class="btn btn-outline-dark text-left mt-2" id="v-pills-tagSales-tab" data-toggle="pill"
+                                                                     class="mr-2"></span>Plan
+        sale</a>
+      <a (click)="messageService.clear()" class="btn btn-outline-dark text-left mt-2" id="v-pills-tagSales-tab"
+         data-toggle="pill"
          href="#v-pills-tagSales"
          role="tab"
          aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon:  plus-circle; ratio: 1"
-                                                                     class="mr-2"></span>Tag sale</a>
+                                                                     class="mr-2"></span>Tag
+        sale</a>
 
-      <a class="btn btn-outline-dark text-left mt-2 active" id="v-pills-salesOverview-tab" data-toggle="pill"
+      <a (click)="messageService.clear()" class="btn btn-outline-dark text-left mt-2 active"
+         id="v-pills-salesOverview-tab" data-toggle="pill"
          href="#v-pills-salesOverview"
          role="tab"
          aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon: list; ratio: 1"
@@ -21,7 +26,7 @@
   </div>
   <div class="col-9">
     <div class="tab-content" id="v-pills-tabContent">
-
+      <app-message></app-message>
       <div class="tab-pane fade" id="v-pills-planSales" role="tabpanel" aria-labelledby="v-pills-planSales-tab">
         <app-add-plan-sale [plans]="plans"></app-add-plan-sale>
       </div>
@@ -50,9 +55,7 @@
             <td>{{ sale.name }}</td>
             <td>{{ sale.type }}</td>
             <td>
-              <p *ngFor="let objectID of sale.salesObjectsIDs; index as j">
-                {{ getName(objectID, sale.type) }},
-              </p>
+              {{ getName(sale.salesObjectsID, sale.type) }}
             </td>
             <td>{{ sale.discount | number}}</td>
             <td>{{ sale.begins }}</td>

@@ -6,7 +6,6 @@ import {Sale} from '../../../../../models/products/sale';
 import {SaleType} from '../../../../../models/saleType';
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
-import {Time} from '@angular/common';
 
 @Component({
   selector: 'app-add-plan-sale',
@@ -52,8 +51,6 @@ export class AddPlanSaleComponent implements OnInit {
     const sEnd = this.newPlanSale.controls.saleEnd.value;
     const sDiscount = this.newPlanSale.controls.saleDiscount.value;
 
-    const plansToSale: string[] = [];
-    this.selectedPlans.forEach(plan => plansToSale.push(plan.id));
 
     const sale = new Sale();
     sale.name = sName;
@@ -61,10 +58,9 @@ export class AddPlanSaleComponent implements OnInit {
     sale.begins = sBegin;
     sale.ends = sEnd;
     sale.discount = sDiscount;
-    sale.salesObjectsIDs = plansToSale;
     sale.created = Timestamp.now();
 
-    this.salesService.addSale(sale);
+    this.salesService.addPlanSale(sale, this.selectedPlans);
     this.newPlanSale.reset();
     this.selectedPlans = [];
   }

@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Plan} from '../../models/products/plan';
 import {map} from 'rxjs/operators';
+import {alerts} from '../../models/alerts';
+import {MessageService} from '../message.service';
 
 
 @Injectable({
@@ -12,7 +14,8 @@ export class PlanService {
 
   private plans: Observable<Plan[]>;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore,
+              private messageService: MessageService) {
   }
 
   getPlans(): Observable<Plan[]> {
@@ -28,19 +31,36 @@ export class PlanService {
     );
   }
 
-  addPlan(plan: Plan) {
-    this.afs.collection('plans').add(Object.assign({}, plan));
+  // Temporary
+  getSalePlans(): Observable<Plan[]> {
+    return this.plans = this.afs.collection('plans').snapshotChanges().pipe(
+      map(plans => {
+        return plans.map(plan => {
+          return {
+            id: plan.payload.doc.id,
+            ...plan.payload.doc.data()
+          } as Plan;
+        }).filter(plan => plan.salesID !== 'none');
+      })
+    );
   }
 
-  confirmDelete(plan: Plan) {
-    const usedInSale = this.afs.collection('sales').ref.where('salesObjectsIDs', 'array-contains', plan.id)
+  addPlan(plan: Plan) {
+    this.afs.collection('plans').add(Object.assign({}, plan));
+    this.messageService.add(plan.title + ' was successfully added!', alerts.success);
+  }
+
+  async confirmDelete(plan: Plan) {
+    console.log(plan.id);
+    const usedInSale = await this.afs.collection('sales').ref.where('salesObjectsIDs', 'array-contains', plan.id)
       .get().then(res => {
         return !res.empty as boolean;
       });
     if (usedInSale) {
-      console.log('Plan is used in a sale, please remove sale first!');
+      this.messageService.add(plan.title + ' is used in a sale, please remove sale first!', alerts.danger);
     } else {
       this.afs.collection('plans').doc(plan.id).delete();
+      this.messageService.add(plan.title + ' was successfully deleted!', alerts.success);
     }
   }
 }

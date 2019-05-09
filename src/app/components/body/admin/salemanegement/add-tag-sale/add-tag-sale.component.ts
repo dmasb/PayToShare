@@ -52,20 +52,16 @@ export class AddTagSaleComponent implements OnInit {
     const sEnd = this.newTagSale.controls.saleEnd.value;
     const sDiscount = this.newTagSale.controls.saleDiscount.value;
 
-    const tagsToSale: string[] = [];
-    this.selectedTags.forEach(tag => tagsToSale.push(tag.id));
-
     const sale = new Sale();
     sale.name = sName;
-    sale.type = SaleType.PLAN;
+    sale.type = SaleType.TAG;
     sale.begins = sBegin;
     sale.ends = sEnd;
     sale.discount = sDiscount;
-    sale.salesObjectsIDs = tagsToSale;
     sale.created = Timestamp.now();
 
 
-    this.salesService.addSale(sale);
+    this.salesService.addSale(sale, this.selectedTags);
     this.newTagSale.reset();
     this.selectedTags = [];
   }

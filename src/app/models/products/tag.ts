@@ -15,6 +15,6 @@ export class Tag implements TagModel {
   id?: string;
   name: string;
   created?: Timestamp;
-  salesID?: string = null;
-  products?: number;
+  salesID = 'none';
+  products = 0;
 }

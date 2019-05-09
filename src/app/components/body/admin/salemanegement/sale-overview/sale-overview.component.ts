@@ -6,6 +6,7 @@ import {Tag} from '../../../../../models/products/tag';
 import {SalesService} from '../../../../../services/product/sales.service';
 import {Sale} from '../../../../../models/products/sale';
 import {SaleType} from '../../../../../models/saleType';
+import {MessageService} from '../../../../../services/message.service';
 
 @Component({
   selector: 'app-sale-overview',
@@ -20,7 +21,8 @@ export class SaleOverviewComponent implements OnInit {
 
   constructor(private planService: PlanService,
               private tagService: TagService,
-              private salesService: SalesService) {
+              private salesService: SalesService,
+              private messageService: MessageService) {
   }
 
   ngOnInit() {

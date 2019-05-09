@@ -33,13 +33,20 @@
                 </div>
                 <div class="form-group col-md-6">
                   <label for="productFormat">Plan Licenses</label>
-                  <select class="form-control mb-3" id="productFormat" formControlName="planLicense"
+                  <select class="form-control" id="productFormat" formControlName="planLicense"
                           (click)="pushLicense()">
                     <option value="" selected disabled hidden>Choose here</option>
                     <option *ngFor="let license of licenses" [value]="license | json">
                       {{license.name}}
                     </option>
                   </select>
+                </div>
+              </div>
+              <div class="form-row mb-3">
+                <div class="form-group col-md-6">
+                  <label for="quantity">Quantity</label>
+                  <input [(ngModel)]="plan.quantity" type="number" class="form-control" id="quantity"
+                         formControlName="planQuantity">
                 </div>
               </div>
               <div class="form-group">

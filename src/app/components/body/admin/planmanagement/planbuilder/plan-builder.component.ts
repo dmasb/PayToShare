@@ -25,6 +25,7 @@ export class PlanBuilderComponent implements OnInit {
     planName: new FormControl(''),
     planSpeed: new FormControl(''),
     planPrice: new FormControl(''),
+    planQuantity: new FormControl(''),
     planDesc: new FormControl(''),
     planLicense: new FormControl(''),
     productImageUrl: new FormControl('')
@@ -60,10 +61,10 @@ export class PlanBuilderComponent implements OnInit {
     this.plan.title = this.newPlanForm.controls.planName.value;
     this.plan.speed = this.newPlanForm.controls.planSpeed.value;
     this.plan.price = this.newPlanForm.controls.planPrice.value;
+    this.plan.quantity = this.newPlanForm.controls.planQuantity.value;
     this.plan.description = this.newPlanForm.controls.planDesc.value;
     this.plan.licenseIDs = licenses;
     this.plan.imageUrl = this.getImageUrl() || this.plan.imageUrl;
-    this.plan.salesID = null;
     this.planService.addPlan(this.plan);
     this.newPlanForm.reset();
     this.selectedLicenses = [];

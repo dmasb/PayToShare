@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {PlanService} from '../../../services/product/plan.service';
-import {Observable} from 'rxjs';
 import {Plan} from '../../../models/products/plan';
 
 @Component({
@@ -10,11 +9,11 @@ import {Plan} from '../../../models/products/plan';
 })
 export class WeeklydealsComponent implements OnInit {
 
-  private plans: Observable<Plan[]>;
+  private salePlans: Plan[];
   constructor(private planService: PlanService) { }
 
   ngOnInit() {
-    this.plans = this.planService.getPlans();
+    this.planService.getSalePlans().subscribe(salePlans => this.salePlans = salePlans);
   }
 
 }

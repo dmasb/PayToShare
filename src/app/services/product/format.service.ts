@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Format} from '../../models/products/format';
 import {map} from 'rxjs/operators';
+import {MessageService} from '../message.service';
+import {alerts} from '../../models/alerts';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,8 @@ export class FormatService {
   private formats: Observable<Format[]>;
   private formatBeingDeleted: string;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore,
+              private messageService: MessageService) {
   }
 
   getFormats(): Observable<Format[]> {
@@ -29,8 +32,8 @@ export class FormatService {
   }
 
   addFormat(format: Format) {
-
     this.afs.collection('formats').add(Object.assign({}, format));
+    this.messageService.add(format.name + ' was successfully added!', alerts.success);
   }
 
 
@@ -47,11 +50,12 @@ export class FormatService {
       });
 
     if (usedInProducts) {
-      console.log('Format is used in products');
+      this.messageService.add(format.name + ' is used in products', alerts.danger);
     } else if (usedInLicenses) {
-      console.log('Format is used in licenses');
+      this.messageService.add(format.name + ' is used in licenses', alerts.danger);
     } else {
       this.afs.collection('formats').doc(format.id).delete();
+      this.messageService.add(format.name + ' was successfully deleted!', alerts.success);
     }
   }
 
@@ -63,6 +67,7 @@ export class FormatService {
     this.afs.doc(`formats/${format.id}`).update({
       name: format.name
     });
+    this.messageService.add(format.name + ' was successfully updated!', alerts.success);
   }
 }
 

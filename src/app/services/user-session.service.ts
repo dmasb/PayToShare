@@ -3,10 +3,10 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {IUser, User} from '../models/user';
 import {Observable} from 'rxjs';
-import {FormGroup} from "@angular/forms";
-import {map} from "rxjs/operators";
-import {Cart} from "../models/products/cart";
-import {Product} from "../models/products/product";
+import {FormGroup} from '@angular/forms';
+import {map} from 'rxjs/operators';
+import {Cart} from '../models/products/cart';
+import {Product} from '../models/products/product';
 
 @Injectable({
   providedIn: 'root'
@@ -39,28 +39,28 @@ export class UserSessionService implements OnInit {
     return null;
   }
 
-  private fetchCart(){
+  private fetchCart() {
 
-    this.user$.pipe(map( (user) => this.user = user));
-    this.cart = <Cart>this.user.cart; // Casting ICart->Cart to access class methods.
+    this.user$.pipe(map((user) => this.user = user));
+    this.cart = this.user.cart as Cart; // Casting ICart->Cart to access class methods.
   }
 
-  addToCart(product: Product){
+  addToCart(product: Product) {
     this.cart.add(product);
     console.log(this.cart);
     console.log('test');
     console.log(this.cart.items);
   }
 
-  updateUser(updatedUser: IUser): boolean{
-    let userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${this.userID}`);
+  updateUser(updatedUser: IUser): boolean {
+    const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${this.userID}`);
     userRef.ref.get().then(userDocument => {
       if (userDocument.exists) {
         userRef.update(Object.assign({}, updatedUser));
         return true;
       }
-  })
+    });
     return false;
-  };
+  }
 
 }

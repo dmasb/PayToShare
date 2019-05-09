@@ -3,9 +3,9 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {Product} from '../../models/products/product';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {Tag} from '../../models/products/tag';
-import {firestore} from 'firebase/app';
-import Timestamp = firestore.Timestamp;
+import {MessageService} from '../message.service';
+import {alerts} from '../../models/alerts';
+import {Plan} from '../../models/products/plan';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +14,9 @@ import Timestamp = firestore.Timestamp;
 export class ProductsService {
 
   private products: Observable<Product[]>;
-  private productBeingDeleted: string;
 
-  constructor(private afs: AngularFirestore) {
-    this.productBeingDeleted = null;
+  constructor(private afs: AngularFirestore,
+              private messageService: MessageService) {
   }
 
   /*
@@ -39,55 +38,40 @@ export class ProductsService {
     );
   }
 
-  getProductDoc(productID: string) {
-    return this.afs.doc(`products/${productID}`);
+  // Temporary
+  getSaleProducts(): Observable<Product[]> {
+    return this.afs.collection('products').snapshotChanges().pipe(
+      map(products => {
+        return products.map(product => {
+          return {
+            id: product.payload.doc.id,
+            ...product.payload.doc.data()
+          } as Product;
+        }).filter(product => product.tagIDs.filter(res => {
+          return this.afs.collection('sales').ref.where('salesObjectsID', '==', res).get().then(
+            r => {
+              return res;
+            }
+          );
+        }));
+      })
+    );
   }
 
-  getTagJson(productID: string) {
-    return this.afs.doc(`products/${productID}`).ref.get().then(product => {
-      return {
-        id: product.id,
-        ...product.data()
-      } as Product;
-    });
+  async addProduct(product: Product) {
+    await this.afs.collection('products').add(Object.assign({}, product));
+    this.messageService.add(product.title + ' was successfully added!', alerts.success);
   }
 
 
-  addProduct(product: Product) {
-    this.afs.collection('products').add(Object.assign({}, product));
+  async confirmDelete(product: Product) {
+    await this.afs.collection('products').doc(product.id).delete();
+    this.messageService.add(product.title + ' was successfully deleted!', alerts.success);
   }
 
-  available(productId: string): boolean {
-    if (this.productBeingDeleted === null) {
-      this.productBeingDeleted = productId;
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  remove() {
-    this.afs.doc(`products/${this.productBeingDeleted}`).delete();
-    this.productBeingDeleted = null;
-  }
-
-  cancel() {
-    this.productBeingDeleted = null;
-  }
-
-  update(product: Product) {
-    console.log(product.id);
-    console.log(product.id);
-    console.log(product.id);
-    console.log(product.id);
-    console.log(product.id);
-    console.log(product.id);
-    console.log(product.id);
-    console.log(product.id);
-    console.log(product.id);
-    console.log(product.id);
-
-    this.afs.doc(`products/${product.id}`).update(Object.assign({}, product));
+  async update(product: Product) {
+    await this.afs.collection('products').doc(product.id).update(Object.assign({}, product));
+    this.messageService.add(product.title + ' was successfully edited!', alerts.success);
   }
 
 }
