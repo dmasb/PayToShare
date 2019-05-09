@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DotdOverviewComponent } from './dotd-overview.component';
+import { SaleOverviewComponent } from './sale-overview.component';
 
-describe('DotdManagementComponent', () => {
-  let component: DotdOverviewComponent;
-  let fixture: ComponentFixture<DotdOverviewComponent>;
+describe('SaleOverviewComponent', () => {
+  let component: SaleOverviewComponent;
+  let fixture: ComponentFixture<SaleOverviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DotdOverviewComponent ]
+      declarations: [ SaleOverviewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DotdOverviewComponent);
+    fixture = TestBed.createComponent(SaleOverviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

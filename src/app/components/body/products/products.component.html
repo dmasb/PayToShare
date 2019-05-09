@@ -1,6 +1,6 @@
 
 <div class="row mt-5" >
-  <div class="col-lg-3 col-sm-6 float-left mt-2" *ngFor="let product of regularProducts | async">
+  <div class="col-lg-3 col-sm-6 float-left mt-2" *ngFor="let product of products">
     <div class="card-group display-flex">
       <div class="card">
         <div class="card-top">
@@ -12,7 +12,7 @@
           <h5 class="card-title">{{product.title}}</h5>
           <p class="card-text">Price: {{product.price | currency}}</p>
           <p class="card-text">Category:
-            <span *ngFor="let tag of product.tags">{{tag.name}} </span></p>
+            <span *ngFor="let tag of product.tagIDs">{{tag}} </span></p>
           <p class="card-text">Info: {{product.description}}</p>
         </div>
         <div class="card-stock">Stock: {{product.quantity}}</div>

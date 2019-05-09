@@ -1,15 +1,25 @@
-import {Tag} from './tag';
-import * as url from 'url';
-import {Format} from './format';
 
-export interface Product {
+export interface ProductModel {
   id?: string;
   title?: string;
-  tags?: Tag[];
-  format: Format;
+  tagIDs?: string[];
+  formatID: string;
   description?: string;
   price?: number;
   quantity?: number;
-  imageUrl?: url;
+  imageUrl?: string;
 }
 
+export class Product implements ProductModel {
+  constructor() {
+  }
+
+  id?: string;
+  title?: string;
+  tagIDs?: string[];
+  formatID: string;
+  description?: string;
+  price?: number;
+  quantity?: number;
+  imageUrl?: string = null;
+}

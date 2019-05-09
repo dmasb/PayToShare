@@ -1,0 +1,69 @@
+<div class="row mt-5">
+  <div class="col-3">
+    <div class="nav flex-column nav-pills mt-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+      <a class="btn btn-outline-dark text-left" id="v-pills-planSales-tab" data-toggle="pill" href="#v-pills-planSales"
+         role="tab"
+         aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon:  plus-circle; ratio: 1"
+                                                                     class="mr-2"></span>Plan sale</a>
+      <a class="btn btn-outline-dark text-left mt-2" id="v-pills-tagSales-tab" data-toggle="pill"
+         href="#v-pills-tagSales"
+         role="tab"
+         aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon:  plus-circle; ratio: 1"
+                                                                     class="mr-2"></span>Tag sale</a>
+
+      <a class="btn btn-outline-dark text-left mt-2 active" id="v-pills-salesOverview-tab" data-toggle="pill"
+         href="#v-pills-salesOverview"
+         role="tab"
+         aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon: list; ratio: 1"
+                                                                     class="mr-2"></span>Overview</a>
+    </div>
+  </div>
+  <div class="col-9">
+    <div class="tab-content" id="v-pills-tabContent">
+
+      <div class="tab-pane fade" id="v-pills-planSales" role="tabpanel" aria-labelledby="v-pills-planSales-tab">
+        <app-add-plan-sale [plans]="plans"></app-add-plan-sale>
+      </div>
+
+      <div class="tab-pane fade" id="v-pills-tagSales" role="tabpanel"
+           aria-labelledby="v-pills-tagSales-tab">
+        <app-add-tag-sale [tags]="tags"></app-add-tag-sale>
+      </div>
+
+      <div class="tab-pane fade show active" id="v-pills-salesOverview" role="tabpanel"
+           aria-labelledby="v-pills-salesOverview-tab">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Type</th>
+            <th scope="col">Includes</th>
+            <th scope="col">Discount</th>
+            <th scope="col">Beings</th>
+            <th scope="col">Ends</th>
+            <th scope="col">Action(s)</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let sale of sales; index as i">
+            <td>{{ sale.name }}</td>
+            <td>{{ sale.type }}</td>
+            <td>
+              <p *ngFor="let objectID of sale.salesObjectsIDs; index as j">
+                {{ getName(objectID, sale.type) }},
+              </p>
+            </td>
+            <td>{{ sale.discount | number}}</td>
+            <td>{{ sale.begins }}</td>
+            <td>{{ sale.ends }}</td>
+            <td>
+              <app-delete-sale [sale]="sale"></app-delete-sale>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

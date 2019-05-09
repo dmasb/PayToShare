@@ -6,14 +6,14 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>Are you sure u want to delete <code>{{name}}</code> ?</p>
+    <p>Are you sure u want to delete <code>{{tag.name}}</code> ?</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="cancelDelete(); modal.close('Close click');">Cancel</button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click');">Cancel</button>
     <button type="button" class="btn btn-light" (click)="confirmDelete(); modal.close('Close click');">Delete</button>
   </div>
 </ng-template>
 <a role="button" style="cursor: pointer;"
-   (click)="openCenteredDialog(confirmDeleteModal); requestDeleteTag(id)">
+   (click)="openCenteredDialog(confirmDeleteModal);">
   <span uk-icon="icon: trash"></span>
 </a>

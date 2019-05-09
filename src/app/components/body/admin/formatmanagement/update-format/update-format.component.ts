@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormatService} from '../../../../../services/product/format.service';
+import {Format} from '../../../../../models/products/format';
 
 @Component({
   selector: 'app-update-format',
@@ -10,8 +11,7 @@ import {FormatService} from '../../../../../services/product/format.service';
 })
 export class UpdateFormatComponent implements OnInit {
 
-  @Input() id: string;
-  @Input() name: string;
+  @Input() private format: Format;
 
   newFormatNameForm = new FormGroup({
     formatID: new FormControl(''),
@@ -29,9 +29,9 @@ export class UpdateFormatComponent implements OnInit {
   }
 
   editFormat() {
-    this.formatService.updateFormat(
-      this.newFormatNameForm.controls.formatID.value,
-      this.newFormatNameForm.controls.formatName.value);
+    this.format.name = this.newFormatNameForm.controls.formatName.value;
+    this.formatService.updateFormat(this.format);
     this.modalService.dismissAll();
+    this.newFormatNameForm.reset();
   }
 }

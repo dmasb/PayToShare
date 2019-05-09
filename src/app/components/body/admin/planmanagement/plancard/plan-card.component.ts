@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {Plan} from '../../../../../models/products/plan';
 import {License} from '../../../../../models/products/license';
 
 @Component({
@@ -7,12 +8,8 @@ import {License} from '../../../../../models/products/license';
   styleUrls: ['./plan-card.component.scss']
 })
 export class PlanCardComponent implements OnInit {
-  @Input() private title: string;
-  @Input() private speed: number;
-  @Input() private charge: number;
-  @Input() private licenses: License[];
-  @Input() private description: string;
-
+  @Input() private plan: Plan;
+  @Input() private selectedLicenses: License[];
   constructor() {
   }
 
