@@ -33,7 +33,7 @@ export class ProductsService {
             ...product.payload.doc.data()
           } as Product;
         }).filter(
-          product => product.tags.find(tag => (tags.length > 0) ? tags.includes(tag.name) : true)
+          product => (tags.length > 0) ? tags.includes(product.id) : true
         );
       })
     );
@@ -54,7 +54,7 @@ export class ProductsService {
 
 
   addProduct(product: Product) {
-    this.afs.collection('products').add(product);
+    this.afs.collection('products').add(Object.assign({}, product));
   }
 
   available(productId: string): boolean {
@@ -76,29 +76,18 @@ export class ProductsService {
   }
 
   update(product: Product) {
-    this.afs.doc(`products/${product.id}`).update(product);
+    console.log(product.id);
+    console.log(product.id);
+    console.log(product.id);
+    console.log(product.id);
+    console.log(product.id);
+    console.log(product.id);
+    console.log(product.id);
+    console.log(product.id);
+    console.log(product.id);
+    console.log(product.id);
+
+    this.afs.doc(`products/${product.id}`).update(Object.assign({}, product));
   }
 
-  markAsDeals(productIDs: string[]) {
-    productIDs.forEach(id => {
-      this.afs.collection('products').doc(id).update({test: 'testing'});
-    });
-
-    productIDs.forEach(id => {
-      const product = this.getTagJson(id);
-      product.then(s => {
-        if (s.tags.findIndex(res => res.name === 'Deal of the Day') === -1) {
-          const tag: Tag = {
-            name: 'Deal of the Day',
-            products: 0,
-            created: Timestamp.now()
-          };
-          s.tags.push(tag);
-          this.afs.collection('products').doc(id).update({
-            tags: s.tags
-          });
-        }
-      });
-    });
-  }
 }

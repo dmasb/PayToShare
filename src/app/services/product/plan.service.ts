@@ -11,10 +11,8 @@ import {map} from 'rxjs/operators';
 export class PlanService {
 
   private plans: Observable<Plan[]>;
-  private planBeingDeleted: string;
 
   constructor(private afs: AngularFirestore) {
-    this.planBeingDeleted = null;
   }
 
   getPlans(): Observable<Plan[]> {
@@ -30,48 +28,20 @@ export class PlanService {
     );
   }
 
-  getPlanDoc(tagID: string) {
-    return this.afs.doc(`plans/${tagID}`);
-  }
-
-  getPlanJson(planID: string) {
-    return this.afs.doc(`plans/${planID}`).ref.get().then(plan => {
-      return {
-        id: plan.id,
-        ...plan.data()
-      };
-    });
-  }
-
   addPlan(plan: Plan) {
-    console.log('heeeeeeeeeere');
-    this.afs.collection('plans').add(plan);
+    this.afs.collection('plans').add(Object.assign({}, plan));
   }
 
-  available(planID: string): boolean {
-    if (this.planBeingDeleted === null) {
-      this.planBeingDeleted = planID;
-      return true;
+  confirmDelete(plan: Plan) {
+    const usedInSale = this.afs.collection('sales').ref.where('salesObjectsIDs', 'array-contains', plan.id)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
+    if (usedInSale) {
+      console.log('Plan is used in a sale, please remove sale first!');
     } else {
-      return false;
+      this.afs.collection('plans').doc(plan.id).delete();
     }
-  }
-
-  remove() {
-    console.log('HEREEEEEEEEEEE');
-    console.log('ID: ' + this.planBeingDeleted);
-    this.afs.doc(`plans/${this.planBeingDeleted}`).delete();
-    this.planBeingDeleted = null;
-  }
-
-  cancel() {
-    this.planBeingDeleted = null;
-  }
-
-  updatePlan(planID: string, planName: string) {
-    this.afs.doc(`plans/${planID}`).update({
-      name: planName
-    });
   }
 }
 

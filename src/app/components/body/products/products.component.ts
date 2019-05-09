@@ -10,16 +10,12 @@ import {Observable} from 'rxjs';
 })
 export class ProductsComponent implements OnInit {
 
-  private salesProducts: Observable<Product[]>;
-  private regularProducts: Observable<Product[]>;
+  private products: Product[];
 
   constructor(private productsService: ProductsService) {
   }
 
   ngOnInit() {
-
-    this.salesProducts = this.productsService.getProductsByTag(['Deal of the Day']);
-
-    this.regularProducts = this.productsService.getProductsByTag([]);
+    this.productsService.getProductsByTag([]).subscribe(products => this.products = products);
   }
 }

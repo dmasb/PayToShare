@@ -2,8 +2,6 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Tag} from '../../models/products/tag';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {firestore} from 'firebase/app';
-import Timestamp = firestore.Timestamp;
 import {map} from 'rxjs/operators';
 
 @Injectable({
@@ -31,51 +29,43 @@ export class TagService {
     );
   }
 
-  getTagDoc(tagID: string) {
-    return this.afs.doc(`tags/${tagID}`);
+  addTag(tag: Tag) {
+    this.afs.collection('tags').add(Object.assign({}, tag));
   }
 
-  getTagJson(tagID: string) {
-    return this.afs.doc(`tags/${tagID}`).ref.get().then(tag => {
-      return {
-        id: tag.id,
-        ...tag.data()
-      } as Tag;
-    });
-  }
+  async confirmDelete(tag: Tag) {
+    const usedInSales = await this.afs.collection('sales').ref.where('salesObjectsIDs', 'array-contains', tag.id)
+      .get().then(res => {
+        console.log(res);
+        return !res.empty as boolean;
+      });
 
-  addTag(tagName: string) {
-    const tag: Tag = {
-      name: tagName,
-      products: 0,
-      created: Timestamp.now()
-    };
+    const usedInLicenses = await this.afs.collection('licenses').ref.where('tagID', '==', tag.id)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
 
-    this.afs.collection('tags').add(tag);
-  }
+    const usedInProducts = await this.afs.collection('products').ref.where('tagIDs', 'array-contains', tag.id)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
 
-  available(tagID: string): boolean {
-    if (this.tagBeingDeleted === null) {
-      this.tagBeingDeleted = tagID;
-      return true;
+    if (usedInSales) {
+      console.log('tag is on sale, remove sale first');
+    } else if (usedInLicenses) {
+      console.log('tag is included in a license, remove license first');
+    } else if (usedInProducts) {
+      console.log('tag is included in products, remove products tagged with this tag first');
     } else {
-      return false;
+      this.afs.collection('tags').doc(tag.id).delete();
     }
   }
 
-  remove() {
-    this.afs.doc(`tags/${this.tagBeingDeleted}`).delete();
-    this.tagBeingDeleted = null;
-  }
-
-  cancel() {
-    this.tagBeingDeleted = null;
-  }
-
-  updateTag(tagID: string, tagName: string) {
-    this.afs.doc(`tags/${tagID}`).update({
-      name: tagName
+  updateTag(tag: Tag) {
+    this.afs.doc(`tags/${tag.id}`).update({
+      name: tag.name
     });
   }
 }
+
 

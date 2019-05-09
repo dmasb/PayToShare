@@ -1,13 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {AngularFirestore, DocumentReference} from '@angular/fire/firestore';
-import {firestore} from 'firebase/app';
-import Timestamp = firestore.Timestamp;
-import {LicenseService} from './license.service';
-import {TagService} from './tag.service';
-import {FormatService} from './format.service';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {map} from 'rxjs/operators';
 import {Sale} from '../../models/products/sale';
+import {SaleType} from '../../models/saleType';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +11,8 @@ import {Sale} from '../../models/products/sale';
 export class SalesService {
 
   sales: Observable<Sale[]>;
-  salesBeingDeleted: string;
 
-  constructor(private afs: AngularFirestore,
-              private formatService: FormatService,
-              private tagService: TagService,
-              private licenseService: LicenseService) {
-    this.salesBeingDeleted = null;
+  constructor(private afs: AngularFirestore) {
   }
 
   getSales(): Observable<Sale[]> {
@@ -38,51 +29,42 @@ export class SalesService {
 
   }
 
-  getSalesDoc(saleID: string) {
-    return this.afs.doc(`sales/${saleID}`);
+  confirmDelete(sale: Sale) {
+    this.deleteSale(sale);
   }
 
-  async addSale(saleName: string, licenseID: string, formatID: string, tagID: string) {
-
-    const licenseObj = await this.licenseService.getLicenseJson(licenseID);
-    const formatObj = await this.formatService.getFormatJson(formatID);
-    const tagObj = await this.tagService.getTagJson(tagID);
-
-    const sale: Sale = {
-      name: saleName,
-      licenseRef: licenseObj,
-      formatRef: formatObj,
-      tagRef: tagObj,
-      created: Timestamp.now()
-    };
-
-    this.afs.collection('sales').add(sale);
+  addSale(saleObject: Sale) {
+    this.afs.collection('sales').add(Object.assign({}, saleObject)).then(
+      sale => {
+        if (saleObject.type === SaleType.TAG) {
+          saleObject.salesObjectsIDs.forEach(tagID => {
+            this.afs.collection('tags').doc(tagID).update({salesID: sale.id});
+          });
+        } else if (saleObject.type === SaleType.PLAN) {
+          saleObject.salesObjectsIDs.forEach(planID => {
+            this.afs.collection('plans').doc(planID).update({salesID: sale.id});
+          });
+        }
+      }
+    );
   }
 
-  available(saleID: string): boolean {
-    if (this.salesBeingDeleted === null) {
-      this.salesBeingDeleted = saleID;
-      return true;
-    } else {
-      return false;
-    }
-  }
+  private deleteSale(saleObject: Sale) {
 
-  remove() {
-    this.afs.doc(`sales/${this.salesBeingDeleted}`).delete();
-    this.salesBeingDeleted = null;
-  }
-
-  cancel() {
-    this.salesBeingDeleted = null;
-  }
-
-  updateSales(saleID: string, formatReference: DocumentReference, tagReference: DocumentReference) {
-    this.afs.doc(`sales/${saleID}`).update({
-      formatRef: formatReference,
-      tagRef: tagReference
+    console.log(saleObject.id);
+    this.afs.collection('sales').doc(saleObject.id).ref.get().then(sale => {
+      if (sale.exists) {
+        if (saleObject.type === SaleType.TAG) {
+          saleObject.salesObjectsIDs.forEach(tagID => {
+            this.afs.collection('tags').doc(tagID).update({salesID: null});
+          });
+        } else if (saleObject.type === SaleType.PLAN) {
+          saleObject.salesObjectsIDs.forEach(tagID => {
+            this.afs.collection('plans').doc(tagID).update({salesID: null});
+          });
+        }
+        sale.ref.delete();
+      }
     });
   }
-
-
 }

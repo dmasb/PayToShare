@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {TagService} from '../../../../../services/product/tag.service';
+import {Tag} from '../../../../../models/products/tag';
 
 @Component({
   selector: 'app-delete-tag',
@@ -9,8 +10,7 @@ import {TagService} from '../../../../../services/product/tag.service';
 })
 export class DeleteTagComponent implements OnInit {
 
-  @Input() id: string;
-  @Input() name: string;
+  @Input() tag: Tag;
 
   constructor(private tagService: TagService, private modalService: NgbModal) {
   }
@@ -22,15 +22,8 @@ export class DeleteTagComponent implements OnInit {
     this.modalService.open(confirmDeleteTag, {centered: true});
   }
 
-  requestDeleteTag(tagID) {
-    this.tagService.available(tagID);
-  }
-
   confirmDelete() {
-    this.tagService.remove();
+    this.tagService.confirmDelete(this.tag);
   }
 
-  cancelDelete() {
-    this.tagService.cancel();
-  }
 }
