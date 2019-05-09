@@ -1,27 +1,79 @@
-<div class="container">
-  <div class="card-columns">
-    <div class="card mb-4 mt-3" *ngFor="let product of products">
-      <div class="card-body">
-        <img *ngIf="product.imageUrl != null" class="card-img-top img-fluid" src="{{product.imageUrl}}"
-             alt="Card image cap">
-        <h5 class="card-title mt-2">{{product.title}}</h5>
-        <p class="card-text">
-          <span *ngFor="let tag of product.tagIDs">
-            <h3>{{getTagName(tag)}}</h3>
-          </span></p>
-        <p class="card-text">{{product.description}}</p>
-        <p *ngIf="product.quantity == null" class="card-stock"><i class="fa fa-square null"></i> {{product.quantity}}
-          out of stock</p>
-        <p *ngIf="product.quantity != null" class="card-stock"><i class="fa fa-square"></i> {{product.quantity}} in
-          stock</p>
-        <div class="card-footer">
-          <p class="price">{{product.price | currency}}
-            <a href="javascript:void(0)" class="btn btn-sm float-right">
-              Buy
-            </a>
-          </p>
+<header id="top">
+<h2 id="licenseHeading">Our plans</h2>
+<div class="container top">
+  <div class="row">
+    <div class="col-lg">
+      <h4>Premium</h4>
+      <ul>
+        <li>PayToShare big plan</li>
+        <li>All formats and tags</li>
+        <li>All content on PayToShare</li>
+        <li>Speed: 200 mb/s</li>
+      </ul>
+    </div>
+    <div class="col-lg">
+      <h4>Big</h4>
+      <ul>
+        <li>PayToShare exclusive Cap</li>
+        <li>All content from 3 different formats/tags</li>
+        <li>Speed: 200 mb/s</li>
+      </ul>
+    </div>
+    <div class="col-lg">
+      <h4>Bas+</h4>
+      <ul>
+        <li>PayToShare bas plan</li>
+        <li>All content from 2 different formats/tags</li>
+        <li>PayToShare pin and cupholder</li>
+        <li>Speed: 150 mb/s</li>
+      </ul>
+    </div>
+    <div class="col-lg">
+      <h4>Bas</h4>
+      <ul>
+        <li>PayToShare cupholder</li>
+        <li>All content from on format/tag</li>
+        <li>Speed: 100 mb/s</li>
+      </ul>
+    </div>
+  </div>
+  <div class="text-center">
+  <button class="btn mt-2 mb-3" routerLink="/weeklydeals">Read more about our plans</button>
+</div>
+</div>
+</header>
+
+<!-- Next row -->
+<div class="row">
+  <div class="col-2 border">LEFT STUFF</div>
+  <div class="col-8 ">
+    <div class="container">
+      <div class="card-columns">
+        <div class="card mb-4 sm-4 mt-3" *ngFor="let product of products">
+          <div class="card-body">
+            <img class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="Card image cap">
+            <h5 class="card-title mt-2">{{product.title}}</h5>
+            <p class="card-text">
+              <span *ngFor="let tag of product.tagIDs">
+                <h3>{{getTagName(tag)}}</h3>
+              </span></p>
+            <p class="card-text">{{product.description}}</p>
+            <p *ngIf="product.quantity == null" class="card-stock"><i class="fa fa-square null"></i>
+              {{product.quantity}}
+              out of stock</p>
+            <p *ngIf="product.quantity != null" class="card-stock"><i class="fa fa-square"></i> {{product.quantity}} in
+              stock</p>
+            <div class="card-footer">
+              <p class="price">{{product.price | currency}}
+                <a href="javascript:void(0)" class="btn btn-sm float-right">
+                  Buy
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="col-2 border">RIGHT STUFF</div>
 </div>

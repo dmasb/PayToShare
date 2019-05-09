@@ -2,20 +2,14 @@
   <div class="card-columns">
     <div class="card mb-4 mt-3" *ngFor="let plan of salePlans">
       <div class="card-body">
-<<<<<<< HEAD
         <img class="card-img-top img-fluid max-width" src="{{plan.imageUrl}}" alt="{{product.imageUrl}}">
-=======
-        <img class="card-img-top img-fluid" src="{{plan.imageUrl}}" alt="{{plan.imageUrl}}">
->>>>>>> 297a6c96da1a5a7c689d9a8a5ed7e899070051f0
         <h5 class="card-title mt-2">{{plan.title}}</h5>
         <h6>Speed: {{plan.speed}} mb/s</h6>
         <p>Included licenses:</p>
         <div *ngFor="let license of plan.licenseIDs">
           <p>({{license }})</p>
         </div>
-        <p *ngIf="plan.quantity == null" class="card-stock"><i class="fa fa-square null"></i> {{plan.quantity}}
-          out of stock</p>
-        <p *ngIf="plan.quantity != null" class="card-stock"><i class="fa fa-square"></i> {{plan.quantity}} in
+        <p class="card-stock"><i class="fa fa-square"></i> {{plan.quantity}} in
           stock</p>
         <div class="card-footer">
           <p class="price">{{plan.price | currency}}

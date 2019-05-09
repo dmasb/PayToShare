@@ -88,11 +88,22 @@
 //   font-family: 'Roboto Slab', serif;
 // }
 
-.container{
-  box-shadow: 2px 2px 2px 2px lightgray;
+
+#licenseHeading{
+  text-align: center;
+}
+
+#top{
+  background-color: #c4c4c5;
+}
+h4{
+  padding-left: 20px;
 }
 
 
+
+
+/* Card design */
 .card{
   border: #2d2d30;
   background-color: #e4e1e1;
@@ -132,10 +143,11 @@
   background-color:#2d2d30;
   text-align:center;
   transition: all 0.2s;
+  box-shadow: 2px 2px 2px 2px #252323;
 }
 
 .btn:hover{
-  background-color:#969697;
+  background-color:#5e5e5f;
 }
 
 .fa.fa-square{

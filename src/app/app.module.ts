@@ -53,6 +53,7 @@ import {AddTagSaleComponent} from './components/body/admin/salemanegement/add-ta
 import {AddPlanSaleComponent} from './components/body/admin/salemanegement/add-plan-sale/add-plan-sale.component';
 import {SaleOverviewComponent} from './components/body/admin/salemanegement/sale-overview/sale-overview.component';
 import { DeleteSaleComponent } from './components/body/admin/salemanegement/delete-sale/delete-sale.component';
+import { PlaninfoComponent } from './planinfo/planinfo.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import { DeleteSaleComponent } from './components/body/admin/salemanegement/dele
     AddPlanSaleComponent,
     SaleOverviewComponent,
     DeleteSaleComponent,
+    PlaninfoComponent,
   ],
   imports: [
     BrowserModule,

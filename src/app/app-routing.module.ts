@@ -15,6 +15,8 @@ import {DashboardComponent} from './components/body/admin/dashboard/dashboard.co
 import {SalesComponent} from './components/body/sales/sales.component';
 
 
+
+
 export const routes: Routes = [
   {path: '', redirectTo: '', component: SalesComponent, pathMatch: 'full'},
   {path: 'products', component: ProductsComponent},
