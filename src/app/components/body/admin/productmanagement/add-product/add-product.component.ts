@@ -20,8 +20,8 @@ import * as url from 'url';
 })
 export class AddProductComponent implements OnInit {
 
-  private tags: Observable<Tag[]>;
-  private formats: Observable<Format[]>;
+  private tags: Tag[];
+  private formats: Format[];
   private selectedTags: Tag[] = [];
 
   private newProductForm = new FormGroup({
@@ -43,20 +43,19 @@ export class AddProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formats = this.formatService.getFormats();
-    this.tags = this.tagService.getTags();
+    this.formatService.getFormats().subscribe(formats => this.formats = formats);
+    this.tagService.getTags().subscribe(tags => this.tags = tags);
   }
 
   pushTag() {
 
     const selected: Tag = JSON.parse(this.newProductForm.controls.productTag.value);
-    console.log(selected);
     if (this.selectedTags.findIndex(obj => obj.id === selected.id) === -1 && selected.id) {
       this.selectedTags.push(selected);
     }
-    console.log('###############################################');
+    console.log('####################');
     this.selectedTags.forEach(s => console.log(s));
-    console.log('###############################################');
+    console.log('####################');
   }
 
   popTag(selectedTag: object) {

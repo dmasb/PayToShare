@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../../../../../models/products/product';
 import {ProductsService} from '../../../../../services/crud/products.service';
-import {Observable} from 'rxjs';
-import {Tag} from '../../../../../models/products/tag';
 
 @Component({
   selector: 'app-product-overview',
@@ -14,33 +12,36 @@ export class ProductOverviewComponent implements OnInit {
   page = 1;
   pageSize = 4;
   name: any;
-  private products: Observable<Product[]>;
+  private products: Product[];
   collectionSize: number;
-
   private selectedProducts: string[] = [];
 
-
   constructor(private productsService: ProductsService) {
-
   }
 
   ngOnInit() {
-    this.products = this.productsService.getProductsDashboard();
+    this.productsService.getProductsByTag([]).subscribe(products => this.products = products);
   }
 
-  sort(){
-    var value = (document.getElementById("sortID") as HTMLSelectElement);
-    var selected = value.selectedIndex;
-    if(selected === 0){
-      this.products = this.productsService.sortByPrice();
-    }
-    else if(selected === 1){
-      this.products = this.productsService.sortByTitle();
-    }
-    else if(selected === 2){
-      this.products = this.productsService.sortByQuantity();
+  sort() {
+    const selectedOption = (document.getElementById('sortID') as HTMLSelectElement);
+
+    switch (selectedOption.value) {
+      case 'Price': {
+        this.products.sort((a, b) => (a.price > b.price) ? -1 : 1);
+        break;
+      }
+      case 'Title': {
+        this.products.sort((a, b) => (a.title > b.title) ? -1 : 1);
+        break;
+      }
+      case 'Quantity': {
+        this.products.sort((a, b) => (a.quantity > b.quantity) ? -1 : 1);
+        break;
+      }
     }
   }
+
 
   checkProduct(productID: string) {
 
@@ -58,8 +59,8 @@ export class ProductOverviewComponent implements OnInit {
   onSubmit() {
     // pages
   }
-
+  /*
   markAsDeals() {
     this.productsService.markAsDeals(this.selectedProducts);
-  }
+  } */
 }

@@ -8,14 +8,12 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
-import {HomeComponent} from './components/body/home/home.component';
 import {FeaturesComponent} from './components/body/features/features.component';
 import {WeeklydealsComponent} from './components/body/weeklydeals/weeklydeals.component';
 import {PricingComponent} from './components/body/pricing/pricing.component';
 import {MypageComponent} from './components/body/mypage/mypage.component';
 import {RegisterComponent} from './components/body/register/register.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
-import {IndexComponent} from './components/body/index/index.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {NgbActiveModal, NgbDatepickerModule, NgbModalModule, NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
@@ -52,19 +50,18 @@ import {DeletePlanComponent} from './components/body/admin/planmanagement/delete
 import {ImageUploadTemplateComponent} from './components/body/admin/image-upload-template/image-upload-template.component';
 import {DotdOverviewComponent} from './components/body/admin/dotd-management/dotd-overview/dotd-overview.component';
 import {AddDotdComponent} from './components/body/admin/dotd-management/add-dotd/add-dotd.component';
+import {SalesComponent} from './components/body/sales/sales.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     AppComponent,
     RegisterComponent,
-    HomeComponent,
     PricingComponent,
     FeaturesComponent,
     WeeklydealsComponent,
     MypageComponent,
     PasswordrecoveryComponent,
-    IndexComponent,
     FooterComponent,
     Error404Component,
     ProductsComponent,
@@ -93,6 +90,7 @@ import {AddDotdComponent} from './components/body/admin/dotd-management/add-dotd
     ImageUploadTemplateComponent,
     DotdOverviewComponent,
     AddDotdComponent,
+    SalesComponent,
   ],
   imports: [
     BrowserModule,

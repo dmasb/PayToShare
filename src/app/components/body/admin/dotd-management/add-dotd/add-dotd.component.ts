@@ -6,9 +6,8 @@ import {TagService} from '../../../../../services/product/tag.service';
 import {FormatService} from '../../../../../services/product/format.service';
 import {LicenseService} from '../../../../../services/product/license.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Observable} from 'rxjs';
 import {License} from '../../../../../models/products/license';
-import { SalesService } from 'src/app/services/product/sales.service';
+import {SalesService} from 'src/app/services/product/sales.service';
 
 @Component({
   selector: 'app-add-dotd',
@@ -17,9 +16,9 @@ import { SalesService } from 'src/app/services/product/sales.service';
 })
 export class AddDotdComponent implements OnInit {
 
-  private tags: Observable<Tag[]>;
-  private formats: Observable<Format[]>;
-  private licenses: Observable<License[]>;
+  private tags: Tag[];
+  private formats: Format[];
+  private licenses: License[];
 
   newSalesForm = new FormGroup({
     salesName: new FormControl(''),
@@ -29,16 +28,16 @@ export class AddDotdComponent implements OnInit {
   });
 
   constructor(private licenseService: LicenseService,
-    private modalService: NgbModal,
-    private tagService: TagService,
-    private formatService: FormatService,
-    private saleService: SalesService) {
-}
+              private modalService: NgbModal,
+              private tagService: TagService,
+              private formatService: FormatService,
+              private saleService: SalesService) {
+  }
 
   ngOnInit() {
-    this.tags = this.tagService.getTags();
-    this.formats = this.formatService.getFormats();
-    this.licenses = this.licenseService.getLicenses();
+    this.tagService.getTags().subscribe(tags => this.tags = tags);
+    this.formatService.getFormats().subscribe(formats => this.formats = formats);
+    this.licenseService.getLicenses().subscribe(licenses => this.licenses = licenses);
   }
 
   addSale() {
