@@ -17,17 +17,7 @@ import {UploadImageService} from '../../../../../services/upload-image.service';
 })
 export class PlanBuilderComponent implements OnInit {
 
-  private tempPlan: Plan = {
-    title: 'Xtreme plus',
-    speed: 2000,
-    price: 99,
-    licenses: null,
-    description: 'This plans is specifically tailored for nerds, especially those who ' +
-      'play nab moba-like games and like to share garbage memes ',
-    imageUrl: 'https://firebasestorage.googleapis.com/v0/b/paytoshare-b4cd1.appspot.com/o/' +
-      'productImage%2Fitemimg.svg?alt=media&token=130ed9f0-6e1a-4d93-abf3-62d77de18599'
-  };
-
+  private plan: Plan;
   private licenses: License[];
   private selectedLicenses: License[] = [];
 
@@ -35,6 +25,7 @@ export class PlanBuilderComponent implements OnInit {
     planName: new FormControl(''),
     planSpeed: new FormControl(''),
     planPrice: new FormControl(''),
+    planQuantity: new FormControl(''),
     planDesc: new FormControl(''),
     planLicense: new FormControl(''),
     productImageUrl: new FormControl('')
@@ -43,6 +34,7 @@ export class PlanBuilderComponent implements OnInit {
   constructor(private licenseService: LicenseService,
               private planService: PlanService,
               private uploadImageService: UploadImageService) {
+    this.plan = new Plan();
   }
 
   ngOnInit() {
@@ -55,10 +47,6 @@ export class PlanBuilderComponent implements OnInit {
       if (this.selectedLicenses.findIndex(obj => obj.id === selected.id) === -1 && selected.id) {
         this.selectedLicenses.push(selected);
       }
-      console.log('###############################################');
-      console.log(selected.tagRef.name);
-      this.selectedLicenses.forEach(s => console.log(s));
-      console.log('###############################################');
     }
   }
 
@@ -67,15 +55,19 @@ export class PlanBuilderComponent implements OnInit {
   }
 
   createPlan() {
+    const licenses: string[] = [];
+    this.selectedLicenses.forEach(licence => licenses.push(licence.id));
 
-    this.tempPlan.title = this.newPlanForm.controls.planName.value;
-    this.tempPlan.speed = this.newPlanForm.controls.planSpeed.value;
-    this.tempPlan.price = this.newPlanForm.controls.planPrice.value;
-    this.tempPlan.description = this.newPlanForm.controls.planDesc.value;
-    this.tempPlan.licenses = this.selectedLicenses;
-    this.tempPlan.imageUrl = this.getImageUrl() || this.tempPlan.imageUrl;
-
-    this.planService.addPlan(this.tempPlan);
+    this.plan.title = this.newPlanForm.controls.planName.value;
+    this.plan.speed = this.newPlanForm.controls.planSpeed.value;
+    this.plan.price = this.newPlanForm.controls.planPrice.value;
+    this.plan.quantity = this.newPlanForm.controls.planQuantity.value;
+    this.plan.description = this.newPlanForm.controls.planDesc.value;
+    this.plan.licenseIDs = licenses;
+    this.plan.imageUrl = this.getImageUrl() || this.plan.imageUrl;
+    this.planService.addPlan(this.plan);
+    this.newPlanForm.reset();
+    this.selectedLicenses = [];
   }
 
   /*

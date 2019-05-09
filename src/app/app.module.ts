@@ -48,10 +48,11 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {PlanOverviewComponent} from './components/body/admin/planmanagement/plan-overview/plan-overview.component';
 import {DeletePlanComponent} from './components/body/admin/planmanagement/delete-plan/delete-plan.component';
 import {ImageUploadTemplateComponent} from './components/body/admin/image-upload-template/image-upload-template.component';
-import {DotdOverviewComponent} from './components/body/admin/dotd-management/dotd-overview/dotd-overview.component';
-import {AddDotdComponent} from './components/body/admin/dotd-management/add-dotd/add-dotd.component';
 import {SalesComponent} from './components/body/sales/sales.component';
-import { ShoppingcartComponent } from './components/navbar/shoppingcart/shoppingcart.component';
+import {AddTagSaleComponent} from './components/body/admin/salemanegement/add-tag-sale/add-tag-sale.component';
+import {AddPlanSaleComponent} from './components/body/admin/salemanegement/add-plan-sale/add-plan-sale.component';
+import {SaleOverviewComponent} from './components/body/admin/salemanegement/sale-overview/sale-overview.component';
+import { DeleteSaleComponent } from './components/body/admin/salemanegement/delete-sale/delete-sale.component';
 
 @NgModule({
   declarations: [
@@ -89,10 +90,11 @@ import { ShoppingcartComponent } from './components/navbar/shoppingcart/shopping
     PlanOverviewComponent,
     DeletePlanComponent,
     ImageUploadTemplateComponent,
-    DotdOverviewComponent,
-    AddDotdComponent,
     SalesComponent,
-    ShoppingcartComponent,
+    AddTagSaleComponent,
+    AddPlanSaleComponent,
+    SaleOverviewComponent,
+    DeleteSaleComponent,
   ],
   imports: [
     BrowserModule,

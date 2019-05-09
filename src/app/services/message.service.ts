@@ -9,6 +9,7 @@ export class MessageService {
   code: alerts;
 
   add(message: string, code: alerts) {
+    this.messages = [];
     this.messages.push(message);
     this.code = code;
   }

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ProductsService} from '../../../../../services/crud/products.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Product} from '../../../../../models/products/product';
 
 @Component({
   selector: 'app-delete-product',
@@ -9,11 +10,10 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class DeleteProductComponent implements OnInit {
 
-  @Input() id: string;
-  @Input() title: string;
-  @Input() description: string;
+  @Input() private product: Product;
 
-  constructor(private productsService: ProductsService, private modalService: NgbModal) {
+  constructor(private productsService: ProductsService,
+              private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -23,15 +23,7 @@ export class DeleteProductComponent implements OnInit {
     this.modalService.open(confirmDeleteModal, {centered: true});
   }
 
-  requestProductDelete() {
-    this.productsService.available(this.id);
-  }
-
   confirmDelete() {
-    this.productsService.remove();
-  }
-
-  cancelDelete() {
-    this.productsService.cancel();
+    this.productsService.confirmDelete(this.product);
   }
 }

@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormatService} from '../../../../../services/product/format.service';
+import {Format} from '../../../../../models/products/format';
+import {firestore} from 'firebase/app';
+import Timestamp = firestore.Timestamp;
 
 @Component({
   selector: 'app-add-format',
@@ -21,7 +24,11 @@ export class AddFormatComponent implements OnInit {
   }
 
   addFormat() {
-    this.formatService.addTag(this.newFormatForm.controls.formatName.value);
+    const format = new Format();
+    format.name = this.newFormatForm.controls.formatName.value;
+    format.created = Timestamp.now();
+
+    this.formatService.addFormat(format);
     this.modalService.dismissAll();
   }
 

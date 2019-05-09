@@ -1,13 +1,23 @@
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
-import {Tag} from './tag';
-import {Format} from './format';
 
 
-export interface License {
+export interface LicenseModel {
   id?: string;
   name: string;
-  tagRef: Tag;
-  formatRef: Format;
+  tagID: string;
+  formatID: string;
+  created: Timestamp;
+}
+
+
+export class License implements LicenseModel {
+  constructor() {
+  }
+
+  id?: string;
+  name: string;
+  tagID: string;
+  formatID: string;
   created: Timestamp;
 }
