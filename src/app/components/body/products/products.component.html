@@ -16,7 +16,7 @@
           stock</p>
         <div class="card-footer">
           <p class="price">{{product.price | currency}}
-            <a href="javascript:void(0)" class="btn btn-sm float-right">
+            <a class="btn btn-sm float-right" (click)="add(product)">
               Buy
             </a>
           </p>
