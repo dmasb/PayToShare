@@ -29,7 +29,8 @@ export class SalesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productsService.getSaleProducts().subscribe(products => this.products = products);
+    console.log(this.productsService.getProductDetail());
+
     this.tagService.getTags().subscribe(tags => this.tags = tags);
     this.formatService.getFormats().subscribe(formats => this.formats = formats);
     this.planService.getSalePlans().subscribe(plans => this.plans = plans);
