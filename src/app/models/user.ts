@@ -25,7 +25,7 @@ export interface IUser {
   cart?: ICart;
 }
 
-export class User {
+export class User implements IUser{
   constructor(){
   }
 

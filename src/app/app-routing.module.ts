@@ -10,7 +10,6 @@ import {RegisterComponent} from './components/body/register/register.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
 import {Error404Component} from './components/body/error404/error404.component';
 import {RoleGuardService} from './services/authentication/role-guard.service';
-import {ProductsComponent} from './components/body/products/products.component';
 import {DashboardComponent} from './components/body/admin/dashboard/dashboard.component';
 import {SalesComponent} from './components/body/sales/sales.component';
 
@@ -19,7 +18,6 @@ import {SalesComponent} from './components/body/sales/sales.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: '', component: SalesComponent, pathMatch: 'full'},
-  {path: 'products', component: ProductsComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
   {path: 'profile', component: MypageComponent, canActivate: [AuthGuard]},
   {path: 'pricing', component: PricingComponent},

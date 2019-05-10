@@ -18,12 +18,10 @@
             </div>
             <div class="carousel-item">
               <img class="item" src="../../../../assets/images/carousel/3.jpg" alt="Third slide">
-
               <!--              <video autoplay width="100%" height="420" controls id="video">-->
               <!--                <source src="../../../../assets/images/carousel/ad.mp4"  type="video/mp4" />-->
               <!--                Your browser does not support the video tag.-->
               <!--              </video>-->
-
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -39,40 +37,9 @@
     </div>
     <!--    NEXT ROW HERE-->
     <div class="row">
-      <div class="col-2 border">
-        LEFT STUFF
-      </div>
-      <div class="col-8 border">
-        <div class="container">
-          <div class="card-columns">
-            <div class="card mb-4 mt-3" *ngFor="let product of products">
-              <div class="card-body">
-                <img class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="Card image cap">
-                <h5 class="card-title mt-2">{{product.title}}</h5>
-                <p class="card-text">
-                  <span *ngFor="let tag of product.tagIDs">
-                    <h3>{{getTagName(tag)}}</h3>
-                  </span></p>
-                <p class="card-text">{{product.description}}</p>
-                <p *ngIf="product.quantity == null" class="card-stock"><i class="fa fa-square null"></i>
-                  {{product.quantity}}
-                  out of stock</p>
-                <p *ngIf="product.quantity != null" class="card-stock"><i class="fa fa-square"></i> {{product.quantity}}
-                  in
-                  stock</p>
-                <div class="card-footer">
-                  <p class="price">{{product.price | currency}}
-                    <a href="javascript:void(0)" class="btn btn-sm float-right">
-                      Buy
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-2 border">RIGHT STUFF</div>
+      <div class="col-sm-2 border">STUFF</div>
+      <div class="col-sm-8 border"><app-products></app-products></div>
+      <div class="col-sm-2 border">RIGHT STUFF</div>
     </div>
   </div>
 </div>
