@@ -1,6 +1,6 @@
-gi<div class="row">
+<div class="row">
   <div class="col-lg-3 col-sm-6 float-left mt-2" *ngFor="let product of products" id="products">
-
+    <div class="card-deck">
     <div class="card">
       <!--  IMAGE -->
       <div class="card-top">
@@ -21,9 +21,9 @@ gi<div class="row">
         <!--      FOOTER-->
       </div>
 
-      <p *ngIf="product.quantity == null" class="card-stock"><i class="fa fa-square null"></i> {{product.quantity}}
+      <p *ngIf="product.quantity == 0" class="card-stock"><i class="fa fa-square null"></i> {{product.quantity}}
         out of stock</p>
-      <p *ngIf="product.quantity != null" class="card-stock"><i class="fa fa-square"></i> {{product.quantity}} in
+      <p *ngIf="product.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{product.quantity}} in
         stock</p>
       <div class="card-footer">
         <p class="price">{{product.price | currency}}
@@ -33,5 +33,6 @@ gi<div class="row">
         </p>
       </div>
     </div>
+  </div>
   </div>
 </div>
