@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-lg-3 col-sm-6 float-left mt-2" *ngFor="let product of products" id="products">
+
     <div class="card-deck">
-    <div class="card">
       <!--  IMAGE -->
       <div class="card-top">
-        <img *ngIf="product.imageUrl == null" class="card-img-top" src="../assets/images/testimages/gd.png"
+        <img *ngIf="product.imageUrl == null" class="card-img-top null" src="../assets/images/testimages/gd.png"
              alt="Card image cap">
         <img *ngIf="product.imageUrl != null" class="card-img-top" src="{{product.imageUrl}}" alt="Card image cap">
       </div>
@@ -16,15 +16,14 @@
           <span *ngFor="let tag of product.tagIDs">
             <h6>{{getTagName(tag)}}</h6>
           </span></p>
-        <p class="card-text">{{product.description}}</p>
-
-        <!--      FOOTER-->
+        <p class="card-text ">{{product.description}}</p>
+        <br>
+        <br>
+        <p *ngIf="product.quantity == 0" class="card-stock"><i class="fa fa-square null"></i>  out of stock</p>
+        <p *ngIf="product.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{product.quantity}} in
+          stock</p>
       </div>
-
-      <p *ngIf="product.quantity == 0" class="card-stock"><i class="fa fa-square null"></i> {{product.quantity}}
-        out of stock</p>
-      <p *ngIf="product.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{product.quantity}} in
-        stock</p>
+        <!--      FOOTER-->
       <div class="card-footer">
         <p class="price">{{product.price | currency}}
           <a class="btn btn-sm float-right" (click)="add(product)" id="buy">
@@ -33,6 +32,5 @@
         </p>
       </div>
     </div>
-  </div>
   </div>
 </div>
