@@ -1,7 +1,7 @@
 <div class="row">
-  <div class="col-lg-3 col-sm-6 float-left mt-2" *ngFor="let product of products" id="products">
+  <div class="col" *ngFor="let product of products" id="products">
 
-    <div class="card-deck">
+    <div class="card">
       <!--  IMAGE -->
       <div class="card-top">
         <img *ngIf="product.imageUrl == null" class="card-img-top null" src="../assets/images/testimages/gd.png"
