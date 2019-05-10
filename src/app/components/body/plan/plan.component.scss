@@ -1,3 +1,4 @@
+
 #licenseHeading{
     text-align: center;
   }
@@ -9,9 +10,6 @@
     padding-left: 20px;
   }
 
-
-
-  
   .card{
     border: #2d2d30;
     background-color: #e4e1e1;
@@ -24,14 +22,14 @@
   
   .card-title{
     text-align: center;
-    margin: none;
-    padding: none;
+    margin: 0;
+    padding: 0;
   }
   
   .card-text{
     text-align: center;
-    padding: none;
-    margin: none;
+    padding: 0;
+    margin: 0;
   }
   
   .price{
@@ -68,12 +66,7 @@
   .card-stock{
     padding-left: 3px;
   }
-  
-  // .card:hover{
-  //   border-color: black;
-  //   box-shadow: 5px 5px 5px 5px grey;
-  // }
-  
+
   .card-body{
     padding: 0.5em;
   }
