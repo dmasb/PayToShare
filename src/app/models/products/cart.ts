@@ -24,11 +24,14 @@ export class Cart {
 
   add(product: Product){
     this.items.push(product);
+    this.numberOfItems += 1; // Update items
+    this.totalPrice = this.sum(); // update total
   }
 
   remove(product: Product){
     let x = this.items.indexOf(product);
     this.items.splice(x,1); // removes product from list properly by splicing
+    this.numberOfItems -= 1;
   }
 
   emptyCart(): void {

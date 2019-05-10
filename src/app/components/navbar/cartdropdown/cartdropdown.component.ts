@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserSessionService} from "../../../services/user-session.service";
+import {User} from "../../../models/user";
+import {Cart} from "../../../models/products/cart";
 
 @Component({
   selector: 'app-cartdropdown',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartdropdownComponent implements OnInit {
 
-  constructor() { }
+  user: User = new User();
+  cart: Cart = new Cart();
 
-  ngOnInit() {
+  constructor(private session: UserSessionService) {
   }
 
+
+  ngOnInit() {
+    this.cart = this.session.cart;
+  }
 }

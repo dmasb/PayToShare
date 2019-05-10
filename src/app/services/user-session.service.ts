@@ -18,7 +18,7 @@ export class UserSessionService implements OnInit {
   private user: User;
   private userID;
   private collection;
-  private cart: Cart = new Cart();
+  cart: Cart = new Cart();
 
   constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
   }
@@ -47,9 +47,6 @@ export class UserSessionService implements OnInit {
 
   addToCart(product: Product) {
     this.cart.add(product);
-    console.log(this.cart);
-    console.log('test');
-    console.log(this.cart.items);
   }
 
   updateUser(updatedUser: IUser): boolean {
