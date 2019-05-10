@@ -6,6 +6,9 @@ import {TagService} from '../../../../../services/product/tag.service';
 import {FormatService} from '../../../../../services/product/format.service';
 import {LicenseService} from '../../../../../services/product/license.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {License} from '../../../../../models/products/license';
+import {firestore} from 'firebase/app';
+import Timestamp = firestore.Timestamp;
 
 @Component({
   selector: 'app-add-license',
@@ -36,11 +39,13 @@ export class AddLicenseComponent implements OnInit {
   }
 
   addLicense() {
-    this.licenseService.addLicense(
-      this.newLicenseForm.controls.licenseName.value,
-      this.newLicenseForm.controls.formatID.value,
-      this.newLicenseForm.controls.tagID.value
-    );
+    const license = new License();
+    license.name = this.newLicenseForm.controls.licenseName.value;
+    license.formatID = this.newLicenseForm.controls.formatID.value;
+    license.tagID = this.newLicenseForm.controls.tagID.value;
+    license.created = Timestamp.now();
+
+    this.licenseService.addLicense(license);
     this.modalService.dismissAll();
   }
 

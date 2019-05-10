@@ -21,17 +21,11 @@ import {UploadImageService} from '../../../../../services/upload-image.service';
 })
 export class UpdateProductComponent implements OnInit {
 
-  @Input() id: string;
-  @Input() title: string;
-  @Input() selectedTags: Tag[];
-  @Input() format: string;
-  @Input() price: number;
-  @Input() quantity: number;
-  @Input() description: string;
-  @Input() imageUrl: string; //
+  @Input() product: Product;
 
   private tags: Tag[];
   private formats: Format[];
+  private selectedTags: Tag[] = [];
 
   updateProductForm = new FormGroup({
     productTitle: new FormControl(''),
@@ -57,42 +51,43 @@ export class UpdateProductComponent implements OnInit {
   }
 
   pushTag() {
-    const selected: Tag = JSON.parse(this.updateProductForm.controls.productTag.value);
-    if (this.selectedTags.findIndex(obj => obj.id === selected.id) === -1 && selected.id) {
-      this.selectedTags.push(selected);
+    if (this.updateProductForm.controls.productTag.value) {
+      const selected: Tag = JSON.parse(this.updateProductForm.controls.productTag.value);
+      if (this.selectedTags.findIndex(tag => tag.id === selected.id) === -1 && selected.id) {
+        this.selectedTags.push(selected);
+      }
     }
-    console.log('###############################################');
-    this.selectedTags.forEach(s => console.log(s));
-    console.log('###############################################');
-
   }
 
-  popTag(selectedTag: object) {
+  popTag(selectedTag: Tag) {
     this.selectedTags = this.selectedTags.filter(tag => tag !== selectedTag);
   }
 
 
   editProduct() {
 
-    const product: Product = {
-      id: this.id,
-      title: this.updateProductForm.controls.productTitle.value,
-      tags: this.selectedTags,
-      format: this.updateProductForm.controls.productFormat.value || this.format,
-      description: this.updateProductForm.controls.productDescription.value,
-      price: this.updateProductForm.controls.productPrice.value,
-      quantity: this.updateProductForm.controls.productQuantity.value,
-    };
+    const productTagIDs: string[] = [];
+    this.selectedTags.forEach(tag => productTagIDs.push(tag.id));
+
+    this.product.title = this.updateProductForm.controls.productTitle.value;
+    this.product.tagIDs = productTagIDs;
+    this.product.formatID = this.updateProductForm.controls.productFormat.value || this.product.formatID;
+    this.product.description = this.updateProductForm.controls.productDescription.value;
+    this.product.price = this.updateProductForm.controls.productPrice.value;
+    this.product.quantity = this.updateProductForm.controls.productQuantity.value;
 
     if (this.getImageUrl()) {
-      product.imageUrl = this.getImageUrl();
+      this.product.imageUrl = this.getImageUrl();
     }
 
-    this.productService.update(product);
+    this.productService.update(this.product);
     this.modalService.dismissAll();
+    this.updateProductForm.reset();
+    this.selectedTags = [];
   }
 
   openCenteredDialog(addProductModal) {
+    this.selectedTags = this.tags.filter(tag => this.product.tagIDs.includes(tag.id));
     this.modalService.open(addProductModal, {centered: true});
   }
 

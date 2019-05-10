@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../../../../../models/products/product';
 import {ProductsService} from '../../../../../services/crud/products.service';
+import {Tag} from '../../../../../models/products/tag';
+import {Format} from '../../../../../models/products/format';
+import {TagService} from '../../../../../services/product/tag.service';
+import {FormatService} from '../../../../../services/product/format.service';
 
 @Component({
   selector: 'app-product-overview',
@@ -12,15 +16,21 @@ export class ProductOverviewComponent implements OnInit {
   page = 1;
   pageSize = 4;
   name: any;
-  private products: Product[];
   collectionSize: number;
-  private selectedProducts: string[] = [];
 
-  constructor(private productsService: ProductsService) {
+  private products: Product[];
+  private tags: Tag[];
+  private formats: Format[];
+
+  constructor(private productsService: ProductsService,
+              private tagService: TagService,
+              private formatService: FormatService) {
   }
 
   ngOnInit() {
     this.productsService.getProductsByTag([]).subscribe(products => this.products = products);
+    this.tagService.getTags().subscribe(tags => this.tags = tags);
+    this.formatService.getFormats().subscribe(formats => this.formats = formats);
   }
 
   sort() {
@@ -42,25 +52,19 @@ export class ProductOverviewComponent implements OnInit {
     }
   }
 
-
-  checkProduct(productID: string) {
-
-    if (this.selectedProducts.findIndex(id => id === productID) === -1 && productID) {
-      this.selectedProducts.push(productID);
-    } else {
-      this.selectedProducts = this.selectedProducts.filter(id => id !== productID);
-    }
-    console.log('###############################################');
-    this.selectedProducts.forEach(s => console.log(s));
-    console.log('###############################################');
-  }
-
-
   onSubmit() {
     // pages
   }
-  /*
-  markAsDeals() {
-    this.productsService.markAsDeals(this.selectedProducts);
-  } */
+
+  getFormatName(formatID: string): string {
+    if (this.formats) {
+      return this.formats.find(format => format.id === formatID).name;
+    }
+  }
+
+  getTagName(tagID: string): string {
+    if (this.tags) {
+      return this.tags.find(tag => tag.id === tagID).name;
+    }
+  }
 }

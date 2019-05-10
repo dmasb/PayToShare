@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormatService} from '../../../../../services/product/format.service';
+import {Format} from '../../../../../models/products/format';
 
 @Component({
   selector: 'app-delete-format',
@@ -9,8 +10,7 @@ import {FormatService} from '../../../../../services/product/format.service';
 })
 export class DeleteFormatComponent implements OnInit {
 
-  @Input() id: string;
-  @Input() name: string;
+  @Input() format: Format;
 
   constructor(private formatService: FormatService, private modalService: NgbModal) {
   }
@@ -22,15 +22,7 @@ export class DeleteFormatComponent implements OnInit {
     this.modalService.open(confirmDeleteTag, {centered: true});
   }
 
-  requestDeleteTag(formatID) {
-    this.formatService.available(formatID);
-  }
-
   confirmDelete() {
-    this.formatService.remove();
-  }
-
-  cancelDelete() {
-    this.formatService.cancel();
+    this.formatService.confirmDelete(this.format);
   }
 }

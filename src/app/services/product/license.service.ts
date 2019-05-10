@@ -1,25 +1,20 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {AngularFirestore, DocumentReference} from '@angular/fire/firestore';
-import {firestore} from 'firebase/app';
-import Timestamp = firestore.Timestamp;
+import {AngularFirestore} from '@angular/fire/firestore';
 import {License} from '../../models/products/license';
-import {TagService} from './tag.service';
-import {FormatService} from './format.service';
 import {map} from 'rxjs/operators';
+import {MessageService} from '../message.service';
+import {alerts} from '../../models/alerts';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LicenseService {
 
-  licenses: Observable<License[]>;
-  licenseBeingDeleted: string;
+  private licenses: Observable<License[]>;
 
   constructor(private afs: AngularFirestore,
-              private formatService: FormatService,
-              private tagService: TagService) {
-    this.licenseBeingDeleted = null;
+              private messageService: MessageService) {
   }
 
   getLicenses(): Observable<License[]> {
@@ -36,57 +31,22 @@ export class LicenseService {
 
   }
 
-  getLicenseDoc(licenseID: string) {
-    return this.afs.doc(`licenses/${licenseID}`);
+  addLicense(license: License) {
+    this.afs.collection('licenses').add(Object.assign({}, license));
+    this.messageService.add(license.name + ' was successfully added!', alerts.success);
   }
 
-  getLicenseJson(licenseID: string) {
-    return this.afs.doc(`licenses/${licenseID}`).ref.get().then(license => {
-      return {
-        id: license.id,
-        ...license.data()
-      } as License;
-    });
-  }
-
-  async addLicense(licenseName: string, formatID: string, tagID: string) {
-
-    const formatObj = await this.formatService.getFormatJson(formatID);
-    const tagObj = await this.tagService.getTagJson(tagID);
-
-    const license: License = {
-      name: licenseName,
-      formatRef: formatObj,
-      tagRef: tagObj,
-      created: Timestamp.now()
-    };
-
-    this.afs.collection('licenses').add(license);
-  }
-
-  available(licenseID: string): boolean {
-    if (this.licenseBeingDeleted === null) {
-      this.licenseBeingDeleted = licenseID;
-      return true;
+  async confirmDelete(license: License) {
+    const usedInPlans = await this.afs.collection('plans').ref.where('licenseIDs', 'array-contains', license.id)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
+    if (usedInPlans) {
+      this.messageService.add(license.name + ' is used in a plan, please remove plan first', alerts.danger);
     } else {
-      return false;
+      this.afs.collection('licenses').doc(license.id).delete();
+      this.messageService.add(license.name + ' was successfully deleted!', alerts.success);
     }
-  }
-
-  remove() {
-    this.afs.doc(`licenses/${this.licenseBeingDeleted}`).delete();
-    this.licenseBeingDeleted = null;
-  }
-
-  cancel() {
-    this.licenseBeingDeleted = null;
-  }
-
-  updateLicense(licenseID: string, formatReference: DocumentReference, tagReference: DocumentReference) {
-    this.afs.doc(`licenses/${licenseID}`).update({
-      formatRef: formatReference,
-      tagRef: tagReference
-    });
   }
 }
 

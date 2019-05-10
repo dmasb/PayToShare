@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LicenseService} from '../../../../../services/product/license.service';
+import {License} from '../../../../../models/products/license';
 
 @Component({
   selector: 'app-delete-license',
@@ -9,8 +10,7 @@ import {LicenseService} from '../../../../../services/product/license.service';
 })
 export class DeleteLicenseComponent implements OnInit {
 
-  @Input() id: string;
-  @Input() name: string;
+  @Input() private license: License;
 
   constructor(private licenseService: LicenseService, private modalService: NgbModal) {
   }
@@ -22,15 +22,7 @@ export class DeleteLicenseComponent implements OnInit {
     this.modalService.open(confirmDeleteTag, {centered: true});
   }
 
-  requestDeleteTag(licenseID) {
-    this.licenseService.available(licenseID);
-  }
-
   confirmDelete() {
-    this.licenseService.remove();
-  }
-
-  cancelDelete() {
-    this.licenseService.cancel();
+    this.licenseService.confirmDelete(this.license);
   }
 }
