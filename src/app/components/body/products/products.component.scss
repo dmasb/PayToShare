@@ -13,11 +13,12 @@ h4{
 
 
 /* Card design */
-.card{
-  margin-top: 1em;
-  margin-left: 1em;
-  background-color: #e4e1e1;
 
+.card{
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  background-color: #e4e1e1;
   width: 15em;
   max-width: 15em;
   height: 24em;
@@ -27,6 +28,7 @@ h4{
 .card-footer{
   height: 15%;
   max-height: 15%;
+  width: 100%;
 }
 
 #buy{
@@ -41,7 +43,7 @@ h4{
 img{
   max-height:100%;
   width: 100%;
-  object-fit: contain;
+  object-fit: fill;
 }
 
 
