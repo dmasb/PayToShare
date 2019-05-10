@@ -7,9 +7,11 @@
 #inner{
   width: 60%;
   display: block;
-  margin-top: 50px;
+  margin-top: 5%;
+  margin-bottom: 5%;
   border-style: solid;
   background-color: #f8f9fa!important;
+
 }
 
 .name{
@@ -17,6 +19,11 @@
 }
 
 #mypage {
-  width: 100px;
-  height: 100px;
+  width: 10%;
+  height: 10%;
+}
+
+.btn-primary{
+
+  margin-bottom: 3%;
 }
