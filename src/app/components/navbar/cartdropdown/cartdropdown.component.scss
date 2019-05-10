@@ -17,18 +17,22 @@ li.dropdown:hover > .dropdown-menu {
 .navbar-nav li a:hover {
   color: #fff !important;
 }
+
 .navbar-nav li.active a {
   color: #fff !important;
   background-color: #29292c !important;
 }
+
 .navbar-default .navbar-toggle {
   border-color: transparent;
 }
+
 .open .dropdown-toggle {
   color: #fff;
   background-color: #555 !important;
 }
-.dropdown-menu, h3, h6{
+
+.dropdown-menu, h3, h6 {
   top: 45px;
   background-color: #29292c;
   font-family: Montserrat, sans-serif;
@@ -41,7 +45,7 @@ li.dropdown:hover > .dropdown-menu {
 }
 
 //// SIDEBAR SETTINGS
-.uk-open>.uk-offcanvas-bar {
+.uk-open > .uk-offcanvas-bar {
   top: 7%;
   padding: 0;
   margin: 0;
@@ -58,6 +62,7 @@ li.dropdown:hover > .dropdown-menu {
   width: 18em;
   background-color: rgba(142, 142, 142, 0.7);
 }
+
 .uk-offcanvas-overlay {
   width: 0;
   touch-action: none;
@@ -112,10 +117,13 @@ li.dropdown:hover > .dropdown-menu {
     img {
       float: left;
       margin-right: 12px;
+      max-height: 75px;
+      max-width: 75px;
     }
 
     .item-name {
       display: block;
+      float: left;
       padding-top: 10px;
       font-size: 16px;
     }

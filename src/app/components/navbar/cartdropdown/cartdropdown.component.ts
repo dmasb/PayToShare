@@ -10,8 +10,7 @@ import {Cart} from "../../../models/products/cart";
 })
 export class CartdropdownComponent implements OnInit {
 
-  user: User = new User();
-  cart: Cart = new Cart();
+  private cart: Cart;
 
   constructor(private session: UserSessionService) {
   }
@@ -19,5 +18,10 @@ export class CartdropdownComponent implements OnInit {
 
   ngOnInit() {
     this.cart = this.session.cart;
+  }
+
+
+
+  ngOnDestroy(){
   }
 }
