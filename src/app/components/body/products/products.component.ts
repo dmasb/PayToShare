@@ -25,6 +25,7 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.productsService.getProductsByTag([]).subscribe(products => this.products = products);
     this.tagService.getTags().subscribe(tags => this.tags = tags);
     this.formatService.getFormats().subscribe(formats => this.formats = formats);
