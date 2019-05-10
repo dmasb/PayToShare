@@ -54,6 +54,7 @@ import {AddPlanSaleComponent} from './components/body/admin/salemanegement/add-p
 import {SaleOverviewComponent} from './components/body/admin/salemanegement/sale-overview/sale-overview.component';
 import { DeleteSaleComponent } from './components/body/admin/salemanegement/delete-sale/delete-sale.component';
 import { PlanComponent } from './components/body/plan/plan.component';
+import { CartdropdownComponent } from './components/navbar/cartdropdown/cartdropdown.component';
 
 
 @NgModule({
@@ -98,6 +99,7 @@ import { PlanComponent } from './components/body/plan/plan.component';
     SaleOverviewComponent,
     DeleteSaleComponent,
     PlanComponent,
+    CartdropdownComponent,
   ],
   imports: [
     BrowserModule,
