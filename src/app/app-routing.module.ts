@@ -12,6 +12,8 @@ import {Error404Component} from './components/body/error404/error404.component';
 import {RoleGuardService} from './services/authentication/role-guard.service';
 import {DashboardComponent} from './components/body/admin/dashboard/dashboard.component';
 import {SalesComponent} from './components/body/sales/sales.component';
+import { PlanComponent } from './components/body/plan/plan.component';
+
 
 
 
@@ -26,6 +28,7 @@ export const routes: Routes = [
   {path: 'logout', component: RegisterComponent},
   {path: 'recover', component: PasswordrecoveryComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuardService]},
+  {path: 'plan', component: PlanComponent},
   {path: '**', component: Error404Component},
 ];
 
