@@ -69,7 +69,8 @@
         </li>
         <!--        CART ITEM-->
         <li class="nav-item">
-          <a uk-icon="icon: cart" class="nav-link" routerLink="/cart"></a>
+
+          <app-cartdropdown></app-cartdropdown>
 
           <!--        LOGIN DROPDOWN-->
         <li class="nav-item dropdown" *ngIf="!isLoggedIn">
