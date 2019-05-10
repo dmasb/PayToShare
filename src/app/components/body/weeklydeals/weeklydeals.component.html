@@ -1,24 +1,25 @@
 <div class="container">
-  <div class="card-columns">
-    <div class="card mb-4 mt-3" *ngFor="let plan of salePlans">
-      <div class="card-body">
-        <img class="card-img-top img-fluid" src="{{plan.imageUrl}}" alt="{{plan.imageUrl}}">
-        <h5 class="card-title mt-2">{{plan.title}}</h5>
-        <h6>Speed: {{plan.speed}} mb/s</h6>
-        <p>Included licenses:</p>
-        <div *ngFor="let license of plan.licenseIDs">
-          <p>({{license }})</p>
-        </div>
-        <p *ngIf="plan.quantity == null" class="card-stock"><i class="fa fa-square null"></i> {{plan.quantity}}
-          out of stock</p>
-        <p *ngIf="plan.quantity != null" class="card-stock"><i class="fa fa-square"></i> {{plan.quantity}} in
-          stock</p>
-        <div class="card-footer">
-          <p class="price">{{plan.price | currency}}
-            <a href="javascript:void(0)" class="btn btn-sm float-right">
-              Buy
-            </a>
-          </p>
+  <div class="row">
+
+    <div class="card-columns">
+      <div class="card mb-4 mt-3" *ngFor="let plan of salePlans">
+        <div class="card-body">
+          <img class="card-img-top img-fluid max-width" src="{{plan.imageUrl}}" alt="{{plan.imageUrl}}">
+          <h5 class="card-title mt-2">{{plan.title}}</h5>
+          <h6>Speed: {{plan.speed}} mb/s</h6>
+          <p>Included licenses:</p>
+          <div *ngFor="let license of plan.licenseIDs">
+            <p>({{license }})</p>
+          </div>
+          <p class="card-stock"><i class="fa fa-square"></i> {{plan.quantity}} in
+            stock</p>
+          <div class="card-footer">
+            <p class="price">{{plan.price | currency}}
+              <a class="btn btn-sm float-right" id="buy">
+                Buy
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </div>

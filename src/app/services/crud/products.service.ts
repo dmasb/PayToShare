@@ -25,8 +25,7 @@ export class ProductsService {
   to be fixed {Suitable for the search by tag functionality]
    */
   getProductsByTag(tags: string[]): Observable<Product[]> {
-    return this.afs.collection('products', ref =>
-      ref.where('quantity', '>', 0)).snapshotChanges().pipe(
+    return this.products = this.afs.collection('products').snapshotChanges().pipe(
       map(products => {
         return products.map(product => {
           return {
@@ -51,7 +50,7 @@ export class ProductsService {
             ...sale.payload.doc.data()
           } as Sale;
         }).map(products => {
-            this.products =  this.afs.collection('products', ref =>
+            this.products = this.afs.collection('products', ref =>
               ref.where('tagIDs', 'array-contains', products.salesObjectsID)).snapshotChanges().pipe(
               map(product => {
                 return product.map(final => {

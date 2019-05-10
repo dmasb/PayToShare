@@ -1,120 +1,71 @@
-// .container {
-//   flex-wrap: wrap;
-// }
-
-// Main card layout
-// .card {
-//   margin-top: 40px;
-//   width: 15em;
-//   max-width: 15em;
-//   height: 24em;
-//   max-height: 24em;
-//   background-color: #f8f9fa!important;
-//   box-shadow: 5px 5px 5px 5px lightgray;
-// }
-
-// .card:hover{
-//   border-color: black;
-//   box-shadow: 5px 5px 5px 5px grey;
-// }
-
-// .card-stock{
-//   bottom: 0;
-//   float: left;
-//   text-align: left;
-// }
-
-// p {
-//   padding: 0;
-//   margin: 0;
-// }
-
-// .card-title {
-//    text-align: left;
-//    font-weight: bold;
-//    font-size: 14px;
-//  }
-// .card-text {
-//   text-align: left;
-//   padding-bottom: 10px;
-// }
-// .card-top{
-//   height: 40%;
-//   max-height: 40%;
-//   max-width: 100%;
-// }
-// img{
-//   max-height:100%;
-//   width: 100%;
-// }
-// .card-img-top {
-//   width: 100%;
-//   height: 15vw;
-//   object-fit: fill;
-// }
-
-// .card-body{
-//   height: 70px;
-//   overflow: hidden;
-// }
-// .card-buttons{
-//   bottom: 0;
-//   margin: 0 auto;
- 
-// }
-
-// .btn.btn-secondary{
-//   padding: 5px 5px 5px 5px;
-//   color: red;
-//   background-color: green; 
-// }
-
-
-// @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700');
-
-// .body{
-//   font-family: 'Roboto Slab', serif;
-// }
-
-// .card-body {
-//   padding: 0.5rem;
-// }
-
-// .card{
-//   background-color: lightgray;
-// }
-
-// h2{
-//   font-family: 'Roboto Slab', serif;
-// }
-
-.container{
-  box-shadow: 2px 2px 2px 2px lightgray;
+#licenseHeading{
+  text-align: center;
 }
+
+#top{
+  background-color: #c4c4c5;
+}
+h4{
+  padding-left: 20px;
+}
+
+
+
+
+/* Card design */
 
 .card{
-  border: #2d2d30;
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
   background-color: #e4e1e1;
+  width: 15em;
+  max-width: 15em;
+  height: 24em;
+  max-height: 24em;
 }
 
-.card-img-top {
+.card-footer{
+  height: 15%;
+  max-height: 15%;
   width: 100%;
-  height: 15vw;
+}
+
+#buy{
+  color: #FFFFFF;
+}
+.card-top{
+  height: 40%;
+  max-height: 40%;
+  max-width: 100%;
+}
+
+img{
+  max-height:100%;
+  width: 100%;
+  object-fit: fill;
+}
+
+
+.card-body{
+  height: 10em;
+  padding: 0.5em;
 }
 
 .card-title{
   text-align: center;
-  margin: none;
-  padding: none;
+  margin: 0;
+  padding: 0;
 }
 
 .card-text{
   text-align: center;
-  padding: none;
-  margin: none;
+  padding: 0;
+  margin: 0;
 }
 
 .price{
+  text-align: center;
   font-size: 1.2em;
 }
 
@@ -131,10 +82,11 @@
   background-color:#2d2d30;
   text-align:center;
   transition: all 0.2s;
+  box-shadow: 2px 2px 2px 2px #252323;
 }
 
 .btn:hover{
-  background-color:#969697;
+  background-color:#5e5e5f;
 }
 
 .fa.fa-square{
@@ -146,17 +98,21 @@
 }
 
 .card-stock{
-  padding-left: 3px;
+  text-align: left;
+  float: left;
+  padding-left: 1em;
+  padding-bottom: 0;
+  margin: 0;
+  bottom: 0;
 }
 
-// .card:hover{
-//   border-color: black;
-//   box-shadow: 5px 5px 5px 5px grey;
-// }
+//.card:hover{
+//  border-color: black;
+//  border-width: 1px;
+//  box-shadow: 1px 1px 1px 1px grey;
+//}
 
-.card-body{
-  padding: 0.5em;
-}
+
 
 
 
