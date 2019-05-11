@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {UserSessionService} from "../../../services/user-session.service";
-import {User} from "../../../models/user";
 import {Cart} from "../../../models/products/cart";
 
 @Component({
