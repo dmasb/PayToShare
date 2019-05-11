@@ -16,7 +16,7 @@ export class CartdropdownComponent implements OnInit {
 
 
   ngOnInit() {
-    this.cart = this.session.cart;
+    this.cart = this.session.getCart();
   }
 
 
