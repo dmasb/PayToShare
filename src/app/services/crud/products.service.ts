@@ -62,7 +62,7 @@ export class ProductsService {
     await this.afs.collection('sales').ref.where('saleObjects', 'array-contains', product).get().then(
       res => {
         if (!res.empty) {
-          this.messageService.add(product.title + ' is on sale!!!!!', alerts.danger);
+          this.messageService.add(product.title + ' is on sale!', alerts.danger);
         } else {
           this.afs.collection('products').doc(product.id).delete();
           this.messageService.add(product.title + ' was successfully deleted!', alerts.success);
