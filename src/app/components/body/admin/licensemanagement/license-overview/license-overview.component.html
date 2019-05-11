@@ -19,13 +19,12 @@
           <tr>
             <th scope="col">
               <label>
-                <input type="checkbox" name="checkAll">
+                <input type="checkbox" name="checkAll" disabled>
               </label>
             </th>
             <th scope="col">License name</th>
             <th scope="col">Format</th>
             <th scope="col">Tag</th>
-            <th scope="col">Created</th>
             <th scope="col">Actions</th>
           </tr>
           </thead>
@@ -33,13 +32,12 @@
           <tr *ngFor="let license of licenses; index as i">
             <th scope="row">
               <label>
-                <input type="checkbox" name="checkbox + {{ i + 1}}">
+                <input type="checkbox" name="checkbox + {{ i + 1}}" disabled>
               </label>
             </th>
             <td>{{ license.name }}</td>
-            <td>{{ getFormatName(license.formatID) }}</td>
-            <td>{{ getTagName(license.tagID) }}</td>
-            <td>{{ license.created.toDate() | date: 'yyyy-MM-dd'}}</td>
+            <td>{{ license.format.name}}</td>
+            <td>{{ license.tag.name }}</td>
             <td>
               <app-update-license [id]=license.id></app-update-license>
               <app-delete-license [license]="license"></app-delete-license>

@@ -17,11 +17,10 @@
           <tr>
             <th scope="col">
               <label>
-                <input type="checkbox" name="checkAll">
+                <input type="checkbox" name="checkAll" disabled>
               </label>
             </th>
             <th scope="col">Format name</th>
-            <th scope="col">Created</th>
             <th scope="col">Actions</th>
           </tr>
           </thead>
@@ -29,11 +28,10 @@
           <tr *ngFor="let format of formats; index as i">
             <th scope="row">
               <label>
-                <input type="checkbox" name="checkbox + {{ i + 1}}">
+                <input type="checkbox" name="checkbox + {{ i + 1}}" disabled>
               </label>
             </th>
             <td>{{ format.name }}</td>
-            <td>{{ format.created.toDate() | date: 'yyyy-MM-dd'}}</td>
             <td>
               <app-update-format [format]="format"></app-update-format>
               <app-delete-format [format]="format"></app-delete-format>

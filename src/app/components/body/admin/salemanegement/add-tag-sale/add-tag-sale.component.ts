@@ -2,10 +2,10 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Tag} from '../../../../../models/products/tag';
 import {SalesService} from '../../../../../services/product/sales.service';
-import {firestore} from 'firebase/app';
 import {Sale} from '../../../../../models/products/sale';
 import {SaleType} from '../../../../../models/saleType';
-import Timestamp = firestore.Timestamp;
+import {Product} from '../../../../../models/products/product';
+import {ProductsService} from '../../../../../services/crud/products.service';
 
 @Component({
   selector: 'app-add-tag-sale',
@@ -15,6 +15,7 @@ import Timestamp = firestore.Timestamp;
 export class AddTagSaleComponent implements OnInit {
 
   @Input() tags: Tag[];
+  private products: Product[];
   private selectedTags: Tag[] = [];
 
 
@@ -26,7 +27,8 @@ export class AddTagSaleComponent implements OnInit {
     selectedTag: new FormControl('')
   });
 
-  constructor(private salesService: SalesService) {
+  constructor(private salesService: SalesService,
+              private productService: ProductsService) {
   }
 
   ngOnInit() {
@@ -34,6 +36,7 @@ export class AddTagSaleComponent implements OnInit {
 
 
   pushPlan() {
+    this.productService.getProducts().subscribe(products => this.products = products);
     if (this.newTagSale.controls.selectedTag.value) {
       const selected: Tag = JSON.parse(this.newTagSale.controls.selectedTag.value);
       if (this.selectedTags.findIndex(plan => plan.id === selected.id) === -1) {
@@ -52,16 +55,24 @@ export class AddTagSaleComponent implements OnInit {
     const sEnd = this.newTagSale.controls.saleEnd.value;
     const sDiscount = this.newTagSale.controls.saleDiscount.value;
 
+    // Filter out non-tagged products
+    this.products = this.products.filter(product => {
+      for (const tag of product.tags) {
+        if (this.selectedTags.find(s => s.id === tag.id)) {
+          return true;
+        }
+      }
+    });
+
     const sale = new Sale();
     sale.name = sName;
-    sale.type = SaleType.TAG;
+    sale.type = SaleType.PRODUCT;
     sale.begins = sBegin;
     sale.ends = sEnd;
     sale.discount = sDiscount;
-    sale.created = Timestamp.now();
+    sale.saleObjects = this.products;
 
-
-    this.salesService.addSale(sale, this.selectedTags);
+    this.salesService.addSale(sale);
     this.newTagSale.reset();
     this.selectedTags = [];
   }

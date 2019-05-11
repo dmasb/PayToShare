@@ -1,21 +1,21 @@
-<div class="temp card cardStyle shadow">
-  <img class="card-img-top" src="../../../../../../assets/images/testimages/gd.png" alt="Product Image">
+<div class="card mb-4 mt-3">
   <div class="card-body">
-    <h4 class="card-title mt-1">{{plan.title}}</h4>
+    <img class="card-img-top img-fluid max-width" src="{{plan.imageUrl}}" alt="{{plan.imageUrl}}">
+    <h5 class="card-title mt-2">{{plan.title}}</h5>
     <h6>Speed: {{plan.speed}} mb/s</h6>
-    <p class="card-text"> {{plan.description}}
     <p>Included licenses:</p>
     <div *ngFor="let license of selectedLicenses">
-      <p>- {{license.name}}</p>
+      <p>({{license.name}})</p>
     </div>
-    <div class="buy d-flex justify-content-between align-items-center">
-      <h5 class="mt-4">${{plan.price}}/month</h5>
-      <h5 class="mt-4" style="color:red">N/A</h5>
-      <a href="#" class="btn button bg-primary mt-3">
-        Add To Cart</a>
-    </div>
-    <div class="align-items-center">
-      <h6 class="text-success">in stock</h6>
+    <p *ngIf="plan.quantity == 0" class="card-stock"><i class="fa fa-square null"></i> out of stock</p>
+    <p *ngIf="plan.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{plan.quantity}} in
+      stock</p>
+    <div class="card-footer">
+      <p class="price">{{plan.price | currency}}
+        <a class="btn btn-sm float-right" id="buy">
+          Buy
+        </a>
+      </p>
     </div>
   </div>
 </div>

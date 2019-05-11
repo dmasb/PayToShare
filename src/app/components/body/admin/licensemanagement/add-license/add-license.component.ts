@@ -22,8 +22,8 @@ export class AddLicenseComponent implements OnInit {
 
   newLicenseForm = new FormGroup({
     licenseName: new FormControl(''),
-    formatID: new FormControl(''),
-    tagID: new FormControl(''),
+    format: new FormControl(''),
+    tag: new FormControl(''),
 
   });
 
@@ -39,11 +39,16 @@ export class AddLicenseComponent implements OnInit {
   }
 
   addLicense() {
+    const rawFormat = this.newLicenseForm.controls.format.value;
+    const rawTag = this.newLicenseForm.controls.tag.value;
+
+    const format: Format = JSON.parse(rawFormat);
+    const tag: Tag = JSON.parse(rawTag);
+
     const license = new License();
     license.name = this.newLicenseForm.controls.licenseName.value;
-    license.formatID = this.newLicenseForm.controls.formatID.value;
-    license.tagID = this.newLicenseForm.controls.tagID.value;
-    license.created = Timestamp.now();
+    license.format = format;
+    license.tag = tag;
 
     this.licenseService.addLicense(license);
     this.modalService.dismissAll();
