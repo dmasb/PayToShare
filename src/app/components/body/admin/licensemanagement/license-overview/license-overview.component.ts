@@ -16,7 +16,6 @@ export class LicenseOverviewComponent implements OnInit {
   licenses: License[];
   private tags: Tag[];
   private formats: Format[];
-  name: string;
 
   constructor(private licenseService: LicenseService,
               private tagService: TagService,
@@ -27,17 +26,5 @@ export class LicenseOverviewComponent implements OnInit {
     this.licenseService.getLicenses().subscribe(licenses => this.licenses = licenses);
     this.tagService.getTags().subscribe(tags => this.tags = tags);
     this.formatService.getFormats().subscribe(formats => this.formats = formats);
-  }
-
-  getFormatName(formatID: string): string {
-    if (this.formats) {
-      return this.formats.find(format => format.id === formatID).name;
-    }
-  }
-
-  getTagName(tagID: string): string {
-    if (this.tags) {
-      return this.tags.find(tag => tag.id === tagID).name;
-    }
   }
 }

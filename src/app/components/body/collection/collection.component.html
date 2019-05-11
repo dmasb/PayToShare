@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col" *ngFor="let plan of plans" id="products">
+
+    <div class="card">
+      <!--  IMAGE -->
+      <div class="card-top">
+        <img *ngIf="plan.imageUrl == null" class="card-img-top null" src="../assets/images/testimages/gd.png"
+             alt="Card image cap">
+        <img *ngIf="plan.imageUrl != null" class="card-img-top" src="{{plan.imageUrl}}" alt="Card image cap">
+      </div>
+
+      <!--    BODY-->
+      <div class="card-body">
+        <h5 class="card-title">{{plan.title}}</h5>
+
+        <p class="card-text ">{{plan.description}}</p>
+        <br>
+        <br>
+        <p *ngIf="plan.quantity == 0" class="card-stock"><i class="fa fa-square null"></i> out of stock</p>
+        <p *ngIf="plan.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{plan.quantity}} in
+          stock</p>
+      </div>
+      <!--      FOOTER-->
+      <div class="card-footer">
+        <p class="price">{{plan.price | currency}}
+          <a class="btn btn-sm float-right" (click)="add(plan)" id="buy">
+            Buy
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<hr>
+<div class="align-content-md-center">Sales with new price</div>
+<div class="row">
+  <div class="col" *ngFor="let plan of salePlans" id="plans">
+
+    <div class="card">
+      <!--  IMAGE -->
+      <div class="card-top">
+        <img *ngIf="plan.imageUrl == null" class="card-img-top null" src="../assets/images/testimages/gd.png"
+             alt="Card image cap">
+        <img *ngIf="plan.imageUrl != null" class="card-img-top" src="{{plan.imageUrl}}" alt="Card image cap">
+      </div>
+
+      <!--    BODY-->
+      <div class="card-body">
+        <h5 class="card-title">{{plan.title}}</h5>
+
+        <p class="card-text ">{{plan.description}}</p>
+        <br>
+        <br>
+        <p *ngIf="plan.quantity == 0" class="card-stock"><i class="fa fa-square null"></i> out of stock</p>
+        <p *ngIf="plan.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{plan.quantity}} in
+          stock</p>
+      </div>
+      <!--      FOOTER-->
+      <div class="card-footer">
+        <p class="price">{{plan.price | currency}}
+          <a class="btn btn-sm float-right" (click)="add(plan)" id="boi">
+            Buy
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

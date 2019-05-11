@@ -12,7 +12,6 @@ import {alerts} from '../../models/alerts';
 export class FormatService {
 
   private formats: Observable<Format[]>;
-  private formatBeingDeleted: string;
 
   constructor(private afs: AngularFirestore,
               private messageService: MessageService) {
@@ -39,12 +38,12 @@ export class FormatService {
 
   async confirmDelete(format: Format) {
 
-    const usedInProducts = await this.afs.collection('products').ref.where('formatID', '==', format.id)
+    const usedInProducts = await this.afs.collection('products').ref.where('format', '==', format)
       .get().then(res => {
         return !res.empty as boolean;
       });
 
-    const usedInLicenses = await this.afs.collection('licenses').ref.where('formatID', '==', format.id)
+    const usedInLicenses = await this.afs.collection('licenses').ref.where('format', '==', format)
       .get().then(res => {
         return !res.empty as boolean;
       });
@@ -59,15 +58,27 @@ export class FormatService {
     }
   }
 
-  cancel() {
-    this.formatBeingDeleted = null;
-  }
-
-  updateFormat(format: Format) {
-    this.afs.doc(`formats/${format.id}`).update({
-      name: format.name
+  updateFormat(oldFormat: Format, newFormat: Format) {
+    this.afs.collection('products').ref.where('format', '==', oldFormat).get().then(
+      products => {
+        products.docs.map(product => product.ref.update({
+          format: newFormat
+        }));
+      }).then(() => {
+      this.afs.collection('licenses').ref.where('format', '==', oldFormat).get().then(
+        licenses => {
+          licenses.docs.map(license => license.ref.update(
+            {
+              format: newFormat
+            }));
+        }
+      ).then(() => {
+        this.afs.doc(`formats/${oldFormat.id}`).update(newFormat);
+        this.messageService.add(oldFormat.name + ' was successfully updated!', alerts.success);
+      }, () => {
+        this.messageService.add(oldFormat.name + ' was not updated!', alerts.danger);
+      });
     });
-    this.messageService.add(format.name + ' was successfully updated!', alerts.success);
   }
 }
 

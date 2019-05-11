@@ -55,16 +55,15 @@ export class PlanBuilderComponent implements OnInit {
   }
 
   createPlan() {
-    const licenses: string[] = [];
-    this.selectedLicenses.forEach(licence => licenses.push(licence.id));
 
     this.plan.title = this.newPlanForm.controls.planName.value;
     this.plan.speed = this.newPlanForm.controls.planSpeed.value;
     this.plan.price = this.newPlanForm.controls.planPrice.value;
     this.plan.quantity = this.newPlanForm.controls.planQuantity.value;
     this.plan.description = this.newPlanForm.controls.planDesc.value;
-    this.plan.licenseIDs = licenses;
+    this.plan.licenses = this.selectedLicenses;
     this.plan.imageUrl = this.getImageUrl() || this.plan.imageUrl;
+
     this.planService.addPlan(this.plan);
     this.newPlanForm.reset();
     this.selectedLicenses = [];

@@ -15,16 +15,16 @@
         </div>
       </div>
       <label for="productFormat">License Format</label>
-      <select class="form-control" id="productFormat" formControlName="formatID">
+      <select class="form-control" id="productFormat" formControlName="format">
         <option value="" selected disabled hidden>Choose here</option>
-        <option *ngFor="let format of formats" [value]="format.id">
+        <option *ngFor="let format of formats" [value]="format | json">
           {{format.name}}
         </option>
       </select>
       <label for="productTag">License Tag</label>
-      <select class="form-control" id="productTag" formControlName="tagID">
+      <select class="form-control" id="productTag" formControlName="tag">
         <option value="" selected disabled hidden>Choose here</option>
-        <option *ngFor="let tag of tags" [value]="tag.id">
+        <option *ngFor="let tag of tags" [value]="tag | json">
           {{tag.name}}
         </option>
       </select>

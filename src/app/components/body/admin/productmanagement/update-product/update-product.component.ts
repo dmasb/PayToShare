@@ -12,7 +12,7 @@ import {AngularFireUploadTask} from '@angular/fire/storage';
 import {UploadTaskSnapshot} from '@angular/fire/storage/interfaces';
 import * as url from 'url';
 import {UploadImageService} from '../../../../../services/upload-image.service';
-
+import * as cloneDeep from 'lodash/cloneDeep';
 
 @Component({
   selector: 'app-update-product',
@@ -65,29 +65,34 @@ export class UpdateProductComponent implements OnInit {
 
 
   editProduct() {
+    const newProduct: Product = cloneDeep(this.product);
+    delete newProduct.id;
+    const selectedFormat = this.updateProductForm.controls.productFormat.value;
+    let format: Format = null;
 
-    const productTagIDs: string[] = [];
-    this.selectedTags.forEach(tag => productTagIDs.push(tag.id));
-
-    this.product.title = this.updateProductForm.controls.productTitle.value;
-    this.product.tagIDs = productTagIDs;
-    this.product.formatID = this.updateProductForm.controls.productFormat.value || this.product.formatID;
-    this.product.description = this.updateProductForm.controls.productDescription.value;
-    this.product.price = this.updateProductForm.controls.productPrice.value;
-    this.product.quantity = this.updateProductForm.controls.productQuantity.value;
-
-    if (this.getImageUrl()) {
-      this.product.imageUrl = this.getImageUrl();
+    if (selectedFormat) {
+      format = JSON.parse(selectedFormat);
     }
 
-    this.productService.update(this.product);
+    newProduct.title = this.updateProductForm.controls.productTitle.value || this.product.title;
+    newProduct.tags = this.selectedTags;
+    newProduct.format = format || this.product.format;
+    newProduct.description = this.updateProductForm.controls.productDescription.value || this.product.description;
+    newProduct.price = this.updateProductForm.controls.productPrice.value || this.product.price;
+    newProduct.quantity = this.updateProductForm.controls.productQuantity.value || this.product.quantity;
+
+    if (this.getImageUrl()) {
+      newProduct.imageUrl = this.getImageUrl();
+    }
+
+    this.productService.update(this.product, newProduct);
     this.modalService.dismissAll();
     this.updateProductForm.reset();
     this.selectedTags = [];
   }
 
   openCenteredDialog(addProductModal) {
-    this.selectedTags = this.tags.filter(tag => this.product.tagIDs.includes(tag.id));
+    this.selectedTags = this.product.tags;
     this.modalService.open(addProductModal, {centered: true});
   }
 

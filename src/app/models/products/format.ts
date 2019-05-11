@@ -12,7 +12,6 @@ export class Format implements FormatModel {
 
   }
 
-  created: Timestamp;
   id?: string;
   name: string;
 }

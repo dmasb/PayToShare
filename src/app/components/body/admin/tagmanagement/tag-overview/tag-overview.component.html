@@ -17,12 +17,10 @@
           <tr>
             <th scope="col">
               <label>
-                <input type="checkbox" name="checkAll">
+                <input type="checkbox" name="checkAll" disabled>
               </label>
             </th>
             <th scope="col">Tag name</th>
-            <th scope="col">Products</th>
-            <th scope="col">Created</th>
             <th scope="col">Actions</th>
           </tr>
           </thead>
@@ -30,12 +28,10 @@
           <tr *ngFor="let tag of tags; index as i">
             <th scope="row">
               <label>
-                <input type="checkbox" name="checkbox + {{ i + 1}}">
+                <input type="checkbox" name="checkbox + {{ i + 1}}" disabled>
               </label>
             </th>
             <td>{{ tag.name }}</td>
-            <td>{{ tag.products }}</td>
-            <td>{{ tag.created.toDate() | date: 'yyyy-MM-dd'}}</td>
             <td>
               <app-update-tag [tag]="tag"></app-update-tag>
               <app-delete-tag [tag]="tag"></app-delete-tag>

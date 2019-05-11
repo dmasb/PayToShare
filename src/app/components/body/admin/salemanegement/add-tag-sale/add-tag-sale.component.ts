@@ -2,10 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Tag} from '../../../../../models/products/tag';
 import {SalesService} from '../../../../../services/product/sales.service';
-import {firestore} from 'firebase/app';
 import {Sale} from '../../../../../models/products/sale';
 import {SaleType} from '../../../../../models/saleType';
-import Timestamp = firestore.Timestamp;
 
 @Component({
   selector: 'app-add-tag-sale',
@@ -58,10 +56,10 @@ export class AddTagSaleComponent implements OnInit {
     sale.begins = sBegin;
     sale.ends = sEnd;
     sale.discount = sDiscount;
-    sale.created = Timestamp.now();
+    sale.saleObjects = this.selectedTags;
 
 
-    this.salesService.addSale(sale, this.selectedTags);
+    this.salesService.addSale(sale);
     this.newTagSale.reset();
     this.selectedTags = [];
   }

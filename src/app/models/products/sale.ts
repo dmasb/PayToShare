@@ -9,8 +9,7 @@ export interface SaleModel {
   begins: Timestamp;
   ends: Timestamp;
   discount: number;
-  salesObjectsID?: string;
-  created: Timestamp;
+  saleObjects?: any[];
 }
 
 export class Sale implements SaleModel {
@@ -23,7 +22,5 @@ export class Sale implements SaleModel {
   begins: Timestamp;
   ends: Timestamp;
   discount: number;
-  salesObjectsID?: string;
-  created: Timestamp;
-
+  saleObjects?: any[];
 }

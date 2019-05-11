@@ -12,9 +12,7 @@ export interface TagModel {
 export class Tag implements TagModel {
   constructor() {
   }
+
   id?: string;
   name: string;
-  created?: Timestamp;
-  salesID = 'none';
-  products = 0;
 }

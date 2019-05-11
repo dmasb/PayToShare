@@ -12,14 +12,13 @@ import {Error404Component} from './components/body/error404/error404.component';
 import {RoleGuardService} from './services/authentication/role-guard.service';
 import {DashboardComponent} from './components/body/admin/dashboard/dashboard.component';
 import {SalesComponent} from './components/body/sales/sales.component';
-import { PlanComponent } from './components/body/plan/plan.component';
-
-
-
+import {PlanComponent} from './components/body/plan/plan.component';
+import {CollectionComponent} from './components/body/collection/collection.component';
 
 
 export const routes: Routes = [
   {path: '', redirectTo: '', component: SalesComponent, pathMatch: 'full'},
+  {path: 'collection', component: CollectionComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
   {path: 'profile', component: MypageComponent, canActivate: [AuthGuard]},
   {path: 'pricing', component: PricingComponent},

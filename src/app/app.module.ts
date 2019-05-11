@@ -55,6 +55,8 @@ import {SaleOverviewComponent} from './components/body/admin/salemanegement/sale
 import { DeleteSaleComponent } from './components/body/admin/salemanegement/delete-sale/delete-sale.component';
 import { PlanComponent } from './components/body/plan/plan.component';
 import { CartdropdownComponent } from './components/navbar/cartdropdown/cartdropdown.component';
+import { CollectionComponent } from './components/body/collection/collection.component';
+import { AddProductSaleComponent } from './components/body/admin/salemanegement/add-product-sale/add-product-sale.component';
 
 
 @NgModule({
@@ -100,6 +102,8 @@ import { CartdropdownComponent } from './components/navbar/cartdropdown/cartdrop
     DeleteSaleComponent,
     PlanComponent,
     CartdropdownComponent,
+    CollectionComponent,
+    AddProductSaleComponent,
   ],
   imports: [
     BrowserModule,

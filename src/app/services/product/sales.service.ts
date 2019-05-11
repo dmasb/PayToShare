@@ -3,11 +3,9 @@ import {Observable} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {map} from 'rxjs/operators';
 import {Sale} from '../../models/products/sale';
-import {SaleType} from '../../models/saleType';
 import {MessageService} from '../message.service';
 import {alerts} from '../../models/alerts';
-import {Tag} from '../../models/products/tag';
-import {Plan} from '../../models/products/plan';
+
 
 @Injectable({
   providedIn: 'root'
@@ -37,65 +35,20 @@ export class SalesService {
     this.deleteSale(sale);
   }
 
-  addSale(saleObject: Sale, tags: Tag[]) {
-
-    const objectIDsAlreadyInSale: string[] = [];
-    for (const tag of tags) {
-      if (tag.salesID !== 'none') {
-        objectIDsAlreadyInSale.push(tag.salesID);
-      } else {
-        saleObject.salesObjectsID = tag.id;
-        this.afs.collection('sales').add(Object.assign({}, saleObject)).then(
-          sale => {
-            this.afs.collection('tags').doc(tag.id).update({salesID: sale.id});
-          }
-        );
-      }
-    }
-    if (objectIDsAlreadyInSale.length > 0) {
-      this.messageService.add('The following objects are already on sale, the rest were added! ' +
-        objectIDsAlreadyInSale.toString(), alerts.danger);
-    } else {
-      this.messageService.add(saleObject.name + ' was successfully added!', alerts.success);
-    }
-  }
-
-  addPlanSale(saleObject: Sale, plans: Plan[]) {
-
-    const objectIDsAlreadyInSale: string[] = [];
-    for (const plan of plans) {
-      if (plan.salesID !== 'none') {
-        objectIDsAlreadyInSale.push(plan.salesID);
-      } else {
-        saleObject.salesObjectsID = plan.id;
-        this.afs.collection('sales').add(Object.assign({}, saleObject)).then(
-          sale => {
-            this.afs.collection('plans').doc(plan.id).update({salesID: sale.id});
-          }
-        );
-      }
-    }
-    if (objectIDsAlreadyInSale.length > 0) {
-      this.messageService.add('The following objects are already on sale, the rest were added! ' +
-        objectIDsAlreadyInSale.toString(), alerts.danger);
-    } else {
-      this.messageService.add(saleObject.name + ' was successfully added!', alerts.success);
-    }
+  addSale(sale: Sale) {
+    this.afs.collection('sales').add(Object.assign({}, sale));
   }
 
   private async deleteSale(saleObject: Sale) {
 
-    console.log(saleObject.id);
     await this.afs.collection('sales').doc(saleObject.id).ref.get().then(sale => {
       if (sale.exists) {
-        if (saleObject.type === SaleType.TAG) {
-          this.afs.collection('tags').doc(saleObject.salesObjectsID).update({salesID: 'none'});
-        } else if (saleObject.type === SaleType.PLAN) {
-          this.afs.collection('plans').doc(saleObject.salesObjectsID).update({salesID: 'none'});
-        }
-        sale.ref.delete();
+        sale.ref.delete().then(() => {
+          this.messageService.add(saleObject.name + ' was successfully deleted!', alerts.success);
+        }, () => {
+          this.messageService.add(saleObject.name + ' was not found!', alerts.success);
+        });
       }
     });
-    this.messageService.add(saleObject.name + ' was successfully deleted!', alerts.success);
   }
 }
