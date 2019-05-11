@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators';
 import {Sale} from '../../models/products/sale';
 import {MessageService} from '../message.service';
 import {alerts} from '../../models/alerts';
+import {SaleType} from '../../models/saleType';
 
 
 @Injectable({
@@ -31,12 +32,27 @@ export class SalesService {
     );
   }
 
+  getSaleOnType(type: SaleType): Observable<Sale[]> {
+    return this.afs.collection('sales', ref =>
+      ref.where('type', '==', type)).snapshotChanges().pipe(
+      map(sales => {
+        return sales.map(sale => {
+          return {
+            id: sale.payload.doc.id,
+            ...sale.payload.doc.data()
+          } as Sale;
+        });
+      })
+    );
+  }
+
   confirmDelete(sale: Sale) {
     this.deleteSale(sale);
   }
 
   addSale(sale: Sale) {
     this.afs.collection('sales').add(Object.assign({}, sale));
+    this.messageService.add(sale.name + ' was successfully listed!', alerts.success);
   }
 
   private async deleteSale(saleObject: Sale) {

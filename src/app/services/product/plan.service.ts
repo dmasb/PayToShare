@@ -31,20 +31,6 @@ export class PlanService {
     );
   }
 
-  // Temporary
-  getSalePlans(): Observable<Plan[]> {
-    return this.plans = this.afs.collection('plans').snapshotChanges().pipe(
-      map(plans => {
-        return plans.map(plan => {
-          return {
-            id: plan.payload.doc.id,
-            ...plan.payload.doc.data()
-          } as Plan;
-        }).filter(plan => plan.salesID !== 'none');
-      })
-    );
-  }
-
   addPlan(plan: Plan) {
     this.afs.collection('plans').add(Object.assign({}, plan));
     this.messageService.add(plan.title + ' was successfully added!', alerts.success);
@@ -52,7 +38,7 @@ export class PlanService {
 
   async confirmDelete(plan: Plan) {
     console.log(plan.id);
-    const usedInSale = await this.afs.collection('sales').ref.where('salesObjectsIDs', 'array-contains', plan.id)
+    const usedInSale = await this.afs.collection('sales').ref.where('saleObjects', 'array-contains', plan)
       .get().then(res => {
         return !res.empty as boolean;
       });

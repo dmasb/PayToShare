@@ -30,10 +30,13 @@ export class UpdateFormatComponent implements OnInit {
   }
 
   editFormat() {
-    const newFormat: Format = cloneDeep(this.format);
-    newFormat.name = this.newFormatNameForm.controls.formatName.value;
+    if (this.newFormatNameForm.controls.formatName.value) {
+      const newFormat: Format = cloneDeep(this.format);
+      newFormat.name = this.newFormatNameForm.controls.formatName.value;
 
-    this.formatService.updateFormat(this.format, newFormat);
+      this.formatService.updateFormat(this.format, newFormat);
+    }
+
     this.modalService.dismissAll();
     this.newFormatNameForm.reset();
   }

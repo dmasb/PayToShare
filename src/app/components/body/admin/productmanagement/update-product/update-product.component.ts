@@ -66,7 +66,7 @@ export class UpdateProductComponent implements OnInit {
 
   editProduct() {
     const newProduct: Product = cloneDeep(this.product);
-    delete newProduct.id;
+
     const selectedFormat = this.updateProductForm.controls.productFormat.value;
     let format: Format = null;
 

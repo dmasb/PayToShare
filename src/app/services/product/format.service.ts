@@ -58,27 +58,28 @@ export class FormatService {
     }
   }
 
-  updateFormat(oldFormat: Format, newFormat: Format) {
-    this.afs.collection('products').ref.where('format', '==', oldFormat).get().then(
-      products => {
-        products.docs.map(product => product.ref.update({
-          format: newFormat
-        }));
-      }).then(() => {
-      this.afs.collection('licenses').ref.where('format', '==', oldFormat).get().then(
-        licenses => {
-          licenses.docs.map(license => license.ref.update(
-            {
-              format: newFormat
-            }));
-        }
-      ).then(() => {
-        this.afs.doc(`formats/${oldFormat.id}`).update(newFormat);
-        this.messageService.add(oldFormat.name + ' was successfully updated!', alerts.success);
-      }, () => {
-        this.messageService.add(oldFormat.name + ' was not updated!', alerts.danger);
+  async updateFormat(oldFormat: Format, newFormat: Format) {
+
+    const usedInProducts = await this.afs.collection('products').ref.where('format', '==', oldFormat)
+      .get().then(res => {
+        return !res.empty as boolean;
       });
-    });
+
+    const usedInLicenses = await this.afs.collection('licenses').ref.where('format', '==', oldFormat)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
+
+    if (usedInProducts) {
+      this.messageService.add(oldFormat.name + ' is used in products', alerts.danger);
+    } else if (usedInLicenses) {
+      this.messageService.add(oldFormat.name + ' is used in licenses', alerts.danger);
+    } else {
+      this.afs.collection('formats').doc(oldFormat.id).update({
+        name: newFormat.name
+      });
+      this.messageService.add(oldFormat.name + ' was successfully deleted!', alerts.success);
+    }
   }
 }
 

@@ -32,11 +32,12 @@ export class UpdateTagComponent implements OnInit {
 
   editTag() {
 
-    const newTag: Tag = cloneDeep(this.tag);
-    newTag.name = this.newTagNameForm.controls.tagName.value;
+    if (this.newTagNameForm.controls.tagName.value) {
+      const newTag: Tag = cloneDeep(this.tag);
+      newTag.name = this.newTagNameForm.controls.tagName.value;
 
-    this.tagService.updateTag(this.tag, newTag);
-
+      this.tagService.updateTag(this.tag, newTag);
+    }
 
     this.modalService.dismissAll();
     this.newTagNameForm.reset();
