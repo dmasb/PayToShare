@@ -21,19 +21,22 @@ export class SalesService {
   }
 
   getSales(): Observable<Sale[]> {
-    return this.sales = this.afs.collection('sales').snapshotChanges().pipe(
+    const currentTimestamp = Timestamp.now();
+    return this.afs.collection('sales', ref =>
+      ref.where('begins', '<=', currentTimestamp)).snapshotChanges().pipe(
       map(sales => {
         return sales.map(sale => {
           return {
             id: sale.payload.doc.id,
             ...sale.payload.doc.data()
           } as Sale;
-        });
+        }).filter(sale => sale.ends >= currentTimestamp);
       })
     );
   }
 
-  getSaleOnType(type: SaleType, currentTimestamp: Timestamp): Observable<Sale[]> {
+  getSaleOnType(type: SaleType): Observable<Sale[]> {
+    const currentTimestamp = Timestamp.now();
     return this.afs.collection('sales', ref =>
       ref
         .where('type', '==', type)
