@@ -6,7 +6,8 @@ import {Sale} from '../../models/products/sale';
 import {MessageService} from '../message.service';
 import {alerts} from '../../models/alerts';
 import {SaleType} from '../../models/saleType';
-
+import {firestore} from 'firebase/app';
+import Timestamp = firestore.Timestamp;
 
 @Injectable({
   providedIn: 'root'
@@ -32,16 +33,18 @@ export class SalesService {
     );
   }
 
-  getSaleOnType(type: SaleType): Observable<Sale[]> {
+  getSaleOnType(type: SaleType, currentTimestamp: Timestamp): Observable<Sale[]> {
     return this.afs.collection('sales', ref =>
-      ref.where('type', '==', type)).snapshotChanges().pipe(
+      ref
+        .where('type', '==', type)
+        .where('begins', '<=', currentTimestamp)).snapshotChanges().pipe(
       map(sales => {
         return sales.map(sale => {
           return {
             id: sale.payload.doc.id,
             ...sale.payload.doc.data()
           } as Sale;
-        });
+        }).filter(sale => sale.ends >= currentTimestamp);
       })
     );
   }

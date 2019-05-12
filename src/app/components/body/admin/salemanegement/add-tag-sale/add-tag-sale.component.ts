@@ -6,6 +6,9 @@ import {Sale} from '../../../../../models/products/sale';
 import {SaleType} from '../../../../../models/saleType';
 import {Product} from '../../../../../models/products/product';
 import {ProductsService} from '../../../../../services/crud/products.service';
+import {firestore} from 'firebase/app';
+import Timestamp = firestore.Timestamp;
+
 
 @Component({
   selector: 'app-add-tag-sale',
@@ -67,8 +70,8 @@ export class AddTagSaleComponent implements OnInit {
     const sale = new Sale();
     sale.name = sName;
     sale.type = SaleType.PRODUCT;
-    sale.begins = sBegin;
-    sale.ends = sEnd;
+    sale.begins = Timestamp.fromDate(new Date(sBegin));
+    sale.ends = Timestamp.fromDate(new Date(sEnd));
     sale.discount = sDiscount;
     sale.saleObjects = this.products;
 

@@ -5,6 +5,8 @@ import {SalesService} from '../../../services/product/sales.service';
 import {Sale} from '../../../models/products/sale';
 import {SaleType} from '../../../models/saleType';
 import {Product} from '../../../models/products/product';
+import {firestore} from 'firebase/app';
+import Timestamp = firestore.Timestamp;
 
 @Component({
   selector: 'app-collection',
@@ -21,8 +23,8 @@ export class CollectionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.salesService.getSaleOnType(SaleType.PRODUCT).subscribe(sales => this.productSale = sales);
-    this.salesService.getSaleOnType(SaleType.PLAN).subscribe(sales => this.planSale = sales);
+    this.salesService.getSaleOnType(SaleType.PRODUCT, Timestamp.now()).subscribe(sales => this.productSale = sales);
+    this.salesService.getSaleOnType(SaleType.PLAN, Timestamp.now()).subscribe(sales => this.planSale = sales);
   }
 
   add(plan: Plan) {

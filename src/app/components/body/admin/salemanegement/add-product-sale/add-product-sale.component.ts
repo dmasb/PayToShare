@@ -4,6 +4,8 @@ import {SaleType} from '../../../../../models/saleType';
 import {Product} from '../../../../../models/products/product';
 import {FormControl, FormGroup} from '@angular/forms';
 import {SalesService} from '../../../../../services/product/sales.service';
+import {firestore} from 'firebase/app';
+import Timestamp = firestore.Timestamp;
 
 @Component({
   selector: 'app-add-product-sale',
@@ -51,8 +53,8 @@ export class AddProductSaleComponent implements OnInit {
     const sale = new Sale();
     sale.name = sName;
     sale.type = SaleType.PRODUCT;
-    sale.begins = sBegin;
-    sale.ends = sEnd;
+    sale.begins = Timestamp.fromDate(new Date(sBegin));
+    sale.ends = Timestamp.fromDate(new Date(sEnd));
     sale.discount = sDiscount;
     sale.saleObjects = this.selectedProducts;
     console.log(sale);
