@@ -18,6 +18,7 @@
           </span></p>
         <p class="card-text ">{{product.description}}</p>
         <br>
+        <app-stars></app-stars>
         <br>
         <p *ngIf="product.quantity == 0" class="card-stock"><i class="fa fa-square null"></i>  out of stock</p>
         <p *ngIf="product.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{product.quantity}} in
