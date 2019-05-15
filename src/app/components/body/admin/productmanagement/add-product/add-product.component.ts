@@ -23,7 +23,6 @@ export class AddProductComponent implements OnInit {
   private tags: Tag[];
   private formats: Format[];
   private selectedTags: Tag[] = [];
-
   private newProductForm = new FormGroup({
     productTitle: new FormControl(''),
     productTag: new FormControl(''),
@@ -65,10 +64,12 @@ export class AddProductComponent implements OnInit {
 
     const productTags: string[] = [];
     this.selectedTags.forEach(tag => productTags.push(tag.id));
+    const format: Format = JSON.parse(this.newProductForm.controls.productFormat.value);
+
     const product = new Product();
     product.title = this.newProductForm.controls.productTitle.value;
-    product.tagIDs = productTags;
-    product.formatID = this.newProductForm.controls.productFormat.value;
+    product.tags = this.selectedTags;
+    product.format = format;
     product.description = this.newProductForm.controls.productDescription.value;
     product.price = this.newProductForm.controls.productPrice.value;
     product.quantity = this.newProductForm.controls.productQuantity.value;
@@ -110,3 +111,4 @@ export class AddProductComponent implements OnInit {
     return this.uploadImageService.getImageUrl();
   }
 }
+

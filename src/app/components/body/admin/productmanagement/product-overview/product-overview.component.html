@@ -24,7 +24,7 @@
           <thead>
           <tr>
             <th scope="col">
-              <button type="button" class="btn btn-outline-secondary" (click)="markAsDeals()">Sale</button>
+              <button type="button" class="btn btn-outline-secondary">Sale</button>
             </th>
             <th scope="col">Title</th>
             <th scope="col">Tag(s)</th>
@@ -44,12 +44,12 @@
             </th>
             <td>{{ product.title}}</td>
             <td>
-              <p *ngFor="let tag of product.tagIDs; index as j">
-                {{ getTagName(tag) }},
+              <p *ngFor="let tag of product.tags; index as j">
+                {{ tag.name }},
               </p>
             </td>
 
-            <td>{{ getFormatName(product.formatID) }}</td>
+            <td>{{ product.format.name }}</td>
             <td>{{ product.price | number }}</td>
             <td>{{ product.quantity | number}}</td>
             <td class="productDescription">{{ product.description}}</td>

@@ -55,12 +55,12 @@ export class AddPlanSaleComponent implements OnInit {
     const sale = new Sale();
     sale.name = sName;
     sale.type = SaleType.PLAN;
-    sale.begins = sBegin;
-    sale.ends = sEnd;
+    sale.begins = Timestamp.fromDate(new Date(sBegin));
+    sale.ends = Timestamp.fromDate(new Date(sEnd));
+    sale.saleObjects = this.selectedPlans;
     sale.discount = sDiscount;
-    sale.created = Timestamp.now();
+    this.salesService.addSale(sale);
 
-    this.salesService.addPlanSale(sale, this.selectedPlans);
     this.newPlanSale.reset();
     this.selectedPlans = [];
   }

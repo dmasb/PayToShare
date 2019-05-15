@@ -4,13 +4,13 @@
     <div class="uk-navbar-center">
       <ul class="uk-navbar-nav">
         <li class="nav-item">
-          <a>Manage Users</a>
+          <a data-toggle="collapse" data-target="#toggleAdmin">Manage Users</a>
         </li>
         <li class="nav-item">
-          <a>Orders</a>
+          <a data-toggle="collapse" data-target="#toggleAdmin">Orders</a>
         </li>
         <li class="nav-item">
-          <a routerLink="/dashboard">Dashboard</a>
+          <a routerLink="/dashboard" data-toggle="collapse">Dashboard</a>
         </li>
       </ul>
     </div>
@@ -37,22 +37,31 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/products">PRODUCTS <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/collection">COLLECTION<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a  class="nav-link" routerLink="/weeklydeals">WEEKLY DEALS</a>
+        <a  class="nav-link" routerLink="/plan">OUR PLANS</a>
       </li>
     </ul>
 
 
     <!--    SEARCH BAR- CENTERED -->
-    <div class="uk-navbar-center" id="search">
+   <!-- <div class="uk-navbar-center" id="search">
       <form class="uk-search uk-search-navbar">
         <span uk-search-icon></span>
         <input class="uk-input uk-form-width-large" type="search" placeholder="">
       </form>
-    </div>
-
+    </div>-->
+    <form class="navbar-form" role="search">
+      <div class="input-group add-on">
+        <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit"><span uk-search-icon></span></button>
+        </div>
+      </div>
+    </form>
+    
+    
 
     <div class="ml-auto">
       <ul class="navbar-nav">
@@ -69,7 +78,8 @@
         </li>
         <!--        CART ITEM-->
         <li class="nav-item">
-          <a uk-icon="icon: cart" class="nav-link" routerLink="/cart"></a>
+
+          <app-cartdropdown></app-cartdropdown>
 
           <!--        LOGIN DROPDOWN-->
         <li class="nav-item dropdown" *ngIf="!isLoggedIn">

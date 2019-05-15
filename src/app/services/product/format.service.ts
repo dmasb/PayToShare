@@ -12,7 +12,6 @@ import {alerts} from '../../models/alerts';
 export class FormatService {
 
   private formats: Observable<Format[]>;
-  private formatBeingDeleted: string;
 
   constructor(private afs: AngularFirestore,
               private messageService: MessageService) {
@@ -39,12 +38,12 @@ export class FormatService {
 
   async confirmDelete(format: Format) {
 
-    const usedInProducts = await this.afs.collection('products').ref.where('formatID', '==', format.id)
+    const usedInProducts = await this.afs.collection('products').ref.where('format', '==', format)
       .get().then(res => {
         return !res.empty as boolean;
       });
 
-    const usedInLicenses = await this.afs.collection('licenses').ref.where('formatID', '==', format.id)
+    const usedInLicenses = await this.afs.collection('licenses').ref.where('format', '==', format)
       .get().then(res => {
         return !res.empty as boolean;
       });
@@ -59,15 +58,28 @@ export class FormatService {
     }
   }
 
-  cancel() {
-    this.formatBeingDeleted = null;
-  }
+  async updateFormat(oldFormat: Format, newFormat: Format) {
 
-  updateFormat(format: Format) {
-    this.afs.doc(`formats/${format.id}`).update({
-      name: format.name
-    });
-    this.messageService.add(format.name + ' was successfully updated!', alerts.success);
+    const usedInProducts = await this.afs.collection('products').ref.where('format', '==', oldFormat)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
+
+    const usedInLicenses = await this.afs.collection('licenses').ref.where('format', '==', oldFormat)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
+
+    if (usedInProducts) {
+      this.messageService.add(oldFormat.name + ' is used in products', alerts.danger);
+    } else if (usedInLicenses) {
+      this.messageService.add(oldFormat.name + ' is used in licenses', alerts.danger);
+    } else {
+      this.afs.collection('formats').doc(oldFormat.id).update({
+        name: newFormat.name
+      });
+      this.messageService.add(oldFormat.name + ' was successfully deleted!', alerts.success);
+    }
   }
 }
 

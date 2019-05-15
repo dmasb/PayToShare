@@ -14,8 +14,8 @@
     <td>{{ plan.title}}</td>
     <td>{{ plan.speed | number}}</td>
     <td>{{ plan.price | number}}</td>
-    <div *ngFor="let license of plan.licenseIDs; index as j">
-      <td>{{ license }}</td>
+    <div *ngFor="let license of plan.licenses; index as j">
+      <td>{{ license.name }}</td>
     </div>
     <td>
       <a class="mr-3" role="button" style="cursor: pointer;" href="javascript:void(0)">

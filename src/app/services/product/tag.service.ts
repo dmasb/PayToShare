@@ -5,6 +5,9 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {map} from 'rxjs/operators';
 import {MessageService} from '../message.service';
 import {alerts} from '../../models/alerts';
+import * as firebase from 'firebase';
+import * as cloneDeep from 'lodash/cloneDeep';
+import {License} from '../../models/products/license';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +15,9 @@ import {alerts} from '../../models/alerts';
 export class TagService {
 
   private tags: Observable<Tag[]>;
-  private tagBeingDeleted: string;
 
   constructor(private afs: AngularFirestore,
               private messageService: MessageService) {
-    this.tagBeingDeleted = null;
   }
 
   getTags(): Observable<Tag[]> {
@@ -37,25 +38,18 @@ export class TagService {
   }
 
   async confirmDelete(tag: Tag) {
-    const usedInSales = await this.afs.collection('sales').ref.where('salesObjectsIDs', '==', tag.id)
-      .get().then(res => {
-        console.log(res);
-        return !res.empty as boolean;
-      });
 
-    const usedInLicenses = await this.afs.collection('licenses').ref.where('tagID', '==', tag.id)
+    const usedInLicenses = await this.afs.collection('licenses').ref.where('tag', '==', tag)
       .get().then(res => {
         return !res.empty as boolean;
       });
 
-    const usedInProducts = await this.afs.collection('products').ref.where('tagIDs', 'array-contains', tag.id)
+    const usedInProducts = await this.afs.collection('products').ref.where('tags', 'array-contains', tag)
       .get().then(res => {
         return !res.empty as boolean;
       });
 
-    if (usedInSales) {
-      this.messageService.add(tag.name + ' is on sale, please remove sale first', alerts.danger);
-    } else if (usedInLicenses) {
+    if (usedInLicenses) {
       this.messageService.add(tag.name + ' is included in a license, remove license first', alerts.danger);
     } else if (usedInProducts) {
       this.messageService.add(tag.name + ' is included in products, remove products tagged with this tag first', alerts.danger);
@@ -65,12 +59,28 @@ export class TagService {
     }
   }
 
-  updateTag(tag: Tag) {
-    this.afs.doc(`tags/${tag.id}`).update({
-      name: tag.name
-    });
-    this.messageService.add(tag.name + ' was successfully updated!', alerts.success);
+  async updateTag(oldTag: Tag, newTag: Tag) {
+    console.log(oldTag);
+    console.log(newTag);
+    const usedInProducts = await this.afs.collection('products').ref.where('tags', 'array-contains', oldTag)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
+
+    const usedInLicenses = await this.afs.collection('licenses').ref.where('tag', '==', oldTag)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
+
+    if (usedInLicenses) {
+      this.messageService.add(oldTag.name + ' is included in a license, remove license first', alerts.danger);
+    } else if (usedInProducts) {
+      this.messageService.add(oldTag.name + ' is included in products, remove products tagged with this tag first', alerts.danger);
+    } else {
+      this.afs.collection('tags').doc(oldTag.id).update({
+        name: newTag.name
+      });
+      this.messageService.add(oldTag.name + ' was successfully removed!', alerts.success);
+    }
   }
 }
-
-

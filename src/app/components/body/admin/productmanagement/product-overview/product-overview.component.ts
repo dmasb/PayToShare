@@ -1,10 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../../../../../models/products/product';
 import {ProductsService} from '../../../../../services/crud/products.service';
-import {Tag} from '../../../../../models/products/tag';
-import {Format} from '../../../../../models/products/format';
-import {TagService} from '../../../../../services/product/tag.service';
-import {FormatService} from '../../../../../services/product/format.service';
 
 @Component({
   selector: 'app-product-overview',
@@ -19,18 +15,12 @@ export class ProductOverviewComponent implements OnInit {
   collectionSize: number;
 
   private products: Product[];
-  private tags: Tag[];
-  private formats: Format[];
 
-  constructor(private productsService: ProductsService,
-              private tagService: TagService,
-              private formatService: FormatService) {
+  constructor(private productsService: ProductsService) {
   }
 
   ngOnInit() {
     this.productsService.getProductsByTag([]).subscribe(products => this.products = products);
-    this.tagService.getTags().subscribe(tags => this.tags = tags);
-    this.formatService.getFormats().subscribe(formats => this.formats = formats);
   }
 
   sort() {
@@ -54,17 +44,5 @@ export class ProductOverviewComponent implements OnInit {
 
   onSubmit() {
     // pages
-  }
-
-  getFormatName(formatID: string): string {
-    if (this.formats) {
-      return this.formats.find(format => format.id === formatID).name;
-    }
-  }
-
-  getTagName(tagID: string): string {
-    if (this.tags) {
-      return this.tags.find(tag => tag.id === tagID).name;
-    }
   }
 }

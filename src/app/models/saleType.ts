@@ -1,4 +1,5 @@
 export enum SaleType {
   PLAN = 'Plan',
-  TAG = 'Tag'
+  TAG = 'Tag',
+  PRODUCT = 'Product'
 }

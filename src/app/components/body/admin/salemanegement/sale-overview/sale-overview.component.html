@@ -8,6 +8,12 @@
          aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon:  plus-circle; ratio: 1"
                                                                      class="mr-2"></span>Plan
         sale</a>
+      <a (click)="messageService.clear()" class="btn btn-outline-dark text-left mt-2" id="v-pills-productSale-tab"
+         data-toggle="pill" href="#v-pills-productSale"
+         role="tab"
+         aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon:  plus-circle; ratio: 1"
+                                                                     class="mr-2"></span>Product
+        sale</a>
       <a (click)="messageService.clear()" class="btn btn-outline-dark text-left mt-2" id="v-pills-tagSales-tab"
          data-toggle="pill"
          href="#v-pills-tagSales"
@@ -29,6 +35,10 @@
       <app-message></app-message>
       <div class="tab-pane fade" id="v-pills-planSales" role="tabpanel" aria-labelledby="v-pills-planSales-tab">
         <app-add-plan-sale [plans]="plans"></app-add-plan-sale>
+      </div>
+
+      <div class="tab-pane fade" id="v-pills-productSale" role="tabpanel" aria-labelledby="v-pills-productSale-tab">
+        <app-add-product-sale [products]="products"></app-add-product-sale>
       </div>
 
       <div class="tab-pane fade" id="v-pills-tagSales" role="tabpanel"
@@ -55,11 +65,13 @@
             <td>{{ sale.name }}</td>
             <td>{{ sale.type }}</td>
             <td>
-              {{ getName(sale.salesObjectsID, sale.type) }}
+              <div *ngFor="let name of getItemNames(sale.saleObjects, sale.type)">
+                <span>[{{name}}] </span>
+              </div>
             </td>
             <td>{{ sale.discount | number}}</td>
-            <td>{{ sale.begins }}</td>
-            <td>{{ sale.ends }}</td>
+            <td>{{ sale.begins.toDate() | date }}</td>
+            <td>{{ sale.ends.toDate() | date}}</td>
             <td>
               <app-delete-sale [sale]="sale"></app-delete-sale>
             </td>

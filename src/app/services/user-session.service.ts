@@ -5,7 +5,7 @@ import {IUser, User} from '../models/user';
 import {Observable} from 'rxjs';
 import {FormGroup} from '@angular/forms';
 import {map} from 'rxjs/operators';
-import {Cart} from '../models/products/cart';
+import {Cart, ICart} from '../models/products/cart';
 import {Product} from '../models/products/product';
 
 @Injectable({
@@ -15,7 +15,6 @@ import {Product} from '../models/products/product';
 export class UserSessionService implements OnInit {
 
   private user$: Observable<IUser>;
-  private user: User;
   private userID;
   private collection;
   private cart: Cart = new Cart();
@@ -26,7 +25,7 @@ export class UserSessionService implements OnInit {
   ngOnInit(): void {
     this.userID = this.afAuth.auth.currentUser.uid;
     this.collection = this.afs.collection('users');
-    this.fetchCart();
+    this.currentUser();
   }
 
   currentUser(): Observable<IUser> {
@@ -39,17 +38,20 @@ export class UserSessionService implements OnInit {
     return null;
   }
 
-  private fetchCart() {
-
-    this.user$.pipe(map((user) => this.user = user));
-    this.cart = this.user.cart as Cart; // Casting ICart->Cart to access class methods.
-  }
-
   addToCart(product: Product) {
     this.cart.add(product);
+    this.updateCart().then(() => console.log('Cart updated.'));
     console.log(this.cart);
-    console.log('test');
-    console.log(this.cart.items);
+  }
+  removeFromCart(product: Product){
+    this.cart.remove(product);
+    this.updateCart().then(() => console.log('Cart updated.'));
+    console.log(this.cart);
+  }
+  removeAllOfProduct(product: Product){
+    this.cart.removeAllOf(product);
+    this.updateCart().then(() => console.log('Cart updated.'));
+    console.log(this.cart);
   }
 
   updateUser(updatedUser: IUser): boolean {
@@ -63,4 +65,12 @@ export class UserSessionService implements OnInit {
     return false;
   }
 
+  async updateCart() {
+    const userRef: AngularFirestoreDocument<IUser> = await this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`);
+    await userRef.update({cart: Object.assign({}, <ICart>this.cart)});
+  }
+
+  getCart(){
+    return this.cart;
+  }
 }
