@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IUser} from '../../../models/user';
+import {IUser, User} from '../../../models/user';
 import {UserSessionService} from '../../../services/user-session.service';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
@@ -11,7 +11,7 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 export class MypageComponent implements OnInit {
 
   private isAdmin: string;
-  private currentUser: IUser = null;
+  private currentUser: User = null;
   private profileUpdated = false;
   private userLoaded = false;
 

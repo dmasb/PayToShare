@@ -13,8 +13,8 @@
       <div class="card-body">
         <h5 class="card-title">{{product.title}}</h5>
         <p class="card-text">
-          <span *ngFor="let tag of product.tagIDs">
-            <h6>{{getTagName(tag)}}</h6>
+          <span *ngFor="let tag of product.tags">
+            <h6>{{tag.name}}</h6>
           </span></p>
         <p class="card-text ">{{product.description}}</p>
         <br>

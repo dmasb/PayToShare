@@ -23,17 +23,17 @@ export class AuthService {
   registering manually will also be added to this set.
    */
   private data: IUser = new User(); // Create new InterfaceUser from User which will work with Object.Set
-  private user$: Observable<IUser>;
+  private user: Observable<User>;
 
   constructor(private afAuth: AngularFireAuth,
               private afs: AngularFirestore,
               private router: Router,
               private messageService: MessageService) {
-    this.user$ = this.afAuth.authState.pipe(
+    this.user = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
           // Fetch the user document and listen to value changes.
-          return this.afs.doc<IUser>(`users/${user.uid}`).valueChanges();
+          return this.afs.doc(`users/${user.uid}`).valueChanges() as Observable<User>;
         } else {
           // This should never happen!
           return of(null);
@@ -43,8 +43,8 @@ export class AuthService {
   }
 
   // Temporary method
-  getCurrentUser(): Observable<IUser> {
-    return this.user$;
+  getCurrentUser(): Observable<User> {
+    return this.user;
   }
 
   state(): Observable<firebase.User | null> {
@@ -108,9 +108,9 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${user.uid}`);
     userRef.ref.get().then(userDocument => {
       if (userDocument.exists) {
-        this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update(Object.assign({},{
+        this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update(Object.assign({}, {
           lastLogin: Timestamp.now(),
-            loggedIn: true
+          loggedIn: true
         }));
       } else {
         const displayName = user.displayName.split(' ', 2);

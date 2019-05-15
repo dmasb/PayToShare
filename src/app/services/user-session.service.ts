@@ -2,12 +2,9 @@ import {Injectable, OnInit} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {IUser, User} from '../models/user';
-import {Observable} from 'rxjs';
-import {FormGroup} from '@angular/forms';
-import {map} from 'rxjs/operators';
-import {Cart, ICart} from '../models/products/cart';
-import {Product} from '../models/products/product';
-import {AuthService} from "./authentication/auth.service";
+import {Observable, of} from 'rxjs';
+import {Cart} from '../models/products/cart';
+import {switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,35 +12,36 @@ import {AuthService} from "./authentication/auth.service";
 
 export class UserSessionService implements OnInit {
 
-  private user$: Observable<IUser>;
   private userID;
   private collection;
-  private cart: Cart = new Cart();
 
-  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore, private as: AuthService) {
+  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
   }
 
   ngOnInit(): void {
     this.userID = this.afAuth.auth.currentUser.uid;
     this.collection = this.afs.collection('users');
-    this.as.getCurrentUser().subscribe( (user) => this.cart = <Cart>user.cart);
   }
 
-  getUserDoc(): Observable<IUser> {
-    if (this.afAuth.auth.currentUser) {
-      this.userID = this.afAuth.auth.currentUser.uid;
-      // We make a new fetch of the user document to avoid type-casting from IUser to observable<IUser>
-      this.user$ = this.afs.doc<IUser>(`users/${this.userID}`).valueChanges();
-      return this.user$;
-    }
-    return null;
+  getUserDoc(): Observable<User> {
+    return this.afAuth.authState.pipe(
+      switchMap(user => {
+        if (user) {
+          // Fetch the user document and listen to value changes.
+          return this.afs.doc<IUser>(`users/${user.uid}`).valueChanges();
+        } else {
+          // This should never happen!
+          return of(null);
+        }
+      })
+    );
   }
 
-  addToCart(product: Product) {
+  /*addToCart(product: Product) {
     this.cart.add(product);
     this.cart.sum();
     this.updateCart().then(() => console.log('Cart updated.'));
-  }
+  }*/
 
   updateUser(updatedUser: IUser): boolean {
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${this.userID}`);
@@ -56,12 +54,9 @@ export class UserSessionService implements OnInit {
     return false;
   }
 
-  async updateCart() {
-    const userRef: AngularFirestoreDocument<IUser> = await this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`);
-    await userRef.update({cart: Object.assign({}, <ICart>this.cart)});
-  }
-
-  getCart(){
-    return this.cart;
+  async updateCart(cart: Cart) {
+    await this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update({
+      cart: Object.assign({}, cart)
+    });
   }
 }

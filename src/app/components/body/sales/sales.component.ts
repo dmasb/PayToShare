@@ -6,6 +6,8 @@ import {Format} from '../../../models/products/format';
 import {UserSessionService} from '../../../services/user-session.service';
 import {TagService} from '../../../services/product/tag.service';
 import {FormatService} from '../../../services/product/format.service';
+import {User} from '../../../models/user';
+import {Cart} from '../../../models/products/cart';
 
 @Component({
   selector: 'app-sales',
@@ -24,14 +26,8 @@ export class SalesComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.productsService.getProducts());
-
     this.tagService.getTags().subscribe(tags => this.tags = tags);
     this.formatService.getFormats().subscribe(formats => this.formats = formats);
-  }
-
-  add(product: Product) {
-    this.session.addToCart(product);
   }
 
 }
