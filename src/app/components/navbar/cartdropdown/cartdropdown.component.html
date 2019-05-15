@@ -1,6 +1,6 @@
 <li class="dropdown nav-item">
     <a uk-icon="icon: cart" class="nav-link dropdown-toggle text-white" id="navbarDropdownMenuLink" role="button"
-       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" routerLink="/"></a>
+       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
     <ul class="dropdown-menu dropdown-menu-right">
       <div class="container">
         <div class="shopping-cart">
@@ -39,7 +39,8 @@
               <span class="item-price">{{item.product.price | currency}}</span>
               <span class="item-quantity">Quantity: {{item.amountOf}}</span>
             </li>
-
+            <li class="divider border"></li>
+            <li class="checkout"><a class="text-center" routerLink="/checkout">View Cart</a></li>
           </ul>
         </div>
       </div>

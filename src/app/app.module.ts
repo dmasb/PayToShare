@@ -58,6 +58,7 @@ import { CartdropdownComponent } from './components/navbar/cartdropdown/cartdrop
 import { CollectionComponent } from './components/body/collection/collection.component';
 import { AddProductSaleComponent } from './components/body/admin/salemanegement/add-product-sale/add-product-sale.component';
 import { StarsComponent } from './components/body/stars/stars.component';
+import { CheckoutComponent } from './components/body/checkout/checkout.component';
 
 
 @NgModule({
@@ -106,6 +107,7 @@ import { StarsComponent } from './components/body/stars/stars.component';
     CollectionComponent,
     AddProductSaleComponent,
     StarsComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
