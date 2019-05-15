@@ -32,6 +32,7 @@ export class Cart {
       if (i.product.id === product.id) {
         // Increase amount.
         found = true;
+        this.totalPrice += i.product.price;
         i.amountOf+=1;
         this.numberOfItems +=1;
         break;
@@ -40,6 +41,7 @@ export class Cart {
 
     if(!found) {
       this.items.push(<ICartItem>{product: product, amountOf: 1});
+      this.totalPrice += product.price;
       this.numberOfItems +=1;
     }
   }
@@ -53,6 +55,7 @@ export class Cart {
           this.items.splice(this.items.indexOf(i), 1); // deletes entry
         }
         else{
+          this.totalPrice -= i.product.price;
           i.amountOf-=1;
           this.numberOfItems -= 1;
         }

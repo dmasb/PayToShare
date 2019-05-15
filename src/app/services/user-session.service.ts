@@ -7,6 +7,7 @@ import {FormGroup} from '@angular/forms';
 import {map} from 'rxjs/operators';
 import {Cart, ICart} from '../models/products/cart';
 import {Product} from '../models/products/product';
+import {AuthService} from "./authentication/auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -19,16 +20,16 @@ export class UserSessionService implements OnInit {
   private collection;
   private cart: Cart = new Cart();
 
-  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
+  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore, private as: AuthService) {
   }
 
   ngOnInit(): void {
     this.userID = this.afAuth.auth.currentUser.uid;
     this.collection = this.afs.collection('users');
-    this.currentUser();
+    this.as.getCurrentUser().subscribe( (user) => this.cart = <Cart>user.cart);
   }
 
-  currentUser(): Observable<IUser> {
+  getUserDoc(): Observable<IUser> {
     if (this.afAuth.auth.currentUser) {
       this.userID = this.afAuth.auth.currentUser.uid;
       // We make a new fetch of the user document to avoid type-casting from IUser to observable<IUser>
@@ -40,6 +41,7 @@ export class UserSessionService implements OnInit {
 
   addToCart(product: Product) {
     this.cart.add(product);
+    this.cart.sum();
     this.updateCart().then(() => console.log('Cart updated.'));
   }
 

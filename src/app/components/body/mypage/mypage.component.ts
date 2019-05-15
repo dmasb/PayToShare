@@ -23,7 +23,7 @@ export class MypageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.session.currentUser().subscribe(user => {
+    this.session.getUserDoc().subscribe(user => {
       if (user) {
         this.currentUser = user;
         this.profile = this.fb.group(user);
