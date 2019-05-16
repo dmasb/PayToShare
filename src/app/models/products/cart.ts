@@ -23,7 +23,7 @@ export class Cart {
     return this.items;
   }
 
-  /* Iterates the cart and adds product count instead of*/
+  /* Iterates the cart and adds product count instead of extra objects.*/
   add(product: Product) {
     let found = false;
     // Iterate items
@@ -32,6 +32,7 @@ export class Cart {
       if (i.product.id === product.id) {
         // Increase amount.
         found = true;
+        this.totalPrice += i.product.price;
         i.amountOf+=1;
         this.numberOfItems +=1;
         break;
@@ -40,6 +41,7 @@ export class Cart {
 
     if(!found) {
       this.items.push(<ICartItem>{product: product, amountOf: 1});
+      this.totalPrice += product.price;
       this.numberOfItems +=1;
     }
   }
@@ -50,10 +52,12 @@ export class Cart {
       if (i.product.id === product.id) {
 
         if(i.amountOf <= 1){
+          this.totalPrice -= i.product.price;
           this.items.splice(this.items.indexOf(i), 1); // deletes entry
           this.numberOfItems -= 1;
         }
         else{
+          this.totalPrice -= i.product.price;
           i.amountOf-=1;
           this.numberOfItems -= 1;
         }
