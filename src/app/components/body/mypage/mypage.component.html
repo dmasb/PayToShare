@@ -14,15 +14,6 @@
   </div>
   <div class="container" id="inner">
 
-<<<<<<< HEAD
-    <form [formGroup]="profile" (ngSubmit)="onSubmit()">
-      <!-- MAIL -->
-      <div class="form-group row">
-        <img src="{{currentUser.photoURL}}" id="mypage">
-        <div class="col-sm-10">
-          <input [value]="currentUser.email" type="text" readonly class="form-control-plaintext" id="staticEmail"
-            formControlName="email">
-=======
     <form [formGroup]="profile" (ngSubmit)="onSubmit()" *ngIf="currentUser">
       <!-- MAIL -->
       <div class="form-group row">
@@ -31,7 +22,6 @@
           <label for="staticEmail"><input
             [value]="currentUser.email"
             type="text" readonly class="form-control-plaintext" id="staticEmail"></label>
->>>>>>> 433c9957b00ca6ee2c0036322e964ae3b8521593
           <small id="tip1" class="form-text text-muted">Psst! We'll never share your email with anyone else.</small>
         </div>
       </div>
@@ -76,23 +66,15 @@
         <div class="col-sm-2">
           <label for="rank" class="col-sm-2 col-form-label">Rank</label>
           <input style="text-align: center" [value]="isAdminString()" type="text" readonly
-<<<<<<< HEAD
-            class="form-control-plaintext" id="rank">
-=======
                  class="form-control-plaintext" id="rank">
->>>>>>> 433c9957b00ca6ee2c0036322e964ae3b8521593
         </div>
 
       </div>
       <hr>
 
       <button type="submit" [disabled]="!userLoaded || profile.pristine" class="btn btn-primary">Update profile
-<<<<<<< HEAD
-        settings</button>
-=======
         settings
       </button>
->>>>>>> 433c9957b00ca6ee2c0036322e964ae3b8521593
 
     </form>
   </div>
