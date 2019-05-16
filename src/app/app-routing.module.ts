@@ -5,7 +5,7 @@ import {AuthGuard} from './services/authentication/auth-guard.service';
 import {FeaturesComponent} from './components/body/features/features.component';
 import {WeeklydealsComponent} from './components/body/weeklydeals/weeklydeals.component';
 import {PricingComponent} from './components/body/pricing/pricing.component';
-import {MypageComponent} from './components/body/mypage/mypage.component';
+import {MypageOverviewComponent} from './components/body/mypage/mypage-overview/mypage-overview.component';
 import {RegisterComponent} from './components/body/register/register.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
 import {Error404Component} from './components/body/error404/error404.component';
@@ -20,7 +20,7 @@ export const routes: Routes = [
   {path: '', redirectTo: '', component: SalesComponent, pathMatch: 'full'},
   {path: 'collection', component: CollectionComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
-  {path: 'profile', component: MypageComponent, canActivate: [AuthGuard]},
+  {path: 'profile', component: MypageOverviewComponent, canActivate: [AuthGuard]},
   {path: 'pricing', component: PricingComponent},
   {path: 'features', component: FeaturesComponent},
   {path: 'register', component: RegisterComponent},
