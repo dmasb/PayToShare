@@ -36,13 +36,7 @@ export class UserSessionService implements OnInit {
       })
     );
   }
-
-  /*addToCart(product: Product) {
-    this.cart.add(product);
-    this.cart.sum();
-    this.updateCart().then(() => console.log('Cart updated.'));
-  }*/
-
+  
   updateUser(updatedUser: IUser): boolean {
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${this.userID}`);
     userRef.ref.get().then(userDocument => {

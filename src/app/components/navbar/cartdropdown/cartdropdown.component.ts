@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../../models/user';
 import {UserSessionService} from '../../../services/user-session.service';
+import {Cart} from "../../../models/products/cart";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-cartdropdown',
@@ -9,12 +11,17 @@ import {UserSessionService} from '../../../services/user-session.service';
 })
 export class CartdropdownComponent implements OnInit {
 
-  private user: User;
+  private cart = new Cart();
 
-  constructor(private userSession: UserSessionService) {
+  constructor(private userSession: UserSessionService, private router: Router) {
   }
 
   ngOnInit() {
-    this.userSession.getUserDoc().subscribe(user => this.user = user);
+    this.userSession.getUserDoc().subscribe(user => this.cart = Cart.clone(user.cart));
   }
+
+  goToCart() {
+    this.router.navigate(['/checkout']);
+  }
+
 }
