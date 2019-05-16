@@ -29,5 +29,4 @@ export class SalesComponent implements OnInit {
     this.tagService.getTags().subscribe(tags => this.tags = tags);
     this.formatService.getFormats().subscribe(formats => this.formats = formats);
   }
-
 }

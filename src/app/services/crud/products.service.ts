@@ -57,7 +57,6 @@ export class ProductsService {
     this.messageService.add(product.title + ' was successfully added!', alerts.success);
   }
 
-
   async confirmDelete(product: Product) {
     await this.afs.collection('sales').ref.where('saleObjects', 'array-contains', product).get().then(
       res => {
@@ -92,5 +91,4 @@ export class ProductsService {
       }
     );
   }
-
 }

@@ -14,7 +14,8 @@ import {DashboardComponent} from './components/body/admin/dashboard/dashboard.co
 import {SalesComponent} from './components/body/sales/sales.component';
 import {PlanComponent} from './components/body/plan/plan.component';
 import {CollectionComponent} from './components/body/collection/collection.component';
-import { CheckoutComponent } from './components/body/checkout/checkout.component';
+import { CheckoutComponent } from './components/body/checkout/CartOverview/checkout.component';
+import { StarsComponent } from './components/body/stars/stars.component';
 
 
 export const routes: Routes = [
@@ -30,7 +31,9 @@ export const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuardService]},
   {path: 'plan', component: PlanComponent},
   {path: 'checkout', component: CheckoutComponent},
+  {path: 'stars', component: StarsComponent},
   {path: '**', component: Error404Component},
+  
 ];
 
 @NgModule({

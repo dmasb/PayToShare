@@ -3,27 +3,27 @@
      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
   <ul class="dropdown-menu dropdown-menu-right">
     <div class="container">
-      <div class="shopping-cart" *ngIf="user">
+      <div class="shopping-cart" *ngIf="cart">
         <div class="shopping-cart-header">
-          <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">{{this.user.cart.numberOfItems}}</span>
+          <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">{{cart.numberOfItems}}</span>
           <div class="shopping-cart-total">
             <span class="lighter-text">Total: </span>
-            <span class="main-color-text">{{this.user.cart.totalPrice | currency}}</span>
+            <span class="main-color-text">{{this.cart.totalPrice | currency}}</span>
           </div>
         </div>
         <ng-template #loggedOut>
           <div class="shopping-cart-header">
-            <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">{{user.cart.numberOfItems}}</span>
+            <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">{{cart.numberOfItems}}</span>
             <div class="shopping-cart-total">
               <span class="lighter-text">Total: </span>
-              <span class="main-color-text">{{user.cart.totalPrice | currency}}</span>
+              <span class="main-color-text">{{cart.totalPrice | currency}}</span>
             </div>
           </div>
         </ng-template>
         <ul class="shopping-cart-items pull-left list-unstyled">
           <!--            HIDDEN IF NO ITEMS-->
-          <li class="clearfix" *ngIf="!user.cart || user.cart.numberOfItems == 0">No items here.</li>
-          <li class="clearfix" *ngFor="let item of user.cart.items">
+          <li class="clearfix" *ngIf="!cart || cart.numberOfItems == 0">No items here.</li>
+          <li class="clearfix" *ngFor="let item of cart.items">
 
             <span><img *ngIf="item.product.imageUrl" src="{{item.product.imageUrl}}" alt="item1"/></span>
             <span><img *ngIf="!item.product.imageUrl || item.product.imageUrl == '' " src="{{item.product.imageUrl}}"
@@ -34,6 +34,7 @@
             <span class="item-quantity">Quantity: {{item.amountOf}}</span>
           </li>
         </ul>
+        <button type="button" class="btn"(click)="goToCart()">Checkout</button>
       </div>
     </div>
   </ul>
