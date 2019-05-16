@@ -49,8 +49,9 @@ export class Cart {
       // Item found
       if (i.product.id === product.id) {
 
-        if(i.amountOf < 1){
-          this.items.splice(this.items.indexOf(i), 1); // deletes entry 
+        if(i.amountOf <= 1){
+          this.items.splice(this.items.indexOf(i), 1); // deletes entry
+          this.numberOfItems -= 1;
         }
         else{
           i.amountOf-=1;
