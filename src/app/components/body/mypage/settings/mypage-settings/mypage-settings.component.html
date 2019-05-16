@@ -16,7 +16,7 @@
                   </div>
                   <div class="container" id="inner">
                   
-                    <form [formGroup]="profile" (ngSubmit)="onSubmit()">
+                    <form [formGroup]="profile" (ngSubmit)="onSubmit()" *ngIf="currentUser">
                       <!-- MAIL -->
                       <div class="form-group row">
                        <img src="{{currentUser.photoURL}}" id="mypage">

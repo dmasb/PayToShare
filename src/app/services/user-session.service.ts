@@ -2,10 +2,11 @@ import {Injectable, OnInit} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {IUser, User} from '../models/user';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {FormGroup} from '@angular/forms';
 import {map} from 'rxjs/operators';
 import {Cart, ICart} from '../models/products/cart';
+import {switchMap} from 'rxjs/operators';
 import {Product} from '../models/products/product';
 
 @Injectable({
@@ -27,6 +28,21 @@ export class UserSessionService implements OnInit {
     this.collection = this.afs.collection('users');
     this.currentUser();
   }
+
+  getUserDoc(): Observable<User> {
+    return this.afAuth.authState.pipe(
+      switchMap(user => {
+        if (user) {
+          // Fetch the user document and listen to value changes.
+          return this.afs.doc<IUser>(`users/${user.uid}`).valueChanges();
+        } else {
+          // This should never happen!
+          return of(null);
+        }
+      })
+    );
+  }
+
 
   currentUser(): Observable<IUser> {
     if (this.afAuth.auth.currentUser) {
