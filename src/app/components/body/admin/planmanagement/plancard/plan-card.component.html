@@ -2,14 +2,12 @@
   <div class="card-body">
     <img class="card-img-top img-fluid max-width" src="{{plan.imageUrl}}" alt="{{plan.imageUrl}}">
     <h5 class="card-title mt-2">{{plan.title}}</h5>
+    <h6 class="card-title mt-2">{{plan.level.name}} - {{plan.level.licenses}} licenses</h6>
     <h6>Speed: {{plan.speed}} mb/s</h6>
     <p>Included licenses:</p>
     <div *ngFor="let license of selectedLicenses">
-      <p>({{license.name}})</p>
+      [{{license}}]
     </div>
-    <p *ngIf="plan.quantity == 0" class="card-stock"><i class="fa fa-square null"></i> out of stock</p>
-    <p *ngIf="plan.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{plan.quantity}} in
-      stock</p>
     <div class="card-footer">
       <p class="price">{{plan.price | currency}}
         <a class="btn btn-sm float-right" id="buy">

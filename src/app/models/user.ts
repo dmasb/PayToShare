@@ -1,7 +1,7 @@
 import {Userrank} from './userrank';
 import {Sex} from './sex';
 import {firestore} from 'firebase/app';
-import {ICart} from "./products/cart";
+import {Cart, ICart} from './products/cart';
 import Timestamp = firestore.Timestamp;
 
 
@@ -22,11 +22,11 @@ export interface IUser {
   loggedIn?: boolean;
   lastLogin?: Timestamp;
   sessionID?: number;
-  cart?: ICart;
+  cart?: Cart;
 }
 
-export class User implements IUser{
-  constructor(){
+export class User implements IUser {
+  constructor() {
   }
 
   id?: string;
@@ -35,15 +35,15 @@ export class User implements IUser{
   firstName: string = null;
   lastName: string = null;
   photoURL?: string = null;
-  registerDate? = null;
+  registerDate = null;
   sex?: Sex = null;
-  address?: string = 'N/A';
-  city?: string = 'N/A';
-  zipcode?: number = 123456;
-  country?: string = 'N/A';
+  address = 'N/A';
+  city = 'N/A';
+  zipcode = 123456;
+  country = 'N/A';
   phone?: number = null;
   loggedIn?: boolean;
   lastLogin?: Timestamp;
   sessionID?: number = null;
-  cart?: ICart = null;
+  cart?: Cart = null;
 }

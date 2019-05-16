@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Cart, ICart} from "../../../models/products/cart";
-import {AuthService} from "../../../services/authentication/auth.service";
-import {Observable} from "rxjs";
-import {IUser} from "../../../models/user";
+import {User} from '../../../models/user';
+import {UserSessionService} from '../../../services/user-session.service';
 
 @Component({
   selector: 'app-cartdropdown',
@@ -11,13 +9,12 @@ import {IUser} from "../../../models/user";
 })
 export class CartdropdownComponent implements OnInit {
 
-  private user$: Observable<IUser>;
-  private cart = new Cart();
+  private user: User;
 
-  constructor(private kuk: AuthService) {
+  constructor(private userSession: UserSessionService) {
   }
 
   ngOnInit() {
-    this.user$ = this.kuk.getCurrentUser();
+    this.userSession.getUserDoc().subscribe(user => this.user = user);
   }
 }

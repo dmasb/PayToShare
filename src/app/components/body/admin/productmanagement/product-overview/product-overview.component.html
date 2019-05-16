@@ -24,7 +24,9 @@
           <thead>
           <tr>
             <th scope="col">
-              <button type="button" class="btn btn-outline-secondary">Sale</button>
+              <label class="col-6 ml-2">
+                <input type="checkbox" disabled>
+              </label>
             </th>
             <th scope="col">Title</th>
             <th scope="col">Tag(s)</th>
@@ -39,7 +41,7 @@
           <tr *ngFor="let product of products; index as i">
             <th scope="row">
               <label class="col-6 ml-2">
-                <input type="checkbox">
+                <input type="checkbox" disabled>
               </label>
             </th>
             <td>{{ product.title}}</td>

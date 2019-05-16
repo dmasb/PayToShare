@@ -6,6 +6,7 @@ import {Format} from '../../../models/products/format';
 import {Tag} from '../../../models/products/tag';
 import {TagService} from '../../../services/product/tag.service';
 import {FormatService} from '../../../services/product/format.service';
+import {Cart} from '../../../models/products/cart';
 
 @Component({
   selector: 'app-products',
@@ -14,37 +15,22 @@ import {FormatService} from '../../../services/product/format.service';
 })
 export class ProductsComponent implements OnInit {
 
+
   private products: Product[];
-  private tags: Tag[];
-  private formats: Format[];
+  private cart: Cart;
 
   constructor(private productsService: ProductsService,
-              private session: UserSessionService,
-              private tagService: TagService,
-              private formatService: FormatService) {
+              private session: UserSessionService) {
   }
 
   ngOnInit() {
-
+    this.cart = new Cart();
     this.productsService.getProductsByTag([]).subscribe(products => this.products = products);
-    this.tagService.getTags().subscribe(tags => this.tags = tags);
-    this.formatService.getFormats().subscribe(formats => this.formats = formats);
+    this.session.getUserDoc().subscribe(user => this.cart = Cart.clone(user.cart));
   }
 
   add(product: Product) {
-    this.session.addToCart(product);
+    this.cart.add(product);
+    this.session.updateCart(this.cart);
   }
-
-  getFormatName(formatID: string): string {
-    if (this.formats) {
-      return this.formats.find(format => format.id === formatID).name;
-    }
-  }
-
-  getTagName(tagID: string): string {
-    if (this.tags) {
-      return this.tags.find(tag => tag.id === tagID).name;
-    }
-  }
-
 }

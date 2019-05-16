@@ -9,6 +9,8 @@ import {AngularFireUploadTask} from '@angular/fire/storage';
 import {UploadTaskSnapshot} from '@angular/fire/storage/interfaces';
 import * as url from 'url';
 import {UploadImageService} from '../../../../../services/upload-image.service';
+import {DefaultLicenses} from '../../../../../models/products/defaultLicenses';
+import {Level, PlanLevels} from '../../../../../models/products/planLevels';
 
 @Component({
   selector: 'app-plan-builder',
@@ -16,17 +18,18 @@ import {UploadImageService} from '../../../../../services/upload-image.service';
   styleUrls: ['./plan-builder.component.scss']
 })
 export class PlanBuilderComponent implements OnInit {
-
+  private planLevels: PlanLevels;
+  private defaultLicenses: DefaultLicenses;
   private plan: Plan;
   private licenses: License[];
-  private selectedLicenses: License[] = [];
+  private selectedLicenses: string[] = [];
 
   private newPlanForm = new FormGroup({
     planName: new FormControl(''),
     planSpeed: new FormControl(''),
     planPrice: new FormControl(''),
-    planQuantity: new FormControl(''),
     planDesc: new FormControl(''),
+    planLevel: new FormControl(''),
     planLicense: new FormControl(''),
     productImageUrl: new FormControl('')
   });
@@ -35,22 +38,35 @@ export class PlanBuilderComponent implements OnInit {
               private planService: PlanService,
               private uploadImageService: UploadImageService) {
     this.plan = new Plan();
+    this.planLevels = new PlanLevels();
+    this.defaultLicenses = new DefaultLicenses();
   }
 
   ngOnInit() {
     this.licenseService.getLicenses().subscribe(licenses => this.licenses = licenses);
   }
 
+  selectLevel() {
+    const selectedLevel: Level = JSON.parse(this.newPlanForm.controls.planLevel.value);
+    this.plan.level = selectedLevel;
+    while (this.selectedLicenses.length > selectedLevel.licenses) {
+      this.selectedLicenses.pop();
+    }
+  }
+
   pushLicense() {
-    if (this.newPlanForm.controls.planLicense.value) {
-      const selected: License = JSON.parse(this.newPlanForm.controls.planLicense.value);
-      if (this.selectedLicenses.findIndex(obj => obj.id === selected.id) === -1 && selected.id) {
-        this.selectedLicenses.push(selected);
+
+    if (this.newPlanForm.controls.planLevel.value && this.newPlanForm.controls.planLicense.value) {
+      const selectedLevel: Level = JSON.parse(this.newPlanForm.controls.planLevel.value);
+      const selectedLicense = this.newPlanForm.controls.planLicense.value;
+      if (this.selectedLicenses.findIndex(obj => obj === selectedLicense) === -1
+        && this.selectedLicenses.length < selectedLevel.licenses) {
+        this.selectedLicenses.push(selectedLicense);
       }
     }
   }
 
-  popLicense(selectedLicense: License) {
+  popLicense(selectedLicense: string) {
     this.selectedLicenses = this.selectedLicenses.filter(license => license !== selectedLicense);
   }
 
@@ -58,8 +74,8 @@ export class PlanBuilderComponent implements OnInit {
 
     this.plan.title = this.newPlanForm.controls.planName.value;
     this.plan.speed = this.newPlanForm.controls.planSpeed.value;
+    this.plan.level = JSON.parse(this.newPlanForm.controls.planLevel.value) as Level;
     this.plan.price = this.newPlanForm.controls.planPrice.value;
-    this.plan.quantity = this.newPlanForm.controls.planQuantity.value;
     this.plan.description = this.newPlanForm.controls.planDesc.value;
     this.plan.licenses = this.selectedLicenses;
     this.plan.imageUrl = this.getImageUrl() || this.plan.imageUrl;

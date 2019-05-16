@@ -5,7 +5,7 @@ export interface Item {
   id?: string;
   title: string;
   price: number;
-  quantity: number;
+  quantity?: number;
   created?: Timestamp;
   description: string;
   imageUrl: string;

@@ -36,6 +36,12 @@ export class LicenseService {
     this.messageService.add(license.name + ' was successfully added!', alerts.success);
   }
 
+  /**
+   * THIS METHOD NEEDS TO BE CHANGED!
+   *
+   * This method should now look if any user has this license before removal!!!!
+   * @param license
+   */
   async confirmDelete(license: License) {
     const usedInPlans = await this.afs.collection('plans').ref.where('licenses', 'array-contains', license)
       .get().then(res => {
