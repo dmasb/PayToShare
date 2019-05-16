@@ -1,0 +1,37 @@
+<div class="container" id="outer">
+  <ul class="top">
+    <div class="container">
+      <div class="shopping-cart">
+        <div class="shopping-cart-header" *ngIf="user$ | async as user; else loggedOut">
+          <span class="badge"> You have {{this.user.cart.numberOfItems}} items in your cart</span>
+        </div>
+
+
+        <ul class="shopping-cart-items list-unstyled" *ngIf="user$ | async as user">
+
+          <!--            HIDDEN IF NO ITEMS-->
+
+          <li class="clearfix" *ngIf="!user.cart || user.cart.numberOfItems == 0">No items here.</li>
+          <li class="clearfix" *ngFor="let item of user.cart.items">
+            <div class="container border">
+              <ul class="list-group list-group-horizontal ">
+                <span><img *ngIf="item.product.imageUrl" src="{{item.product.imageUrl}}" alt="item1" /></span>
+                <span><img *ngIf="!item.product.imageUrl || item.product.imageUrl == '' "
+                    src="{{item.product.imageUrl}}" alt="item1" />
+                  <span class="item-name">{{item.product.title}}</span><br>
+                  <span class="item-quantity">Quantity: {{item.amountOf}}</span>
+                </span>
+                <li class="pricing">{{item.product.price | currency}}</li>
+              </ul>
+            </div>
+          </li>
+          <div class="shopping-cart-total">
+            <span class="lighter-text">Total: </span>
+            <span class="main-color-text">{{this.user.cart.totalPrice | currency}}</span>
+          </div>
+
+        </ul>
+      </div>
+    </div>
+  </ul>
+</div>
