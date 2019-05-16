@@ -105,6 +105,11 @@ li.dropdown:hover > .dropdown-menu {
     .shopping-cart-total {
       float: right;
     }
+
+    .price {
+     color: mediumaquamarine;
+    }
+
   }
 
   .shopping-cart-items {
@@ -124,18 +129,18 @@ li.dropdown:hover > .dropdown-menu {
     }
 
     .item-name {
-      display: block;
       float: left;
-      padding-top: 10px;
       font-size: 16px;
     }
 
     .item-price {
+      float: right;
       color: mediumaquamarine;
       margin-right: 8px;
     }
 
     .item-quantity {
+      float: left;
       color: gray;
     }
   }
@@ -153,14 +158,23 @@ li.dropdown:hover > .dropdown-menu {
     border-width: 8px;
     margin-left: -8px;
   }
-  .btn{
+
+  .btn {
     position: absolute;
     bottom: 8px;
     right: 16px;
     font-size: 18px;
-    background-color:gold;
-    color: black;
-    
+    background-color: black;
+    border-radius: 25px;
+
+  }
+
+  .btn:hover {
+    background-color: #6394F8;
+  }
+
+  .text {
+    color: #dcdcdd;
   }
 
 }
