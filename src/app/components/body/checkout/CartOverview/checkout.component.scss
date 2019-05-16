@@ -45,9 +45,14 @@
   .btn{
     float: right;
     margin-bottom: 20px;
-    color: black;
-    background-color: gold;
-    
+    color: white;
+    background-color:#2d2d30;
+    border-radius: 2em;
+    box-shadow: 2px 2px 2px 2px #2d2d30;
+  }
+
+  .btn:hover{
+    background-color:#6394F8;
   }
 
 
