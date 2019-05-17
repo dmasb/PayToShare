@@ -1,0 +1,45 @@
+<div class="container">
+   <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
+
+              <!--MY CART-->
+              <li class="nav-item">
+                  <a class="nav-link text-secondary" id="mycart-tab" data-toggle="tab" href="#mycart" role="tab"
+                     aria-controls="contact" aria-selected="false">My Cart</a>
+                </li>
+  
+          <!--ORDERS-->
+          <li class="nav-item">
+            <a class="nav-link text-secondary" id="orders-tab" data-toggle="tab" href="#orders" role="tab"
+               aria-controls="contact" aria-selected="false">Orders</a>
+          </li>
+
+      <!--MYPAGE SETTINGS-->
+      <li class="nav-item">
+        <a class="nav-link text-secondary" id="account-tab" data-toggle="tab" href="#account" role="tab"
+           aria-controls="contact" aria-selected="ture" >My Account</a>
+      </li>
+  
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+    
+        <!--MY CART-->
+        <div class="tab-pane fade" id="mycart" role="tabpanel" aria-labelledby="mycart-tab">
+            <app-mypage-mycart></app-mypage-mycart>
+          </div>
+
+
+        <!--ORDERS-->
+        <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+          <app-mypage-orders></app-mypage-orders>
+        </div>
+
+                <!--MYPAGE SETTINGS-->
+                <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
+                  
+                  <app-mypage-settings></app-mypage-settings>
+                </div>
+
+
+     </div>
+</div>
