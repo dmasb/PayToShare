@@ -1,65 +1,111 @@
 <div id="top">
-  <h2 id="licenseHeading">Our plans</h2>
-  <div class="container top">
-    <div class="row">
-      <div class="col-lg">
-        <h4>Premium</h4>
-        <ul>
-          <li>PayToShare big plan</li>
-          <li>All formats and tags</li>
-          <li>All content on PayToShare</li>
-          <li>Speed: 200 mb/s</li>
-        </ul>
-      </div>
-      <div class="col-lg">
-        <h4>Big</h4>
-        <ul>
-          <li>PayToShare exclusive Cap</li>
-          <li>All content from 3 different formats/tags</li>
-          <li>Speed: 200 mb/s</li>
-        </ul>
-      </div>
-      <div class="col-lg">
-        <h4>Bas+</h4>
-        <ul>
-          <li>PayToShare bas plan</li>
-          <li>All content from 2 different formats/tags</li>
-          <li>PayToShare pin and cupholder</li>
-          <li>Speed: 150 mb/s</li>
-        </ul>
-      </div>
-      <div class="col-lg">
-        <h4>Bas</h4>
-        <ul>
-          <li>PayToShare cupholder</li>
-          <li>All content from on format/tag</li>
-          <li>Speed: 100 mb/s</li>
-        </ul>
-      </div>
+  <div class="row mb-5 mt-">
+    <div class="col text-center">
+      <h1>Our Plans</h1>
+      <p class="mt-3">Pick the plan that suits your sharing needs</p>
     </div>
   </div>
 </div>
-<div class="container">
-  <div class="row">
 
-    <div class="card-columns">
-      <div class="card mb-4 mt-3" *ngFor="let plan of plans">
+<div class="container ">
+  <!--Card one-->
+  <div class="row">
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
         <div class="card-body">
-          <img class="card-img-top img-fluid max-width" src="{{plan.imageUrl}}" alt="{{plan.imageUrl}}">
-          <h5 class="card-title mt-2">{{plan.title}}</h5>
-          <h6 class="card-title mt-2">{{plan.level.name}} - {{plan.level.licenses}} Licenses</h6>
-          <h6>Speed: {{plan.speed}} mb/s</h6>
-          Included licenses:
-          <div *ngFor="let license of plan.licenses">
-            ({{license }})
+          <div class="text-center">
+            <img src="assets/images/p2s.png" alt="logo" class="img-fluid text-center w-50 mt-2">
+            <h3>Premium</h3>
           </div>
-          <div class="card-footer">
-            <p class="price">{{plan.price | currency}}
-              <a class="btn btn-sm float-right" id="buy">
-                Buy
-              </a>
-            </p>
+          <hr>
+          <ul class="fa-ul">
+            <li><span class="fa-li"><i class="fa fa-check"></i></span>Top game</li>
+            <li><span class="fa-li"><i class="fa fa-check"></i></span>Your pick</li>
+            <li><span class="fa-li"><i class="fa fa-check"></i></span>what ever</li>
+            <li><span class="fa-li"><i class="fa fa-check"></i></span>Everything</li>
+            <li><span class="fa-li"><i class="fa fa-check"></i></span>Top speed</li>
+            <li><span class="fa-li"><i class="fa fa-check"></i></span>and something else</li>
+          </ul>
+          <h6 class="card-price text-center">$399<span class="period">/year</span></h6>
+        </div>
+        <!--Footer-->
+        <div class="card-footer text-center">
+          <div class="btn">Pick</div>
+        </div>
+      </div>
+    </div>
+    <!--Card two-->
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="text-center">
+            <img src="assets/images/p2s.png" alt="logo" class="img-fluid text-center w-50 mt-2">
+            <h3>Big</h3>
           </div>
+          <hr>
+          <ul class="fa-ul">
+            <li><span class="fa-li"><i class="fa fa-check"></i></span>Top game</li>
+            <li><span class="fa-li"><i class="fa fa-check"></i></span>Your pick</li>
+            <li><span class="fa-li"><i class="fa fa-check"></i></span>what ever</li>
+            <li><span class="fa-li"><i class="fa fa-check"></i></span>Everything</li>
+            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Top speed</li>
+            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>and something else</li>
+          </ul>
+          <h6 class="card-price text-center">$299<span class="period">/year</span></h6>
+        </div>
+        <!--Footer-->
+        <div class="card-footer text-center">
+          <div class="btn">Pick</div>
+        </div>
+      </div>
+    </div>
+    <!--Card three-->
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="text-center">
+            <img src="assets/images/p2s.png" alt="logo" class="img-fluid text-center w-50 mt-2">
+            <h3>Bas+</h3>
+          </div>
+          <hr>
+          <ul class="fa-ul">
+            <li><span class="fa-li"><i class="fa fa-check"></i></span>Top game</li>
+            <li><span class="fa-li"><i class="fa fa-check"></i></span>Your pick</li>
+            <li><span class="fa-li"><i class="fa fa-check"></i></span>what ever</li>
+            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Everything</li>
+            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Top speed</li>
+            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>and something else</li>
+          </ul>
+          <h6 class="card-price text-center">$199<span class="period">/year</span></h6>
+        </div>
+        <!--Footer-->
+        <div class="card-footer text-center">
+          <div class="btn">Pick</div>
+        </div>
+      </div>
+    </div>
+    <!--Card four-->
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="text-center">
+            <img src="assets/images/p2s.png" alt="logo" class="img-fluid text-center w-50 mt-2">
+            <h3>Bas</h3>
+          </div>
+          <hr>
+          <ul class="fa-ul">
+            <li><span class="fa-li"><i class="fa fa-check"></i></span>Top game</li>
+            <li><span class="fa-li"><i class="fa fa-check"></i></span>Your pick</li>
+            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>what ever</li>
+            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Everything</li>
+            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Top speed</li>
+            <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>and something else</li>
+          </ul>
+          <h6 class="card-price text-center">$99<span class="period">/year</span></h6>
+        </div>
+        <!--Footer-->
+        <div class="card-footer text-center">
+          <div class="btn">Pick</div>
         </div>
       </div>
     </div>
