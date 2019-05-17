@@ -58,10 +58,7 @@ import { CartdropdownComponent } from './components/navbar/cartdropdown/cartdrop
 import { CollectionComponent } from './components/body/collection/collection.component';
 import { AddProductSaleComponent } from './components/body/admin/salemanegement/add-product-sale/add-product-sale.component';
 import { StarReviewComponent } from "./components/body/products/star-review/star-review.component";
-
-import { StarsComponent } from './components/body/stars/stars.component';
 import { CheckoutComponent } from './components/body/checkout/CartOverview/checkout.component';
-
 import { MypageOverviewComponent } from './components/body/mypage/mypage-overview/mypage-overview.component';
 import { MypageSettingsComponent } from './components/body/mypage/settings/mypage-settings/mypage-settings.component';
 import { MypageOrdersComponent } from './components/body/mypage/orders/mypage-orders/mypage-orders.component';
@@ -114,7 +111,6 @@ import { MypageMycartComponent } from './components/body/mypage/mycart/mypage-my
     CollectionComponent,
     AddProductSaleComponent,
     StarReviewComponent,
-    StarsComponent,
     CheckoutComponent,
     MypageOverviewComponent,
     MypageSettingsComponent,
