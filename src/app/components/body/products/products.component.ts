@@ -20,9 +20,7 @@ export class ProductsComponent implements OnInit {
 
   private products: Product[];
   private cart: Cart;
-
-  // userDoc: AngularFirestoreDocument<any>;
-  // productDoc: AngularFirestoreDocument<any>;
+  private userId: string;
 
   user: Observable<any>;
   product: Observable<any>;
@@ -37,7 +35,10 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
     this.cart = new Cart();
     this.productsService.getProductsByTag([]).subscribe(products => this.products = products);
-    this.session.getUserDoc().subscribe(user => this.cart = Cart.clone(user.cart));
+    this.session.getUserDoc().subscribe(user => {
+      this.userId = user.id;
+      this.cart = Cart.clone(user.cart);
+    });
 
     // this.userDoc = this.afs.doc(DO SHIT HERE!)
     // this.user = this.session.getUserDoc()   STAR-REVIEW
