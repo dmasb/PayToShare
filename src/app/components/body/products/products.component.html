@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col" *ngFor="let product of products" id="products">
 
-    <div class="card">
+    <div class="card shadow">
       <!--  IMAGE -->
       <div class="card-top">
         <img *ngIf="product.imageUrl == null" class="card-img-top null" src="../assets/images/testimages/gd.png"
@@ -20,6 +20,7 @@
         <p class="card-text ">{{product.description}}</p>
         <app-star-review [productId]="product.id" [userId]="userId"></app-star-review>  <!--  Need to add [userId]="user.id" or something -->
         <br>
+        <app-stars></app-stars>
         <br>
         <p *ngIf="product.quantity == 0" class="card-stock"><i class="fa fa-square null"></i>  out of stock</p>
         <p *ngIf="product.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{product.quantity}} in

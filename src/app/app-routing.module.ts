@@ -5,7 +5,7 @@ import {AuthGuard} from './services/authentication/auth-guard.service';
 import {FeaturesComponent} from './components/body/features/features.component';
 import {WeeklydealsComponent} from './components/body/weeklydeals/weeklydeals.component';
 import {PricingComponent} from './components/body/pricing/pricing.component';
-import {MypageComponent} from './components/body/mypage/mypage.component';
+import {MypageOverviewComponent} from './components/body/mypage/mypage-overview/mypage-overview.component';
 import {RegisterComponent} from './components/body/register/register.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
 import {Error404Component} from './components/body/error404/error404.component';
@@ -14,13 +14,15 @@ import {DashboardComponent} from './components/body/admin/dashboard/dashboard.co
 import {SalesComponent} from './components/body/sales/sales.component';
 import {PlanComponent} from './components/body/plan/plan.component';
 import {CollectionComponent} from './components/body/collection/collection.component';
+import { CheckoutComponent } from './components/body/checkout/CartOverview/checkout.component';
+import { StarsComponent } from './components/body/stars/stars.component';
 
 
 export const routes: Routes = [
   {path: '', redirectTo: '', component: SalesComponent, pathMatch: 'full'},
   {path: 'collection', component: CollectionComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
-  {path: 'profile', component: MypageComponent, canActivate: [AuthGuard]},
+  {path: 'profile', component: MypageOverviewComponent, canActivate: [AuthGuard]},
   {path: 'pricing', component: PricingComponent},
   {path: 'features', component: FeaturesComponent},
   {path: 'register', component: RegisterComponent},
@@ -28,7 +30,10 @@ export const routes: Routes = [
   {path: 'recover', component: PasswordrecoveryComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuardService]},
   {path: 'plan', component: PlanComponent},
+  {path: 'checkout', component: CheckoutComponent},
+  {path: 'stars', component: StarsComponent},
   {path: '**', component: Error404Component},
+  
 ];
 
 @NgModule({

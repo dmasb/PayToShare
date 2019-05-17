@@ -1,7 +1,7 @@
 import {Product} from './product';
 import {firestore} from 'firebase';
 import Timestamp = firestore.Timestamp;
-import {ICartItem} from './ICartItem';
+import {ICartItem} from "./ICartItem";
 
 
 export interface ICart {
@@ -13,8 +13,8 @@ export interface ICart {
 
 export class Cart {
 
-  numberOfItems = 0;
-  totalPrice = 0;
+  numberOfItems?: number = 0;
+  totalPrice?: number = 0;
   items?: ICartItem[] = [];
   created?: Timestamp = firestore.Timestamp.now();
 
@@ -34,40 +34,54 @@ export class Cart {
     return this.items;
   }
 
-  /* Iterates the cart and adds product count instead of*/
+  /* Iterates the cart and adds product count instead of extra objects.*/
   add(product: Product) {
     let found = false;
     // Iterate items
-    for (const i of this.items) {
+    for (let i of this.items) {
       // Item found
       if (i.product.id === product.id) {
         // Increase amount.
         found = true;
         this.totalPrice += i.product.price;
-        i.amountOf += 1;
-        this.numberOfItems += 1;
+        i.amountOf+=1;
+        this.numberOfItems +=1;
         break;
       }
     }
 
-    if (!found) {
-      this.items.push({product, amountOf: 1});
+    if(!found) {
+      this.items.push(<ICartItem>{product: product, amountOf: 1});
       this.totalPrice += product.price;
-      this.numberOfItems += 1;
+      this.numberOfItems +=1;
     }
   }
 
   remove(product: Product) {
-    for (const i of this.items) {
+    for (let i of this.items) {
       // Item found
       if (i.product.id === product.id) {
-
-        if (i.amountOf < 1) {
-          this.items.splice(this.items.indexOf(i), 1); // deletes entry
-        } else {
+        if(i.amountOf <= 1){
           this.totalPrice -= i.product.price;
-          i.amountOf -= 1;
+          this.items.splice(this.items.indexOf(i), 1); // deletes entry
           this.numberOfItems -= 1;
+        }
+        else{
+          this.totalPrice -= i.product.price;
+          i.amountOf-=1;
+          this.numberOfItems -= 1;
+        }
+      }
+    }
+  }
+
+  removeAllOf(product: Product){
+    for(let i of this.items){
+      if(i.product.id === product.id){
+        if(i.amountOf > 0){
+          this.totalPrice -= i.product.price * i.amountOf;
+          this.items.splice(this.items.indexOf(i), 1); // deletes entry
+          this.numberOfItems -= i.amountOf;
         }
       }
     }
@@ -79,7 +93,7 @@ export class Cart {
 
   sum(): number {
     let sum = 0;
-    for (const i of this.items) {
+    for (let i of this.items) {
       sum += (i.amountOf * i.product.price);
     }
     return sum;

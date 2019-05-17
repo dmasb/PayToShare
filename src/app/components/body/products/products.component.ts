@@ -34,6 +34,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.cart = new Cart();
+
     this.productsService.getProductsByTag([]).subscribe(products => this.products = products);
     this.session.getUserDoc().subscribe(user => {
       this.userId = user.id;

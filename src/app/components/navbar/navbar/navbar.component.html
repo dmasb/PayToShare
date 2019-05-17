@@ -47,12 +47,6 @@
 
 
     <!--    SEARCH BAR- CENTERED -->
-   <!-- <div class="uk-navbar-center" id="search">
-      <form class="uk-search uk-search-navbar">
-        <span uk-search-icon></span>
-        <input class="uk-input uk-form-width-large" type="search" placeholder="">
-      </form>
-    </div>-->
     <form class="navbar-form" role="search">
       <div class="input-group add-on">
         <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text">
@@ -68,7 +62,7 @@
       <ul class="navbar-nav">
 
         <!--        ADMIN ITEM-->
-        <li class="nav-item" *ngIf="isAdmin">
+        <li class="nav-item" *ngIf="isAdmin"> 
           <a uk-icon="icon: cog" class="nav-link"
              data-toggle="collapse" data-target="#toggleAdmin" aria-controls="toggleAdmin" aria-expanded="false"
              routerLink="/"></a>
