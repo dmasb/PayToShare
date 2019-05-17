@@ -5,43 +5,39 @@
       <table class="table table-striped">
         <thead>
         <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Order number</th>
-          <th scope="col">Product(s)</th>
+          <th scope="col">Title</th>          
           <th scope="col">Quantity</th>
           <th scope="col">Price</th>
+          <th scope="col">Total</th>
         </tr>
         </thead>
 
         <tbody>
-          <!--INSERT CODEEEEEEE TO GET THEM ORDERS-->
+          <!--INSERT CODEEEEEEE TO GET THEM ITMES-->
 
-<!--           <tr *ngFor="let item of this.cart.items">
-            <td>{{item.product.title}}</td>
-            <td>{{item.product.title}}</td>
-            <td>{{item.product.title}}</td>
-            <td>{{item.amountOf}}</td>
+          <tr *ngFor="let item of this.cart.items">
+            <td>{{item.product.title}}</td>     
+            
+            <td>
+              <button class="button btn-circle" (click)="decreaseQuantity(item.product)"><i class="fa fa-minus" aria-hidden="true"></i></button>
+              {{item.amountOf}}
+              <button class="button btn-circle" (click)="increaseQuantity(item.product)"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            </td>
+
             <td>{{item.product.price | currency}}</td>
-          </tr> -->
+
+            <td>{{item.product.price * item.amountOf | currency}}</td>
+          </tr>
 
 
-
-<!--           <li class="clearfix" *ngFor="let item of this.cart.items">
-
-            <span><img *ngIf="item.product.imageUrl" src="{{item.product.imageUrl}}" alt="item1"/></span>
-            <span><img *ngIf="!item.product.imageUrl || item.product.imageUrl == '' " src="{{item.product.imageUrl}}" alt="item1"/></span>
-            <span class="item-name">{{item.product.title}}</span>          
-            <span class="item-quantity">Quantity: {{item.amountOf}}</span>            
-            <span class="item-price">{{item.product.price | currency}}</span> 
-
-          </li> -->
-
-        <tr>
-        </tr>
+      
         </tbody>
-        
+        <tr>         
+        </tr>
+
       </table>
-      <button type="submit"  class="btn btn-primary">Order</button>
+      
+     <div class="text-right"><button type="submit"  class="btn btn-primary" (click)="goToCart()">Order</button> Total: {{this.cart.totalPrice | currency}} </div>
     </div>
   </div>
   </div>
