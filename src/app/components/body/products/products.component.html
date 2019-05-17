@@ -15,8 +15,10 @@
         <p class="card-text">
           <span *ngFor="let tag of product.tags">
             <h6>{{tag.name}}</h6>
-          </span></p>
+          </span>
+        </p>
         <p class="card-text ">{{product.description}}</p>
+        <app-star-review [productId]="product.id" [userId]="userId"></app-star-review>  <!--  Need to add [userId]="user.id" or something -->
         <br>
         <app-stars></app-stars>
         <br>
