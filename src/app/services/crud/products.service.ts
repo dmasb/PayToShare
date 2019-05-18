@@ -34,6 +34,7 @@ export class ProductsService {
     );
   }
 
+
   /*
   to be fixed {Suitable for the search by tag functionality]
    */
