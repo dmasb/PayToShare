@@ -32,7 +32,7 @@
       <div class="row border-top">
         <div class="col-12">
           <h3 class="text-right">Total: {{this.cart.totalPrice | currency}}</h3>
-          <button type="button" class="btn" routerLink="/order-confirmed">Confirm purchase</button>
+          <button type="button" class="btn" (click)="process()" routerLink="/order-confirmed">Confirm purchase</button>
         </div>
       </div>
     </div>

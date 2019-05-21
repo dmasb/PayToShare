@@ -3,6 +3,7 @@ import { UserSessionService } from 'src/app/services/user-session.service';
 import { Cart } from 'src/app/models/products/cart';
 import { Product } from 'src/app/models/products/product';
 import {User} from "../../../../models/user";
+import {ProcessorderService} from "../../../../services/mail/processorder.service";
 
 @Component({
   selector: 'app-checkout',
@@ -13,7 +14,7 @@ export class CheckoutComponent implements OnInit {
 
   private cart: Cart = new Cart();
 
-  constructor(private session: UserSessionService) { }
+  constructor(private orderService: ProcessorderService, private session: UserSessionService) { }
 
   ngOnInit() {
     this.session.getUserDoc().subscribe(user => {
@@ -42,5 +43,9 @@ export class CheckoutComponent implements OnInit {
     this.cart.removeAllOf(product);
     this.session.updateCart(this.cart);
   }
-  
+
+  process(){
+    this.orderService.processOrder();
+  }
+
 }

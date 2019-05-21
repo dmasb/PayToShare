@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Cart, ICart} from "../../../../models/products/cart";
-import {AuthService} from "../../../../services/authentication/auth.service";
-import {Observable} from "rxjs";
-import {IUser} from "../../../../models/user";
+import { Product } from 'src/app/models/products/product';
+import { UserSessionService } from 'src/app/services/user-session.service';
 
 @Component({
   selector: 'app-order-confirmed',
@@ -11,13 +10,17 @@ import {IUser} from "../../../../models/user";
 })
 export class OrderConfirmedComponent implements OnInit {
 
-  private user$: Observable<IUser>;
-  private cart = new Cart();
+  private cart: Cart = new Cart();
 
-  constructor(private checkout: AuthService) { }
+  constructor(private session: UserSessionService) { }
 
   ngOnInit() {
-    this.user$ = this.checkout.getCurrentUser();
+    this.session.getUserDoc().subscribe(user => {
+
+      this.cart= Cart.clone(user.cart);
+    });
   }
+
+  
 
 }
