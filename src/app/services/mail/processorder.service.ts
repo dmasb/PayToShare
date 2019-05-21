@@ -16,6 +16,7 @@ export class ProcessorderService {
   constructor(private afAuth: AuthService, private afs: AngularFirestore) { }
 
 
+  // TODO: Add order as parameter and replace mock Object.
  async processOrder(){
 
     let success = false;
