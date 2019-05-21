@@ -42,5 +42,5 @@ export class CheckoutComponent implements OnInit {
     this.cart.removeAllOf(product);
     this.session.updateCart(this.cart);
   }
-
+  
 }

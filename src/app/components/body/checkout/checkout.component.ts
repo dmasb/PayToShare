@@ -4,6 +4,7 @@ import {AuthService} from "../../../services/authentication/auth.service";
 import {Observable} from "rxjs";
 import {IUser} from "../../../models/user";
 
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
