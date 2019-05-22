@@ -26,6 +26,7 @@ export class AddFormatComponent implements OnInit {
     format.name = this.newFormatForm.controls.formatName.value;
 
     this.formatService.addFormat(format);
+    this.newFormatForm.reset();
     this.modalService.dismissAll();
   }
 

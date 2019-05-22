@@ -2,23 +2,23 @@ import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
 import {Tag} from './tag';
 import {Format} from './format';
+import {Item} from './item';
 
-
-export interface LicenseModel {
+export class License implements Item {
   id?: string;
-  name: string;
+  title: string;
   tag: Tag;
   format: Format;
-  created?: Timestamp;
-}
+  quantity: number;
+  price: number;
+  imageUrl: string;
+  description: string;
+  created: firebase.firestore.Timestamp;
 
 
-export class License implements LicenseModel {
   constructor() {
+    this.created = Timestamp.now();
+    this.imageUrl = 'https://firebasestorage.googleapis.com/v0/b/paytoshare-b4cd1.appspot.com' +
+      '/o/productImage%2Fgd.png?alt=media&token=b2ddece0-7aa1-43c8-8a83-e0e2930d5b7d';
   }
-
-  id?: string;
-  name: string;
-  tag: Tag;
-  format: Format;
 }

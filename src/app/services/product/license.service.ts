@@ -33,7 +33,7 @@ export class LicenseService {
 
   addLicense(license: License) {
     this.afs.collection('licenses').add(Object.assign({}, license));
-    this.messageService.add(license.name + ' was successfully added!', alerts.success);
+    this.messageService.add(license.title + ' was successfully added!', alerts.success);
   }
 
   /**
@@ -48,10 +48,10 @@ export class LicenseService {
         return !res.empty as boolean;
       });
     if (usedInPlans) {
-      this.messageService.add(license.name + ' is used in a plan, please remove plan first', alerts.danger);
+      this.messageService.add(license.title + ' is used in a plan, please remove plan first', alerts.danger);
     } else {
       this.afs.collection('licenses').doc(license.id).delete();
-      this.messageService.add(license.name + ' was successfully deleted!', alerts.success);
+      this.messageService.add(license.title + ' was successfully deleted!', alerts.success);
     }
   }
 }

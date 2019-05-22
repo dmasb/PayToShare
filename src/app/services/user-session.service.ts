@@ -3,11 +3,8 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {IUser, User} from '../models/user';
 import {Observable, of} from 'rxjs';
-import {FormGroup} from '@angular/forms';
-import {map} from 'rxjs/operators';
-import {Cart, ICart} from '../models/products/cart';
+import {Cart} from '../models/products/cart';
 import {switchMap} from 'rxjs/operators';
-import {Product} from '../models/products/product';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +37,7 @@ export class UserSessionService implements OnInit {
     );
   }
 
-  
+
   updateUser(updatedUser: IUser): boolean {
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${this.userID}`);
     userRef.ref.get().then(userDocument => {

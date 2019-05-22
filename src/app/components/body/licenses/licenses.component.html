@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col" *ngFor="let license of licenses" id="products">
+
+    <div class="card shadow">
+      <!--  IMAGE -->
+      <div class="card-top">
+        <img class="card-img-top" src="{{license.imageUrl}}"
+             alt="Card image cap">
+      </div>
+
+      <!--    BODY-->
+      <div class="card-body">
+        <h5 class="card-title">{{license.title}}</h5>
+        <p class="card-text">{{license.tag.name}}</p>
+        <p class="card-text">{{license.format.name}}</p>
+        <p class="card-text ">{{license.description}}</p>
+        <div class="container ml-4">
+          <app-star-review [productId]="license.id" [userId]="userId"></app-star-review>
+          <!--  Need to add [userId]="user.id" or something -->
+        </div>
+        <br>
+        <p *ngIf="license.quantity == 0" class="card-stock"><i class="fa fa-square null"></i> out of stock</p>
+        <p *ngIf="license.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{license.quantity}} in
+          stock</p>
+      </div>
+      <!--      FOOTER-->
+      <div class="card-footer">
+        <p class="price">{{license.price | currency}}
+          <a class="btn btn-sm float-right" (click)="add(license)" id="buy">
+            Buy
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

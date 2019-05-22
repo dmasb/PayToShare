@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../../../models/user';
 import {UserSessionService} from '../../../services/user-session.service';
-import {Cart} from "../../../models/products/cart";
+import {Cart} from '../../../models/products/cart';
 import {Router} from '@angular/router';
 
 @Component({

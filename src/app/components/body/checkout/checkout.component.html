@@ -2,7 +2,7 @@
   <ul class="top">
     <div class="container">
       <div class="shopping-cart">
-        <div class="shopping-cart-header" *ngIf="user$ | async as user; else loggedOut">
+        <div class="shopping-cart-header" *ngIf="user$ | async as user;">
           <span class="badge"> You have {{this.user.cart.numberOfItems}} items in your cart</span>
         </div>
 
@@ -12,16 +12,16 @@
           <!--            HIDDEN IF NO ITEMS-->
 
           <li class="clearfix" *ngIf="!user.cart || user.cart.numberOfItems == 0">No items here.</li>
-          <li class="clearfix" *ngFor="let item of user.cart.items">
+          <li class="clearfix" *ngFor="let license of user.cart.licenses">
             <div class="container border">
               <ul class="list-group list-group-horizontal ">
-                <span><img *ngIf="item.product.imageUrl" src="{{item.product.imageUrl}}" alt="item1" /></span>
-                <span><img *ngIf="!item.product.imageUrl || item.product.imageUrl == '' "
-                    src="{{item.product.imageUrl}}" alt="item1" />
-                  <span class="item-name">{{item.product.title}}</span><br>
-                  <span class="item-quantity">Quantity: {{item.amountOf}}</span>
+                <span><img *ngIf="license.item.imageUrl" src="{{license.item.imageUrl}}" alt="item1" /></span>
+                <span><img *ngIf="!license.item.imageUrl || license.item.imageUrl == '' "
+                    src="{{license.item.imageUrl}}" alt="item1" />
+                  <span class="item-name">{{license.item.title}}</span><br>
+                  <span class="item-quantity">Quantity: {{license.amountOf}}</span>
                 </span>
-                <li class="pricing">{{item.product.price | currency}}</li>
+                <li class="pricing">{{license.item.price | currency}}</li>
               </ul>
             </div>
           </li>

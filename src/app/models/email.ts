@@ -1,4 +1,4 @@
-import {firestore} from "firebase";
+import {firestore} from 'firebase';
 import Timestamp = firestore.Timestamp;
 
 export interface IEmail {
@@ -19,19 +19,20 @@ export class Email implements IEmail {
   orderid: string;
   recipient: string;
 
-  constructor(){}
+  constructor() {
+  }
 
   private getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   generateKey() {
-    let tokens = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+    let tokens = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
       chars = 5,
       segments = 4,
-      keyString = "";
+      keyString = '';
     for (let i = 0; i < segments; i++) {
-      let segment = "";
+      let segment = '';
 
       for (let j = 0; j < chars; j++) {
         let k = this.getRandomInt(0, 35);
@@ -41,7 +42,7 @@ export class Email implements IEmail {
       keyString += segment;
 
       if (i < (segments - 1)) {
-        keyString += "-";
+        keyString += '-';
       }
     }
     return keyString;

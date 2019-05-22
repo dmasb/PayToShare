@@ -1,86 +1,90 @@
-import {Product} from './product';
 import {firestore} from 'firebase';
 import Timestamp = firestore.Timestamp;
-import {ICartItem} from "./ICartItem";
+import {ICartItem} from './ICartItem';
+import {License} from './license';
+import {Plan} from './plan';
 
 
-export interface ICart {
+export interface CartModel {
   numberOfItems?: number;
   totalPrice?: number;
-  items?: ICartItem[];
+  plan: Plan;
+  licenses?: ICartItem[];
   created?: Timestamp;
 }
 
-export class Cart {
+export class Cart implements CartModel {
 
-  numberOfItems?: number = 0;
-  totalPrice?: number = 0;
-  items?: ICartItem[] = [];
-  created?: Timestamp = firestore.Timestamp.now();
+  numberOfItems?: number;
+  totalPrice?: number;
+  plan: Plan;
+  licenses: ICartItem[];
+  created: Timestamp;
 
   constructor() {
+    this.licenses = [];
+    this.numberOfItems = 0;
+    this.totalPrice = 0;
+    this.created = Timestamp.now();
   }
 
   static clone(cart: Cart): Cart {
     const tempCart = new Cart();
     tempCart.numberOfItems = cart.numberOfItems;
     tempCart.totalPrice = cart.totalPrice;
-    tempCart.items = cart.items;
+    tempCart.plan = cart.plan;
+    tempCart.licenses = cart.licenses;
     tempCart.created = cart.created;
     return tempCart;
   }
 
-  getItems() {
-    return this.items;
-  }
-
   /* Iterates the cart and adds product count instead of extra objects.*/
-  add(product: Product) {
+  add(license: License) {
+    console.log(this);
     let found = false;
     // Iterate items
-    for (let i of this.items) {
+    for (const i of this.licenses) {
       // Item found
-      if (i.product.id === product.id) {
+      if (i.item.id === license.id) {
         // Increase amount.
         found = true;
-        this.totalPrice += i.product.price;
-        i.amountOf+=1;
-        this.numberOfItems +=1;
+        this.totalPrice += i.item.price;
+        i.amountOf += 1;
+        this.numberOfItems += 1;
         break;
       }
     }
 
-    if(!found) {
-      this.items.push(<ICartItem>{product: product, amountOf: 1});
-      this.totalPrice += product.price;
-      this.numberOfItems +=1;
+    if (!found) {
+      this.licenses.push({item: license, amountOf: 1} as ICartItem);
+      this.totalPrice += license.price;
+      this.numberOfItems += 1;
     }
   }
 
-  remove(product: Product) {
-    for (let i of this.items) {
+  remove(license: License) {
+    for (const i of this.licenses) {
       // Item found
-      if (i.product.id === product.id) {
-        if(i.amountOf <= 1){
-          this.totalPrice -= i.product.price;
-          this.items.splice(this.items.indexOf(i), 1); // deletes entry
+      if (i.item.id === license.id) {
+        if (i.amountOf <= 1) {
+          this.totalPrice -= i.item.price;
+          this.licenses.splice(this.licenses.indexOf(i), 1); // deletes entry
           this.numberOfItems -= 1;
-        }
-        else{
-          this.totalPrice -= i.product.price;
-          i.amountOf-=1;
+        } else {
+          this.totalPrice -= i.item.price;
+          i.amountOf -= 1;
           this.numberOfItems -= 1;
         }
       }
     }
   }
 
-  removeAllOf(product: Product){
-    for(let i of this.items){
-      if(i.product.id === product.id){
-        if(i.amountOf > 0){
-          this.totalPrice -= i.product.price * i.amountOf;
-          this.items.splice(this.items.indexOf(i), 1); // deletes entry
+  removeAllOf(license: License) {
+    for (const i of this.licenses) {
+      if (i.item.id === license.id) {
+        if (i.amountOf > 0) {
+          this.totalPrice -= i.item.price * i.amountOf;
+          this.licenses.splice(this.licenses.indexOf(i), 1); // deletes entry
           this.numberOfItems -= i.amountOf;
         }
       }
@@ -88,13 +92,13 @@ export class Cart {
   }
 
   emptyCart(): void {
-    this.items = [];
+    this.licenses = [];
   }
 
   sum(): number {
     let sum = 0;
-    for (let i of this.items) {
-      sum += (i.amountOf * i.product.price);
+    for (const i of this.licenses) {
+      sum += (i.amountOf * i.item.price);
     }
     return sum;
   }

@@ -52,18 +52,19 @@ import {SalesComponent} from './components/body/sales/sales.component';
 import {AddTagSaleComponent} from './components/body/admin/salemanegement/add-tag-sale/add-tag-sale.component';
 import {AddPlanSaleComponent} from './components/body/admin/salemanegement/add-plan-sale/add-plan-sale.component';
 import {SaleOverviewComponent} from './components/body/admin/salemanegement/sale-overview/sale-overview.component';
-import { DeleteSaleComponent } from './components/body/admin/salemanegement/delete-sale/delete-sale.component';
-import { PlanComponent } from './components/body/plan/plan.component';
-import { CartdropdownComponent } from './components/navbar/cartdropdown/cartdropdown.component';
-import { CollectionComponent } from './components/body/collection/collection.component';
-import { AddProductSaleComponent } from './components/body/admin/salemanegement/add-product-sale/add-product-sale.component';
-import { StarReviewComponent } from "./components/body/products/star-review/star-review.component";
-import { CheckoutComponent } from './components/body/checkout/CartOverview/checkout.component';
-import { MypageOverviewComponent } from './components/body/mypage/mypage-overview/mypage-overview.component';
-import { MypageSettingsComponent } from './components/body/mypage/settings/mypage-settings/mypage-settings.component';
-import { MypageOrdersComponent } from './components/body/mypage/orders/mypage-orders/mypage-orders.component';
-import { MypageMycartComponent } from './components/body/mypage/mycart/mypage-mycart/mypage-mycart.component';
-import { OrderConfirmedComponent } from './components/body/checkout/order-confirmed/order-confirmed.component';
+import {DeleteSaleComponent} from './components/body/admin/salemanegement/delete-sale/delete-sale.component';
+import {PlanComponent} from './components/body/plan/plan.component';
+import {CartdropdownComponent} from './components/navbar/cartdropdown/cartdropdown.component';
+import {CollectionComponent} from './components/body/collection/collection.component';
+import {AddProductSaleComponent} from './components/body/admin/salemanegement/add-product-sale/add-product-sale.component';
+import {StarReviewComponent} from './components/body/products/star-review/star-review.component';
+import {CheckoutComponent} from './components/body/checkout/CartOverview/checkout.component';
+import {MypageOverviewComponent} from './components/body/mypage/mypage-overview/mypage-overview.component';
+import {MypageSettingsComponent} from './components/body/mypage/settings/mypage-settings/mypage-settings.component';
+import {MypageOrdersComponent} from './components/body/mypage/orders/mypage-orders/mypage-orders.component';
+import {MypageMycartComponent} from './components/body/mypage/mycart/mypage-mycart/mypage-mycart.component';
+import {OrderConfirmedComponent} from './components/body/checkout/order-confirmed/order-confirmed.component';
+import {LicensesComponent} from './components/body/licenses/licenses.component';
 
 
 @NgModule({
@@ -118,6 +119,7 @@ import { OrderConfirmedComponent } from './components/body/checkout/order-confir
     MypageOrdersComponent,
     MypageMycartComponent,
     OrderConfirmedComponent,
+    LicensesComponent,
 
   ],
   imports: [

@@ -9,6 +9,7 @@ import {FormatService} from '../../../services/product/format.service';
 import {Cart} from '../../../models/products/cart';
 import {Observable} from "rxjs";
 import {AngularFirestore, AngularFirestoreDocument} from "@angular/fire/firestore";
+import {License} from '../../../models/products/license';
 
 @Component({
   selector: 'app-products',
@@ -34,7 +35,6 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.cart = new Cart();
-
     this.productsService.getProductsByTag([]).subscribe(products => this.products = products);
     this.session.getUserDoc().subscribe(user => {
       this.userId = user.id;
@@ -45,8 +45,8 @@ export class ProductsComponent implements OnInit {
     // this.user = this.session.getUserDoc()   STAR-REVIEW
   }
 
-  add(product: Product) {
-    this.cart.add(product);
+  add(license: License) {
+    this.cart.add(license);
     this.session.updateCart(this.cart);
   }
 

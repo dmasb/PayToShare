@@ -34,7 +34,7 @@ export class UpdateProductComponent implements OnInit {
     productPrice: new FormControl(''),
     productQuantity: new FormControl(''),
     productDescription: new FormControl(''),
-    productImageUrl: new FormControl('') //
+    licenseImageUrl: new FormControl('') //
   });
 
   constructor(private productService: ProductsService,

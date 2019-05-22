@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {IUser} from "../../../../models/user";
+import {IUser} from '../../../../models/user';
 import {UserSessionService} from '../../../../services/user-session.service';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-mypage-overview',
@@ -27,8 +27,7 @@ export class MypageOverviewComponent implements OnInit {
         this.currentUser = user;
         this.profile = this.fb.group(user);
         this.userLoaded = true;
-      }
-      else{
+      } else {
         this.error = true;
       }
     });
@@ -38,7 +37,7 @@ export class MypageOverviewComponent implements OnInit {
     }
   }
 
-  updateFormValues(){
+  updateFormValues() {
     this.currentUser.firstName = this.profile.controls.firstName.value;
     this.currentUser.lastName = this.profile.controls.lastName.value;
     this.currentUser.address = this.profile.controls.address.value;
@@ -46,6 +45,7 @@ export class MypageOverviewComponent implements OnInit {
     this.currentUser.country = this.profile.controls.country.value;
     this.currentUser.zipcode = this.profile.controls.zipcode.value;
   }
+
   onSubmit() {
     this.updateFormValues();
     this.session.updateUser(this.currentUser);
@@ -53,6 +53,6 @@ export class MypageOverviewComponent implements OnInit {
   }
 
   isAdminString() {
-    return this.currentUser.rank == 2 ? 'Admin': 'User';
+    return this.currentUser.rank == 2 ? 'Admin' : 'User';
   }
 }

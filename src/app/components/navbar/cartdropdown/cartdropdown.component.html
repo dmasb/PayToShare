@@ -15,7 +15,7 @@
         </div>
         <ul class="shopping-cart-items list-unstyled">
           <!--            HIDDEN IF NO ITEMS-->
-          <li class="clearfix" *ngIf="!cart || cart.numberOfItems == 0">No items here.</li>
+          <li class="clearfix" *ngIf="!cart || cart.numberOfItems">No items here.</li>
           <li class="clearfix" *ngFor="let item of cart.items">
 
             <span><img *ngIf="item.product.imageUrl" src="{{item.product.imageUrl}}" alt="item1"/></span>

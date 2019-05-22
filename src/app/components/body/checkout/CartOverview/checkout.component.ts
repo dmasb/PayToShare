@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { UserSessionService } from 'src/app/services/user-session.service';
-import { Cart } from 'src/app/models/products/cart';
-import { Product } from 'src/app/models/products/product';
-import {User} from "../../../../models/user";
-import {ProcessorderService} from "../../../../services/mail/processorder.service";
+import {Component, OnInit} from '@angular/core';
+import {UserSessionService} from 'src/app/services/user-session.service';
+import {Cart} from 'src/app/models/products/cart';
+import {Product} from 'src/app/models/products/product';
+import {ProcessorderService} from '../../../../services/mail/processorder.service';
+import {User} from '../../../../models/user';
+import {License} from '../../../../models/products/license';
 
 @Component({
   selector: 'app-checkout',
@@ -13,13 +14,15 @@ import {ProcessorderService} from "../../../../services/mail/processorder.servic
 export class CheckoutComponent implements OnInit {
 
   private cart: Cart = new Cart();
+  private user: User;
 
-  constructor(private orderService: ProcessorderService, private session: UserSessionService) { }
+  constructor(private orderService: ProcessorderService, private session: UserSessionService) {
+  }
 
   ngOnInit() {
     this.session.getUserDoc().subscribe(user => {
-
-      this.cart= Cart.clone(user.cart);
+      this.user = user;
+      this.cart = Cart.clone(user.cart);
     });
 
   }
@@ -31,21 +34,23 @@ export class CheckoutComponent implements OnInit {
   // UPDATE CART
 
 
-  increaseQuantity(product: Product){
-    this.cart.add(product);
-    this.session.updateCart(this.cart);
-  }
-  decreaseQuantity(product: Product){
-    this.cart.remove(product);
-    this.session.updateCart(this.cart);
-  }
-  removeAll(product: Product){
-    this.cart.removeAllOf(product);
+  increaseQuantity(license: License) {
+    this.cart.add(license);
     this.session.updateCart(this.cart);
   }
 
-  process(){
-    this.orderService.processOrder();
+  decreaseQuantity(license: License) {
+    this.cart.remove(license);
+    this.session.updateCart(this.cart);
+  }
+
+  removeAll(license: License) {
+    this.cart.removeAllOf(license);
+    this.session.updateCart(this.cart);
+  }
+
+  process() {
+    this.orderService.processOrder(this.user, this.cart);
   }
 
 }

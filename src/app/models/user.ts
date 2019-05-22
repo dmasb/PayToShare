@@ -1,7 +1,7 @@
 import {Userrank} from './userrank';
 import {Sex} from './sex';
 import {firestore} from 'firebase/app';
-import {Cart, ICart} from './products/cart';
+import {Cart} from './products/cart';
 import Timestamp = firestore.Timestamp;
 
 

@@ -1,6 +1,6 @@
-import {Product} from "./product";
+import {License} from './license';
 
-export interface ICartItem{
+export interface ICartItem {
   amountOf: number;
-  product: Product;
+  item: License;
 }

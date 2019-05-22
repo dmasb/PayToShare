@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {Cart, ICart} from "../../../models/products/cart";
-import {AuthService} from "../../../services/authentication/auth.service";
-import {Observable} from "rxjs";
-import {IUser} from "../../../models/user";
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../../services/authentication/auth.service';
+import {Observable} from 'rxjs';
+import {IUser} from '../../../models/user';
 
 
 @Component({
@@ -13,12 +12,12 @@ import {IUser} from "../../../models/user";
 export class CheckoutComponent implements OnInit {
 
   private user$: Observable<IUser>;
-  private cart = new Cart();
 
-  constructor(private checkout: AuthService) { }
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit() {
-    this.user$ = this.checkout.getCurrentUser();
+    this.user$ = this.authService.getCurrentUser();
   }
 
 }

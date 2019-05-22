@@ -1,49 +1,40 @@
-import { Injectable } from '@angular/core';
-import {Email, IEmail} from "../../models/email";
-import {AuthService} from "../authentication/auth.service";
-import {AngularFirestore} from "@angular/fire/firestore";
-import Timestamp = firestore.Timestamp;
-import {firestore} from "firebase";
+import {Injectable} from '@angular/core';
+import {Email} from '../../models/email';
+import {AuthService} from '../authentication/auth.service';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {Cart} from '../../models/products/cart';
+import {Order} from '../../models/order';
+import {User} from '../../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProcessorderService {
 
-  email: Email = new Email();
-  uid: string;
+  constructor(private afAuth: AuthService, private afs: AngularFirestore) {
+  }
 
-  constructor(private afAuth: AuthService, private afs: AngularFirestore) { }
+  private static getEmailObject(user: User): Email {
+    const email = new Email();
+    email.recipient = user.email;
+    email.emailsubject = 'Your Order';
+    email.message = 'topkek';
+    email.orderid = '123123123';
+    email.generateKey();
+    return email;
+  }
 
 
   // TODO: Add order as parameter and replace mock Object.
- async processOrder(){
+  processOrder(user: User, cart: Cart) {
+    if (user.email) {
+      const order = new Order(user.id, Object.assign({}, cart));
 
-    let success = false;
-
-    /// MOCK OBJECT ////
-
-    this.email.recipient = "lulleh_@hotmail.com";
-    this.email.activationKey = this.email.generateKey();
-    this.email.emailsubject = "Your order #";
-    this.email.created = Timestamp.now();
-    this.email.message = "test ";
-    this.email.orderid = "12345";
-
-    /////
-
-    this.afAuth.getCurrentUser().subscribe( (user) => {
-      this.email.recipient = user.email
-      this.uid = user.id;
-    });
-
-
-    /*Makes sure email is not empty before we send it.*/
-    if(this.email.recipient != null && this.email.recipient != "" && this.uid != null){
-      await this.afs.collection('outgoing_emails').add(Object.assign({}, <IEmail>this.email));
-      success = true;
+      this.afs.collection('outgoing_emails').add(Object.assign({}, ProcessorderService.getEmailObject(user)));
+      this.afs.collection('orders').add(Object.assign({}, order));
+      this.afs.collection('users').doc(user.id).update({
+        cart: Object.assign({}, new Cart())
+      });
     }
-
-    return success
   }
 }
