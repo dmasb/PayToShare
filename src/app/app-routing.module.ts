@@ -31,10 +31,8 @@ export const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuardService]},
   {path: 'plan', component: PlanComponent},
   {path: 'checkout', component: CheckoutComponent},
-  {path: 'search', component: SearchListComponent},
+  {path: 'search/:searchWord', component: SearchListComponent},
   {path: '**', component: Error404Component},
-  
-  
 ];
 
 @NgModule({

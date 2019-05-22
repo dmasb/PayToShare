@@ -1,7 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ProductsService } from 'src/app/services/crud/products.service';
-import { Product } from 'src/app/models/products/product';
-
+import {Component, OnInit, Input} from '@angular/core';
+import {ProductsService} from 'src/app/services/crud/products.service';
+import {Router} from '@angular/router';
+import {Product} from 'src/app/models/products/product';
+import {ActivatedRoute} from '@angular/router';
+import {activateRoutes} from '@angular/router/src/operators/activate_routes';
 
 @Component({
   selector: 'app-search-list',
@@ -10,21 +12,29 @@ import { Product } from 'src/app/models/products/product';
 })
 export class SearchListComponent implements OnInit {
 
-@Input() searchText: string;
+  @Input() searchText: string;
 
-  private products: Product[];   
-  
-  constructor(private ps: ProductsService) { }
+  private products: Product[];
 
-  getProducts(): Product[] {
-    return this.products.filter(product => {
-      return product.title.includes(this.searchText) ||
-        product.tags.filter(tag => tag.name.includes(this.searchText));
-    });
+  constructor(private router: Router,
+              private ps: ProductsService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.ps.getProductsByTag([]).subscribe(products => this.products = products);
   }
 
+
+  getProducts(): Product[] {
+    const keyword = this.route.snapshot.paramMap.get('searchWord').toLowerCase();
+    return this.products.filter(product => {
+      const title = product.title.toLowerCase();
+      return title.includes(keyword) ||
+        product.tags.filter(tag => {
+          const pTag = tag.name.toLowerCase();
+          return pTag.includes(keyword);
+        }).length > 0;
+    });
+  }
 }

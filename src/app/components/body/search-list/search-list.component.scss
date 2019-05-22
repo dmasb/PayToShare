@@ -1,115 +1,126 @@
-/* .container {
-    margin-top: 50px;
-    min-height: 600px;
-    border: 4px solid gray;
-    border-radius: 3px;
-    padding: 20px;
-  } */
+.container {
+  margin-top: 50px;
+  min-height: 600px;
+  border: 4px solid gray;
+  border-radius: 3px;
+  padding: 20px;
+}
 
-  #licenseHeading{
-    text-align: center;
-  }
-  
-  #top{
-    background-color: #c4c4c5;
-  }
-  h4{
-    padding-left: 20px;
-  }
-  
-  
-  
-  
-  /* Card design */
-  
-  .card{
-    margin: auto;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    background-color: #e4e1e1;
-    width: 15em;
-    max-width: 15em;
-    height: 24em;
-    max-height: 24em;
-  }
-  
-  .card-footer{
-    height: 15%;
-    max-height: 15%;
-    width: 100%;
-  }
-  
-  #buy{
-    color: #FFFFFF;
-  }
-  .card-top{
-    height: 40%;
-    max-height: 40%;
-    max-width: 100%;
-  }
-  
-  img{
-    max-height:100%;
-    width: 100%;
-    object-fit: fill;
-  }
-  
-  
-  .card-body{
-    height: 10em;
-    padding: 0.5em;
-  }
-  
-  .card-title{
-    text-align: center;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .card-text{
-    text-align: center;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .price{
-    text-align: center;
-    font-size: 1.2em;
-  }
-  
-  .btn{
-    display:inline-block;
-    padding:0.3em 1.2em;
-    margin:0 0.3em 0.3em 0;
-    border-radius:2em;
-    box-sizing: border-box;
-    text-decoration:none;
-    font-family:'Roboto',sans-serif;
-    font-weight:300;
-    color: #ffffff;
-    background-color:#2d2d30;
-    text-align:center;
-    transition: all 0.2s;
-    box-shadow: 2px 2px 2px 2px #252323;
-  }
-  
-  .btn:hover{
-    background-color:#5e5e5f;
-  }
-  
-  .fa.fa-square{
-    color: green;
-  }
-  
-  .fa.fa-square.null{
-    color: red;
-  }
-  
-  .card-stock{
-    text-align: left;
-    float: left;
-    padding-left: 1em;
-    padding-bottom: 0;
-    margin: 0;
-    bottom: 0;
-  }
+#licenseHeading {
+  text-align: center;
+}
+
+#top {
+  background-color: #c4c4c5;
+}
+
+h4 {
+  padding-left: 20px;
+}
+
+
+/* Card design */
+
+.card {
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  background-color: #e4e1e1;
+  width: 15em;
+  max-width: 15em;
+  height: 24em;
+  max-height: 24em;
+}
+
+.card-footer {
+  height: 15%;
+  max-height: 15%;
+  width: 100%;
+}
+
+#buy {
+  color: #FFFFFF;
+}
+
+.card-top {
+  height: 40%;
+  max-height: 40%;
+  max-width: 100%;
+}
+
+img {
+  max-height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
+
+
+.card-body {
+  height: 10em;
+  padding: 0.5em;
+}
+
+.card-title {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.card-text {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.price {
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: #2d2d30;
+  text-align: center;
+  transition: all 0.2s;
+  box-shadow: 2px 2px 2px 2px #252323;
+}
+
+.btn:hover {
+  background-color: #5e5e5f;
+}
+
+.fa.fa-square {
+  color: green;
+}
+
+.fa.fa-square.null {
+  color: red;
+}
+
+.card-stock {
+  text-align: left;
+  float: left;
+  padding-left: 1em;
+  padding-bottom: 0;
+  margin: 0;
+  bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
