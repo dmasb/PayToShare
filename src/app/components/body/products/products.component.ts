@@ -2,13 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ProductsService} from '../../../services/crud/products.service';
 import {Product} from '../../../models/products/product';
 import {UserSessionService} from '../../../services/user-session.service';
-import {Format} from '../../../models/products/format';
-import {Tag} from '../../../models/products/tag';
-import {TagService} from '../../../services/product/tag.service';
-import {FormatService} from '../../../services/product/format.service';
 import {Cart} from '../../../models/products/cart';
-import {Observable} from "rxjs";
-import {AngularFirestore, AngularFirestoreDocument} from "@angular/fire/firestore";
+import {Observable} from 'rxjs';
 import {License} from '../../../models/products/license';
 
 @Component({
@@ -25,12 +20,13 @@ export class ProductsComponent implements OnInit {
 
   user: Observable<any>;
   product: Observable<any>;
+
   // user: Observable<any>;  STAR REVIEW
 
   constructor(private productsService: ProductsService,
               private session: UserSessionService,
               // private afs: AngularFirestore
-              ) {
+  ) {
   }
 
   ngOnInit() {
