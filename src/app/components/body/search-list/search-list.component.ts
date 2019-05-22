@@ -11,7 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class SearchListComponent implements OnInit {
 
-  @Input() searchText: string;
+  private searchText: string;
 
   private products: Product[];
 
@@ -27,6 +27,7 @@ export class SearchListComponent implements OnInit {
 
   getProducts(): Product[] {
     const keyword = this.route.snapshot.paramMap.get('searchWord').toLowerCase();
+    this.searchText = keyword;
     return this.products.filter(product => {
       const title = product.title.toLowerCase();
       return title.includes(keyword) ||

@@ -1,5 +1,10 @@
 <div class="container">
-  <app-searchbar></app-searchbar>
+  
+  <div class="res">
+
+    <span class="textRes">Search results for </span><span class="searchedWord">{{searchText}}</span>
+  </div>
+
   <div class="row">
     <div class="col" *ngFor="let product of getProducts()" id="products">
 
