@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Product} from '../../../models/products/product';
 import {Tag} from '../../../models/products/tag';
-import { ProductsService } from 'src/app/services/crud/products.service';
+import {ProductsService} from 'src/app/services/crud/products.service';
 
 
 @Component({
@@ -13,30 +13,30 @@ import { ProductsService } from 'src/app/services/crud/products.service';
 export class SearchbarComponent implements OnInit {
   products: Product[];
   filteredProducts: Product[];
-  private _searchTerm: string;
+  private searchTerm: string;
 
-  get searchTerm(): string {
-    return this._searchTerm;
-  }
-  set searchTerm(value: string){
-    this._searchTerm = value;
-    this.filteredProducts = this.filterProducts(value);    
+  /*get searchTerm(): string {
+    return this.searchTerm;
   }
 
-  filterProducts(searchString: Tag["name"]){
-    return this.products.filter( product => product.tags.indexOf(searchString.toLowerCase) !== -1 );
+  set searchTerm(value: string) {
+    this.searchTerm = value;
+    this.filteredProducts = this.filterProducts(value);
+  }*/
+
+  filterProducts(searchString: Tag['name']) {
+    return this.products.filter(product => product.tags.indexOf(searchString.toLowerCase) !== -1);
   }
 
-  constructor(private router: Router, private ps: ProductsService) { }
+  constructor(private router: Router, private ps: ProductsService) {
+  }
 
   ngOnInit() {
-
- 
 
   }
 
   listSearch() {
-    this.router.navigate(['/search']);
-  }
 
+    this.router.navigate([`/search/${this.searchTerm}`]);
+  }
 }

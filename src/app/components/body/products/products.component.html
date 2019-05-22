@@ -19,14 +19,15 @@
         </p>
         <p class="card-text ">{{product.description}}</p>
         <div class="container ml-4">
-        <app-star-review [productId]="product.id" [userId]="userId"></app-star-review>  <!--  Need to add [userId]="user.id" or something -->
+          <app-star-review [productId]="product.id" [userId]="userId"></app-star-review>
+          <!--  Need to add [userId]="user.id" or something -->
         </div>
         <br>
-        <p *ngIf="product.quantity == 0" class="card-stock"><i class="fa fa-square null"></i>  out of stock</p>
+        <p *ngIf="product.quantity == 0" class="card-stock"><i class="fa fa-square null"></i> out of stock</p>
         <p *ngIf="product.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{product.quantity}} in
           stock</p>
       </div>
-        <!--      FOOTER-->
+      <!--      FOOTER-->
       <div class="card-footer">
         <p class="price">{{product.price | currency}}
           <a class="btn btn-sm float-right" (click)="add(product)" id="buy">
