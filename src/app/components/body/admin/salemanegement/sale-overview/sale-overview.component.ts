@@ -9,6 +9,8 @@ import {SaleType} from '../../../../../models/saleType';
 import {MessageService} from '../../../../../services/message.service';
 import {Product} from '../../../../../models/products/product';
 import {ProductsService} from '../../../../../services/crud/products.service';
+import {License} from '../../../../../models/products/license';
+import {LicenseService} from '../../../../../services/product/license.service';
 
 @Component({
   selector: 'app-sale-overview',
@@ -17,12 +19,14 @@ import {ProductsService} from '../../../../../services/crud/products.service';
 })
 export class SaleOverviewComponent implements OnInit {
 
+  private plans: Plan[];
+  private licenses: License[];
   private products: Product[];
   private sales: Sale[];
-  private plans: Plan[];
   private tags: Tag[];
 
   constructor(private planService: PlanService,
+              private licenseService: LicenseService,
               private tagService: TagService,
               private salesService: SalesService,
               private messageService: MessageService,
@@ -30,28 +34,29 @@ export class SaleOverviewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.planService.getPlans().subscribe(plans => this.plans = plans);
+    this.licenseService.getLicenses().subscribe(licenses => this.licenses = licenses);
     this.productService.getProducts().subscribe(products => this.products = products);
     this.salesService.getSales().subscribe(sales => this.sales = sales);
-    this.planService.getPlans().subscribe(plans => this.plans = plans);
     this.tagService.getTags().subscribe(tags => this.tags = tags);
   }
 
   getItemNames(salesObjects: any[], type: SaleType): string[] {
     const names: string[] = [];
     if (this.tags && this.plans) {
-      if (type === SaleType.PRODUCT) {
-        const products: Product[] = salesObjects;
-        if (products) {
-          products.forEach(product => {
-            names.push(product.title);
-          });
-          return names;
-        }
-      } else if (type === SaleType.PLAN) {
+      if (type === SaleType.PLAN) {
         const plans: Plan[] = salesObjects;
         if (plans) {
           plans.forEach(plan => {
             names.push(plan.title);
+          });
+          return names;
+        }
+      } else if (type === SaleType.LICENSE) {
+        const licenses: License[] = salesObjects;
+        if (licenses) {
+          licenses.forEach(product => {
+            names.push(product.title);
           });
           return names;
         }

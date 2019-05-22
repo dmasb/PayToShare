@@ -77,7 +77,8 @@ export class PlanBuilderComponent implements OnInit {
     this.plan.level = JSON.parse(this.newPlanForm.controls.planLevel.value) as Level;
     this.plan.price = this.newPlanForm.controls.planPrice.value;
     this.plan.description = this.newPlanForm.controls.planDesc.value;
-    this.plan.licenses = this.selectedLicenses;
+    this.plan.defaultLicenses = this.selectedLicenses;
+    this.plan.licenses = [];
     this.plan.imageUrl = this.getImageUrl() || this.plan.imageUrl;
 
     this.planService.addPlan(this.plan);

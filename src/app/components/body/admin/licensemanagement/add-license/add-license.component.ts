@@ -29,6 +29,7 @@ export class AddLicenseComponent implements OnInit {
     tag: new FormControl(''),
     licenseQuantity: new FormControl(''),
     licenseDescription: new FormControl(''),
+    licensePrice: new FormControl(''),
     licenseImageUrl: new FormControl('')
   });
 
@@ -55,11 +56,13 @@ export class AddLicenseComponent implements OnInit {
     license.tag = tag;
     license.format = format;
     license.title = this.newLicenseForm.controls.licenseName.value;
+    license.price = this.newLicenseForm.controls.licensePrice.value;
     license.quantity = this.newLicenseForm.controls.licenseQuantity.value;
     license.description = this.newLicenseForm.controls.licenseDescription.value;
     license.imageUrl = this.getImageUrl() || license.imageUrl;
 
     this.licenseService.addLicense(license);
+    this.newLicenseForm.reset();
     this.modalService.dismissAll();
   }
 

@@ -1,77 +1,20 @@
-<div class="col-sm-12 border d-flex justify-content-center" *ngFor="let sale of planSale">
-
-  <div class="row">
-    <h1 class="col-sm-12 text-center">{{sale.name}} {{sale.discount}}%</h1>
-    <div class="col" id="products" *ngFor="let plan of unpackPlans(sale.saleObjects)">
-      <div class="card">
-        <!--  IMAGE -->
-        <div class="card-top">
-          <img src="{{plan.imageUrl}}" alt="Card image cap">
-        </div>
-
-        <!--    BODY-->
-        <div class="card-body">
-          <h5 class="card-title">{{plan.title}}</h5>
-          <p class="card-text">
-          <span *ngFor="let license of plan.licenses">
-            <h6>{{license.name}}</h6>
-          </span></p>
-          <p class="card-text ">{{plan.description}}</p>
-          <br>
-          <span>Sale: {{sale.name}}</span>
-          <br>
-          <p *ngIf="plan.quantity == 0" class="card-stock"><i class="fa fa-square null"></i> out of stock</p>
-          <p *ngIf="plan.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{plan.quantity}} in
-            stock</p>
-        </div>
-        <!--      FOOTER-->
-        <div class="card-footer">
-          <p class="price">{{plan.price | currency}}
-            <a class="btn btn-sm float-right" id="buy2">
-              Buy
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+<hr>
+<hr>
+<div class="uk-background-default text-center">
+  <h1 class="font-weight-bold">Licenses</h1>
 </div>
-<div class="col-sm-12 border d-flex justify-content-center" *ngFor="let sale of productSale">
-
-  <div class="row">
-    <h1 class="col-sm-12 text-center">{{sale.name}} {{sale.discount}}%</h1>
-    <div class="col" *ngFor="let product of unpackProducts(sale.saleObjects)" id="er">
-
-      <div class="card">
-        <!--  IMAGE -->
-        <div class="card-top">
-          <img src="{{product.imageUrl}}" alt="Card image cap">
-        </div>
-
-        <!--    BODY-->
-        <div class="card-body">
-          <h5 class="card-title">{{product.title}}</h5>
-          <p class="card-text">
-          <span *ngFor="let tag of product.tags">
-            <h6>{{tag.name}}</h6>
-          </span></p>
-          <p class="card-text ">{{product.description}}</p>
-          <br>
-          <span>Sale: {{sale.name}}</span>
-          <br>
-          <p *ngIf="product.quantity == 0" class="card-stock"><i class="fa fa-square null"></i> out of stock</p>
-          <p *ngIf="product.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{product.quantity}} in
-            stock</p>
-        </div>
-        <!--      FOOTER-->
-        <div class="card-footer">
-          <p class="price">{{product.price | currency}}
-            <a class="btn btn-sm float-right" id="buy1">
-              Buy
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8"><app-licenses></app-licenses></div>
+  <div class="col-sm-2"></div>
+</div>
+<hr>
+<hr>
+<div class="uk-background-default text-center">
+  <h1 class="font-weight-bold">Products</h1>
+</div>
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8"><app-products></app-products></div>
+  <div class="col-sm-2"></div>
 </div>

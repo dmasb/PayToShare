@@ -13,14 +13,14 @@
         </thead>
 
         <tbody>
-          <!--INSERT CODEEEEEEE TO GET THEM ORDERS-->
-
-<!--         <tr *ngFor="let order of orders; index as i">
-          <td>{{ order.date }}</td>
-          <td>{{ order.number(ID?) }}</td>
-          <td>{{ order.product }}</td>
-          <td>{{ order.price }}</td>
-        </tr> -->
+        <tr *ngFor="let order of orders; index as i">
+          <td>{{ order.created.toDate() | date }}</td>
+          <td>{{ order.id }}</td>
+          <td>
+            <p *ngFor="let license of order.cart.licenses">{{ license.item.title }}</p>
+          </td>
+          <td>{{order.cart.totalPrice | currency}}</td>
+        </tr>
         <tr>
         </tr>
         </tbody>
@@ -28,4 +28,4 @@
       </table>
     </div>
   </div>
-  </div>
+</div>

@@ -14,7 +14,7 @@
     <td>{{ plan.title}}</td>
     <td>{{ plan.speed | number}}</td>
     <td>{{ plan.price | number}}</td>
-    <div *ngFor="let license of plan.licenses; index as j">
+    <div *ngFor="let license of plan.defaultLicenses; index as j">
       <td>{{ license }}</td>
     </div>
     <td>

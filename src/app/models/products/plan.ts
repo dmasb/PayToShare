@@ -1,5 +1,6 @@
 import {Item} from './item';
 import {Level} from './planLevels';
+import {License} from './license';
 
 export class Plan implements Item {
   id?: string;
@@ -7,7 +8,8 @@ export class Plan implements Item {
   speed: number;
   level: Level;
   price: number;
-  licenses: string[];
+  defaultLicenses: string[];
+  licenses: License[];
   description: string;
   imageUrl: string;
   created: firebase.firestore.Timestamp;

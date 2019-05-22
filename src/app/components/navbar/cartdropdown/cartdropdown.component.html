@@ -15,15 +15,23 @@
         </div>
         <ul class="shopping-cart-items list-unstyled">
           <!--            HIDDEN IF NO ITEMS-->
-          <li class="clearfix" *ngIf="!cart || cart.numberOfItems">No items here.</li>
-          <li class="clearfix" *ngFor="let item of cart.items">
-
-            <span><img *ngIf="item.product.imageUrl" src="{{item.product.imageUrl}}" alt="item1"/></span>
-            <span><img *ngIf="!item.product.imageUrl || item.product.imageUrl == '' " src="{{item.product.imageUrl}}"
+          <li class="clearfix" *ngIf="!cart || (cart.numberOfItems === 0 && !cart.plan)">No items here.</li>
+          <li class="clearfix" *ngIf="cart.plan">
+            <span><img *ngIf="cart.plan.imageUrl" src="{{cart.plan.imageUrl}}" alt="item1"/></span>
+            <span><img *ngIf="!cart.plan.imageUrl || cart.plan.imageUrl == '' " src="{{cart.plan.imageUrl}}"
                        alt="item1"/></span>
-            <span class="item-name">{{item.product.title}}</span>
-            <span class="item-price">{{item.product.price | currency}}</span><br>
-            <span class="item-quantity">Quantity: {{item.amountOf}}</span>
+            <span class="item-name">{{cart.plan.title}}</span>
+            <span class="item-price">{{cart.plan.price | currency}}</span><br>
+          </li>
+          <p>Licenses: </p>
+          <li class="clearfix" *ngFor="let license of cart.licenses">
+
+            <span><img *ngIf="license.item.imageUrl" src="{{license.item.imageUrl}}" alt="item1"/></span>
+            <span><img *ngIf="!license.item.imageUrl || license.item.imageUrl == '' " src="{{license.item.imageUrl}}"
+                       alt="item1"/></span>
+            <span class="item-name">{{license.item.title}}</span>
+            <span class="item-price">{{license.item.price | currency}}</span><br>
+            <span class="item-quantity">Quantity: {{license.amountOf}}</span>
           </li>
         </ul>
         <button type="button" class="btn text" (click)="goToCart()">Checkout</button>

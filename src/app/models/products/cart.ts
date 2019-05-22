@@ -22,10 +22,11 @@ export class Cart implements CartModel {
   created: Timestamp;
 
   constructor() {
-    this.licenses = [];
+    this.licenses = [] as ICartItem[];
     this.numberOfItems = 0;
     this.totalPrice = 0;
     this.created = Timestamp.now();
+    this.plan = null;
   }
 
   static clone(cart: Cart): Cart {
@@ -48,9 +49,9 @@ export class Cart implements CartModel {
       if (i.item.id === license.id) {
         // Increase amount.
         found = true;
-        this.totalPrice += i.item.price;
-        i.amountOf += 1;
-        this.numberOfItems += 1;
+        this.totalPrice += license.price;
+        i.amountOf++;
+        this.numberOfItems++;
         break;
       }
     }

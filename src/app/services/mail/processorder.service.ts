@@ -5,6 +5,8 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {Cart} from '../../models/products/cart';
 import {Order} from '../../models/order';
 import {User} from '../../models/user';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +38,17 @@ export class ProcessorderService {
         cart: Object.assign({}, new Cart())
       });
     }
+  }
+
+  getOrders(uid: string): Observable<Order[]> {
+    return this.afs.collection('orders', ref =>
+      ref.where('uid', '==', uid)).snapshotChanges().pipe(
+      map(orders => orders.map(order => {
+        return {
+          id: order.payload.doc.id,
+          ...order.payload.doc.data()
+        } as Order;
+      }))
+    );
   }
 }

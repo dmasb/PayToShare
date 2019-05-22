@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+import {ProcessorderService} from '../../../../../services/mail/processorder.service';
+import {Order} from '../../../../../models/order';
 
 @Component({
   selector: 'app-mypage-orders',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MypageOrdersComponent implements OnInit {
 
-  constructor() { }
+  @Input() private uid: string;
+  private orders: Order[];
 
-  ngOnInit() {
+  constructor(private orderService: ProcessorderService) {
   }
 
+  ngOnInit() {
+    this.orderService.getOrders(this.uid).subscribe(orders => this.orders = orders);
+  }
 }
