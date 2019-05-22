@@ -27,10 +27,14 @@ export class SearchListComponent implements OnInit {
 
 
   getProducts(): Product[] {
-    const keyword = this.route.snapshot.paramMap.get('searchWord');
+    const keyword = this.route.snapshot.paramMap.get('searchWord').toLowerCase();
     return this.products.filter(product => {
-      return product.title.includes(keyword) ||
-        product.tags.filter(tag => tag.name.includes(keyword)).length > 0;
+      const title = product.title.toLowerCase();
+      return title.includes(keyword) ||
+        product.tags.filter(tag => {
+          const pTag = tag.name.toLowerCase();
+          return pTag.includes(keyword);
+        }).length > 0;
     });
   }
 }
