@@ -13,9 +13,10 @@ import {RoleGuardService} from './services/authentication/role-guard.service';
 import {DashboardComponent} from './components/body/admin/dashboard/dashboard.component';
 import {PlanComponent} from './components/body/plan/plan.component';
 import {CollectionComponent} from './components/body/collection/collection.component';
-import { CheckoutComponent } from './components/body/checkout/CartOverview/checkout.component';
-import { OrderConfirmedComponent } from './components/body/checkout/order-confirmed/order-confirmed.component';
+import {CheckoutComponent} from './components/body/checkout/CartOverview/checkout.component';
+import {OrderConfirmedComponent} from './components/body/checkout/order-confirmed/order-confirmed.component';
 import {FrontPageComponent} from './components/body/front-page/front-page.component';
+import {SearchListComponent} from './components/body/search-list/search-list.component';
 
 
 export const routes: Routes = [
@@ -32,8 +33,8 @@ export const routes: Routes = [
   {path: 'plan', component: PlanComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'order-confirmed', component: OrderConfirmedComponent},
+  {path: 'search/:searchWord', component: SearchListComponent},
   {path: '**', component: Error404Component},
-  
 ];
 
 @NgModule({

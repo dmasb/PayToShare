@@ -65,9 +65,11 @@ import {MypageOrdersComponent} from './components/body/mypage/orders/mypage-orde
 import {MypageMycartComponent} from './components/body/mypage/mycart/mypage-mycart/mypage-mycart.component';
 import {OrderConfirmedComponent} from './components/body/checkout/order-confirmed/order-confirmed.component';
 import {LicensesComponent} from './components/body/licenses/licenses.component';
-import { FrontPageComponent } from './components/body/front-page/front-page.component';
-import { AddLicenseSaleComponent } from './components/body/admin/salemanegement/add-license-sale/add-license-sale.component';
-import { OrdersComponent } from './components/body/orders/orders.component';
+import {FrontPageComponent} from './components/body/front-page/front-page.component';
+import {AddLicenseSaleComponent} from './components/body/admin/salemanegement/add-license-sale/add-license-sale.component';
+import {OrdersComponent} from './components/body/orders/orders.component';
+import {SearchbarComponent} from './components/navbar/searchbar/searchbar.component';
+import {SearchListComponent} from './components/body/search-list/search-list.component';
 
 
 @NgModule({
@@ -126,7 +128,8 @@ import { OrdersComponent } from './components/body/orders/orders.component';
     FrontPageComponent,
     AddLicenseSaleComponent,
     OrdersComponent,
-
+    SearchbarComponent,
+    SearchListComponent
   ],
   imports: [
     BrowserModule,

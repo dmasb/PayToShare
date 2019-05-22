@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserSessionService} from 'src/app/services/user-session.service';
 import {Cart} from 'src/app/models/products/cart';
-import {Product} from 'src/app/models/products/product';
 import {ProcessorderService} from '../../../../services/mail/processorder.service';
 import {User} from '../../../../models/user';
 import {License} from '../../../../models/products/license';

@@ -15,7 +15,6 @@ export class License implements Item {
   description: string;
   created: firebase.firestore.Timestamp;
 
-
   constructor() {
     this.created = Timestamp.now();
     this.imageUrl = 'https://firebasestorage.googleapis.com/v0/b/paytoshare-b4cd1.appspot.com' +

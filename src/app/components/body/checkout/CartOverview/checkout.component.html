@@ -33,7 +33,8 @@
       <div class="row border-top">
         <div class="col-12">
           <h3 class="text-right">Total: {{this.cart.totalPrice | currency}}</h3>
-          <button type="button" class="btn" (click)="process()" routerLink="/order-confirmed">Confirm purchase</button>
+          <button *ngIf="cart.numberOfItems === 0" type="button" class="btn" (click)="process()" routerLink="/order-confirmed" disabled>Confirm purchase</button>
+          <button *ngIf="cart.numberOfItems > 0" type="button" class="btn" (click)="process()" routerLink="/order-confirmed">Confirm purchase</button>
         </div>
       </div>
     </div>
