@@ -15,6 +15,7 @@ export class SearchListComponent implements OnInit {
 
   private licenses: License[] = [];
   private cart: Cart;
+  private searchWord: string;
 
   constructor(private route: ActivatedRoute,
               private licenseService: LicenseService,
@@ -32,6 +33,7 @@ export class SearchListComponent implements OnInit {
 
   getLicenses(): License[] {
     const keyword = this.route.snapshot.paramMap.get('searchWord').toLowerCase();
+    this.searchWord = keyword;
     return this.licenses.filter(license => {
       const title = license.title.toLowerCase();
       const format = license.format.name.toLowerCase();
