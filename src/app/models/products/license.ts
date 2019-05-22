@@ -6,9 +6,9 @@ import {Format} from './format';
 
 export interface LicenseModel {
   id?: string;
-  name: string;
-  tag: Tag;
-  format: Format;
+  name?: string;
+  tag?: Tag;
+  format?: Format;
   created?: Timestamp;
 }
 
@@ -18,7 +18,7 @@ export class License implements LicenseModel {
   }
 
   id?: string;
-  name: string;
-  tag: Tag;
-  format: Format;
+  name?: string;
+  tag?: Tag;
+  format?: Format;
 }

@@ -63,6 +63,8 @@ import { MypageOverviewComponent } from './components/body/mypage/mypage-overvie
 import { MypageSettingsComponent } from './components/body/mypage/settings/mypage-settings/mypage-settings.component';
 import { MypageOrdersComponent } from './components/body/mypage/orders/mypage-orders/mypage-orders.component';
 import { MypageMycartComponent } from './components/body/mypage/mycart/mypage-mycart/mypage-mycart.component';
+import { SearchbarComponent } from './components/navbar/searchbar/searchbar.component';
+import { SearchListComponent } from './components/body/search-list/search-list.component';
 
 
 @NgModule({
@@ -116,6 +118,8 @@ import { MypageMycartComponent } from './components/body/mypage/mycart/mypage-my
     MypageSettingsComponent,
     MypageOrdersComponent,
     MypageMycartComponent,
+    SearchbarComponent,
+    SearchListComponent,
 
   ],
   imports: [

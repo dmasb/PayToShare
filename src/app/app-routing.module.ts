@@ -15,6 +15,7 @@ import {SalesComponent} from './components/body/sales/sales.component';
 import {PlanComponent} from './components/body/plan/plan.component';
 import {CollectionComponent} from './components/body/collection/collection.component';
 import { CheckoutComponent } from './components/body/checkout/CartOverview/checkout.component';
+import { SearchListComponent } from './components/body/search-list/search-list.component';
 
 
 export const routes: Routes = [
@@ -30,7 +31,9 @@ export const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuardService]},
   {path: 'plan', component: PlanComponent},
   {path: 'checkout', component: CheckoutComponent},
+  {path: 'search', component: SearchListComponent},
   {path: '**', component: Error404Component},
+  
   
 ];
 

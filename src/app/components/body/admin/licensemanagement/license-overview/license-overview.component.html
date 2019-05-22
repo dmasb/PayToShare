@@ -35,9 +35,9 @@
                 <input type="checkbox" name="checkbox + {{ i + 1}}" disabled>
               </label>
             </th>
-            <td>{{ license.name }}</td>
+   <!--          <td>{{ license.title }}</td>
             <td>{{ license.format.name}}</td>
-            <td>{{ license.tag.name }}</td>
+            <td>{{ license.tag.name }}</td>  -->
             <td>
               <app-update-license [id]=license.id></app-update-license>
               <app-delete-license [license]="license"></app-delete-license>
