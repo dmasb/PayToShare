@@ -3,7 +3,6 @@ import {ProductsService} from 'src/app/services/crud/products.service';
 import {Router} from '@angular/router';
 import {Product} from 'src/app/models/products/product';
 import {ActivatedRoute} from '@angular/router';
-import {activateRoutes} from '@angular/router/src/operators/activate_routes';
 
 @Component({
   selector: 'app-search-list',
