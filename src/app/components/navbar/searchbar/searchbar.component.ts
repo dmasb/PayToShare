@@ -15,7 +15,7 @@ export class SearchbarComponent implements OnInit {
   filteredProducts: Product[];
   private _searchTerm: string;
 
-  get searchTerm(): string {
+/*   get searchTerm(): string {
     return this._searchTerm;
   }
   set searchTerm(value: string){
@@ -25,7 +25,7 @@ export class SearchbarComponent implements OnInit {
 
   filterProducts(searchString: Tag["name"]){
     return this.products.filter( product => product.tags.indexOf(searchString.toLowerCase) !== -1 );
-  }
+  } */
 
   constructor(private router: Router, private ps: ProductsService) { }
 
