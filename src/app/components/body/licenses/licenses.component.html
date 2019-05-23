@@ -14,14 +14,14 @@
         <p class="card-text">{{license.tag.name}}</p>
         <p class="card-text">{{license.format.name}}</p>
         <p class="card-text ">{{license.description}}</p>
-        <div class="container ml-4">
-          <app-star-review [productId]="license.id" [userId]="userId"></app-star-review>
-          <!--  Need to add [userId]="user.id" or something -->
-        </div>
-        <br>
         <p *ngIf="license.quantity == 0" class="card-stock"><i class="fa fa-square null"></i> out of stock</p>
         <p *ngIf="license.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{license.quantity}} in
           stock</p>
+        <div class="container ml-4">
+<!--          <app-star-review [productId]="license.id" [userId]="userId"></app-star-review>-->
+          <!--  Need to add [userId]="user.id" or something -->
+        </div>
+        
       </div>
       <!--      FOOTER-->
       <div class="card-footer">

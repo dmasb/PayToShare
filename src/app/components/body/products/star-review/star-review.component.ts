@@ -9,16 +9,20 @@ import { map, filter, catchError, mergeMap } from 'rxjs/operators';
   templateUrl: './star-review.component.html',
   styleUrls: ['./star-review.component.scss']
 })
+
 export class StarReviewComponent implements OnInit {
 
   @Input() productId;
   @Input() userId;
 
+
   stars: Observable<any>;
   avgRating: Observable<any>;
 
 
-  constructor(private starService: StarService) { }
+  constructor(private starService: StarService) {
+  }
+
 
   ngOnInit() {
     this.stars = this.starService.getProductStars(this.productId);
@@ -30,8 +34,10 @@ export class StarReviewComponent implements OnInit {
     }))
   }
 
+
   starHandler(value) {
-    this.starService.setStar(this.userId, this.productId, value)
+    this.starService.setStar(this.userId, this.productId, value);
+    console.log("Testing this: " + this.productId);
   }
 
 }

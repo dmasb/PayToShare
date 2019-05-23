@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col" *ngFor="let product of products" id="products">
+  <div class="col" *ngFor="let product of products; let i=index" id="products">
 
     <div class="card shadow">
       <!--  IMAGE -->
@@ -17,7 +17,7 @@
         </p>
         <p class="card-text ">{{product.description}}</p>
         <div class="container ml-4">
-          <app-star-review [productId]="product.id" [userId]="userId"></app-star-review>
+          <app-star-review (click)="consLog(product.title, userId)" [productId]="product.title" [userId]="userId"></app-star-review>
           <!--  Need to add [userId]="user.id" or something -->
         </div>
         <br>

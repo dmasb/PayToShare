@@ -15,6 +15,7 @@ export class ProductsComponent implements OnInit {
   private products: Product[];
   private cart: Cart;
   private userId: string;
+  private prodId: any;
 
   constructor(private productsService: ProductsService,
               private session: UserSessionService) {
@@ -27,5 +28,16 @@ export class ProductsComponent implements OnInit {
       this.userId = user.id;
       this.cart = Cart.clone(user.cart);
     });
+  }
+
+  consLog(productId, userId) {
+    console.log(productId + " " + userId);
+
+  }
+  setProdId(productId) {
+    this.prodId = productId;
+  }
+  getProdId() {
+    return this.prodId;
   }
 }
