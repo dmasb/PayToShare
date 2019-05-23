@@ -16,12 +16,6 @@
                                                                      class="mr-2"></span>License
         sale</a>
 
-      <a (click)="messageService.clear()" class="btn btn-outline-dark text-left mt-2" id="v-pills-productSale-tab"
-         data-toggle="pill" href="#v-pills-productSale"
-         role="tab"
-         aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon:  plus-circle; ratio: 1"
-                                                                     class="mr-2"></span>Product
-        sale</a>
       <a (click)="messageService.clear()" class="btn btn-outline-dark text-left mt-2" id="v-pills-tagSales-tab"
          data-toggle="pill"
          href="#v-pills-tagSales"
@@ -49,10 +43,6 @@
         <app-add-license-sale [licenses]="licenses"></app-add-license-sale>
       </div>
 
-      <div class="tab-pane fade" id="v-pills-productSale" role="tabpanel" aria-labelledby="v-pills-productSale-tab">
-        <app-add-product-sale [products]="products"></app-add-product-sale>
-      </div>
-
       <div class="tab-pane fade" id="v-pills-tagSales" role="tabpanel"
            aria-labelledby="v-pills-tagSales-tab">
         <app-add-tag-sale [tags]="tags"></app-add-tag-sale>
@@ -60,6 +50,13 @@
 
       <div class="tab-pane fade show active" id="v-pills-salesOverview" role="tabpanel"
            aria-labelledby="v-pills-salesOverview-tab">
+        <div>
+          <label for="sortSales">Sort by:</label><select id="sortSales" class="form-control-sm ml-3" (change)="sort()">
+          <option>Discount</option>
+          <option>Title</option>
+          <option>Period</option>
+        </select>
+        </div>
         <table class="table table-striped">
           <thead>
           <tr>

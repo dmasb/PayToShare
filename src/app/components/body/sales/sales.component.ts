@@ -7,6 +7,8 @@ import {Plan} from '../../../models/products/plan';
 import {License} from '../../../models/products/license';
 import {Cart} from '../../../models/products/cart';
 import {UserSessionService} from '../../../services/user-session.service';
+import {firestore} from 'firebase/app';
+import Timestamp = firestore.Timestamp;
 
 @Component({
   selector: 'app-sales',
@@ -38,7 +40,8 @@ export class SalesComponent implements OnInit {
   }
 
   unpackPlans(plans: any[]): Plan[] {
-    return plans as Plan[];
+    const temp = plans as Plan[];
+    return temp.sort((a, b) => (a.speed < b.speed) ? -1 : 1);
   }
 
   addLicense(license: License) {
@@ -47,7 +50,15 @@ export class SalesComponent implements OnInit {
   }
 
   addPlan(plan: Plan) {
-    this.cart.plan = plan;
+    this.cart.addPlan(plan);
     this.userSessionService.updateCart(this.cart);
+  }
+
+  getDaysLeft(end: Timestamp): string {
+    let secondsLeft = end.seconds - Timestamp.now().seconds;
+    const days = Math.floor(secondsLeft / 86400);
+    secondsLeft %= 86400;
+    const hours = Math.floor(secondsLeft / 3600);
+    return days + ' days ' + hours + ' hours left!';
   }
 }

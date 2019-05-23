@@ -25,7 +25,7 @@ export class ProductOverviewComponent implements OnInit {
 
   sort() {
     const selectedOption = (document.getElementById('sortID') as HTMLSelectElement);
-
+    console.log(selectedOption);
     switch (selectedOption.value) {
       case 'Price': {
         this.products.sort((a, b) => (a.price > b.price) ? -1 : 1);

@@ -37,8 +37,27 @@ export class SaleOverviewComponent implements OnInit {
     this.planService.getPlans().subscribe(plans => this.plans = plans);
     this.licenseService.getLicenses().subscribe(licenses => this.licenses = licenses);
     this.productService.getProducts().subscribe(products => this.products = products);
-    this.salesService.getSales().subscribe(sales => this.sales = sales);
+    this.salesService.getAllSales().subscribe(sales => this.sales = sales);
     this.tagService.getTags().subscribe(tags => this.tags = tags);
+  }
+
+  sort() {
+    const selectedOption = (document.getElementById('sortSales') as HTMLSelectElement);
+
+    switch (selectedOption.value) {
+      case 'Discount': {
+        this.sales.sort((a, b) => (a.discount > b.discount) ? -1 : 1);
+        break;
+      }
+      case 'Title': {
+        this.sales.sort((a, b) => (a.name < b.name) ? -1 : 1);
+        break;
+      }
+      case 'Period': {
+        this.sales.sort((a, b) => (a.begins < b.begins) ? -1 : 1);
+        break;
+      }
+    }
   }
 
   getItemNames(salesObjects: any[], type: SaleType): string[] {

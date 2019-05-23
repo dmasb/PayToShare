@@ -52,4 +52,8 @@ export class CheckoutComponent implements OnInit {
     this.orderService.processOrder(this.user, this.cart);
   }
 
+  removePlan() {
+    this.cart.removePlan();
+    this.session.updateCart(this.cart);
+  }
 }

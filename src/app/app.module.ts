@@ -56,7 +56,6 @@ import {DeleteSaleComponent} from './components/body/admin/salemanegement/delete
 import {PlanComponent} from './components/body/plan/plan.component';
 import {CartdropdownComponent} from './components/navbar/cartdropdown/cartdropdown.component';
 import {CollectionComponent} from './components/body/collection/collection.component';
-import {AddProductSaleComponent} from './components/body/admin/salemanegement/add-product-sale/add-product-sale.component';
 import {StarReviewComponent} from './components/body/products/star-review/star-review.component';
 import {CheckoutComponent} from './components/body/checkout/CartOverview/checkout.component';
 import {MypageOverviewComponent} from './components/body/mypage/mypage-overview/mypage-overview.component';
@@ -70,6 +69,7 @@ import {AddLicenseSaleComponent} from './components/body/admin/salemanegement/ad
 import {OrdersComponent} from './components/body/orders/orders.component';
 import {SearchbarComponent} from './components/navbar/searchbar/searchbar.component';
 import {SearchListComponent} from './components/body/search-list/search-list.component';
+import { MySubscriptionsComponent } from './components/body/mypage/my-subscriptions/my-subscriptions.component';
 
 
 @NgModule({
@@ -116,7 +116,6 @@ import {SearchListComponent} from './components/body/search-list/search-list.com
     PlanComponent,
     CartdropdownComponent,
     CollectionComponent,
-    AddProductSaleComponent,
     StarReviewComponent,
     CheckoutComponent,
     MypageOverviewComponent,
@@ -129,7 +128,8 @@ import {SearchListComponent} from './components/body/search-list/search-list.com
     AddLicenseSaleComponent,
     OrdersComponent,
     SearchbarComponent,
-    SearchListComponent
+    SearchListComponent,
+    MySubscriptionsComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,8 @@ import {Sale} from '../../../../../models/products/sale';
 import {SaleType} from '../../../../../models/saleType';
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
+import {alerts} from '../../../../../models/alerts';
+import {MessageService} from '../../../../../services/message.service';
 
 @Component({
   selector: 'app-add-plan-sale',
@@ -16,7 +18,7 @@ export class AddPlanSaleComponent implements OnInit {
 
   @Input() plans: Plan[];
   private selectedPlans: Plan[] = [];
-
+  private sales: Sale[];
   private newPlanSale = new FormGroup({
     saleName: new FormControl(''),
     saleBegin: new FormControl(''),
@@ -25,10 +27,12 @@ export class AddPlanSaleComponent implements OnInit {
     selectedPlan: new FormControl('')
   });
 
-  constructor(private salesService: SalesService) {
+  constructor(private salesService: SalesService,
+              private messageService: MessageService) {
   }
 
   ngOnInit() {
+    this.salesService.getAllSales().subscribe(sales => this.sales = sales);
   }
 
 
@@ -59,9 +63,38 @@ export class AddPlanSaleComponent implements OnInit {
     sale.ends = Timestamp.fromDate(new Date(sEnd));
     sale.saleObjects = this.selectedPlans;
     sale.discount = sDiscount;
-    this.salesService.addSale(sale);
 
-    this.newPlanSale.reset();
-    this.selectedPlans = [];
+
+    const saleArray: Sale[] = [];
+    const planArray: Plan[] = [];
+
+    for (const plan of this.selectedPlans) {
+      for (const o of this.sales) {
+        if (o.type === SaleType.PLAN) {
+          const tempPlans = o.saleObjects as Plan[];
+          const isListed = tempPlans.filter(l => l.id === plan.id).length > 0;
+          if (isListed && sale.begins >= o.begins && sale.begins <= o.ends) {
+            saleArray.push(o);
+            planArray.push(plan);
+          }
+        }
+      }
+    }
+
+
+    if (saleArray.length === 0 && planArray.length === 0) {
+
+      this.salesService.addSale(sale);
+      this.newPlanSale.reset();
+      this.selectedPlans = [];
+    } else {
+      let str = '';
+      let index = 0;
+      while (index < saleArray.length) {
+        str += planArray[index].title + ' is already listed in ' + saleArray[index].name + ' in this period;';
+        index++;
+      }
+      this.messageService.add(str, alerts.danger);
+    }
   }
 }

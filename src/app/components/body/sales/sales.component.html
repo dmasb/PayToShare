@@ -1,7 +1,7 @@
-<div class="col-sm-12 border d-flex justify-content-center" *ngFor="let sale of planSale">
-
+<div class="col-sm-12 d-flex justify-content-center" *ngFor="let sale of planSale">
   <div class="row">
     <h1 class="col-sm-12 text-center">{{sale.name}} {{sale.discount}}%</h1>
+    <h3 class="col-sm-12 text-center">{{getDaysLeft(sale.ends)}}</h3>
     <div class="col" id="products" *ngFor="let plan of unpackPlans(sale.saleObjects)">
       <div class="card">
         <!--  IMAGE -->
@@ -11,10 +11,12 @@
 
         <!--    BODY-->
         <div class="card-body">
-          <h5 class="card-title">{{plan.title}}</h5>
+          <h5 class="card-title mb-2">{{plan.title}}</h5>
+          <p class="card-text">
+            {{plan.speed | number}} mb/s
           <p class="card-text">
           <span *ngFor="let license of plan.defaultLicenses">
-            <h6>{{license}}</h6>
+            {{license}}
           </span></p>
           <p class="card-text">
           <span *ngFor="let license of plan.licenses">
@@ -24,13 +26,12 @@
           <br>
           <span>Sale: {{sale.name}}</span>
           <br>
-          <!--<p *ngIf="plan == 0" class="card-stock"><i class="fa fa-square null"></i> out of stock</p>
-          <p *ngIf="plan.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{plan.quantity}} in
-            stock</p>-->
         </div>
         <!--      FOOTER-->
         <div class="card-footer">
-          <p class="price">{{plan.price | currency}} {{plan.price - (sale.discount/100) * plan.price | currency}}
+          <p class="price">
+            <span class="before">{{plan.price | currency}}</span>
+            <span class="after">{{plan.salePrice | currency}}</span>
             <a class="btn btn-sm float-right" id="buy1" (click)="addPlan(plan)">
               Buy
             </a>
@@ -41,11 +42,11 @@
   </div>
 </div>
 
-<div class="col-sm-12 border d-flex justify-content-center" *ngFor="let sale of licenseSale">
+<div class="col-sm-12 d-flex justify-content-center mt-5" *ngFor="let sale of licenseSale">
   <div class="row">
     <h1 class="col-sm-12 text-center">{{sale.name}} {{sale.discount}}%</h1>
+    <h3 class="col-sm-12 text-center">{{getDaysLeft(sale.ends)}}</h3>
     <div class="col" *ngFor="let license of unpackLicenses(sale.saleObjects)" id="er">
-
       <div class="card">
         <!--  IMAGE -->
         <div class="card-top">
@@ -61,13 +62,15 @@
           <br>
           <span>Sale: {{sale.name}}</span>
           <br>
-          <p *ngIf="license.quantity == 0" class="card-stock"><i class="fa fa-square null"></i> out of stock</p>
-          <p *ngIf="license.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{license.quantity}} in
+          <p *ngIf="license.quantity == 0" class="card-stock mb-2"><i class="fa fa-square null"></i> out of stock</p>
+          <p *ngIf="license.quantity != 0" class="card-stock mb-2"><i class="fa fa-square"></i> {{license.quantity}} in
             stock</p>
         </div>
         <!--      FOOTER-->
         <div class="card-footer">
-          <p class="price">{{license.price | currency}} {{license.price - (sale.discount/100) * license.price | currency}}
+          <p class="price">
+            <span class="before">{{license.price | currency}}</span>
+            <span class="after">{{license.salePrice | currency}}</span>
             <a class="btn btn-sm float-right" id="buy2" (click)="addLicense(license)">
               Buy
             </a>

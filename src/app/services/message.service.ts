@@ -10,7 +10,11 @@ export class MessageService {
 
   add(message: string, code: alerts) {
     this.messages = [];
-    this.messages.push(message);
+    for (const row of message.split(';')) {
+      if (row.length > 0) {
+        this.messages.push(row);
+      }
+    }
     this.code = code;
   }
 
