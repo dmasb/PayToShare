@@ -70,7 +70,7 @@ import {OrdersComponent} from './components/body/orders/orders.component';
 import {SearchbarComponent} from './components/navbar/searchbar/searchbar.component';
 import {SearchListComponent} from './components/body/search-list/search-list.component';
 import { MySubscriptionsComponent } from './components/body/mypage/my-subscriptions/my-subscriptions.component';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -129,7 +129,7 @@ import { MySubscriptionsComponent } from './components/body/mypage/my-subscripti
     OrdersComponent,
     SearchbarComponent,
     SearchListComponent,
-    MySubscriptionsComponent
+    MySubscriptionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -147,7 +147,7 @@ import { MySubscriptionsComponent } from './components/body/mypage/my-subscripti
     NgbModule,
 
   ],
-  providers: [AngularFireDatabase, DecimalPipe, NgbActiveModal],
+  providers: [AngularFireDatabase, DecimalPipe, NgbActiveModal, CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {

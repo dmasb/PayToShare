@@ -27,6 +27,7 @@ export interface IUser {
 
 export class User implements IUser {
   constructor() {
+    this.cart = new Cart();
   }
 
   id?: string;

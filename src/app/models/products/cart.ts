@@ -69,32 +69,17 @@ export class Cart implements CartModel {
   }
 
   addPlan(plan: Plan) {
-
-    if (!this.plan) {
-      this.plan = new Plan();
-      let thisPlansPrice = 0;
-      if (this.plan.salePrice > 0) {
-        thisPlansPrice = this.plan.salePrice;
-      } else {
-        thisPlansPrice = this.plan.price;
-      }
-
-      if (this.plan && this.plan.salePrice > 0) {
-        this.totalPrice -= thisPlansPrice;
-        this.numberOfItems--;
-      } else if (this.plan && this.plan.salePrice === 0) {
-        this.totalPrice -= this.plan.price;
-        this.numberOfItems--;
-      }
+    const price = (plan.salePrice > 0) ? plan.salePrice : plan.price;
+    if (this.plan === null) {
+      this.plan = plan;
+      this.totalPrice += price;
+      this.numberOfItems++;
+    } else if (this.plan) {
+      const currentPrice = (this.plan.salePrice > 0) ? this.plan.salePrice : this.plan.price;
+      this.totalPrice -= currentPrice;
+      this.plan = plan;
+      this.totalPrice += price;
     }
-
-    if (plan.salePrice > 0) {
-      this.totalPrice += plan.salePrice;
-    } else {
-      this.totalPrice += plan.price;
-    }
-    this.plan = plan;
-    this.numberOfItems++;
   }
 
   remove(license: License) {

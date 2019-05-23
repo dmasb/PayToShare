@@ -9,6 +9,8 @@ import {Cart} from '../../../models/products/cart';
 import {UserSessionService} from '../../../services/user-session.service';
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
+import {CookieService} from 'ngx-cookie-service';
+import {User} from '../../../models/user';
 
 @Component({
   selector: 'app-sales',
@@ -20,10 +22,14 @@ export class SalesComponent implements OnInit {
   private licenseSale: Sale[];
   private planSale: Sale[];
   private cart: Cart;
+  private user: User;
 
   constructor(private planService: PlanService,
               private salesService: SalesService,
-              private userSessionService: UserSessionService) {
+              private userSessionService: UserSessionService,
+              private cookieService: CookieService) {
+    this.cart = new Cart();
+    this.cookieService.set('cart', JSON.stringify(this.cart), 1, '/');
   }
 
   ngOnInit() {
@@ -31,7 +37,14 @@ export class SalesComponent implements OnInit {
     this.salesService.getSaleOnType(SaleType.LICENSE).subscribe(sales => this.licenseSale = sales);
     this.salesService.getSaleOnType(SaleType.PLAN).subscribe(sales => this.planSale = sales);
     this.userSessionService.getUserDoc().subscribe(user => {
-      this.cart = Cart.clone(user.cart);
+      if (user) {
+        this.user = user;
+        this.cart = Cart.clone(user.cart);
+      } else {
+        const tempCart = JSON.parse(this.cookieService.get('cart')) as Cart;
+        this.cart = Cart.clone(tempCart);
+        console.log(this.cart);
+      }
     });
   }
 
@@ -46,12 +59,18 @@ export class SalesComponent implements OnInit {
 
   addLicense(license: License) {
     this.cart.add(license);
-    this.userSessionService.updateCart(this.cart);
+    this.cookieService.set('cart', JSON.stringify(this.cart));
+    if (this.user) {
+      this.userSessionService.updateCart(this.cart);
+    }
   }
 
   addPlan(plan: Plan) {
     this.cart.addPlan(plan);
-    this.userSessionService.updateCart(this.cart);
+    this.cookieService.set('cart', JSON.stringify(this.cart));
+    if (this.user) {
+      this.userSessionService.updateCart(this.cart);
+    }
   }
 
   getDaysLeft(end: Timestamp): string {

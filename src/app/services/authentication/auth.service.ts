@@ -10,6 +10,7 @@ import {MessageService} from '../message.service';
 import {alerts} from '../../models/alerts';
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
+import {Cart} from '../../models/products/cart';
 
 @Injectable({
   providedIn: 'root'
@@ -122,6 +123,7 @@ export class AuthService {
         this.data.lastLogin = Timestamp.now();
         this.data.registerDate = this.afAuth.auth.currentUser.metadata.creationTime;
         this.data.loggedIn = true;
+        this.data.cart = Object.assign({}, new Cart());
         userRef.set(Object.assign({}, this.data));
       }
     });
