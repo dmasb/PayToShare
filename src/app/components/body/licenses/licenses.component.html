@@ -25,8 +25,11 @@
       </div>
       <!--      FOOTER-->
       <div class="card-footer">
-        <p class="price">{{license.price | currency}}
-          <a class="btn btn-sm float-right" (click)="add(license)" id="buy">
+        <p class="price text-center">
+          <span *ngIf="license.salePrice > 0" class="before">{{license.price | currency}}</span>
+          <span *ngIf="license.salePrice > 0" class="after">{{license.salePrice | currency}}</span>
+          <span *ngIf="license.salePrice === 0" >{{license.price | currency}}</span>
+          <a *ngIf="license.quantity > 0" class="btn btn-sm float-right" (click)="add(license)" id="buy">
             Add to cart
           </a>
         </p>

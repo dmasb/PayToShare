@@ -1,3 +1,84 @@
-<a class="mr-3" role="button" style="cursor: pointer;" href="javascript:void(0)">
-  <span uk-icon="icon: pencil"></span>
-</a>
+<ng-template #updateLicenceModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add License</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="updateLicenseForm" (ngSubmit)="editLicense()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="licenseName">License name</label>
+          <input type="text" class="form-control" id="licenseName" placeholder="License name"
+                 formControlName="licenseName" [value]="license.title">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="productQuantity">License Quantity</label>
+          <input type="number" class="form-control" id="productQuantity" placeholder="Quantity"
+                 formControlName="licenseQuantity" [value]="license.quantity">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="licenseFormat">License Format</label>
+          <select class="form-control" id="licenseFormat" formControlName="licenseFormat">
+            <option value="" selected disabled hidden>{{license.format.name}}</option>
+            <option *ngFor="let format of formats" [value]="format | json">
+              {{format.name}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="licenseTag">License Tag</label>
+          <select class="form-control" id="licenseTag" formControlName="licenseTag">
+            <option value="" selected disabled hidden>{{license.tag.name}}</option>
+            <option *ngFor="let tag of tags" [value]="tag | json">
+              {{tag.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="licenseOnSale">License Price</label>
+          <input *ngIf="license.salePrice > 0" disabled type="number" class="form-control" id="licenseOnSale"
+                 placeholder="Price"
+                 formControlName="licensePrice" [value]="license.price">
+          <label for="licensePrice"></label>
+          <input *ngIf="license.salePrice === 0" type="number" class="form-control" id="licensePrice"
+                 placeholder="Quantity"
+                 formControlName="licensePrice" [value]="license.price">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="licenseDescription">Product Description</label>
+          <input type="text" class="form-control" id="licenseDescription" placeholder="Description"
+                 formControlName="licenseDescription" [value]="license.description">
+        </div>
+      </div>
+      <div class="file">
+        <label class="file-label">
+          <input type="file" class="file-input" (change)="uploadImage($event)"
+                 formControlName="licenseImageUrl">
+        </label>
+      </div>
+      <app-image-upload-template [percentage]="getPercentage()"
+                                 [snapshot]="getSnapshot()"
+                                 [url]="getImageUrl()"
+                                 [task]="getTask()">
+      </app-image-upload-template>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+        <button type="submit" class="btn btn-outline-dark">Add</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<div class="nav flex-column nav-pills m-0 p-0 bg-white" id="v-pills-tab" aria-orientation="vertical">
+  <a class="mr-3" role="button" style="cursor: pointer;" (click)="openCenteredDialog(updateLicenceModal)">
+    <span uk-icon="icon: pencil"></span>
+  </a>
+</div>

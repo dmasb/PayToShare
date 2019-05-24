@@ -39,7 +39,7 @@
             <td>{{ license.format.name}}</td>
             <td>{{ license.tag.name }}</td>
             <td>
-              <app-update-license [id]=license.id></app-update-license>
+              <app-update-license [license]="license"></app-update-license>
               <app-delete-license [license]="license"></app-delete-license>
             </td>
           </tr>

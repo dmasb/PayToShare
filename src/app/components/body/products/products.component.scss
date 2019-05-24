@@ -9,9 +9,6 @@ h4{
   padding-left: 20px;
 }
 
-
-
-
 /* Card design */
 
 .card{
@@ -19,10 +16,10 @@ h4{
   margin-top: 1em;
   margin-bottom: 1em;
   background-color: #e4e1e1;
-  width: 15em;
-  max-width: 15em;
-  height: 24em;
-  max-height: 24em;
+  width: 17em;
+  max-width: 17em;
+  height: 26em;
+  max-height: 26em;
 }
 
 .card-footer{
@@ -31,9 +28,7 @@ h4{
   width: 100%;
 }
 
-#buy{
-  color: #FFFFFF;
-}
+
 .card-top{
   height: 40%;
   max-height: 40%;
@@ -43,11 +38,12 @@ h4{
 img{
   max-height:100%;
   width: 100%;
+  object-fit: fill;
 }
 
 
 .card-body{
-  height: 10em;
+  /*height: 10em;*/
   padding: 0.5em;
 }
 
@@ -64,8 +60,31 @@ img{
 }
 
 .price{
-  text-align: center;
-  font-size: 1.2em;
+  /*text-align: center;*/
+}
+
+.before {
+  color: rgba(red, 0.5);
+  text-decoration: none;
+  position: relative;
+
+  &:before {
+    content: " ";
+    display: block;
+    width: 100%;
+    border-top: 2px solid rgba(red, 0.8);
+    height: 12px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: rotate(-7deg);
+  }
+}
+
+.after {
+  color: green;
+  text-decoration: none;
+  padding: 1em 1em 1em .5em;
 }
 
 .btn{
@@ -97,12 +116,10 @@ img{
 }
 
 .card-stock{
-  text-align: left;
-  float: left;
-  padding-left: 1em;
+  text-align: center;
+
+  padding-top: 1em;
   padding-bottom: 0;
   margin: 0;
   bottom: 0;
 }
-
-

@@ -17,14 +17,15 @@
         </p>
         <p class="card-text ">{{product.description}}</p>
         <div class="container ml-4">
-          <app-star-review (click)="click(product, userId)" [productId]="product.title" [userId]="userId"></app-star-review>
+          <app-star-review (click)="click(product, userId)" [productId]="product.title"
+                           [userId]="userId"></app-star-review>
           <!--  Need to add [userId]="user.id" or something -->
 
         </div>
         <br>
       </div>
-      <div class="card-footer">
-        <p class="price">{{product.price | currency}}
+      <div class="card-footer text-center">
+        <p class="price">Format:{{product.format.name}}
         </p>
       </div>
     </div>

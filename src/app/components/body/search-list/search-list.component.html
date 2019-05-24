@@ -11,9 +11,7 @@
         <div class="card shadow">
           <!--  IMAGE -->
           <div class="card-top">
-            <img *ngIf="license.imageUrl == null" class="card-img-top null" src="../assets/images/testimages/gd.png"
-                 alt="Card image cap">
-            <img *ngIf="license.imageUrl != null" class="card-img-top" src="{{license.imageUrl}}" alt="Card image cap">
+            <img class="card-img-top" src="{{license.imageUrl}}" alt="Card image cap">
           </div>
 
           <!--    BODY-->
@@ -33,9 +31,12 @@
           </div>
           <!--      FOOTER-->
           <div class="card-footer">
-            <p class="price">{{license.price | currency}}
-              <a class="btn btn-sm float-right" (click)="addLicense(license)" id="buy">
-                Buy
+            <p class="price text-center">
+              <span *ngIf="license.salePrice > 0" class="before">{{license.price | currency}}</span>
+              <span *ngIf="license.salePrice > 0" class="after">{{license.salePrice | currency}}</span>
+              <span *ngIf="license.salePrice === 0">{{license.price | currency}}</span>
+              <a *ngIf="license.quantity > 0" class="btn btn-sm float-right" (click)="addLicense(license)" id="buy">
+                Add to cart
               </a>
             </p>
           </div>

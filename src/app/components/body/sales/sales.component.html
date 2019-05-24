@@ -71,7 +71,7 @@
           <p class="price">
             <span class="before">{{license.price | currency}}</span>
             <span class="after">{{license.salePrice | currency}}</span>
-            <a class="btn btn-sm float-right" id="buy2" (click)="addLicense(license)">
+            <a *ngIf="license.quantity > 0" class="btn btn-sm float-right" id="buy2" (click)="addLicense(license)">
               Buy
             </a>
           </p>

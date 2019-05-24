@@ -16,12 +16,12 @@
     <!--MYPAGE SETTINGS-->
     <li class="nav-item">
       <a class="nav-link text-secondary" id="account-tab" data-toggle="tab" href="#account" role="tab"
-         aria-controls="contact" aria-selected="ture">My Account</a>
+         aria-controls="contact" aria-selected="false">My Account</a>
     </li>
 
     <li class="nav-item">
       <a class="nav-link text-secondary" id="subscriptions-tab" data-toggle="tab" href="#subscriptions" role="tab"
-         aria-controls="contact" aria-selected="false">Active subscriptions</a>
+         aria-controls="contact" aria-selected="true">Active subscriptions</a>
     </li>
 
   </ul>
@@ -44,8 +44,8 @@
       <app-mypage-settings></app-mypage-settings>
     </div>
 
-    <div class="tab-pane fade" id="subscriptions" role="tabpanel" aria-labelledby="account-tab">
-      <app-my-subscriptions></app-my-subscriptions>
+    <div class="tab-pane fade show active" id="subscriptions" role="tabpanel" aria-labelledby="account-tab">
+      <app-my-subscriptions [uid]="currentUser.id"></app-my-subscriptions>
     </div>
   </div>
 </div>

@@ -5,6 +5,7 @@ import {License} from '../../models/products/license';
 import {map} from 'rxjs/operators';
 import {MessageService} from '../message.service';
 import {alerts} from '../../models/alerts';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +54,22 @@ export class LicenseService {
       this.afs.collection('licenses').doc(license.id).delete();
       this.messageService.add(license.title + ' was successfully deleted!', alerts.success);
     }
+  }
+
+  update(license: License, newLicense: License) {
+    const oldLicense = JSON.parse(JSON.stringify(license));
+    this.afs.collection('licenses').doc(license.id).update(newLicense);
+    this.afs.collection('sales').ref.where('saleObjects', 'array-contains', oldLicense).get()
+      .then(res => {
+        res.docs.map(docs => {
+          docs.ref.update({
+            saleObjects: firebase.firestore.FieldValue.arrayRemove(oldLicense)
+          });
+          docs.ref.update({
+            saleObjects: firebase.firestore.FieldValue.arrayUnion(Object.assign({}, newLicense))
+          });
+        });
+      });
   }
 }
 
