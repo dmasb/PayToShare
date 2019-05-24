@@ -17,11 +17,10 @@
         </p>
         <p class="card-text ">{{product.description}}</p>
         <div class="container ml-4">
-          <app-star-review (click)="click(product, userId)" [productId]="product.title"
-                           [userId]="userId"></app-star-review>
+          <app-star-review (click)="consLog(product.id)" [productId]="productID" [userId]="userId"></app-star-review>
           <!--  Need to add [userId]="user.id" or something -->
-
         </div>
+        <p>Rating: {{getObjectRating(product.id)}}</p>
         <br>
       </div>
       <div class="card-footer text-center">

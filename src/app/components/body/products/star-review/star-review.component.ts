@@ -1,8 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { StarService } from "../../../../services/product/star.service";
-import { Observable } from "rxjs";
-import { from } from 'rxjs';
-import { map, filter, catchError, mergeMap } from 'rxjs/operators';
+import {StarService} from '../../../../services/product/star.service';
+import {Observable} from 'rxjs';
+import {from} from 'rxjs';
+import {map, filter, catchError, mergeMap} from 'rxjs/operators';
+import {Product} from '../../../../models/products/product';
+import {Rating} from '../../../../models/rating';
 
 @Component({
   selector: 'app-star-review',
@@ -12,32 +14,34 @@ import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 
 export class StarReviewComponent implements OnInit {
 
-  @Input() productId;
-  @Input() userId;
+  @Input() private productId;
+  @Input() private userId;
 
-
-  stars: Observable<any>;
-  avgRating: Observable<any>;
-
+  private stars: Observable<any>;
+  private avgRating: Observable<any>;
+  private ratings: Rating[];
 
   constructor(private starService: StarService) {
   }
 
 
   ngOnInit() {
+    this.starService.getRatings().subscribe(ratings => this.ratings = ratings);
     this.stars = this.starService.getProductStars(this.productId);
-
-    // Should be this.stars.map(>>>>>   I added pipe(map(>>> instead for the meanwhile.
-    this.avgRating = this.stars.pipe(map(arr => {
-      const ratings = arr.map(v => v.value);
-      return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'Not reviewed';
-    }));
+    if (this.stars) {
+      console.log('Stars: ' + this.stars);
+      // Should be this.stars.map(>>>>>   I added pipe(map(>>> instead for the meanwhile.
+      this.avgRating = this.stars.pipe(map(arr => {
+        const ratings = arr.map(v => v.value);
+        return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'Not reviewed';
+      }));
+    }
   }
 
 
   starHandler(value) {
-    // this.starService.setStar(this.userId, this.productId, value);
-    console.log(this.productId + ' ' + this.userId);
+    this.starService.setRating(this.userId, this.productId, value);
+    console.log(this.productId);
+    console.log(this.userId);
   }
-
 }

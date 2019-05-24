@@ -3,6 +3,8 @@ import {ProductsService} from '../../../services/crud/products.service';
 import {Product} from '../../../models/products/product';
 import {UserSessionService} from '../../../services/user-session.service';
 import {Cart} from '../../../models/products/cart';
+import {StarService} from '../../../services/product/star.service';
+import {Rating} from '../../../models/rating';
 
 @Component({
   selector: 'app-products',
@@ -16,14 +18,16 @@ export class ProductsComponent implements OnInit {
   private cart: Cart;
   private userId: string;
   private prodId: any;
-  currentRate = 4;
+  private ratings: Rating[];
 
   constructor(private productsService: ProductsService,
-              private session: UserSessionService) {
+              private session: UserSessionService,
+              private starService: StarService) {
   }
 
   ngOnInit() {
     this.cart = new Cart();
+    this.starService.getRatings().subscribe(ratings => this.ratings = ratings);
     this.productsService.getProductsByTag([]).subscribe(products => this.products = products);
     this.session.getUserDoc().subscribe(user => {
       this.userId = user.id;
@@ -31,18 +35,18 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  consLog(productId, userId) {
-    console.log(productId + " " + userId);
-
-  }
-  setProdId(productId) {
+  consLog(productId) {
     this.prodId = productId;
   }
-  getProdId() {
+
+  get productID() {
     return this.prodId;
   }
 
-  click(product: Product, id: string) {
-    console.log(product.title + ' ' + id);
+  getObjectRating(objectID: string): number {
+
+    const objectRatings = this.ratings.filter(res => res.objectID === objectID);
+    const numberArray = objectRatings.map(r => r.value);
+    return numberArray.length ? numberArray.reduce((total, val) => total + val) / numberArray.length : 0;
   }
 }
