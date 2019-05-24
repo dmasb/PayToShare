@@ -1,5 +1,5 @@
 <div class="col-sm-12 d-flex justify-content-center" *ngFor="let sale of planSale">
-  <div class="row">
+  <div class="row mt-5">
     <h1 class="col-sm-12 text-center">{{sale.name}} {{sale.discount}}%</h1>
     <h3 class="col-sm-12 text-center">{{getDaysLeft(sale.ends)}}</h3>
     <div class="col" id="products" *ngFor="let plan of unpackPlans(sale.saleObjects)">

@@ -45,7 +45,8 @@ export class LicenseService {
    * @param license
    */
   async confirmDelete(license: License) {
-    const usedInPlans = await this.afs.collection('plans').ref.where('licenses', 'array-contains', license)
+    const temp = JSON.parse(JSON.stringify(license));
+    const usedInPlans = await this.afs.collection('sales').ref.where('saleObjects', 'array-contains', temp)
       .get().then(res => {
         return !res.empty as boolean;
       });
