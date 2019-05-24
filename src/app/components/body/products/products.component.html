@@ -16,12 +16,27 @@
           </span>
         </p>
         <p class="card-text ">{{product.description}}</p>
-        <div class="container ml-4">
+        <div class="container" id="leftmargin">
           <app-star-review (click)="consLog(product.id)" [productId]="productID" [userId]="userId"></app-star-review>
           <!--  Need to add [userId]="user.id" or something -->
         </div>
-        <p>Rating: {{getObjectRating(product.id)}}</p>
-        <br>
+        <br><br>
+
+        <div class="container text-center" *ngIf="getObjectRating(product.id) === 0">
+          <span class="badge badge-dark px-2 pt-2">
+            <h6 class="text-white">
+               No Reviews
+            </h6>
+          </span>
+        </div>
+        <div class="container text-center" *ngIf="getObjectRating(product.id) !== 0">
+          <span class="badge badge-dark px-2 pt-2">
+            <h6 class="text-white">
+              Rating:  {{getObjectRating(product.id)}}/5
+            </h6>
+          </span>
+        </div>
+
       </div>
       <div class="card-footer text-center">
         <p class="price">Format:{{product.format.name}}
