@@ -43,7 +43,7 @@
         <div class="container text-center" *ngIf="getObjectRating(product.id) !== 0">
           <span class="badge badge-dark px-2 pt-2">
             <h6 class="text-white">
-              Rating:  {{getObjectRating(product.id)}}/5
+              Rating:  {{getObjectRating(product.id) | number: '1.1-1'}}/5
             </h6>
           </span>
         </div>
