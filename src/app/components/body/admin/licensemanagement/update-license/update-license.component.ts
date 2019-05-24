@@ -1,8 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ProductsService} from '../../../../../services/crud/products.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {Product} from '../../../../../models/products/product';
 import {Tag} from '../../../../../models/products/tag';
 import {TagService} from '../../../../../services/product/tag.service';
 import {Format} from '../../../../../models/products/format';
