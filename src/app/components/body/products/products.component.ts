@@ -32,12 +32,11 @@ export class ProductsComponent implements OnInit {
 
   consLog(productId, userId) {
     console.log(productId + " " + userId);
+    this.prodId = productId;
 
   }
-  setProdId(productId) {
-    this.prodId = productId;
-  }
-  getProdId() {
+
+  get productId() {
     return this.prodId;
   }
 }

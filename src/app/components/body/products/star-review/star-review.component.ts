@@ -26,7 +26,7 @@ export class StarReviewComponent implements OnInit {
 
   ngOnInit() {
     this.stars = this.starService.getProductStars(this.productId);
-
+    console.log("Stars: " + this.stars);
     // Should be this.stars.map(>>>>>   I added pipe(map(>>> instead for the meanwhile.
     this.avgRating = this.stars.pipe(map(arr => {
       const ratings = arr.map(v => v.value)
