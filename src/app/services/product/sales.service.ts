@@ -76,18 +76,18 @@ export class SalesService {
       const plans = sale.saleObjects as Plan[];
       for (const plan of plans) {
         this.afs.collection('plans').doc(plan.id).update({
-          salePrice: plan.price - (sale.discount / 100) * plan.price
+          salePrice: plan.price - (plan.price * (sale.discount / 100))
         });
-        plan.salePrice = plan.price - (sale.discount / 100) * plan.price;
+        plan.salePrice = plan.price - (plan.price * (sale.discount / 100));
       }
       sale.saleObjects = plans;
     } else if (sale.type === SaleType.LICENSE) {
       const licenses = sale.saleObjects as License[];
       for (const license of licenses) {
         this.afs.collection('licenses').doc(license.id).update({
-          salePrice: license.price - (sale.discount / 100) * license.price
+          salePrice: license.price - (license.price * (sale.discount / 100))
         });
-        license.salePrice = license.price - (sale.discount / 100) * license.price;
+        license.salePrice = license.price - (license.price * (sale.discount / 100));
       }
       sale.saleObjects = licenses;
     }

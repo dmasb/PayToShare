@@ -6,6 +6,7 @@ import {map} from 'rxjs/operators';
 import {MessageService} from '../message.service';
 import {alerts} from '../../models/alerts';
 import * as firebase from 'firebase';
+import * as cloneDeep from 'lodash/cloneDeep';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +45,8 @@ export class LicenseService {
    * @param license
    */
   async confirmDelete(license: License) {
-    const usedInPlans = await this.afs.collection('plans').ref.where('licenses', 'array-contains', license)
+    const temp = JSON.parse(JSON.stringify(license));
+    const usedInPlans = await this.afs.collection('sales').ref.where('saleObjects', 'array-contains', temp)
       .get().then(res => {
         return !res.empty as boolean;
       });
@@ -58,18 +60,22 @@ export class LicenseService {
 
   update(license: License, newLicense: License) {
     const oldLicense = JSON.parse(JSON.stringify(license));
-    this.afs.collection('licenses').doc(license.id).update(newLicense);
     this.afs.collection('sales').ref.where('saleObjects', 'array-contains', oldLicense).get()
       .then(res => {
         res.docs.map(docs => {
           docs.ref.update({
             saleObjects: firebase.firestore.FieldValue.arrayRemove(oldLicense)
           });
+          const newLic = JSON.parse(JSON.stringify(newLicense));
           docs.ref.update({
-            saleObjects: firebase.firestore.FieldValue.arrayUnion(Object.assign({}, newLicense))
+            saleObjects: firebase.firestore.FieldValue.arrayUnion(newLic)
           });
         });
       });
+    this.afs.collection('licenses').doc(license.id).update(newLicense);
+    this.afs.collection('licenses').doc(license.id).update({
+      id: firebase.firestore.FieldValue.delete()
+    });
   }
 }
 

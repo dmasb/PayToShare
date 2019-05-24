@@ -44,9 +44,27 @@ export class ProductsComponent implements OnInit {
   }
 
   getObjectRating(objectID: string): number {
+    if (this.ratings) {
+      const objectRatings = this.ratings.filter(res => res.objectID === objectID);
+      const numberArray = objectRatings.map(r => r.value);
+      return numberArray.length ? numberArray.reduce((total, val) => total + val) / numberArray.length : 0;
+    }
+  }
 
-    const objectRatings = this.ratings.filter(res => res.objectID === objectID);
-    const numberArray = objectRatings.map(r => r.value);
-    return numberArray.length ? numberArray.reduce((total, val) => total + val) / numberArray.length : 0;
+  sort() {
+    const selectedOption = (document.getElementById('sortSales') as HTMLSelectElement);
+
+    switch (selectedOption.value) {
+      case 'Asc': {
+        console.log('asc');
+        this.products.sort((a, b) => (this.getObjectRating(a.id) > this.getObjectRating(b.id) ? -1 : 1));
+        break;
+      }
+      case 'Desc': {
+        console.log('Desc');
+        this.products.sort((a, b) => (this.getObjectRating(a.id) < this.getObjectRating(b.id) ? -1 : 1));
+        break;
+      }
+    }
   }
 }
