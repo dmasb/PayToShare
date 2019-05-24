@@ -71,7 +71,6 @@ export class UpdateLicenseComponent implements OnInit {
     newLicense.title = this.updateLicenseForm.controls.licenseName.value || this.license.title;
     newLicense.tag = tag || this.license.tag;
     newLicense.format = format || this.license.format;
-    newLicense.salePrice = this.license.salePrice;
     newLicense.description = this.updateLicenseForm.controls.licenseDescription.value || this.license.description;
     newLicense.price = this.updateLicenseForm.controls.licensePrice.value || this.license.price;
     newLicense.quantity = this.updateLicenseForm.controls.licenseQuantity.value || this.license.quantity;

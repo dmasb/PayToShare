@@ -44,9 +44,10 @@ export class ProductsComponent implements OnInit {
   }
 
   getObjectRating(objectID: string): number {
-
-    const objectRatings = this.ratings.filter(res => res.objectID === objectID);
-    const numberArray = objectRatings.map(r => r.value);
-    return numberArray.length ? numberArray.reduce((total, val) => total + val) / numberArray.length : 0;
+    if (this.ratings) {
+      const objectRatings = this.ratings.filter(res => res.objectID === objectID);
+      const numberArray = objectRatings.map(r => r.value);
+      return numberArray.length ? numberArray.reduce((total, val) => total + val) / numberArray.length : 0;
+    }
   }
 }
