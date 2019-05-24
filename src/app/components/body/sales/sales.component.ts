@@ -63,6 +63,12 @@ export class SalesComponent implements OnInit {
     if (this.user) {
       this.userSessionService.updateCart(this.cart);
     }
+    const x = document.getElementById('myDiv');
+    x.style.display = 'block';
+    setTimeout(() => {
+      x.style.display = 'none';
+      console.log('tick');
+    }, 1000);
   }
 
   addPlan(plan: Plan) {

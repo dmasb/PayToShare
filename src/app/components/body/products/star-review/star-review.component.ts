@@ -1,9 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {StarService} from '../../../../services/product/star.service';
 import {Observable} from 'rxjs';
-import {from} from 'rxjs';
-import {map, filter, catchError, mergeMap} from 'rxjs/operators';
-import {Product} from '../../../../models/products/product';
+import {map} from 'rxjs/operators';
 import {Rating} from '../../../../models/rating';
 
 @Component({
@@ -30,13 +28,13 @@ export class StarReviewComponent implements OnInit {
     this.stars = this.starService.getProductStars(this.productId);
     if (this.stars) {
       console.log('Stars: ' + this.stars);
-      // Should be this.stars.map(>>>>>   I added pipe(map(>>> instead for the meanwhile.
       this.avgRating = this.stars.pipe(map(arr => {
         const ratings = arr.map(v => v.value);
         return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'Not reviewed';
       }));
     }
   }
+
 
 
   starHandler(value) {
