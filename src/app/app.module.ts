@@ -48,9 +48,29 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {PlanOverviewComponent} from './components/body/admin/planmanagement/plan-overview/plan-overview.component';
 import {DeletePlanComponent} from './components/body/admin/planmanagement/delete-plan/delete-plan.component';
 import {ImageUploadTemplateComponent} from './components/body/admin/image-upload-template/image-upload-template.component';
-import {DotdOverviewComponent} from './components/body/admin/dotd-management/dotd-overview/dotd-overview.component';
-import {AddDotdComponent} from './components/body/admin/dotd-management/add-dotd/add-dotd.component';
 import {SalesComponent} from './components/body/sales/sales.component';
+import {AddTagSaleComponent} from './components/body/admin/salemanegement/add-tag-sale/add-tag-sale.component';
+import {AddPlanSaleComponent} from './components/body/admin/salemanegement/add-plan-sale/add-plan-sale.component';
+import {SaleOverviewComponent} from './components/body/admin/salemanegement/sale-overview/sale-overview.component';
+import {DeleteSaleComponent} from './components/body/admin/salemanegement/delete-sale/delete-sale.component';
+import {PlanComponent} from './components/body/plan/plan.component';
+import {CartdropdownComponent} from './components/navbar/cartdropdown/cartdropdown.component';
+import {CollectionComponent} from './components/body/collection/collection.component';
+import {StarReviewComponent} from './components/body/products/star-review/star-review.component';
+import {CheckoutComponent} from './components/body/checkout/CartOverview/checkout.component';
+import {MypageOverviewComponent} from './components/body/mypage/mypage-overview/mypage-overview.component';
+import {MypageSettingsComponent} from './components/body/mypage/settings/mypage-settings/mypage-settings.component';
+import {MypageOrdersComponent} from './components/body/mypage/orders/mypage-orders/mypage-orders.component';
+import {MypageMycartComponent} from './components/body/mypage/mycart/mypage-mycart/mypage-mycart.component';
+import {OrderConfirmedComponent} from './components/body/checkout/order-confirmed/order-confirmed.component';
+import {LicensesComponent} from './components/body/licenses/licenses.component';
+import {FrontPageComponent} from './components/body/front-page/front-page.component';
+import {AddLicenseSaleComponent} from './components/body/admin/salemanegement/add-license-sale/add-license-sale.component';
+import {OrdersComponent} from './components/body/orders/orders.component';
+import {SearchbarComponent} from './components/navbar/searchbar/searchbar.component';
+import {SearchListComponent} from './components/body/search-list/search-list.component';
+import { MySubscriptionsComponent } from './components/body/mypage/my-subscriptions/my-subscriptions.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -88,9 +108,28 @@ import {SalesComponent} from './components/body/sales/sales.component';
     PlanOverviewComponent,
     DeletePlanComponent,
     ImageUploadTemplateComponent,
-    DotdOverviewComponent,
-    AddDotdComponent,
     SalesComponent,
+    AddTagSaleComponent,
+    AddPlanSaleComponent,
+    SaleOverviewComponent,
+    DeleteSaleComponent,
+    PlanComponent,
+    CartdropdownComponent,
+    CollectionComponent,
+    StarReviewComponent,
+    CheckoutComponent,
+    MypageOverviewComponent,
+    MypageSettingsComponent,
+    MypageOrdersComponent,
+    MypageMycartComponent,
+    OrderConfirmedComponent,
+    LicensesComponent,
+    FrontPageComponent,
+    AddLicenseSaleComponent,
+    OrdersComponent,
+    SearchbarComponent,
+    SearchListComponent,
+    MySubscriptionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -108,7 +147,7 @@ import {SalesComponent} from './components/body/sales/sales.component';
     NgbModule,
 
   ],
-  providers: [AngularFireDatabase, DecimalPipe, NgbActiveModal],
+  providers: [AngularFireDatabase, DecimalPipe, NgbActiveModal, CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {

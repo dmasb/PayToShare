@@ -1,9 +1,10 @@
 import {Injectable, OnInit} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
-import {IUser} from '../models/user';
-import {Observable} from 'rxjs';
-import {FormGroup} from "@angular/forms";
+import {IUser, User} from '../models/user';
+import {Observable, of} from 'rxjs';
+import {Cart} from '../models/products/cart';
+import {switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,6 @@ import {FormGroup} from "@angular/forms";
 
 export class UserSessionService implements OnInit {
 
-  private user$: Observable<IUser>;
   private userID;
   private collection;
 
@@ -23,25 +23,35 @@ export class UserSessionService implements OnInit {
     this.collection = this.afs.collection('users');
   }
 
-  currentUser(): Observable<IUser> {
-    if (this.afAuth.auth.currentUser) {
-      this.userID = this.afAuth.auth.currentUser.uid;
-      // We make a new fetch of the user document to avoid type-casting from IUser to observable<IUser>
-      this.user$ = this.afs.doc<IUser>(`users/${this.userID}`).valueChanges();
-      return this.user$;
-    }
-    return null;
+  getUserDoc(): Observable<User> {
+    return this.afAuth.authState.pipe(
+      switchMap(user => {
+        if (user) {
+          // Fetch the user document and listen to value changes.
+          return this.afs.doc<IUser>(`users/${user.uid}`).valueChanges();
+        } else {
+          // This should never happen!
+          return of(null);
+        }
+      })
+    );
   }
 
-  updateUser(updatedUser: IUser): boolean{
-    let userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${this.userID}`);
+
+  updateUser(updatedUser: IUser): boolean {
+    const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${this.userID}`);
     userRef.ref.get().then(userDocument => {
       if (userDocument.exists) {
         userRef.update(Object.assign({}, updatedUser));
         return true;
       }
-  })
+    });
     return false;
-  };
+  }
 
+  async updateCart(cart: Cart) {
+    await this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update({
+      cart: Object.assign({}, cart)
+    });
+  }
 }

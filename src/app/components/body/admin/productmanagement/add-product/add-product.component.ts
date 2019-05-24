@@ -23,7 +23,6 @@ export class AddProductComponent implements OnInit {
   private tags: Tag[];
   private formats: Format[];
   private selectedTags: Tag[] = [];
-
   private newProductForm = new FormGroup({
     productTitle: new FormControl(''),
     productTag: new FormControl(''),
@@ -48,31 +47,35 @@ export class AddProductComponent implements OnInit {
   }
 
   pushTag() {
-
-    const selected: Tag = JSON.parse(this.newProductForm.controls.productTag.value);
-    if (this.selectedTags.findIndex(obj => obj.id === selected.id) === -1 && selected.id) {
-      this.selectedTags.push(selected);
+    if (this.newProductForm.controls.productTag.value) {
+      const selected: Tag = JSON.parse(this.newProductForm.controls.productTag.value);
+      if (this.selectedTags.findIndex(obj => obj.id === selected.id) === -1 && selected.id) {
+        this.selectedTags.push(selected);
+      }
     }
-    console.log('####################');
-    this.selectedTags.forEach(s => console.log(s));
-    console.log('####################');
   }
 
-  popTag(selectedTag: object) {
+  popTag(selectedTag: Tag) {
     this.selectedTags = this.selectedTags.filter(tag => tag !== selectedTag);
   }
 
+
   addProduct() {
-    const product: Product = {
-      title: this.newProductForm.controls.productTitle.value,
-      tags: this.selectedTags,
-      format: this.newProductForm.controls.productFormat.value,
-      description: this.newProductForm.controls.productDescription.value,
-      price: this.newProductForm.controls.productPrice.value,
-      quantity: this.newProductForm.controls.productQuantity.value,
-      imageUrl: this.getImageUrl() || 'https://firebasestorage.googleapis.com/v0/b/paytoshare-b4cd1.appspot.com/o/' +
-        'productImage%2Fitemimg.svg?alt=media&token=130ed9f0-6e1a-4d93-abf3-62d77de18599'
-    };
+
+    const productTags: string[] = [];
+    this.selectedTags.forEach(tag => productTags.push(tag.id));
+    const format: Format = JSON.parse(this.newProductForm.controls.productFormat.value);
+
+    const product = new Product();
+    product.title = this.newProductForm.controls.productTitle.value;
+    product.tags = this.selectedTags;
+    product.format = format;
+    product.description = this.newProductForm.controls.productDescription.value;
+    product.price = this.newProductForm.controls.productPrice.value;
+    product.quantity = this.newProductForm.controls.productQuantity.value;
+    product.imageUrl = this.getImageUrl() || product.imageUrl;
+
+
     this.productsService.addProduct(product);
     this.selectedTags = [];
     this.modalService.dismissAll();
@@ -108,3 +111,4 @@ export class AddProductComponent implements OnInit {
     return this.uploadImageService.getImageUrl();
   }
 }
+

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {IUser} from "../../../models/user";
+import {IUser, User} from '../../../models/user';
 import {UserSessionService} from '../../../services/user-session.service';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-mypage',
@@ -10,11 +10,19 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class MypageComponent implements OnInit {
 
-  isAdmin: string;
-  currentUser: IUser = null;
-  profileUpdated: boolean = false;
-  userLoaded = false;
-  profile: FormGroup;
+  private isAdmin: string;
+  private currentUser: User = null;
+  private profileUpdated = false;
+  private userLoaded = false;
+
+  private profile = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    address: new FormControl(''),
+    city: new FormControl(''),
+    zipcode: new FormControl(''),
+    country: new FormControl('')
+  });
   error = false;
 
 
@@ -23,13 +31,12 @@ export class MypageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.session.currentUser().subscribe(user => {
+    this.session.getUserDoc().subscribe(user => {
       if (user) {
         this.currentUser = user;
         this.profile = this.fb.group(user);
         this.userLoaded = true;
-      }
-      else{
+      } else {
         this.error = true;
       }
     });
@@ -39,14 +46,15 @@ export class MypageComponent implements OnInit {
     }
   }
 
-  updateFormValues(){
+  updateFormValues() {
     this.currentUser.firstName = this.profile.controls.firstName.value;
     this.currentUser.lastName = this.profile.controls.lastName.value;
     this.currentUser.address = this.profile.controls.address.value;
     this.currentUser.city = this.profile.controls.city.value;
-    this.currentUser.country = this.profile.controls.country.value;
     this.currentUser.zipcode = this.profile.controls.zipcode.value;
+    this.currentUser.country = this.profile.controls.country.value;
   }
+
   onSubmit() {
     this.updateFormValues();
     this.session.updateUser(this.currentUser);
@@ -54,6 +62,6 @@ export class MypageComponent implements OnInit {
   }
 
   isAdminString() {
-    return this.currentUser.rank == 2 ? 'Admin': 'User';
+    return this.currentUser.rank === 2 ? 'Admin' : 'User';
   }
 }

@@ -11,13 +11,13 @@
         <div class="form-group col-md-6">
           <label for="productTitle">Product title</label>
           <input type="text" class="form-control" id="productTitle"
-                 formControlName="productTitle" [(ngModel)]="title">
+                 formControlName="productTitle" [value]="product.title">
         </div>
         <label for="productTag">Product Tags</label>
         <select class="form-control" id="productTag" formControlName="productTag" (click)="pushTag()">
           <option value="" selected disabled hidden>Choose here</option>
-          <option *ngFor="let t of tags" [value]="t | json">
-            {{t.name}}
+          <option *ngFor="let tag of tags" [value]="tag | json">
+            {{tag.name}}
           </option>
         </select>
       </div>
@@ -25,18 +25,18 @@
         <div class="form-group col-md-6">
           <label for="productPrice">Product Price</label>
           <input type="number" class="form-control" id="productPrice"
-                 formControlName="productPrice" [(ngModel)]="price">
+                 formControlName="productPrice" [value]="product.price">
         </div>
         <div class="form-group col-md-6">
           <label for="productQuantity">Product Quantity</label>
           <input type="number" class="form-control" id="productQuantity"
-                 formControlName="productQuantity" [(ngModel)]="quantity">
+                 formControlName="productQuantity" [value]="product.quantity">
         </div>
       </div>
       <label for="productFormat">Product Format</label>
       <select class="form-control" id="productFormat" formControlName="productFormat">
         <option value="" selected disabled hidden>Choose here</option>
-        <option *ngFor="let format of formats" [value]="format.name">
+        <option *ngFor="let format of formats" [value]="format | json">
           {{format.name}}
         </option>
       </select>
@@ -44,7 +44,7 @@
         <div class="form-group col">
           <label for="productDescription">Product Description</label>
           <input type="text" class="form-control" id="productDescription"
-                 formControlName="productDescription" [(ngModel)]="description">
+                 formControlName="productDescription" [value]="product.description">
         </div>
       </div>
       <div class="file">

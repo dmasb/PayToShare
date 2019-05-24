@@ -4,37 +4,37 @@
     <!--PLAN MANAGEMENT-->
     <li class="nav-item">
       <a class="nav-link text-secondary" id="plans-tab" data-toggle="tab" href="#plans" role="tab"
-         aria-controls="contact" aria-selected="false">Plans</a>
+         aria-controls="contact" aria-selected="false" (click)="messageService.clear()">Plans</a>
     </li>
 
     <!--LICENSE MANAGEMENT-->
     <li class="nav-item">
       <a class="nav-link text-secondary" id="licenses-tab" data-toggle="tab" href="#licenses" role="tab"
-         aria-controls="contact" aria-selected="false">Licenses</a>
+         aria-controls="contact" aria-selected="false" (click)="messageService.clear()">Licenses</a>
     </li>
 
     <!--FORMAT MANAGEMENT-->
     <li class="nav-item">
       <a class="nav-link text-secondary" id="formats-tab" data-toggle="tab" href="#formats" role="tab"
-         aria-controls="contact" aria-selected="false">Formats</a>
+         aria-controls="contact" aria-selected="false" (click)="messageService.clear()">Formats</a>
     </li>
 
     <!--PRODUCT MANAGEMENT-->
     <li class="nav-item">
       <a class="nav-link text-secondary active" id="products-tab" data-toggle="tab" href="#products" role="tab"
-         aria-controls="home" aria-selected="false">Products</a>
+         aria-controls="home" aria-selected="false" (click)="messageService.clear()">Products</a>
     </li>
 
     <!--TAG MANAGEMENT-->
     <li class="nav-item">
       <a class="nav-link text-secondary" id="tags-tab" data-toggle="tab" href="#tags" role="tab"
-         aria-controls="profile" aria-selected="false">Tags</a>
+         aria-controls="profile" aria-selected="false" (click)="messageService.clear()">Tags</a>
     </li>
 
      <!--DOTD MANAGEMENT-->
      <li class="nav-item">
-      <a class="nav-link text-secondary" id="dotd-tab" data-toggle="tab" href="#dotd" role="tab"
-         aria-controls="contact" aria-selected="false">Sales</a>
+      <a class="nav-link text-secondary" id="sales-tab" data-toggle="tab" href="#sales" role="tab"
+         aria-controls="contact" aria-selected="false" (click)="messageService.clear()">Sales</a>
     </li>
   </ul>
 
@@ -67,8 +67,8 @@
     </div>
 
      <!--DOTD MANAGEMENT-->
-     <div class="tab-pane fade" id="dotd" role="tabpanel" aria-labelledby="dotd-tab">
-      <app-dotd-overview></app-dotd-overview>
+     <div class="tab-pane fade" id="sales" role="tabpanel" aria-labelledby="sales-tab">
+       <app-sale-overview></app-sale-overview>
     </div>
 
   </div>

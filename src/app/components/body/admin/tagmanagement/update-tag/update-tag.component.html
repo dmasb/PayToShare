@@ -11,12 +11,12 @@
         <div class="form-group col-md-6">
           <label for="categoryId">Tag ID</label>
           <input type="text" class="form-control" id="categoryId" placeholder="Tag ID"
-                 formControlName="tagID" [(ngModel)]="id" disabled>
+                 formControlName="tagID" [value]="tag.id" disabled>
         </div>
         <div class="form-group col-md-6">
           <label for="categoryName">Tag Name</label>
           <input type="text" class="form-control" id="categoryName" placeholder="Tag Name"
-                 formControlName="tagName" [(ngModel)]="name">
+                 formControlName="tagName" [value]="tag.name">
         </div>
       </div>
       <div class="modal-footer">

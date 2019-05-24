@@ -2,9 +2,12 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Tag} from '../../models/products/tag';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {firestore} from 'firebase/app';
-import Timestamp = firestore.Timestamp;
 import {map} from 'rxjs/operators';
+import {MessageService} from '../message.service';
+import {alerts} from '../../models/alerts';
+import * as firebase from 'firebase';
+import * as cloneDeep from 'lodash/cloneDeep';
+import {License} from '../../models/products/license';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +15,9 @@ import {map} from 'rxjs/operators';
 export class TagService {
 
   private tags: Observable<Tag[]>;
-  private tagBeingDeleted: string;
 
-  constructor(private afs: AngularFirestore) {
-    this.tagBeingDeleted = null;
+  constructor(private afs: AngularFirestore,
+              private messageService: MessageService) {
   }
 
   getTags(): Observable<Tag[]> {
@@ -31,51 +33,54 @@ export class TagService {
     );
   }
 
-  getTagDoc(tagID: string) {
-    return this.afs.doc(`tags/${tagID}`);
+  addTag(tag: Tag) {
+    this.afs.collection('tags').add(Object.assign({}, tag));
   }
 
-  getTagJson(tagID: string) {
-    return this.afs.doc(`tags/${tagID}`).ref.get().then(tag => {
-      return {
-        id: tag.id,
-        ...tag.data()
-      } as Tag;
-    });
-  }
+  async confirmDelete(tag: Tag) {
 
-  addTag(tagName: string) {
-    const tag: Tag = {
-      name: tagName,
-      products: 0,
-      created: Timestamp.now()
-    };
+    const usedInLicenses = await this.afs.collection('licenses').ref.where('tag', '==', tag)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
 
-    this.afs.collection('tags').add(tag);
-  }
+    const usedInProducts = await this.afs.collection('products').ref.where('tags', 'array-contains', tag)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
 
-  available(tagID: string): boolean {
-    if (this.tagBeingDeleted === null) {
-      this.tagBeingDeleted = tagID;
-      return true;
+    if (usedInLicenses) {
+      this.messageService.add(tag.name + ' is included in a license, remove license first', alerts.danger);
+    } else if (usedInProducts) {
+      this.messageService.add(tag.name + ' is included in products, remove products tagged with this tag first', alerts.danger);
     } else {
-      return false;
+      this.afs.collection('tags').doc(tag.id).delete();
+      this.messageService.add(tag.name + ' was successfully removed!', alerts.success);
     }
   }
 
-  remove() {
-    this.afs.doc(`tags/${this.tagBeingDeleted}`).delete();
-    this.tagBeingDeleted = null;
-  }
+  async updateTag(oldTag: Tag, newTag: Tag) {
+    console.log(oldTag);
+    console.log(newTag);
+    const usedInProducts = await this.afs.collection('products').ref.where('tags', 'array-contains', oldTag)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
 
-  cancel() {
-    this.tagBeingDeleted = null;
-  }
+    const usedInLicenses = await this.afs.collection('licenses').ref.where('tag', '==', oldTag)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
 
-  updateTag(tagID: string, tagName: string) {
-    this.afs.doc(`tags/${tagID}`).update({
-      name: tagName
-    });
+    if (usedInLicenses) {
+      this.messageService.add(oldTag.name + ' is included in a license, remove license first', alerts.danger);
+    } else if (usedInProducts) {
+      this.messageService.add(oldTag.name + ' is included in products, remove products tagged with this tag first', alerts.danger);
+    } else {
+      this.afs.collection('tags').doc(oldTag.id).update({
+        name: newTag.name
+      });
+      this.messageService.add(oldTag.name + ' was successfully removed!', alerts.success);
+    }
   }
 }
-

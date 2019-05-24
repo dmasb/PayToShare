@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Format} from '../../models/products/format';
-import {firestore} from 'firebase/app';
-import Timestamp = firestore.Timestamp;
 import {map} from 'rxjs/operators';
+import {MessageService} from '../message.service';
+import {alerts} from '../../models/alerts';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +12,9 @@ import {map} from 'rxjs/operators';
 export class FormatService {
 
   private formats: Observable<Format[]>;
-  private formatBeingDeleted: string;
 
-  constructor(private afs: AngularFirestore) {
-    this.formatBeingDeleted = null;
+  constructor(private afs: AngularFirestore,
+              private messageService: MessageService) {
   }
 
   getFormats(): Observable<Format[]> {
@@ -31,51 +30,56 @@ export class FormatService {
     );
   }
 
-  getFormatDoc(formatID: string) {
-    return this.afs.doc(`formats/${formatID}`);
+  addFormat(format: Format) {
+    this.afs.collection('formats').add(Object.assign({}, format));
+    this.messageService.add(format.name + ' was successfully added!', alerts.success);
   }
 
-  getFormatJson(formatID: string) {
-    return this.afs.doc(`formats/${formatID}`).ref.get().then(format => {
-      return {
-        id: format.id,
-        ...format.data()
-      } as Format;
-    });
-  }
 
-  addTag(formatName: string) {
+  async confirmDelete(format: Format) {
 
-    const format: Format = {
-      name: formatName,
-      created: Timestamp.now()
-    };
+    const usedInProducts = await this.afs.collection('products').ref.where('format', '==', format)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
 
-    this.afs.collection('formats').add(format);
-  }
+    const usedInLicenses = await this.afs.collection('licenses').ref.where('format', '==', format)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
 
-  available(formatID: string): boolean {
-    if (this.formatBeingDeleted === null) {
-      this.formatBeingDeleted = formatID;
-      return true;
+    if (usedInProducts) {
+      this.messageService.add(format.name + ' is used in products', alerts.danger);
+    } else if (usedInLicenses) {
+      this.messageService.add(format.name + ' is used in licenses', alerts.danger);
     } else {
-      return false;
+      this.afs.collection('formats').doc(format.id).delete();
+      this.messageService.add(format.name + ' was successfully deleted!', alerts.success);
     }
   }
 
-  remove() {
-    this.afs.doc(`formats/${this.formatBeingDeleted}`).delete();
-    this.formatBeingDeleted = null;
-  }
+  async updateFormat(oldFormat: Format, newFormat: Format) {
 
-  cancel() {
-    this.formatBeingDeleted = null;
-  }
+    const usedInProducts = await this.afs.collection('products').ref.where('format', '==', oldFormat)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
 
-  updateFormat(formatID: string, formatName: string) {
-    this.afs.doc(`formats/${formatID}`).update({
-      name: formatName
-    });
+    const usedInLicenses = await this.afs.collection('licenses').ref.where('format', '==', oldFormat)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
+
+    if (usedInProducts) {
+      this.messageService.add(oldFormat.name + ' is used in products', alerts.danger);
+    } else if (usedInLicenses) {
+      this.messageService.add(oldFormat.name + ' is used in licenses', alerts.danger);
+    } else {
+      this.afs.collection('formats').doc(oldFormat.id).update({
+        name: newFormat.name
+      });
+      this.messageService.add(oldFormat.name + ' was successfully deleted!', alerts.success);
+    }
   }
 }
 

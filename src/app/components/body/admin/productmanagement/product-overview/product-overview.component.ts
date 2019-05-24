@@ -12,9 +12,9 @@ export class ProductOverviewComponent implements OnInit {
   page = 1;
   pageSize = 4;
   name: any;
-  private products: Product[];
   collectionSize: number;
-  private selectedProducts: string[] = [];
+
+  private products: Product[];
 
   constructor(private productsService: ProductsService) {
   }
@@ -25,7 +25,7 @@ export class ProductOverviewComponent implements OnInit {
 
   sort() {
     const selectedOption = (document.getElementById('sortID') as HTMLSelectElement);
-
+    console.log(selectedOption);
     switch (selectedOption.value) {
       case 'Price': {
         this.products.sort((a, b) => (a.price > b.price) ? -1 : 1);
@@ -42,25 +42,7 @@ export class ProductOverviewComponent implements OnInit {
     }
   }
 
-
-  checkProduct(productID: string) {
-
-    if (this.selectedProducts.findIndex(id => id === productID) === -1 && productID) {
-      this.selectedProducts.push(productID);
-    } else {
-      this.selectedProducts = this.selectedProducts.filter(id => id !== productID);
-    }
-    console.log('###############################################');
-    this.selectedProducts.forEach(s => console.log(s));
-    console.log('###############################################');
-  }
-
-
   onSubmit() {
     // pages
-  }
-
-  markAsDeals() {
-    this.productsService.markAsDeals(this.selectedProducts);
   }
 }

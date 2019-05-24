@@ -1,14 +1,26 @@
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
-import {License} from './license';
-import {Tag} from './tag';
-import {Format} from './format';
+import {SaleType} from '../saleType';
 
-export interface Sale {
+export interface SaleModel {
   id?: string;
+  type: SaleType;
   name: string;
-  licenseRef: License;
-  tagRef: Tag;
-  formatRef: Format;
-  created: Timestamp;
+  begins: Timestamp;
+  ends: Timestamp;
+  discount: number;
+  saleObjects?: any[];
+}
+
+export class Sale implements SaleModel {
+  constructor() {
+  }
+
+  id?: string;
+  type: SaleType;
+  name: string;
+  begins: Timestamp;
+  ends: Timestamp;
+  discount: number;
+  saleObjects?: any[];
 }

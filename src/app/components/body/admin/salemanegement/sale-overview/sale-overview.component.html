@@ -1,0 +1,93 @@
+<div class="row mt-5">
+  <div class="col-3">
+    <div class="nav flex-column nav-pills mt-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+      <a (click)="messageService.clear()" class="btn btn-outline-dark text-left" id="v-pills-planSales-tab"
+         data-toggle="pill" href="#v-pills-planSales"
+         role="tab"
+         aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon:  plus-circle; ratio: 1"
+                                                                     class="mr-2"></span>Plan
+        sale</a>
+
+      <a (click)="messageService.clear()" class="btn btn-outline-dark text-left mt-2" id="v-pills-licenseSale-tab"
+         data-toggle="pill" href="#v-pills-licenseSale"
+         role="tab"
+         aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon:  plus-circle; ratio: 1"
+                                                                     class="mr-2"></span>License
+        sale</a>
+
+      <a (click)="messageService.clear()" class="btn btn-outline-dark text-left mt-2" id="v-pills-tagSales-tab"
+         data-toggle="pill"
+         href="#v-pills-tagSales"
+         role="tab"
+         aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon:  plus-circle; ratio: 1"
+                                                                     class="mr-2"></span>Tag
+        sale</a>
+
+      <a (click)="messageService.clear()" class="btn btn-outline-dark text-left mt-2 active"
+         id="v-pills-salesOverview-tab" data-toggle="pill"
+         href="#v-pills-salesOverview"
+         role="tab"
+         aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon: list; ratio: 1"
+                                                                     class="mr-2"></span>Overview</a>
+    </div>
+  </div>
+  <div class="col-9">
+    <div class="tab-content" id="v-pills-tabContent">
+      <app-message></app-message>
+      <div class="tab-pane fade" id="v-pills-planSales" role="tabpanel" aria-labelledby="v-pills-planSales-tab">
+        <app-add-plan-sale [plans]="plans"></app-add-plan-sale>
+      </div>
+
+      <div class="tab-pane fade" id="v-pills-licenseSale" role="tabpanel" aria-labelledby="v-pills-licenseSale-tab">
+        <app-add-license-sale [licenses]="licenses"></app-add-license-sale>
+      </div>
+
+      <div class="tab-pane fade" id="v-pills-tagSales" role="tabpanel"
+           aria-labelledby="v-pills-tagSales-tab">
+        <app-add-tag-sale [tags]="tags"></app-add-tag-sale>
+      </div>
+
+      <div class="tab-pane fade show active" id="v-pills-salesOverview" role="tabpanel"
+           aria-labelledby="v-pills-salesOverview-tab">
+        <div>
+          <label for="sortSales">Sort by:</label><select id="sortSales" class="form-control-sm ml-3" (change)="sort()">
+          <option>Discount</option>
+          <option>Title</option>
+          <option>Period</option>
+        </select>
+        </div>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Type</th>
+            <th scope="col">Includes</th>
+            <th scope="col">Discount</th>
+            <th scope="col">Beings</th>
+            <th scope="col">Ends</th>
+            <th scope="col">Action(s)</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let sale of sales; index as i">
+            <td>{{ sale.name }}</td>
+            <td>{{ sale.type }}</td>
+            <td>
+              <div *ngFor="let name of getItemNames(sale.saleObjects, sale.type)">
+                <span>[{{name}}] </span>
+              </div>
+            </td>
+            <td>{{ sale.discount | number}}</td>
+            <td>{{ sale.begins.toDate() | date }}</td>
+            <td>{{ sale.ends.toDate() | date}}</td>
+            <td>
+              <app-delete-sale [sale]="sale"></app-delete-sale>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

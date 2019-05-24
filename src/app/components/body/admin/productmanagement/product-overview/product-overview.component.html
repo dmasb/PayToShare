@@ -2,7 +2,8 @@
   <div class="col-3">
     <app-add-product></app-add-product>
     <div class="nav flex-column nav-pills mt-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="btn btn-outline-dark text-left" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+      <a class="btn btn-outline-dark text-left active" id="v-pills-profile-tab" data-toggle="pill"
+         href="#v-pills-profile"
          role="tab"
          aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon:  list; ratio: 1"
                                                                      class="mr-2"></span> Overview</a>
@@ -10,19 +11,22 @@
   </div>
   <div class="col-9">
     <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+      <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+        <app-message></app-message>
         <div>
           <label for="sortID">Sort by:</label><select id="sortID" class="form-control-sm ml-3" (change)="sort()">
-            <option>Price</option>
-            <option>Title</option>
-            <option>Quantity</option>
-          </select>
+          <option>Price</option>
+          <option>Title</option>
+          <option>Quantity</option>
+        </select>
         </div>
         <table class="table table-striped">
           <thead>
           <tr>
             <th scope="col">
-              <button type="button" class="btn btn-outline-secondary" (click)="markAsDeals()">Sale</button>
+              <label class="col-6 ml-2">
+                <input type="checkbox" disabled>
+              </label>
             </th>
             <th scope="col">Title</th>
             <th scope="col">Tag(s)</th>
@@ -37,29 +41,24 @@
           <tr *ngFor="let product of products; index as i">
             <th scope="row">
               <label class="col-6 ml-2">
-                <input type="checkbox" (change)="checkProduct(product.id)">
+                <input type="checkbox" disabled>
               </label>
             </th>
             <td>{{ product.title}}</td>
             <td>
               <p *ngFor="let tag of product.tags; index as j">
-                {{ product.tags[j].name}},
+                {{ tag.name }},
               </p>
             </td>
 
-            <td>{{ product.format }}</td>
+            <td>{{ product.format.name }}</td>
             <td>{{ product.price | number }}</td>
             <td>{{ product.quantity | number}}</td>
             <td class="productDescription">{{ product.description}}</td>
             <td>
-              <app-update-product [description]="product.description" [id]=product.id
-                                  [price]="product.price" [quantity]="product.quantity"
-                                  [selectedTags]=" product.tags"
-                                  [format]="product.format"
-                                  [title]="product.title"></app-update-product>
+              <app-update-product [product]="product"></app-update-product>
 
-              <app-delete-product [id]=product.id [title]="product.title"
-                                  [description]="product.description"></app-delete-product>
+              <app-delete-product [product]="product"></app-delete-product>
             </td>
           </tr>
           </tbody>

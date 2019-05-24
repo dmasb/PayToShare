@@ -1,31 +1,70 @@
-.colStyle {
-  margin: 10px;
+.card{
+  border: #2d2d30;
+  background-color: #e4e1e1;
 }
 
-
-.cardStyle {
-  margin: 10px;
-  width: 338px;
-  height: 571.5px;
-  max-height: 571.5px;
-  max-width: 340px;
-  float: left;
-
+.card-img-top {
+  width: 100%;
+  height: 15vw;
 }
 
-.button {
-  border: none;
-  color: white;
-  padding: 10px 20px;
+.card-title{
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 40px;
+  margin: 0;
+  padding: 0;
 }
 
-#card {
-  width: 80%;
-  height: 50%;
+.card-text{
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.price{
+  font-size: 1.2em;
+}
+
+.btn{
+  display:inline-block;
+  padding:0.3em 1.2em;
+  margin:0 0.3em 0.3em 0;
+  border-radius:2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color: #ffffff;
+  background-color:#2d2d30;
+  text-align:center;
+  transition: all 0.2s;
+  box-shadow: 2px 2px 2px 2px #252323;
+}
+
+.btn:hover{
+  background-color:#5e5e5f;
+}
+
+#buy{
+  color: #FFFFFF;
+}
+
+.fa.fa-square{
+  color: green;
+}
+
+.fa.fa-square.null{
+  color: red;
+}
+
+.card-stock{
+  padding-left: 3px;
+}
+
+// .card:hover{
+//   border-color: black;
+//   box-shadow: 5px 5px 5px 5px grey;
+// }
+
+.card-body{
+  padding: 0.5em;
 }

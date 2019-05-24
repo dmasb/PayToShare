@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Plan} from '../../models/products/plan';
 import {map} from 'rxjs/operators';
+import {alerts} from '../../models/alerts';
+import {MessageService} from '../message.service';
 
 
 @Injectable({
@@ -11,10 +13,9 @@ import {map} from 'rxjs/operators';
 export class PlanService {
 
   private plans: Observable<Plan[]>;
-  private planBeingDeleted: string;
 
-  constructor(private afs: AngularFirestore) {
-    this.planBeingDeleted = null;
+  constructor(private afs: AngularFirestore,
+              private messageService: MessageService) {
   }
 
   getPlans(): Observable<Plan[]> {
@@ -30,48 +31,23 @@ export class PlanService {
     );
   }
 
-  getPlanDoc(tagID: string) {
-    return this.afs.doc(`plans/${tagID}`);
-  }
-
-  getPlanJson(planID: string) {
-    return this.afs.doc(`plans/${planID}`).ref.get().then(plan => {
-      return {
-        id: plan.id,
-        ...plan.data()
-      };
-    });
-  }
-
   addPlan(plan: Plan) {
-    console.log('heeeeeeeeeere');
-    this.afs.collection('plans').add(plan);
+    this.afs.collection('plans').add(Object.assign({}, plan));
+    this.messageService.add(plan.title + ' was successfully added!', alerts.success);
   }
 
-  available(planID: string): boolean {
-    if (this.planBeingDeleted === null) {
-      this.planBeingDeleted = planID;
-      return true;
+  async confirmDelete(plan: Plan) {
+    console.log(plan.id);
+    const usedInSale = await this.afs.collection('sales').ref.where('saleObjects', 'array-contains', plan)
+      .get().then(res => {
+        return !res.empty as boolean;
+      });
+    if (usedInSale) {
+      this.messageService.add(plan.title + ' is used in a sale, please remove sale first!', alerts.danger);
     } else {
-      return false;
+      this.afs.collection('plans').doc(plan.id).delete();
+      this.messageService.add(plan.title + ' was successfully deleted!', alerts.success);
     }
-  }
-
-  remove() {
-    console.log('HEREEEEEEEEEEE');
-    console.log('ID: ' + this.planBeingDeleted);
-    this.afs.doc(`plans/${this.planBeingDeleted}`).delete();
-    this.planBeingDeleted = null;
-  }
-
-  cancel() {
-    this.planBeingDeleted = null;
-  }
-
-  updatePlan(planID: string, planName: string) {
-    this.afs.doc(`plans/${planID}`).update({
-      name: planName
-    });
   }
 }
 

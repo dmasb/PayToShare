@@ -1,0 +1,40 @@
+<form [formGroup]="newLicenseSale" (ngSubmit)="addLicenseSale()">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Sale Name</label>
+      <input type="text" class="form-control" id="inputEmail4" placeholder="Name" formControlName="saleName">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputState">Licenses</label>
+      <select id="inputState" class="form-control" formControlName="selectedLicense" (click)="pushProduct()">
+        <option value="" selected disabled hidden>Choose here</option>
+        <option *ngFor="let license of licenses" [value]="license | json">{{license.title}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="saleBegin">Sale Begin</label>
+      <input type="date" class="form-control" id="saleBegin" formControlName="saleBegin">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="saleEnd">Sale End</label>
+      <input type="date" class="form-control" id="saleEnd" formControlName="saleEnd">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="discount">Discount %</label>
+      <input type="number" class="form-control" id="discount" formControlName="saleDiscount">
+    </div>
+  </div>
+  <div class="form-group">
+    <span uk-icon="icon: image; ratio: 1" class="mr-2"></span>Selected Licenses:
+    <hr class="mt-2 mb-2 p-0">
+    <span class="uk-label uk-label-success mr-2 mb-2 border-danger licenseTag" *ngFor="let selected of selectedLicenses"
+          (click)="popProduct(selected)">{{selected.title}}</span>
+    <div class="modal-footer">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-outline-dark">Add</button>
+</form>

@@ -1,0 +1,40 @@
+<form [formGroup]="newTagSale" (ngSubmit)="addTagSale()">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="saleName">Sale Name</label>
+      <input type="text" class="form-control" id="saleName" placeholder="Name" formControlName="saleName">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputState">Tags</label>
+      <select id="inputState" class="form-control" formControlName="selectedTag" (click)="pushPlan()">
+        <option value="" selected disabled hidden>Choose here</option>
+        <option *ngFor="let tag of tags" [value]="tag | json">{{tag.name}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="saleBegin">Sale Begin</label>
+      <input type="date" class="form-control" id="saleBegin" formControlName="saleBegin">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="saleEnd">Sale End</label>
+      <input type="date" class="form-control" id="saleEnd" formControlName="saleEnd">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="discount">Discount %</label>
+      <input type="number" class="form-control" id="discount" formControlName="saleDiscount">
+    </div>
+  </div>
+  <div class="form-group">
+    <span uk-icon="icon: tag; ratio: 1" class="mr-2"></span>Selected tags:
+    <hr class="mt-2 mb-2 p-0">
+    <span class="uk-label uk-label-success mr-2 mb-2 border-danger tag" *ngFor="let selected of selectedTags"
+          (click)="popPlan(selected)">{{selected.name}}</span>
+    <div class="modal-footer">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-outline-dark">Add</button>
+</form>

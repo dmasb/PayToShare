@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormatService} from '../../../../../services/product/format.service';
+import {Format} from '../../../../../models/products/format';
+import * as cloneDeep from 'lodash/cloneDeep';
 
 @Component({
   selector: 'app-update-format',
@@ -10,8 +12,7 @@ import {FormatService} from '../../../../../services/product/format.service';
 })
 export class UpdateFormatComponent implements OnInit {
 
-  @Input() id: string;
-  @Input() name: string;
+  @Input() private format: Format;
 
   newFormatNameForm = new FormGroup({
     formatID: new FormControl(''),
@@ -29,9 +30,14 @@ export class UpdateFormatComponent implements OnInit {
   }
 
   editFormat() {
-    this.formatService.updateFormat(
-      this.newFormatNameForm.controls.formatID.value,
-      this.newFormatNameForm.controls.formatName.value);
+    if (this.newFormatNameForm.controls.formatName.value) {
+      const newFormat: Format = cloneDeep(this.format);
+      newFormat.name = this.newFormatNameForm.controls.formatName.value;
+
+      this.formatService.updateFormat(this.format, newFormat);
+    }
+
     this.modalService.dismissAll();
+    this.newFormatNameForm.reset();
   }
 }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormatService} from '../../../../../services/product/format.service';
+import {Format} from '../../../../../models/products/format';
 
 @Component({
   selector: 'app-add-format',
@@ -21,7 +22,11 @@ export class AddFormatComponent implements OnInit {
   }
 
   addFormat() {
-    this.formatService.addTag(this.newFormatForm.controls.formatName.value);
+    const format = new Format();
+    format.name = this.newFormatForm.controls.formatName.value;
+
+    this.formatService.addFormat(format);
+    this.newFormatForm.reset();
     this.modalService.dismissAll();
   }
 

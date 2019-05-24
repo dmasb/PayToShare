@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import {auth, User} from 'firebase';
+import {auth} from 'firebase';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
-import {IUser} from '../../models/user';
-import {Userrank} from '../../models/userrank';
+import {IUser, User} from '../../models/user';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
@@ -11,6 +10,7 @@ import {MessageService} from '../message.service';
 import {alerts} from '../../models/alerts';
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
+import {Cart} from '../../models/products/cart';
 
 @Injectable({
   providedIn: 'root'
@@ -23,37 +23,18 @@ export class AuthService {
   log in will be added to this set. Information provided by the user when
   registering manually will also be added to this set.
    */
-  private data = {
-    id: null,
-    rank: Userrank.User,
-    email: null,
-    firstName: null,
-    lastName: null,
-    photoURL: null,
-    registerDate: null,
-    sex: null,
-    zipcode: null,
-    country: null,
-    address: 'N/A',
-    city: 'N/A',
-    phone: null,
-    loggedIn: false,
-    lastLogin: null,
-    sessionID: null,
-  };
-
-
-  private user$: Observable<IUser>;
+  private data: IUser = new User(); // Create new InterfaceUser from User which will work with Object.Set
+  private user: Observable<User>;
 
   constructor(private afAuth: AngularFireAuth,
               private afs: AngularFirestore,
               private router: Router,
               private messageService: MessageService) {
-    this.user$ = this.afAuth.authState.pipe(
+    this.user = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
           // Fetch the user document and listen to value changes.
-          return this.afs.doc<IUser>(`users/${user.uid}`).valueChanges();
+          return this.afs.doc(`users/${user.uid}`).valueChanges() as Observable<User>;
         } else {
           // This should never happen!
           return of(null);
@@ -63,11 +44,11 @@ export class AuthService {
   }
 
   // Temporary method
-  getCurrentUser(): Observable<IUser> {
-    return this.user$;
+  getCurrentUser(): Observable<User> {
+    return this.user;
   }
 
-  state(): Observable<User> {
+  state(): Observable<firebase.User | null> {
     return this.afAuth.authState;
   }
 
@@ -118,7 +99,7 @@ export class AuthService {
       this.data.loggedIn = true;
       this.data.country = user.country;
       this.data.zipcode = user.zipcode;
-      await this.afs.collection('users').doc(cred.user.uid).set(this.data);
+      await this.afs.collection('users').doc(cred.user.uid).set(Object.assign({}, this.data));
       this.router.navigate(['/profile']);
     });
   }
@@ -128,10 +109,10 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${user.uid}`);
     userRef.ref.get().then(userDocument => {
       if (userDocument.exists) {
-        this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update({
+        this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`).update(Object.assign({}, {
           lastLogin: Timestamp.now(),
           loggedIn: true
-        });
+        }));
       } else {
         const displayName = user.displayName.split(' ', 2);
         this.data.id = user.uid;
@@ -142,7 +123,8 @@ export class AuthService {
         this.data.lastLogin = Timestamp.now();
         this.data.registerDate = this.afAuth.auth.currentUser.metadata.creationTime;
         this.data.loggedIn = true;
-        userRef.set(this.data);
+        this.data.cart = Object.assign({}, new Cart());
+        userRef.set(Object.assign({}, this.data));
       }
     });
     this.router.navigate(['/profile']);

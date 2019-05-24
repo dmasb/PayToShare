@@ -1,0 +1,138 @@
+<div class="container-fluid">
+
+  <div class="row mb-5" id="top">
+    <div class="col text-center">
+      <h1>Our Plans</h1>
+      <h4>Share what ever when ever</h4>
+      <p class="mt-1">Pick the plan that suits your sharing needs</p>
+      <p></p>
+    </div>
+  </div>
+
+
+  <div class="container ">
+    <!--Card one-->
+    <div class="row">
+      <div class="col-lg-3 col-md-6" *ngFor="let plan of plans">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center body-top">
+              <img src="{{plan.imageUrl}}" alt="logo" class="img-fluid text-center w-50 mt-2">
+              <h3>{{plan.title}}</h3>
+            </div>
+            <hr>
+            <div class="body-middle">
+              <ul class="fa-ul">
+                <li><span class="fa-li"><i class="fa fa-check"></i></span>Level: {{plan.level.name}}</li>
+                <li><span class="fa-li"><i class="fa fa-check"></i></span>Speed: {{plan.speed | number}} mb/s</li>
+              </ul>
+              <h5>Includes:</h5>
+              <p class="text-center p-2">
+            <span *ngFor="let license of plan.defaultLicenses">
+                {{license}}
+            </span>
+              </p>
+
+            </div>
+            <div class="body-desc">
+              <p class="text-center">{{plan.description}}</p>
+            </div>
+            <div class="text-center" *ngIf="plan.salePrice > 0">
+              <span class="before">{{plan.price | currency}}</span>
+              <span class="after">{{plan.salePrice | currency}}</span>
+            </div>
+            <div *ngIf="plan.salePrice === 0">
+              <h6 class="card-price text-center">{{plan.price | currency}}<span class="period">/month</span></h6>
+            </div>
+          </div>
+          <!--Footer-->
+          <div class="card-footer text-center">
+            <p class="price text-center">
+              <a class="btn btn-sm" id="buy" (click)="addPlan(plan)">
+                Pick
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--Card two
+      <div class="col-lg-3 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center">
+              <img src="assets/images/p2s.png" alt="logo" class="img-fluid text-center w-50 mt-2">
+              <h3>Big</h3>
+            </div>
+            <hr>
+            <ul class="fa-ul">
+              <li><span class="fa-li"><i class="fa fa-check"></i></span>Five formats</li>
+              <li><span class="fa-li"><i class="fa fa-check"></i></span>Right to buy products</li>
+              <li><span class="fa-li"><i class="fa fa-check"></i></span>In EU</li>
+              <li><span class="fa-li"><i class="fa fa-check"></i></span>Speed 1 Gb/s</li>
+              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Every format</li>
+              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>All products</li>
+              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Top speed</li>
+            </ul>
+            <h6 class="card-price text-center">$299<span class="period">/year</span></h6>
+          </div>
+          &lt;!&ndash;Footer&ndash;&gt;
+          <div class="card-footer text-center">
+            <div class="btn">Pick</div>
+          </div>
+        </div>
+      </div>
+      &lt;!&ndash;Card three&ndash;&gt;
+      <div class="col-lg-3 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center">
+              <img src="assets/images/p2s.png" alt="logo" class="img-fluid text-center w-50 mt-2">
+              <h3>Bas+</h3>
+            </div>
+            <hr>
+            <ul class="fa-ul">
+              <li><span class="fa-li"><i class="fa fa-check"></i></span>Three formats</li>
+              <li><span class="fa-li"><i class="fa fa-check"></i></span>Right to buy products</li>
+              <li><span class="fa-li"><i class="fa fa-check"></i></span>In EU</li>
+              <li><span class="fa-li"><i class="fa fa-check"></i></span>Speed 500 Mb/s</li>
+              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Every format</li>
+              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>All products</li>
+              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Top speed</li>
+            </ul>
+            <h6 class="card-price text-center">$199<span class="period">/year</span></h6>
+          </div>
+          &lt;!&ndash;Footer&ndash;&gt;
+          <div class="card-footer text-center">
+            <div class="btn">Pick</div>
+          </div>
+        </div>
+      </div>
+      &lt;!&ndash;Card four&ndash;&gt;
+      <div class="col-lg-3 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center">
+              <img src="assets/images/p2s.png" alt="logo" class="img-fluid text-center w-50 mt-2">
+              <h3>Bas</h3>
+            </div>
+            <hr>
+            <ul class="fa-ul">
+              <li><span class="fa-li"><i class="fa fa-check"></i></span>Two formats</li>
+              <li><span class="fa-li"><i class="fa fa-check"></i></span>Rights to buy products</li>
+              <li><span class="fa-li"><i class="fa fa-check"></i></span>In EU</li>
+              <li><span class="fa-li"><i class="fa fa-check"></i></span>Speed 100 Mb/s</li>
+              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Every format</li>
+              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>All products</li>
+              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Top Speed</li>
+            </ul>
+            <h6 class="card-price text-center">$99<span class="period">/year</span></h6>
+          </div>
+          &lt;!&ndash;Footer&ndash;&gt;
+          <div class="card-footer text-center">
+            <div class="btn">Pick</div>
+          </div>
+        </div>
+      </div>-->
+    </div>
+  </div>
+</div>

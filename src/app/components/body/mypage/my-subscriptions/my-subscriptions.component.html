@@ -1,0 +1,67 @@
+<div class="col-9">
+  <div class="tab-content" id="v-pills-tabContent">
+    <div class="tab-pane fade show active" id="v-pills-tags" role="tabpanel" aria-labelledby="v-pills-tags-tab">
+      <table class="table table-striped" *ngIf="planSubscription">
+        <thead>
+        <tr>
+          <th scope="col">Current plan</th>
+          <th scope="col">Speed mb/s</th>
+          <th scope="col">Licenses</th>
+          <th scope="col">Valid To</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let sub of planSubscription; index as i">
+          <td>{{sub.plan.title}}</td>
+          <td>{{ sub.plan.speed | number}}</td>
+          <td>
+            <span *ngFor="let license of sub.plan.defaultLicenses">
+              {{license}}
+            </span>
+          </td>
+          <td>{{ sub.validTo.toDate() | date}}</td>
+          <th scope="col">
+            <a class="btn btn-sm float-right" id="buy1" (click)="cancelPlan(sub)">
+              Cancel
+            </a>
+
+          </th>
+        </tr>
+        <tr>
+        </tr>
+        </tbody>
+      </table>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">License</th>
+          <th scope="col">Tag</th>
+          <th scope="col">Format</th>
+          <th scope="col">Status</th>
+          <th scope="col">Valid To</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let sub of licenseSubscriptions; index as i">
+          <td>{{ sub.license.title }}</td>
+          <td>{{ sub.license.tag.name }}</td>
+          <td>{{ sub.license.format.name }}</td>
+          <td *ngIf="planSubscription">Active</td>
+          <td *ngIf="!planSubscription">Frozen</td>
+          <td>{{ sub.validTo.toDate() | date}}</td>
+          <td>
+            <a class="btn btn-sm float-right" id="buy2" (click)="cancelLicense(sub)">
+              Cancel
+            </a>
+          </td>
+        </tr>
+        <tr>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

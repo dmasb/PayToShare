@@ -16,28 +16,39 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="planName">Plan name</label>
-                  <input [(ngModel)]="tempPlan.title" type="text" class="form-control" id="planName"
+                  <input [(ngModel)]="plan.title" type="text" class="form-control" id="planName"
                          formControlName="planName">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="planSpeed">Speed in mb/s</label>
-                  <input [(ngModel)]="tempPlan.speed" type="text" class="form-control" id="planSpeed"
+                  <input [(ngModel)]="plan.speed" type="number" class="form-control" id="planSpeed"
                          formControlName="planSpeed">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="price">Monthly charge</label>
-                  <input [(ngModel)]="tempPlan.price" type="number" class="form-control" id="price"
+                  <input [(ngModel)]="plan.price" type="number" class="form-control" id="price"
                          formControlName="planPrice">
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="productFormat">Plan Licenses</label>
-                  <select class="form-control mb-3" id="productFormat" formControlName="planLicense"
+                  <label for="planLevel">Plan Level</label>
+                  <select class="form-control" id="planLevel" formControlName="planLevel" (change)="selectLevel()">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <option *ngFor="let level of planLevels.getLevels()" [value]="level | json">
+                      {{level.name}} | {{level.licenses }} licenses
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row mb-3">
+                <div class="form-group col-md-6">
+                  <label for="defaultLicenses">Plan Licenses</label>
+                  <select class="form-control" id="defaultLicenses" formControlName="planLicense"
                           (click)="pushLicense()">
                     <option value="" selected disabled hidden>Choose here</option>
-                    <option *ngFor="let license of licenses" [value]="license | json">
-                      {{license.name}}
+                    <option *ngFor="let license of defaultLicenses.getDefaultLicenses()" [value]="license">
+                      {{license}}
                     </option>
                   </select>
                 </div>
@@ -47,11 +58,11 @@
                 <hr class="mt-2 mb-2 p-0">
                 <span class="uk-label uk-label-success mr-2 mb-2 border-danger tag"
                       *ngFor="let selected of selectedLicenses"
-                      (click)="popLicense(selected)">{{selected.name}}</span>
+                      (click)="popLicense(selected)">{{selected}}</span>
               </div>
               <div class="form-group">
                 <label for="planDesc">Material textarea</label>
-                <textarea [(ngModel)]="tempPlan.description" id="planDesc" class="md-textarea form-control" rows="3"
+                <textarea [(ngModel)]="plan.description" id="planDesc" class="md-textarea form-control" rows="3"
                           formControlName="planDesc"></textarea>
               </div>
               <div class="file">
@@ -93,8 +104,7 @@
     </div>
   </div>
   <div class="col-5">
-    <app-plan-card [title]="tempPlan.title" [speed]="tempPlan.speed" [charge]="tempPlan.price"
-                   [description]="tempPlan.description" [licenses]="selectedLicenses"></app-plan-card>
+    <app-plan-card [plan]="plan" [selectedLicenses]="selectedLicenses"></app-plan-card>
   </div>
 </div>
 

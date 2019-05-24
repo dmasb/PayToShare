@@ -2,26 +2,25 @@
   <div class="col-3">
     <app-add-tag></app-add-tag>
     <div class="nav flex-column nav-pills mt-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="btn btn-outline-dark text-left" id="v-pills-tags-tab" data-toggle="pill" href="#v-pills-tags" role="tab"
+      <a class="btn btn-outline-dark text-left active" id="v-pills-tags-tab" data-toggle="pill" href="#v-pills-tags"
+         role="tab"
          aria-controls="v-pills-profile" aria-selected="false"><span uk-icon="icon:  list; ratio: 1"
                                                                      class="mr-2"></span>Overview</a>
     </div>
   </div>
   <div class="col-9">
     <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade" id="v-pills-tags" role="tabpanel" aria-labelledby="v-pills-tags-tab">
-        xd
+      <div class="tab-pane fade show active" id="v-pills-tags" role="tabpanel" aria-labelledby="v-pills-tags-tab">
+        <app-message></app-message>
         <table class="table table-striped">
           <thead>
           <tr>
             <th scope="col">
               <label>
-                <input type="checkbox" name="checkAll">
+                <input type="checkbox" name="checkAll" disabled>
               </label>
             </th>
             <th scope="col">Tag name</th>
-            <th scope="col">Products</th>
-            <th scope="col">Created</th>
             <th scope="col">Actions</th>
           </tr>
           </thead>
@@ -29,15 +28,13 @@
           <tr *ngFor="let tag of tags; index as i">
             <th scope="row">
               <label>
-                <input type="checkbox" name="checkbox + {{ i + 1}}">
+                <input type="checkbox" name="checkbox + {{ i + 1}}" disabled>
               </label>
             </th>
             <td>{{ tag.name }}</td>
-            <td>{{ tag.products }}</td>
-            <td>{{ tag.created.toDate() | date: 'yyyy-MM-dd'}}</td>
             <td>
-              <app-update-tag [id]=tag.id [name]="tag.name"></app-update-tag>
-              <app-delete-tag [id]=tag.id [name]="tag.name"></app-delete-tag>
+              <app-update-tag [tag]="tag"></app-update-tag>
+              <app-delete-tag [tag]="tag"></app-delete-tag>
             </td>
           </tr>
           <tr>

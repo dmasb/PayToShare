@@ -39,7 +39,7 @@
       <label for="productFormat">Product Format</label>
       <select class="form-control" id="productFormat" formControlName="productFormat">
         <option value="" selected disabled hidden>Choose here</option>
-        <option *ngFor="let format of formats" [value]="format.name">
+        <option *ngFor="let format of formats" [value]="format | json">
           {{format.name}}
         </option>
       </select>

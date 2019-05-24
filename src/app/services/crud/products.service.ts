@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Product} from '../../models/products/product';
-import {map} from 'rxjs/operators';
+import {flatMap, map, mergeMap, switchMap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {Tag} from '../../models/products/tag';
-import {firestore} from 'firebase/app';
-import Timestamp = firestore.Timestamp;
+import {MessageService} from '../message.service';
+import {alerts} from '../../models/alerts';
+import * as firebase from 'firebase';
+import {SaleType} from '../../models/saleType';
+import {Sale} from '../../models/products/sale';
 
 @Injectable({
   providedIn: 'root'
@@ -14,18 +16,30 @@ import Timestamp = firestore.Timestamp;
 export class ProductsService {
 
   private products: Observable<Product[]>;
-  private productBeingDeleted: string;
 
-  constructor(private afs: AngularFirestore) {
-    this.productBeingDeleted = null;
+  constructor(private afs: AngularFirestore,
+              private messageService: MessageService) {
   }
+
+  getProducts(): Observable<Product[]> {
+    return this.products = this.afs.collection('products').snapshotChanges().pipe(
+      map(products => {
+        return products.map(product => {
+          return {
+            id: product.payload.doc.id,
+            ...product.payload.doc.data()
+          } as Product;
+        });
+      })
+    );
+  }
+
 
   /*
   to be fixed {Suitable for the search by tag functionality]
    */
   getProductsByTag(tags: string[]): Observable<Product[]> {
-    return this.products = this.afs.collection('products', ref =>
-      ref.where('quantity', '>', 0)).snapshotChanges().pipe(
+    return this.products = this.afs.collection('products').snapshotChanges().pipe(
       map(products => {
         return products.map(product => {
           return {
@@ -33,72 +47,49 @@ export class ProductsService {
             ...product.payload.doc.data()
           } as Product;
         }).filter(
-          product => product.tags.find(tag => (tags.length > 0) ? tags.includes(tag.name) : true)
+          product => (tags.length > 0) ? tags.includes(product.id) : true
         );
       })
     );
   }
 
-  getProductDoc(productID: string) {
-    return this.afs.doc(`products/${productID}`);
+  async addProduct(product: Product) {
+    await this.afs.collection('products').add(Object.assign({}, product));
+    this.messageService.add(product.title + ' was successfully added!', alerts.success);
   }
 
-  getTagJson(productID: string) {
-    return this.afs.doc(`products/${productID}`).ref.get().then(product => {
-      return {
-        id: product.id,
-        ...product.data()
-      } as Product;
-    });
-  }
-
-
-  addProduct(product: Product) {
-    this.afs.collection('products').add(product);
-  }
-
-  available(productId: string): boolean {
-    if (this.productBeingDeleted === null) {
-      this.productBeingDeleted = productId;
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  remove() {
-    this.afs.doc(`products/${this.productBeingDeleted}`).delete();
-    this.productBeingDeleted = null;
-  }
-
-  cancel() {
-    this.productBeingDeleted = null;
-  }
-
-  update(product: Product) {
-    this.afs.doc(`products/${product.id}`).update(product);
-  }
-
-  markAsDeals(productIDs: string[]) {
-    productIDs.forEach(id => {
-      this.afs.collection('products').doc(id).update({test: 'testing'});
-    });
-
-    productIDs.forEach(id => {
-      const product = this.getTagJson(id);
-      product.then(s => {
-        if (s.tags.findIndex(res => res.name === 'Deal of the Day') === -1) {
-          const tag: Tag = {
-            name: 'Deal of the Day',
-            products: 0,
-            created: Timestamp.now()
-          };
-          s.tags.push(tag);
-          this.afs.collection('products').doc(id).update({
-            tags: s.tags
-          });
+  async confirmDelete(product: Product) {
+    await this.afs.collection('sales').ref.where('saleObjects', 'array-contains', product).get().then(
+      res => {
+        if (!res.empty) {
+          this.messageService.add(product.title + ' is on sale!', alerts.danger);
+        } else {
+          this.afs.collection('products').doc(product.id).delete();
+          this.messageService.add(product.title + ' was successfully deleted!', alerts.success);
         }
-      });
-    });
+      }
+    );
+  }
+
+  async update(oldProduct: Product, newProduct: Product) {
+    await this.afs.collection('sales').ref.where('saleObjects', 'array-contains', oldProduct).get().then(
+      res => {
+        if (!res.empty) {
+          res.docs.map(products => {
+            products.ref.update({
+              saleObjects: firebase.firestore.FieldValue.arrayRemove(oldProduct)
+            });
+            products.ref.update({
+              saleObjects: firebase.firestore.FieldValue.arrayUnion(newProduct)
+            });
+          });
+          this.afs.collection('products').doc(oldProduct.id).update(Object.assign({}, newProduct));
+          this.messageService.add(oldProduct.title + ' was successfully edited in sales as well', alerts.success);
+        } else {
+          this.afs.collection('products').doc(oldProduct.id).update(Object.assign({}, newProduct));
+          this.messageService.add(oldProduct.title + ' was successfully edited!', alerts.success);
+        }
+      }
+    );
   }
 }

@@ -1,0 +1,114 @@
+.container {
+  max-width: 1060px;
+}
+
+#top {
+  background-color: #e4e1e1;
+  width: auto !important;
+}
+
+.fit {
+  height: auto;
+  width: auto;
+  overflow: hidden;
+}
+
+.body-top {
+  min-height: 8em;
+}
+
+.body-middle {
+  min-height: 10em;
+}
+
+/* Card design */
+.card {
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  background-color: #e4e1e1;
+  width: 15em;
+  max-width: 15em;
+  height: 32em;
+  max-height: 35em;
+  box-shadow: 5px 5px 5px 5px #929292;
+}
+
+.card-footer {
+  height: 15%;
+  max-height: 15%;
+  width: 100%;
+}
+
+.card-body {
+  height: 12em;
+  padding: 0.5em;
+}
+
+.card-price {
+  font-size: 2em;
+}
+
+.card-price .period {
+  font-size: 0.6em;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: white;
+  background-color: #2d2d30;
+  text-align: center;
+  transition: all 0.2s;
+  box-shadow: 2px 2px 2px 2px #252323;
+  cursor: pointer;
+}
+
+#buy {
+  color: white;
+}
+
+.btn:hover {
+  background-color: #5e5e5f;
+}
+
+@media (min-width: 992px) {
+  .card:hover {
+    margin-top: -0.25rem;
+    margin-bottom: 0.25rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+  }
+  .card:hover .btn {
+    opacity: 1;
+  }
+}
+
+.before {
+  color: rgba(red, 0.5);
+  text-decoration: none;
+  position: relative;
+
+  &:before {
+    content: " ";
+    display: block;
+    width: 100%;
+    border-top: 2px solid rgba(red, 0.8);
+    height: 12px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: rotate(-7deg);
+  }
+}
+
+.after {
+  color: green;
+  text-decoration: none;
+  padding: 1em 1em 1em .5em;
+}

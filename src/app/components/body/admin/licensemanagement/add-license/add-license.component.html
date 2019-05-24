@@ -13,21 +13,58 @@
           <input type="text" class="form-control" id="licenseName" placeholder="License name"
                  formControlName="licenseName">
         </div>
+        <div class="form-group col-md-6">
+          <label for="productQuantity">License Quantity</label>
+          <input type="number" class="form-control" id="productQuantity" placeholder="Quantity"
+                 formControlName="licenseQuantity">
+        </div>
       </div>
-      <label for="productFormat">License Format</label>
-      <select class="form-control" id="productFormat" formControlName="formatID">
-        <option value="" selected disabled hidden>Choose here</option>
-        <option *ngFor="let format of formats" [value]="format.id">
-          {{format.name}}
-        </option>
-      </select>
-      <label for="productTag">License Tag</label>
-      <select class="form-control" id="productTag" formControlName="tagID">
-        <option value="" selected disabled hidden>Choose here</option>
-        <option *ngFor="let tag of tags" [value]="tag.id">
-          {{tag.name}}
-        </option>
-      </select>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="licenseFormat">License Format</label>
+          <select class="form-control" id="licenseFormat" formControlName="format">
+            <option value="" selected disabled hidden>Choose here</option>
+            <option *ngFor="let format of formats" [value]="format | json">
+              {{format.name}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="licenseTag">License Tag</label>
+          <select class="form-control" id="licenseTag" formControlName="tag">
+            <option value="" selected disabled hidden>Choose here</option>
+            <option *ngFor="let tag of tags" [value]="tag | json">
+              {{tag.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="licensePrice">License Price</label>
+          <input type="number" class="form-control" id="licensePrice" placeholder="Quantity"
+                 formControlName="licensePrice">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="licenseDescription">Product Description</label>
+          <input type="text" class="form-control" id="licenseDescription" placeholder="Description"
+                 formControlName="licenseDescription">
+        </div>
+      </div>
+      <div class="file">
+        <label class="file-label">
+          <input type="file" class="file-input" (change)="uploadImage($event)"
+                 formControlName="licenseImageUrl">
+        </label>
+      </div>
+      <app-image-upload-template [percentage]="getPercentage()"
+                                 [snapshot]="getSnapshot()"
+                                 [url]="getImageUrl()"
+                                 [task]="getTask()">
+      </app-image-upload-template>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
         <button type="submit" class="btn btn-outline-dark">Add</button>

@@ -1,8 +1,9 @@
 <div class="container" id="outer">
-  <span>Account Settings</span>
+
+  <div class="overview d-flex justify-content-center">Account Settings</div>
   <div *ngIf="error" class="alert alert-danger" role="alert" ng-cloak>
-  There was an error while loading user settings. Please try again later!
-</div>
+    There was an error while loading user settings. Please try again later!
+  </div>
   <!--  INFORMATION SUCCESSFULLY UPDATED -->
   <div *ngIf="profileUpdated == true" class="alert alert-info">
     <strong>Info!</strong> Profile successfully updated.
@@ -11,15 +12,14 @@
     </button>
   </div>
   <div class="container" id="inner">
-    <img src="{{currentUser.photoURL}}" id="mypage">
-    <form [formGroup]="profile" (ngSubmit)="onSubmit()">
+    <form [formGroup]="profile" (ngSubmit)="onSubmit()" *ngIf="currentUser">
       <!-- MAIL -->
       <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <img src="{{currentUser.photoURL}}" id="mypage" alt="Profile picture">
         <div class="col-sm-10">
-          <input
+          <label for="staticEmail"><input
             [value]="currentUser.email"
-            type="text" readonly class="form-control-plaintext" id="staticEmail" formControlName="email">
+            type="text" readonly class="form-control-plaintext" id="staticEmail"></label>
           <small id="tip1" class="form-text text-muted">Psst! We'll never share your email with anyone else.</small>
         </div>
       </div>
@@ -29,27 +29,24 @@
         <div class="col">
           <label for="firstname">First name</label>
           <input [value]="currentUser.firstName" type="email" class="form-control" id="firstName"
-                 aria-describedby="emailHelp"
-                 formControlName="firstName">
+            aria-describedby="emailHelp" formControlName="firstName">
         </div>
         <div class="col">
           <label for="lastname">Last name</label>
           <input [value]="currentUser.lastName" type="email" class="form-control" id="lastName"
-                 aria-describedby="emailHelp"
-                 formControlName="lastName">
+            aria-describedby="emailHelp" formControlName="lastName">
         </div>
       </div>
       <div class="row">
         <div class="col-sm">
           <label for="address">Address</label>
           <input [value]="currentUser.address" type="email" class="form-control" id="address"
-                 aria-describedby="emailHelp"
-                 formControlName="address">
+            aria-describedby="emailHelp" formControlName="address">
         </div>
         <div class="col-sm-4">
           <label for="zip">Zipcode</label>
           <input [value]="currentUser.zipcode" type="zip" class="form-control" id="zip" aria-describedby="emailHelp"
-                 formControlName="zipcode">
+            formControlName="zipcode">
         </div>
       </div>
 
@@ -66,13 +63,16 @@
 
         <div class="col-sm-2">
           <label for="rank" class="col-sm-2 col-form-label">Rank</label>
-          <input style="text-align: center" [value]="isAdminString()" type="text" readonly class="form-control-plaintext" id="rank">
+          <input style="text-align: center" [value]="isAdminString()" type="text" readonly
+                 class="form-control-plaintext" id="rank">
         </div>
 
       </div>
       <hr>
 
-      <button type="submit" [disabled]="!userLoaded || profile.pristine" class="btn btn-primary">Update profile settings</button>
+      <button type="submit" [disabled]="!userLoaded || profile.pristine" class="btn btn-primary">Update profile
+        settings
+      </button>
 
     </form>
   </div>

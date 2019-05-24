@@ -12,7 +12,7 @@ import {AngularFireUploadTask} from '@angular/fire/storage';
 import {UploadTaskSnapshot} from '@angular/fire/storage/interfaces';
 import * as url from 'url';
 import {UploadImageService} from '../../../../../services/upload-image.service';
-
+import * as cloneDeep from 'lodash/cloneDeep';
 
 @Component({
   selector: 'app-update-product',
@@ -21,17 +21,11 @@ import {UploadImageService} from '../../../../../services/upload-image.service';
 })
 export class UpdateProductComponent implements OnInit {
 
-  @Input() id: string;
-  @Input() title: string;
-  @Input() selectedTags: Tag[];
-  @Input() format: string;
-  @Input() price: number;
-  @Input() quantity: number;
-  @Input() description: string;
-  @Input() imageUrl: string; //
+  @Input() product: Product;
 
   private tags: Tag[];
   private formats: Format[];
+  private selectedTags: Tag[] = [];
 
   updateProductForm = new FormGroup({
     productTitle: new FormControl(''),
@@ -40,7 +34,7 @@ export class UpdateProductComponent implements OnInit {
     productPrice: new FormControl(''),
     productQuantity: new FormControl(''),
     productDescription: new FormControl(''),
-    productImageUrl: new FormControl('') //
+    licenseImageUrl: new FormControl('') //
   });
 
   constructor(private productService: ProductsService,
@@ -57,42 +51,48 @@ export class UpdateProductComponent implements OnInit {
   }
 
   pushTag() {
-    const selected: Tag = JSON.parse(this.updateProductForm.controls.productTag.value);
-    if (this.selectedTags.findIndex(obj => obj.id === selected.id) === -1 && selected.id) {
-      this.selectedTags.push(selected);
+    if (this.updateProductForm.controls.productTag.value) {
+      const selected: Tag = JSON.parse(this.updateProductForm.controls.productTag.value);
+      if (this.selectedTags.findIndex(tag => tag.id === selected.id) === -1 && selected.id) {
+        this.selectedTags.push(selected);
+      }
     }
-    console.log('###############################################');
-    this.selectedTags.forEach(s => console.log(s));
-    console.log('###############################################');
-
   }
 
-  popTag(selectedTag: object) {
+  popTag(selectedTag: Tag) {
     this.selectedTags = this.selectedTags.filter(tag => tag !== selectedTag);
   }
 
 
   editProduct() {
+    const newProduct: Product = cloneDeep(this.product);
 
-    const product: Product = {
-      id: this.id,
-      title: this.updateProductForm.controls.productTitle.value,
-      tags: this.selectedTags,
-      format: this.updateProductForm.controls.productFormat.value || this.format,
-      description: this.updateProductForm.controls.productDescription.value,
-      price: this.updateProductForm.controls.productPrice.value,
-      quantity: this.updateProductForm.controls.productQuantity.value,
-    };
+    const selectedFormat = this.updateProductForm.controls.productFormat.value;
+    let format: Format = null;
 
-    if (this.getImageUrl()) {
-      product.imageUrl = this.getImageUrl();
+    if (selectedFormat) {
+      format = JSON.parse(selectedFormat);
     }
 
-    this.productService.update(product);
+    newProduct.title = this.updateProductForm.controls.productTitle.value || this.product.title;
+    newProduct.tags = this.selectedTags;
+    newProduct.format = format || this.product.format;
+    newProduct.description = this.updateProductForm.controls.productDescription.value || this.product.description;
+    newProduct.price = this.updateProductForm.controls.productPrice.value || this.product.price;
+    newProduct.quantity = this.updateProductForm.controls.productQuantity.value || this.product.quantity;
+
+    if (this.getImageUrl()) {
+      newProduct.imageUrl = this.getImageUrl();
+    }
+
+    this.productService.update(this.product, newProduct);
     this.modalService.dismissAll();
+    this.updateProductForm.reset();
+    this.selectedTags = [];
   }
 
   openCenteredDialog(addProductModal) {
+    this.selectedTags = this.product.tags;
     this.modalService.open(addProductModal, {centered: true});
   }
 

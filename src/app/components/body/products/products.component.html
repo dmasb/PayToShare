@@ -1,25 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col ml-3">
+  <label for="sortSales">Sort by:</label><select id="sortSales" class="form-control" (change)="sort()">
+  <option>Asc</option>
+  <option>Desc</option>
+</select>
+    </div>
+    <div class="col-10"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col" *ngFor="let product of products; let i=index" id="products">
 
-<div class="row mt-5" >
-  <div class="col-lg-3 col-sm-6 float-left mt-2" *ngFor="let product of regularProducts | async">
-    <div class="card-group display-flex">
-      <div class="card">
-        <div class="card-top">
-          <img *ngIf="product.imageUrl == null" class="card-img-top" src="../assets/images/testimages/gd.png"
-               alt="Card image cap">
-          <img *ngIf="product.imageUrl != null" class="card-img-top" src="{{product.imageUrl}}" alt="Card image cap">
+    <div class="card shadow">
+      <!--  IMAGE -->
+      <div class="card-top">
+        <img class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="Card image cap">
+      </div>
+
+      <!--    BODY-->
+      <div class="card-body">
+        <h5 class="card-title">{{product.title}}</h5>
+        <p class="card-text">
+          <span *ngFor="let tag of product.tags">
+            <h6>{{tag.name}}</h6>
+          </span>
+        </p>
+        <p class="card-text ">{{product.description}}</p>
+        <div class="container" id="leftmargin">
+          <app-star-review (click)="consLog(product.id)" [productId]="productID" [userId]="userId"></app-star-review>
+          <!--  Need to add [userId]="user.id" or something -->
         </div>
-        <div class="card-body">
-          <h5 class="card-title">{{product.title}}</h5>
-          <p class="card-text">Price: {{product.price | currency}}</p>
-          <p class="card-text">Category:
-            <span *ngFor="let tag of product.tags">{{tag.name}} </span></p>
-          <p class="card-text">Info: {{product.description}}</p>
+        <br><br>
+
+        <div class="container text-center" *ngIf="getObjectRating(product.id) === 0">
+          <span class="badge badge-dark px-2 pt-2">
+            <h6 class="text-white">
+               No Reviews
+            </h6>
+          </span>
         </div>
-        <div class="card-stock">Stock: {{product.quantity}}</div>
-        <div class="card-buttons">
-          <a href="javascript:void(0)" class="btn btn-secondary">Add to cart</a>
-          <a href="javascript:void(0)" class="btn btn-primary">Buy</a>
+        <div class="container text-center" *ngIf="getObjectRating(product.id) !== 0">
+          <span class="badge badge-dark px-2 pt-2">
+            <h6 class="text-white">
+              Rating:  {{getObjectRating(product.id) | number: '1.1-1'}}/5
+            </h6>
+          </span>
         </div>
+
+      </div>
+      <div class="card-footer text-center">
+        <p class="price">Format:{{product.format.name}}
+        </p>
       </div>
     </div>
   </div>

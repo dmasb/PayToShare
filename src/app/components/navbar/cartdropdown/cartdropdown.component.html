@@ -1,0 +1,43 @@
+<li class="dropdown nav-item">
+  <a uk-icon="icon: cart" class="nav-link dropdown-toggle text-white" id="navbarDropdownMenuLink" role="button"
+     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+  <ul class="dropdown-menu dropdown-menu-right">
+    <div class="container">
+
+      <div class="shopping-cart" *ngIf="cart">
+        <div class="shopping-cart-header">
+          <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">{{cart.numberOfItems}}</span>
+          <div class="shopping-cart-total">
+            <span class="lighter-text">Total: </span>
+            <span class="main-color-text">
+              <span class="price">{{this.cart.totalPrice | currency}}</span></span>
+          </div>
+        </div>
+        <ul class="shopping-cart-items list-unstyled">
+          <!--            HIDDEN IF NO ITEMS-->
+          <li class="clearfix" *ngIf="!cart || (cart.numberOfItems === 0 && !cart.plan)">No items here.</li>
+          <li class="clearfix" *ngIf="cart.plan">
+            <span><img *ngIf="cart.plan.imageUrl" src="{{cart.plan.imageUrl}}" alt="item1"/></span>
+            <span><img *ngIf="!cart.plan.imageUrl || cart.plan.imageUrl == '' " src="{{cart.plan.imageUrl}}"
+                       alt="item1"/></span>
+            <span class="item-name">{{cart.plan.title}}</span>
+            <span class="item-price" *ngIf="cart.plan.salePrice > 0">{{cart.plan.salePrice | currency}}</span><br>
+            <span class="item-price" *ngIf="cart.plan.salePrice === 0">{{cart.plan.price | currency}}</span><br>
+          </li>
+          <p>Licenses: </p>
+          <li class="clearfix" *ngFor="let license of cart.licenses">
+
+            <span><img *ngIf="license.item.imageUrl" src="{{license.item.imageUrl}}" alt="item1"/></span>
+            <span><img *ngIf="!license.item.imageUrl || license.item.imageUrl == '' " src="{{license.item.imageUrl}}"
+                       alt="item1"/></span>
+            <span class="item-name">{{license.item.title}}</span>
+            <span class="item-price" *ngIf="license.item.salePrice > 0">{{license.item.salePrice | currency}}</span><br>
+            <span class="item-price" *ngIf="license.item.salePrice === 0">{{license.item.price | currency}}</span><br>
+            <span class="item-quantity">Quantity: {{license.amountOf}}</span>
+          </li>
+        </ul>
+        <button type="button" class="btn text" (click)="goToCart()">Checkout</button>
+      </div>
+    </div>
+  </ul>
+</li>

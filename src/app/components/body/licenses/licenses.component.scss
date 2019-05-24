@@ -1,0 +1,135 @@
+#licenseHeading{
+  text-align: center;
+}
+
+#top{
+  background-color: #c4c4c5;
+}
+h4{
+  padding-left: 20px;
+}
+
+/* Card design */
+
+.card{
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  background-color: #e4e1e1;
+  width: 17em;
+  max-width: 17em;
+  height: 26em;
+  max-height: 26em;
+}
+
+.card-footer{
+  height: 15%;
+  max-height: 15%;
+  width: 100%;
+}
+
+
+.card-top{
+  height: 40%;
+  max-height: 40%;
+  max-width: 100%;
+}
+
+img{
+  max-height:100%;
+  width: 100%;
+  object-fit: fill;
+}
+
+
+.card-body{
+  /*height: 10em;*/
+  padding: 0.5em;
+}
+
+.card-title{
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.card-text{
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.price{
+  /*text-align: center;*/
+}
+
+.before {
+  color: rgba(red, 0.5);
+  text-decoration: none;
+  position: relative;
+
+  &:before {
+    content: " ";
+    display: block;
+    width: 100%;
+    border-top: 2px solid rgba(red, 0.8);
+    height: 12px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: rotate(-7deg);
+  }
+}
+
+.after {
+  color: green;
+  text-decoration: none;
+  padding: 1em 1em 1em .5em;
+}
+
+.btn{
+  display:inline-block;
+  padding:0.3em 1.2em;
+  margin:0 0.3em 0.3em 0;
+  border-radius:2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color: #ffffff;
+  background-color:#2d2d30;
+  text-align:center;
+  transition: all 0.2s;
+  box-shadow: 2px 2px 2px 2px #252323;
+}
+
+.btn:hover{
+  background-color:#5e5e5f;
+}
+
+.fa.fa-square{
+  color: green;
+}
+
+.fa.fa-square.null{
+  color: red;
+}
+
+.card-stock{
+  text-align: center;
+
+  padding-top: 1em;
+  padding-bottom: 0;
+  margin: 0;
+  bottom: 0;
+}
+
+#buy {
+  color: #FFFFFF;
+}
+
+//.card:hover{
+//  border-color: black;
+//  border-width: 1px;
+//  box-shadow: 1px 1px 1px 1px grey;
+//}

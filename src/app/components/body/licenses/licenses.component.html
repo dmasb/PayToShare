@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col" *ngFor="let license of licenses" id="products">
+
+    <div class="card shadow">
+      <!--  IMAGE -->
+      <div class="card-top">
+        <img class="card-img-top" src="{{license.imageUrl}}"
+             alt="Card image cap">
+      </div>
+
+      <!--    BODY-->
+      <div class="card-body">
+        <h5 class="card-title">{{license.title}}</h5>
+        <p class="card-text">{{license.tag.name}}</p>
+        <p class="card-text">{{license.format.name}}</p>
+        <p class="card-text ">{{license.description}}</p>
+        <p *ngIf="license.quantity == 0" class="card-stock"><i class="fa fa-square null"></i> out of stock</p>
+        <p *ngIf="license.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{license.quantity}} in
+          stock</p>
+        <div class="container ml-4">
+<!--          <app-star-review [productId]="license.id" [userId]="userId"></app-star-review>-->
+          <!--  Need to add [userId]="user.id" or something -->
+        </div>
+        
+      </div>
+      <!--      FOOTER-->
+      <div class="card-footer">
+        <p class="price text-center">
+          <span *ngIf="license.salePrice > 0" class="before">{{license.price | currency}}</span>
+          <span *ngIf="license.salePrice > 0" class="after">{{license.salePrice | currency}}</span>
+          <span *ngIf="license.salePrice === 0" >{{license.price | currency}}</span>
+          <a *ngIf="license.quantity > 0" class="btn btn-sm float-right" (click)="add(license)" id="buy">
+            Add to cart
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {TagService} from '../../../../../services/product/tag.service';
+import {Tag} from '../../../../../models/products/tag';
+import * as cloneDeep from 'lodash/cloneDeep';
 
 @Component({
   selector: 'app-update-tag',
@@ -10,8 +12,7 @@ import {TagService} from '../../../../../services/product/tag.service';
 })
 export class UpdateTagComponent implements OnInit {
 
-  @Input() id: string;
-  @Input() name: string;
+  @Input() tag: Tag;
 
   newTagNameForm = new FormGroup({
     tagID: new FormControl(''),
@@ -22,6 +23,7 @@ export class UpdateTagComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   openCenteredDialog(editTagModal) {
@@ -29,9 +31,15 @@ export class UpdateTagComponent implements OnInit {
   }
 
   editTag() {
-    this.tagService.updateTag(
-      this.newTagNameForm.controls.tagID.value,
-      this.newTagNameForm.controls.tagName.value);
+
+    if (this.newTagNameForm.controls.tagName.value) {
+      const newTag: Tag = cloneDeep(this.tag);
+      newTag.name = this.newTagNameForm.controls.tagName.value;
+
+      this.tagService.updateTag(this.tag, newTag);
+    }
+
     this.modalService.dismissAll();
+    this.newTagNameForm.reset();
   }
 }

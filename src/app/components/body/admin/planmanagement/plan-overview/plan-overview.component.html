@@ -1,3 +1,4 @@
+<app-message></app-message>
 <table class="table table-striped">
   <thead>
   <tr>
@@ -13,15 +14,15 @@
     <td>{{ plan.title}}</td>
     <td>{{ plan.speed | number}}</td>
     <td>{{ plan.price | number}}</td>
-    <div *ngFor="let license of plan.licenses; index as j">
-      <td>{{ plan.licenses[j].name}}: {{plan.licenses[j].tagRef.name}} - {{plan.licenses[j].formatRef.name }}</td>
+    <div *ngFor="let license of plan.defaultLicenses; index as j">
+      <td>{{ license }}</td>
     </div>
     <td>
       <a class="mr-3" role="button" style="cursor: pointer;" href="javascript:void(0)">
         <span uk-icon="icon: pencil"></span>
       </a>
 
-      <app-delete-plan [id]=plan.id [title]="plan.title"></app-delete-plan>
+      <app-delete-plan [plan]="plan"></app-delete-plan>
     </td>
   </tr>
   </tbody>

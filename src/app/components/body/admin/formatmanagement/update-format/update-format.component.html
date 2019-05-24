@@ -11,12 +11,12 @@
         <div class="form-group col-md-6">
           <label for="formatID">Format ID</label>
           <input type="text" class="form-control" id="formatID"
-                 formControlName="formatID" [(ngModel)]="id" disabled>
+                 formControlName="formatID" [value]="format.id" disabled>
         </div>
         <div class="form-group col-md-6">
           <label for="formatName">Format Name</label>
           <input type="text" class="form-control" id="formatName"
-                 formControlName="formatName" [(ngModel)]="name">
+                 formControlName="formatName" [value]="format.name">
         </div>
       </div>
       <div class="modal-footer">

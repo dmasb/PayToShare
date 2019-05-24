@@ -1,0 +1,31 @@
+<div class="col-9">
+  <div class="tab-content" id="v-pills-tabContent">
+    <div class="tab-pane fade show active" id="v-pills-tags" role="tabpanel" aria-labelledby="v-pills-tags-tab">
+      <app-message></app-message>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Order number</th>
+          <th scope="col">Products</th>
+          <th scope="col">Price</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let order of orders; index as i">
+          <td>{{ order.created.toDate() | date }}</td>
+          <td>{{ order.id }}</td>
+          <td>
+            <p *ngFor="let license of order.cart.licenses">{{ license.item.title }}</p>
+          </td>
+          <td>{{order.cart.totalPrice | currency}}</td>
+        </tr>
+        <tr>
+        </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
