@@ -16,6 +16,7 @@ export class ProductsComponent implements OnInit {
   private cart: Cart;
   private userId: string;
   private prodId: any;
+  currentRate = 4;
 
   constructor(private productsService: ProductsService,
               private session: UserSessionService) {
@@ -39,5 +40,9 @@ export class ProductsComponent implements OnInit {
   }
   getProdId() {
     return this.prodId;
+  }
+
+  click(product: Product, id: string) {
+    console.log(product.title + ' ' + id);
   }
 }

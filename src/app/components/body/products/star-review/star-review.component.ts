@@ -29,15 +29,15 @@ export class StarReviewComponent implements OnInit {
 
     // Should be this.stars.map(>>>>>   I added pipe(map(>>> instead for the meanwhile.
     this.avgRating = this.stars.pipe(map(arr => {
-      const ratings = arr.map(v => v.value)
-      return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'Not reviewed'
-    }))
+      const ratings = arr.map(v => v.value);
+      return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'Not reviewed';
+    }));
   }
 
 
   starHandler(value) {
-    this.starService.setStar(this.userId, this.productId, value);
-    console.log("Testing this: " + this.productId);
+    // this.starService.setStar(this.userId, this.productId, value);
+    console.log(this.productId + ' ' + this.userId);
   }
 
 }

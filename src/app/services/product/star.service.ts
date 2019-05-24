@@ -24,7 +24,7 @@ export class StarService {
 
   // Get all stars that belong to a Product
   getProductStars(productId)  {
-    const starsRef = this.afs.collection('stars', ref=> ref.where('productId', '==', productId));
+    const starsRef = this.afs.collection('stars', ref => ref.where('productId', '==', productId));
     return starsRef.valueChanges();
   }
 
