@@ -71,6 +71,7 @@ import {SearchbarComponent} from './components/navbar/searchbar/searchbar.compon
 import {SearchListComponent} from './components/body/search-list/search-list.component';
 import { MySubscriptionsComponent } from './components/body/mypage/my-subscriptions/my-subscriptions.component';
 import { CookieService } from 'ngx-cookie-service';
+import { GetkeyComponent } from './components/body/getkey/getkey.component';
 
 @NgModule({
   declarations: [
@@ -130,6 +131,7 @@ import { CookieService } from 'ngx-cookie-service';
     SearchbarComponent,
     SearchListComponent,
     MySubscriptionsComponent,
+    GetkeyComponent,
   ],
   imports: [
     BrowserModule,

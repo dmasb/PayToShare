@@ -1,5 +1,6 @@
 import {firestore} from 'firebase';
 import Timestamp = firestore.Timestamp;
+import {Md5} from "ts-md5";
 
 export interface IEmail {
   activationKey: string;
@@ -8,6 +9,7 @@ export interface IEmail {
   message: string;
   orderid: string;
   recipient: string;
+  hash;
 }
 
 export class Email implements IEmail {
@@ -18,12 +20,22 @@ export class Email implements IEmail {
   message: string;
   orderid: string;
   recipient: string;
+  hash;
 
   constructor() {
   }
 
   private getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+
+  generateHash (toHash: string){
+    return Md5.hashAsciiStr(toHash);
+  }
+
+  isValidHash(internal: string, external:string): boolean{
+    return (internal === external);
   }
 
   generateKey() {

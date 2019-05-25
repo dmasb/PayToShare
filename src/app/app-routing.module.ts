@@ -17,6 +17,7 @@ import {CheckoutComponent} from './components/body/checkout/CartOverview/checkou
 import {OrderConfirmedComponent} from './components/body/checkout/order-confirmed/order-confirmed.component';
 import {FrontPageComponent} from './components/body/front-page/front-page.component';
 import {SearchListComponent} from './components/body/search-list/search-list.component';
+import {GetkeyComponent} from "./components/body/getkey/getkey.component";
 
 
 export const routes: Routes = [
@@ -34,6 +35,7 @@ export const routes: Routes = [
   {path: 'checkout', component: CheckoutComponent},
   {path: 'order-confirmed', component: OrderConfirmedComponent},
   {path: 'search/:searchWord', component: SearchListComponent},
+  {path: 'getkey/:hash', component: GetkeyComponent},
   {path: '**', component: Error404Component},
 ];
 

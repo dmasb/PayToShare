@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
 import {LicenseSubscription, PlanSubscription} from '../../models/subscription';
 import Timestamp = firestore.Timestamp;
 import {firestore} from 'firebase/app';
+import {Md5} from 'ts-md5/dist/md5';
 
 @Injectable({
   providedIn: 'root'
@@ -26,12 +27,13 @@ export class ProcessorderService {
     email.emailsubject = 'Your Order';
     email.message = 'topkek';
     email.orderid = '123123123';
-    email.generateKey();
+    email.activationKey = email.generateKey();
+    email.created = Timestamp.now();
+    email.hash = email.generateHash(email.activationKey);
     return email;
   }
 
 
-  // TODO: Add order as parameter and replace mock Object.
   processOrder(user: User, cart: Cart) {
     if (user.email) {
       if (cart.plan) {
