@@ -14,7 +14,7 @@ export class GetkeyComponent implements OnInit {
   constructor(private route: ActivatedRoute, private afs: AngularFirestore) {
   }
 
-  activationKey: string = 'placeholder';
+  activationKey: string = 'INVALID';
   externalHash;
   internalHash;
   queryResult: IEmail;
