@@ -118,18 +118,8 @@ p {
 }
 
 img {
-  height: 1.5em;
+  height: 1.90em;
   width: auto;
-}
-
-.navbar {
-  background-color: #dcdcdd;
-  font-family: Montserrat, sans-serif;
-  margin-bottom: 0;
-  border: 0;
-  font-size: 11px !important;
-  letter-spacing: 4px;
-  opacity: 0.9;
 }
 
 
@@ -145,11 +135,13 @@ img {
 // ADMIN PANEL OPTIONS ///////////
 
 #adminpanel{
-  font-family: Montserrat, sans-serif;
+  font-family: sans-serif, Arial, Verdana;
+  font-weight: bold;
   margin-bottom: 0;
-  background-color: #2d2d30;
+  background-color: #0D191F;
   border: 0;
-  font-size: 11px !important;
+  border-bottom: 2px solid black;
+  font-size: 18px !important;
   letter-spacing: 4px;
   opacity: 0.9;
   padding: 0;
@@ -177,16 +169,6 @@ img {
 
 //////////////////////////////
 
-///// SEARCH BAR
-#search {
-  margin: 0 auto;
-  color: white;
-  background: white;
-  font-size: 20px;
-  position: absolute;
-  margin-left: 10px;
-}
-
 .add-on .input-group-btn > .btn {
   border-left-width:0;left:-2px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -202,22 +184,25 @@ img {
 
 .btn-default{  
  background: white; 
- border-top-left-radius: 0%;
- border-bottom-left-radius: 0%;
+ border-top-left-radius: 0;
+ border-bottom-left-radius: 0;
  border-color:#cccccc;
 }
 
 ////////////////
 
 .navbar {
-  font-family: Montserrat, sans-serif;
   margin-bottom: 0;
-  background-color: #2d2d30;
+  background-color: #181E24;
   border: 0;
-  font-size: 11px !important;
-  letter-spacing: 4px;
+  font-size: 18px;
   opacity: 0.9;
+  font-family: sans-serif, Arial, Verdana;
 }
+.container {
+  max-width: 1400px;
+}
+
 .navbar li a, .navbar .navbar-brand {
   color: #d5d5d5 !important;
 }
@@ -226,21 +211,21 @@ img {
 }
 .navbar-nav li.active a {
   color: #fff !important;
-  background-color: #29292c !important;
+  background-color: #181E24 !important;
 }
 .navbar-default .navbar-toggle {
   border-color: transparent;
 }
 .open .dropdown-toggle {
   color: #fff;
-  background-color: #555 !important;
+  background-color: #181E24 !important;
 }
 
 .dropdown-menu, h3, h6{
   top: 45px;
-  background-color: #29292c;
-  font-family: Montserrat, sans-serif;
-  letter-spacing: 0px;
+  background-color: #181E24;
+  font-family: sans-serif, Arial, Verdana;
+  letter-spacing: 0;
   color: #dcdcdd;
 }
 
@@ -267,9 +252,54 @@ img {
   background-color: rgba(142, 142, 142, 0.7);
 }
 .uk-offcanvas-overlay {
-  width: 0px;
+  width: 0;
   touch-action: none;
 }
+
+.btn-register {
+
+  border-color: #ff7f00;
+  width: 90px;
+}
+.btn-register:focus {
+  background-color: #ff7f00;
+  border-color: #ff7f00;
+}
+.btn-register:hover {
+  background-color: #ff7f00;
+  border-color: #ff7f00;
+}
+
+
+.btn-login:active {
+  color: #489afb;
+  background-color: #489afb;
+  border-color: #489afb;
+  width: 80px;
+}
+
+.btn-login {
+  background-color: #489afb;
+  border-color: #489afb;
+}
+.btn-login:focus {
+  background-color: #1a6ed3;
+  border-color: #1a6ed3;
+}
+.btn-login:hover {
+  background-color: #1a6ed3;
+  border-color: #1a6ed3;
+}
+.btn-login:active {
+  background-color: #1a6ed3;
+  border-color: #1a6ed3;
+}
+
+.fa-28px {
+  font-size: 28px;
+}
+
+
 
 
 

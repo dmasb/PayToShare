@@ -6,11 +6,15 @@
 
 body {
   overflow-y: scroll;
+
+  font-family: sans-serif, Arial, Verdana;
+  .container {
+    max-width: 1400px;
+  }
 }
 #content-wrap {
-  padding-bottom: 3.5em;    /* Footer height */
+  padding-bottom: 3em;    /* Footer height */
 }
-
 
 /* You can pushTag global styles to this file, and also import other style files */
 

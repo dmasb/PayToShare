@@ -1,9 +1,32 @@
+.fa-28px {
+  font-size: 28px;
+}
+li a {
+  color: #d5d5d5 !important;
+} li a:hover {
+    color: #fff !important;
+  } .navbadgeicon {  // REMOVE THIS TO REMOVE THE BLUE HIGHLIGHTER WITH AMOUNT OF ITEMS IN CART ON NAVBAR-ICON!
+        font-family: sans-serif, Arial, Verdana;
+        background-color: #489afb;
+        border-radius: 12px;
+        color: white;
+        display: inline-block;
+        font-size: 11px;
+        line-height: 1;
+        padding: 3px 7px;
+        text-align: center;
+        white-space: nowrap;
+        position: absolute;
+        top: 2px;
+        left: 20px;
+      }
+
 .dropdown-menu, h3, h6 {
   top: 45px;
-  background-color: #29292c;
-  font-family: Montserrat, sans-serif;
-  letter-spacing: 0px;
-  color: #dcdcdd;
+  background-color: #181E24;
+  font-family: sans-serif, Arial, Verdana;
+  letter-spacing: 0;
+  color: #FFFFFF;
 }
 
 .dropdown-menu li a {
@@ -37,16 +60,19 @@
 // CART LIST
 
 .badge {
-  background-color: #6394F8;
-  border-radius: 10px;
+  background-color: #489afb;
+  border-radius: 12px;
   color: white;
   display: inline-block;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1;
   padding: 3px 7px;
   text-align: center;
-  vertical-align: middle;
+
   white-space: nowrap;
+  position: absolute;
+  top: 12px;
+  left: 32px;
 }
 
 .clearfix:after {
@@ -72,7 +98,7 @@
     }
 
     .price {
-     color: mediumaquamarine;
+     color: springgreen;
     }
 
   }
@@ -89,8 +115,10 @@
     img {
       float: left;
       margin-right: 12px;
-      max-height: 75px;
-      max-width: 75px;
+      height: 40px;
+      width: 75px;
+      border: 1px solid darkgray;
+      object-fit: fill;
     }
 
     .item-name {
@@ -100,20 +128,20 @@
 
     .item-price {
       float: right;
-      color: mediumaquamarine;
+      color: springgreen;
       margin-right: 8px;
     }
 
     .item-quantity {
       float: left;
-      color: gray;
+      color: #FFFFFF;
+      font-size: 13px;
     }
   }
 
   .shopping-cart:after {
     bottom: 100%;
     left: 89%;
-    border: solid transparent;
     content: " ";
     height: 0;
     width: 0;
@@ -128,18 +156,24 @@
     position: absolute;
     bottom: 8px;
     right: 16px;
-    font-size: 18px;
-    background-color: black;
-    border-radius: 25px;
-
   }
 
-  .btn:hover {
-    background-color: #6394F8;
+  .text-orange {
+    color: #ff7f00;
+    font-size: 35px;
   }
-
-  .text {
-    color: #dcdcdd;
+  .btn-register {
+    color: #ff7f00;
+    border-color: #ff7f00;
+    width: 90px;
   }
-
+  .btn-register:focus {
+    background-color: #ff7f00;
+    border-color: #ff7f00;
+  }
+  .btn-register:hover {
+    color: #FFFFFF;
+    background-color: #ff7f00;
+    border-color: #ff7f00;
+  }
 }
