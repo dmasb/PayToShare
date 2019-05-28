@@ -13,8 +13,10 @@
 
 <!--MAIN NAVBAR, COLLAPSEABLE-->
 <nav class="navbar navbar-expand-lg navbar-light" id="header">
+
+  <div class="container">
   <!--  BRAND ICON -->
-  <a class="navbar-brand" routerLink='/'><img src="assets/images/p2s.png" alt=""></a>
+  <a class="navbar-brand" routerLink='/'><img src="assets/images/pay2sharelogocom.png" alt=""></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
           aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -24,10 +26,10 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/collection">COLLECTION<span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/collection">Collection<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a  class="nav-link" routerLink="/plan">OUR PLANS</a>
+        <a  class="nav-link" routerLink="/plan">Plans</a>
       </li>
       
     </ul>
@@ -40,23 +42,26 @@
       <ul class="navbar-nav">
 
         <!--        ADMIN ITEM-->
-        <li class="nav-item" *ngIf="isAdmin"> 
-          <a uk-icon="icon: cog" class="nav-link"
+        <li class="nav-item mr-2" *ngIf="isLoggedIn && isAdmin">
+          <a class="nav-link fa fa-28px fa-gears"
              data-toggle="collapse" data-target="#toggleAdmin" aria-controls="toggleAdmin" aria-expanded="false"
              routerLink="/"></a>
         </li>
         <!--        CART ITEM-->
         <li class="nav-item">
 
-          <app-cartdropdown></app-cartdropdown>
 
           <!--        LOGIN DROPDOWN-->
+        <li *ngIf="!isLoggedIn">
+          <a class="btn btn-register nav-link" role="button" routerLink="/register">Register</a>
+        </li>
+
         <li class="nav-item dropdown" *ngIf="!isLoggedIn">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+          <a class="ml-1 btn btn-login nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="messageService.clear()">
             Login
           </a>
-          <div class="dropdown-menu dropdown-menu-right border border-secondary">
+          <div class="dropdown-menu border border-secondary">
             <form class="px-4 py-3" [formGroup]="profileForm" (ngSubmit)="onSubmit()" id="login">
               <h3>Sign in</h3>
               <app-message></app-message>
@@ -94,22 +99,25 @@
         </li>
 
         <!--        USER DROPDOWN-->
-        <li class="nav-item" *ngIf="isLoggedIn">
-          <a uk-icon="icon: user" class="nav-link dropdown-toggle" role="button"
+        <li class="nav-item dropdown mr-2" *ngIf="isLoggedIn">
+          <a class="nav-link fa fa-28px fa-user" role="button"
              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           </a>
           <!--          ADMIN PANEL LINK-->
-          <div class="dropdown-menu dropdown-menu-right border border-secondary" id="dropdown">
-            <a class="nav-link" routerLink="/profile">Profile</a>
-            <a class="nav-link" routerLink="/" (click)="onLogoutClick()">Logout</a>
+          <div class="dropdown-menu border border-secondary mr-2" id="dropdown">
+            <a class="nav-link" routerLink="/profile"><i class="fa fa-lg fa-id-badge mr-3"></i>Profile</a>
+            <a class="nav-link" routerLink="/" (click)="onLogoutClick()"><i class="fa fa-lg fa-power-off mr-3"></i>Logout</a>
           </div>
-        <li *ngIf="!isLoggedIn">
-          <a class="nav-link" routerLink="/register"><i class="fa fa-user-plus fa-lg" aria-hidden="true"></i></a>
+        <li class="nav-item">
+          <app-cartdropdown *ngIf="isLoggedIn" ></app-cartdropdown>
         </li>
       </ul>
     </div>
   </div>
+  </div>
+
 </nav>
+
 <!-- This is the off-canvas -->
 <!--<div class="uk-offcanvas-content">-->
 <div id="sidebar" uk-offcanvas="overlay: true">
@@ -119,4 +127,5 @@
 
   </div>
 </div>
+
 <!--</div>-->
