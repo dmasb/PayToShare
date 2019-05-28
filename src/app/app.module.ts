@@ -10,7 +10,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {FeaturesComponent} from './components/body/features/features.component';
 import {WeeklydealsComponent} from './components/body/weeklydeals/weeklydeals.component';
-import {PricingComponent} from './components/body/pricing/pricing.component';
 import {MypageComponent} from './components/body/mypage/mypage.component';
 import {RegisterComponent} from './components/body/register/register.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
@@ -72,13 +71,13 @@ import {SearchListComponent} from './components/body/search-list/search-list.com
 import { MySubscriptionsComponent } from './components/body/mypage/my-subscriptions/my-subscriptions.component';
 import { CookieService } from 'ngx-cookie-service';
 import { GetkeyComponent } from './components/body/getkey/getkey.component';
+import { ProductpreviewComponent } from './components/body/productpreview/productpreview.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     AppComponent,
     RegisterComponent,
-    PricingComponent,
     FeaturesComponent,
     WeeklydealsComponent,
     MypageComponent,
@@ -132,6 +131,7 @@ import { GetkeyComponent } from './components/body/getkey/getkey.component';
     SearchListComponent,
     MySubscriptionsComponent,
     GetkeyComponent,
+    ProductpreviewComponent,
   ],
   imports: [
     BrowserModule,

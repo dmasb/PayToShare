@@ -4,7 +4,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from './services/authentication/auth-guard.service';
 import {FeaturesComponent} from './components/body/features/features.component';
 import {WeeklydealsComponent} from './components/body/weeklydeals/weeklydeals.component';
-import {PricingComponent} from './components/body/pricing/pricing.component';
 import {MypageOverviewComponent} from './components/body/mypage/mypage-overview/mypage-overview.component';
 import {RegisterComponent} from './components/body/register/register.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
@@ -25,7 +24,6 @@ export const routes: Routes = [
   {path: 'collection', component: CollectionComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
   {path: 'profile', component: MypageOverviewComponent, canActivate: [AuthGuard]},
-  {path: 'pricing', component: PricingComponent},
   {path: 'features', component: FeaturesComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'logout', component: RegisterComponent},
