@@ -1,23 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="col ml-3">
-  <label for="sortSales">Sort by:</label><select id="sortSales" class="form-control" (change)="sort()">
-  <option>Ascending</option>
-  <option>Descending</option>
-</select>
+      <label for="sortSales">Sort by:</label><select id="sortSales" class="form-control" (change)="sort()">
+      <option>Ascending</option>
+      <option>Descending</option>
+    </select>
     </div>
     <div class="col-10"></div>
   </div>
 </div>
 <div class="row">
-  <div class="col" *ngFor="let product of products; let i=index" id="products">
 
+  <div class="col" *ngFor="let product of products; let i=index" id="products">
     <div class="card shadow">
       <!--  IMAGE -->
       <div class="card-top">
-        <img class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="Card image cap">
+        <img (click)="openModal(product, modal)"
+             class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="Card image cap">
       </div>
-
       <!--    BODY-->
       <div class="card-body">
         <h5 class="card-title">{{product.title}}</h5>
@@ -56,3 +56,8 @@
     </div>
   </div>
 </div>
+<ng-template #modal let-modal>
+  <span id="close" (click)="modal.close()" class="close">&times;</span>
+  <img id="modalImg" src="{{this.selectedProduct.imageUrl}}" alt="{{this.selectedProduct.title}}">
+  <span id="caption">{{this.selectedProduct.description}}</span>
+</ng-template>
