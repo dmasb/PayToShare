@@ -1,3 +1,21 @@
+#salebg{
+  height: 10em;
+  background-image: url("../../../../assets/images/salestext.png");
+  background-size: 80em 100%;
+  background-position: center;
+  background-position-y: top;
+}
+
+#salebg h1, h3 {
+  color: #FFFFFF;
+}
+
+#salescontent{
+  margin-top: 0;
+  padding-top: 0;
+}
+
+
 #licenseHeading{
   text-align: center;
 }
@@ -131,14 +149,6 @@ img{
 #buy2 {
   color: #FFFFFF;
 }
-
-//.card:hover{
-//  border-color: black;
-//  border-width: 1px;
-//  box-shadow: 1px 1px 1px 1px grey;
-//}
-
-
 
 .alert {
   padding: 20px;

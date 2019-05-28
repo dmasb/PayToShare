@@ -2,9 +2,14 @@
   <span class="alert">Item added to cart</span>
 </div>
 <div class="col-sm-12 d-flex justify-content-center" *ngFor="let sale of planSale">
-  <div class="row mt-5">
-    <h1 class="col-sm-12 text-center">{{sale.name}} {{sale.discount}}%</h1>
-    <h3 class="col-sm-12 text-center">{{getDaysLeft(sale.ends)}}</h3>
+  <div class="row mt-2">
+    <div class="col-sm-12 text-center" id="salebg">
+      <h1>{{sale.name}} {{sale.discount}}%</h1>
+      <h3>{{getDaysLeft(sale.ends)}}</h3>
+    </div>
+
+
+
     <div class="col" id="products" *ngFor="let plan of unpackPlans(sale.saleObjects)">
       <div class="card">
         <!--  IMAGE -->
