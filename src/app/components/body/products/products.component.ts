@@ -5,6 +5,7 @@ import {UserSessionService} from '../../../services/user-session.service';
 import {Cart} from '../../../models/products/cart';
 import {StarService} from '../../../services/product/star.service';
 import {Rating} from '../../../models/rating';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-products',
@@ -19,10 +20,12 @@ export class ProductsComponent implements OnInit {
   private userId: string;
   private prodId: any;
   private ratings: Rating[];
+  private selectedProduct: Product = null;
 
   constructor(private productsService: ProductsService,
               private session: UserSessionService,
-              private starService: StarService) {
+              private starService: StarService,
+              private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -35,6 +38,10 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  openModal(product: Product, modal){
+    this.modalService.open(modal)
+    this.selectedProduct = product;
+  }
   consLog(productId) {
     this.prodId = productId;
   }

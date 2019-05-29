@@ -3,7 +3,7 @@
 }
 
 #top{
-  background-color: #c4c4c5;
+  background-color: #FFFFFF;
 }
 h4{
   padding-left: 20px;
@@ -12,12 +12,10 @@ h4{
 /* Card design */
 
 .card{
-  margin: auto;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  background-color: #e4e1e1;
+  margin: 1em auto;
+  background-color: #FFFFFF;
+  border: 0.5px solid darkgray;
   width: 17em;
-  max-width: 17em;
   height: 30em;
   max-height: 30em;
 }
@@ -36,8 +34,8 @@ h4{
 }
 
 img{
-  max-height:100%;
-  width: 100%;
+  max-height: 9em;
+  width: 17em;
   object-fit: fill;
 }
 
@@ -91,20 +89,16 @@ img{
   display:inline-block;
   padding:0.3em 1.2em;
   margin:0 0.3em 0.3em 0;
-  border-radius:2em;
-  box-sizing: border-box;
-  text-decoration:none;
-  font-family:'Roboto',sans-serif;
-  font-weight:300;
-  color: #ffffff;
-  background-color:#2d2d30;
+  border-radius:5px;
+  font-family: sans-serif, Arial, Verdana;
+  color: #ff7f00;
+  background-color: #181E24;
   text-align:center;
   transition: all 0.2s;
-  box-shadow: 2px 2px 2px 2px #252323;
 }
 
 .btn:hover{
-  background-color:#5e5e5f;
+  background-color:#ff7f00;
 }
 
 .fa.fa-square{
@@ -117,7 +111,6 @@ img{
 
 .card-stock{
   text-align: center;
- 
   padding-top: 1em;
   padding-bottom: 0;
   margin: 0;
@@ -158,4 +151,60 @@ img{
   margin-top: 40px;
 }
 
+.container-sale {
+  margin-top: 2em;
+  background-image: url(../../../../assets/images/salesbox2-2.png);
+  background-color: #181E24;
+  object-fit: fill;
+  width:1175px;
+  //width: 574px;
+  border-bottom: 5px solid #ff7f00;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #FFFFFF;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
 
+.text-maxchars {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 25px;
+}
+
+.sale {
+  position: relative;
+  display: inline-block;
+  background: orange;
+  color: white;
+  height: 2.5rem;
+  width: 2.5rem;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 2.5rem;
+  bottom: 172px;
+  left: 125px;
+  transform: rotate(-20deg);
+  animation: beat 1s ease infinite alternate;
+  &:before,
+  &:after {
+    content:"";
+    position: absolute;
+    background: inherit;
+    height: inherit;
+    width: inherit;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transform: rotate(30deg);
+  }
+  &:after {
+    transform: rotate(60deg);
+  }
+}
+
+@keyframes beat {
+  from {	transform: rotate(-20deg) scale(1); }
+  to {	transform: rotate(-20deg) scale(1.1); }
+}

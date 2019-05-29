@@ -1,6 +1,15 @@
+.fullscreen{
+  background-image: url(../../../../assets/images/bg7.png); // TAKEN WITHOUT CREDIT GIVEN LELELE
+  padding-top: 20px;
+  padding-bottom: 30px;
+  height: 100vh;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
 .container {
-  margin-top: 60px;
+  margin-top: 120px;
 }
 
 .card {
@@ -34,3 +43,27 @@
   z-index: 1;
 }
 */
+
+
+//Laptop and desktop difference, hopefully!
+@media screen and (max-width: 1400px) {
+  .container {
+    margin-left: 7.3%;
+  }
+  .col {
+    padding-right: 0;
+  }
+}
+@media screen and (min-width: 1401px) and (max-width: 1900px){
+  .container {
+    margin-left:11.9%;
+  }.col {
+  padding-right: 0;
+     }
+}
+@media screen and (min-width: 1900px) {
+  .container{
+    margin-left: 18%;
+  }
+  
+}

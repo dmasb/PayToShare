@@ -10,7 +10,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {FeaturesComponent} from './components/body/features/features.component';
 import {WeeklydealsComponent} from './components/body/weeklydeals/weeklydeals.component';
-import {PricingComponent} from './components/body/pricing/pricing.component';
 import {MypageComponent} from './components/body/mypage/mypage.component';
 import {RegisterComponent} from './components/body/register/register.component';
 import {PasswordrecoveryComponent} from './components/body/passwordrecovery/passwordrecovery.component';
@@ -78,7 +77,6 @@ import { GetkeyComponent } from './components/body/getkey/getkey.component';
     NavbarComponent,
     AppComponent,
     RegisterComponent,
-    PricingComponent,
     FeaturesComponent,
     WeeklydealsComponent,
     MypageComponent,
