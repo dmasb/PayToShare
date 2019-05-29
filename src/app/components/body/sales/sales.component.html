@@ -1,36 +1,34 @@
 <div class="msg" id="myDiv">
   <span class="alert">Item added to cart</span>
 </div>
-<div class="col-sm-12 d-flex justify-content-center" *ngFor="let sale of planSale">
-  <div class="row mt-2">
-    <div class="col-sm-12 text-center" id="salebg">
-      <h1>{{sale.name}} {{sale.discount}}%</h1>
-      <h3>{{getDaysLeft(sale.ends)}}</h3>
+<div class="row d-flex justify-content-center" *ngFor="let sale of planSale">
+  <div class="container-sale pb-2">
+    <div class="row">
+      <h1 class="col-12 text-center text-white">{{sale.name}} {{sale.discount}}%</h1>
+      <h3 class="col-12 text-center text-white">{{getDaysLeft(sale.ends)}}</h3>
     </div>
-
-
-
+  </div>
+  <div class="row">
     <div class="col" id="products" *ngFor="let plan of unpackPlans(sale.saleObjects)">
       <div class="card">
-        <!--  IMAGE -->
         <div class="card-top">
           <img src="{{plan.imageUrl}}" alt="Card image cap">
         </div>
-
-        <!--    BODY-->
         <div class="card-body">
-          <h5 class="card-title mb-2">{{plan.title}}</h5>
-          <p class="card-text">
-            {{plan.speed | number}} mb/s
-          <p class="card-text">
+          <span class="sale">{{1 - plan.salePrice / plan.price | percent }}</span>
+          <h1 class="card-title mb-2">{{plan.title}}</h1>
+          <h5 class="card-text mb-2">
+            <span class="font-weight-italic">SPEED:</span> <br> <h6>{{plan.speed | number}} mb/s</h6>
+          </h5>
+          <h6 class="card-text text-maxchars">
           <span *ngFor="let license of plan.defaultLicenses">
             {{license}}
-          </span></p>
-          <p class="card-text">
+          </span></h6>
+          <h6 class="card-text">
           <span *ngFor="let license of plan.licenses">
             <h6>{{license.title}}</h6>
-          </span></p>
-          <p class="card-text ">{{plan.description}}</p>
+          </span></h6>
+          <h6 class="card-text text-maxchars">{{plan.description}}</h6>
           <br>
           <span>Sale: {{sale.name}}</span>
           <br>
@@ -66,7 +64,7 @@
           <h5 class="card-title">{{license.title}}</h5>
           <p class="card-text">{{license.tag.name}}</p>
           <p class="card-text">{{license.format.name}}</p>
-          <p class="card-text ">{{license.description}}</p>
+          <p class="card-text">{{license.description}}</p>
           <br>
           <span>Sale: {{sale.name}}</span>
           <br>

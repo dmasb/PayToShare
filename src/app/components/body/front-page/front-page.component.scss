@@ -21,13 +21,13 @@ col-sm-2 {
 }
 
 .carousel-inner > .carousel-item > img {
-  width: 100%;
+  width: 1400px;
   height: 420px;
   object-fit: contain;
 }
 
-container-fluid {
-  text-align: center;
+container {
+  max-width: 1400px;
 }
 
 #deals{
