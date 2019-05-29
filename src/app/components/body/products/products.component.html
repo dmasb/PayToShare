@@ -10,16 +10,16 @@
   </div>
 </div>
 <div class="row">
-
   <div class="col" *ngFor="let product of products; let i=index" id="products">
     <div class="card shadow">
       <!--  IMAGE -->
       <div class="card-top">
-        <video *ngIf="isVideoFormat(product); else displayImg" (click)="openModal(product, modal)" src="{{product.imageUrl}}"></video>
-          <ng-template #displayImg>
-            <img (click)="openModal(product, modal)"
-                 class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="Card image cap">
-          </ng-template>
+        <video *ngIf="isVideoFormat(product); else displayImg" (click)="openModal(product, modal)"
+               src="{{product.imageUrl}}"></video>
+        <ng-template #displayImg>
+          <img (click)="openModal(product, modal)"
+               class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="Card image cap">
+        </ng-template>
       </div>
       <!--    BODY-->
       <div class="card-body">
@@ -59,7 +59,8 @@
   </div>
 </div>
 <ng-template #modal let-modal>
-  <video class="modalImg"*ngIf="isVideoFormat(selectedProduct); else img" autoplay controls src="{{this.selectedProduct.imageUrl}}"></video>
+  <video class="modalImg" *ngIf="isVideoFormat(selectedProduct); else img" autoplay controls
+         src="{{this.selectedProduct.imageUrl}}"></video>
   <ng-template #img>
     <img class="modalImg" src="{{this.selectedProduct.imageUrl}}" alt="{{this.selectedProduct.title}}">
   </ng-template>
