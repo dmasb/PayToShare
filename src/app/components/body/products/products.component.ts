@@ -38,8 +38,8 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  showVideo(){
-    if (this.selectedProduct.format.name === 'MP4') return true;
+  isVideoFormat(product: Product){
+    if (product.format.name === 'MP4') return true;
   }
 
   openModal(product: Product, modal){

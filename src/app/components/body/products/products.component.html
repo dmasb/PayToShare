@@ -15,7 +15,7 @@
     <div class="card shadow">
       <!--  IMAGE -->
       <div class="card-top">
-        <video *ngIf="product.format.name === 'MP4'; else displayImg" (click)="openModal(product, modal)" src="{{product.imageUrl}}"></video>
+        <video *ngIf="isVideoFormat(product); else displayImg" (click)="openModal(product, modal)" src="{{product.imageUrl}}"></video>
           <ng-template #displayImg>
             <img (click)="openModal(product, modal)"
                  class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="Card image cap">
@@ -59,7 +59,7 @@
   </div>
 </div>
 <ng-template #modal let-modal>
-  <video *ngIf="showVideo(); else img" autoplay controls src="{{this.selectedProduct.imageUrl}}"></video>
+  <video *ngIf="isVideoFormat(selectedProduct); else img" autoplay controls src="{{this.selectedProduct.imageUrl}}"></video>
   <ng-template #img>
     <img id="modalImg" src="{{this.selectedProduct.imageUrl}}" alt="{{this.selectedProduct.title}}">
   </ng-template>
