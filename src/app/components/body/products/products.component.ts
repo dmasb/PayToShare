@@ -62,12 +62,12 @@ export class ProductsComponent implements OnInit {
     const selectedOption = (document.getElementById('sortSales') as HTMLSelectElement);
 
     switch (selectedOption.value) {
-      case 'Asc': {
+      case 'Ascending': {
         console.log('asc');
         this.products.sort((a, b) => (this.getObjectRating(a.id) > this.getObjectRating(b.id) ? -1 : 1));
         break;
       }
-      case 'Desc': {
+      case 'Descending': {
         console.log('Desc');
         this.products.sort((a, b) => (this.getObjectRating(a.id) < this.getObjectRating(b.id) ? -1 : 1));
         break;
