@@ -1,16 +1,19 @@
+#licenses {
+  background-image: url(../../../../assets/images/bg7.png);
+}
+
 #licenseHeading{
   text-align: center;
 }
 
 #top{
-  background-color: #c4c4c5;
+  background-color: #e4e1e1;
 }
 h4{
   padding-left: 20px;
 }
 
 /* Card design */
-
 .card{
   margin: auto;
   margin-top: 1em;
@@ -41,9 +44,7 @@ img{
   object-fit: fill;
 }
 
-
 .card-body{
-  /*height: 10em;*/
   padding: 0.5em;
 }
 
@@ -57,10 +58,6 @@ img{
   text-align: center;
   padding: 0;
   margin: 0;
-}
-
-.price{
-  /*text-align: center;*/
 }
 
 .before {
@@ -127,9 +124,3 @@ img{
 #buy {
   color: #FFFFFF;
 }
-
-//.card:hover{
-//  border-color: black;
-//  border-width: 1px;
-//  box-shadow: 1px 1px 1px 1px grey;
-//}
