@@ -38,6 +38,10 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  isVideoFormat(product: Product){
+    if (product.format.name === 'MP4') return true;
+  }
+
   openModal(product: Product, modal){
     this.modalService.open(modal)
     this.selectedProduct = product;
@@ -60,15 +64,12 @@ export class ProductsComponent implements OnInit {
 
   sort() {
     const selectedOption = (document.getElementById('sortSales') as HTMLSelectElement);
-
     switch (selectedOption.value) {
-      case 'Asc': {
-        console.log('asc');
+      case 'Ascending': {
         this.products.sort((a, b) => (this.getObjectRating(a.id) > this.getObjectRating(b.id) ? -1 : 1));
         break;
       }
-      case 'Desc': {
-        console.log('Desc');
+      case 'Descending': {
         this.products.sort((a, b) => (this.getObjectRating(a.id) < this.getObjectRating(b.id) ? -1 : 1));
         break;
       }

@@ -15,8 +15,11 @@
     <div class="card shadow">
       <!--  IMAGE -->
       <div class="card-top">
-        <img (click)="openModal(product, modal)"
-             class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="Card image cap">
+        <video *ngIf="isVideoFormat(product); else displayImg" (click)="openModal(product, modal)" src="{{product.imageUrl}}"></video>
+          <ng-template #displayImg>
+            <img (click)="openModal(product, modal)"
+                 class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="Card image cap">
+          </ng-template>
       </div>
       <!--    BODY-->
       <div class="card-body">
@@ -56,9 +59,10 @@
   </div>
 </div>
 <ng-template #modal let-modal>
-  <!--  TODO:: FIX THIS JAZZZ-->
-  <!--  <img id="modalImg" src="{{this.selectedProduct.imageUrl}}" alt="{{this.selectedProduct.title}}">-->
-  <video autoplay controls src="../../../../assets/mp4/dejavu.mp4"></video>
+  <video class="modalImg"*ngIf="isVideoFormat(selectedProduct); else img" autoplay controls src="{{this.selectedProduct.imageUrl}}"></video>
+  <ng-template #img>
+    <img class="modalImg" src="{{this.selectedProduct.imageUrl}}" alt="{{this.selectedProduct.title}}">
+  </ng-template>
   <span id="close" (click)="modal.close()" class="close">&times;</span>
   <span id="caption">{{this.selectedProduct.description}}</span>
 </ng-template>

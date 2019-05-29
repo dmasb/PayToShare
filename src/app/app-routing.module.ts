@@ -17,6 +17,7 @@ import {OrderConfirmedComponent} from './components/body/checkout/order-confirme
 import {FrontPageComponent} from './components/body/front-page/front-page.component';
 import {SearchListComponent} from './components/body/search-list/search-list.component';
 import {GetkeyComponent} from "./components/body/getkey/getkey.component";
+import {LicensesComponent} from "./components/body/licenses/licenses.component";
 
 
 export const routes: Routes = [
@@ -31,6 +32,7 @@ export const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuardService]},
   {path: 'plan', component: PlanComponent},
   {path: 'checkout', component: CheckoutComponent},
+  {path: 'licenses', component: LicensesComponent},
   {path: 'order-confirmed', component: OrderConfirmedComponent},
   {path: 'search/:searchWord', component: SearchListComponent},
   {path: 'getkey/:hash', component: GetkeyComponent},
