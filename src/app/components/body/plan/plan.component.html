@@ -1,138 +1,65 @@
 <div class="container-fluid">
-
-  <div class="row mb-5" id="top">
-    <div class="col text-center">
-      <h1>Our Plans</h1>
-      <h4>Share what ever when ever</h4>
-      <p class="mt-1">Pick the plan that suits your sharing needs</p>
-      <p></p>
+  <div class="row d-flex justify-content-center">
+    <div class="container-plan pt-2">
+      <div class="row text-center">
+        <div class="col">
+          <h1 class="text-white">Our Plans</h1>
+          <h4 class="text-white">Share what ever when ever</h4>
+          <p class="mt-1">Pick the plan that suits your sharing needs</p>
+        </div>
+      </div>
     </div>
   </div>
-
 
   <div class="container ">
     <!--Card one-->
     <div class="row">
-      <div class="col-lg-3 col-md-6" *ngFor="let plan of plans">
+      <div class="col-xl-3 col-lg-4 col-md-6" *ngFor="let plan of plans">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <div class="text-center body-top">
-              <img src="{{plan.imageUrl}}" alt="logo" class="img-fluid text-center w-50 mt-2">
-              <h3>{{plan.title}}</h3>
+              <img src="{{plan.imageUrl}}" alt="logo">
+              <h2 class="title">{{plan.title}}</h2>
+              <h5 class="text-muted">< {{plan.level.name}} ></h5>
+              <p class="text-center text-muted mb-0 pb-0">{{plan.description}}</p>
             </div>
             <hr>
-            <div class="body-middle">
-              <ul class="fa-ul">
-                <li><span class="fa-li"><i class="fa fa-check"></i></span>Level: {{plan.level.name}}</li>
-                <li><span class="fa-li"><i class="fa fa-check"></i></span>Speed: {{plan.speed | number}} mb/s</li>
-              </ul>
-              <h5>Includes:</h5>
-              <p class="text-center p-2">
-            <span *ngFor="let license of plan.defaultLicenses">
-                {{license}}
-            </span>
-              </p>
-
+            <h5 class="text-center">{{plan.speed | number}} mb/s</h5>
+            <h6 class="text-center">Incl. <span class="badge badge-dark">{{plan.defaultLicenses.length}}</span> Licenses</h6>
+            <div class="no-space">
+              <div class="no-space2">
+                <span class="sale pb-2 mb-0 pt-0 mt-0 " *ngIf="plan.salePrice > 0">{{1 - plan.salePrice / plan.price | percent }}</span>
+              </div>
             </div>
-            <div class="body-desc">
-              <p class="text-center">{{plan.description}}</p>
+            <div class="container border-top border-bottom border-muted mb-2">
+              <div class="row">
+                <div class="col-3 text-license-list" *ngFor="let license of plan.defaultLicenses">{{license}}</div>
+              </div>
             </div>
-            <div class="text-center" *ngIf="plan.salePrice > 0">
-              <span class="before">{{plan.price | currency}}</span>
-              <span class="after">{{plan.salePrice | currency}}</span>
+          <div class="row mt-auto" *ngIf="plan.salePrice > 0">
+            <div class="col-8 move-sale-price">
+              <h6 class="old-price text-muted">OLD: {{plan.price | currency}}<br></h6>
+              <h6>NOW: <span class="font-weight-bold">{{plan.salePrice | currency}}</span></h6>
             </div>
-            <div *ngIf="plan.salePrice === 0">
-              <h6 class="card-price text-center">{{plan.price | currency}}<span class="period">/month</span></h6>
-            </div>
-          </div>
-          <!--Footer-->
-          <div class="card-footer text-center">
-            <p class="price text-center">
-              <a class="btn btn-sm" id="buy" (click)="addPlan(plan)">
-                Pick
+            <div class="col">
+              <a class="btn btn-block btn-outline-dark btn-plan mb-1" role="button"(click)="addPlan(plan)">
+                BUY
               </a>
-            </p>
-          </div>
-        </div>
-      </div>
-      <!--Card two
-      <div class="col-lg-3 col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="text-center">
-              <img src="assets/images/p2s.png" alt="logo" class="img-fluid text-center w-50 mt-2">
-              <h3>Big</h3>
             </div>
-            <hr>
-            <ul class="fa-ul">
-              <li><span class="fa-li"><i class="fa fa-check"></i></span>Five formats</li>
-              <li><span class="fa-li"><i class="fa fa-check"></i></span>Right to buy products</li>
-              <li><span class="fa-li"><i class="fa fa-check"></i></span>In EU</li>
-              <li><span class="fa-li"><i class="fa fa-check"></i></span>Speed 1 Gb/s</li>
-              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Every format</li>
-              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>All products</li>
-              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Top speed</li>
-            </ul>
-            <h6 class="card-price text-center">$299<span class="period">/year</span></h6>
           </div>
-          &lt;!&ndash;Footer&ndash;&gt;
-          <div class="card-footer text-center">
-            <div class="btn">Pick</div>
-          </div>
-        </div>
-      </div>
-      &lt;!&ndash;Card three&ndash;&gt;
-      <div class="col-lg-3 col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="text-center">
-              <img src="assets/images/p2s.png" alt="logo" class="img-fluid text-center w-50 mt-2">
-              <h3>Bas+</h3>
+            <div class="row mt-auto" *ngIf="plan.salePrice === 0">
+              <div class="col-8">
+                <h5 class="move-price font-weight-bold">{{plan.salePrice | currency}}</h5>
+              </div>
+              <div class="col">
+                <a class="btn btn-block btn-outline-dark btn-plan mb-1" role="button" (click)="addPlan(plan)">
+                  BUY
+                </a>
+              </div>
             </div>
-            <hr>
-            <ul class="fa-ul">
-              <li><span class="fa-li"><i class="fa fa-check"></i></span>Three formats</li>
-              <li><span class="fa-li"><i class="fa fa-check"></i></span>Right to buy products</li>
-              <li><span class="fa-li"><i class="fa fa-check"></i></span>In EU</li>
-              <li><span class="fa-li"><i class="fa fa-check"></i></span>Speed 500 Mb/s</li>
-              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Every format</li>
-              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>All products</li>
-              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Top speed</li>
-            </ul>
-            <h6 class="card-price text-center">$199<span class="period">/year</span></h6>
-          </div>
-          &lt;!&ndash;Footer&ndash;&gt;
-          <div class="card-footer text-center">
-            <div class="btn">Pick</div>
-          </div>
-        </div>
       </div>
-      &lt;!&ndash;Card four&ndash;&gt;
-      <div class="col-lg-3 col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="text-center">
-              <img src="assets/images/p2s.png" alt="logo" class="img-fluid text-center w-50 mt-2">
-              <h3>Bas</h3>
-            </div>
-            <hr>
-            <ul class="fa-ul">
-              <li><span class="fa-li"><i class="fa fa-check"></i></span>Two formats</li>
-              <li><span class="fa-li"><i class="fa fa-check"></i></span>Rights to buy products</li>
-              <li><span class="fa-li"><i class="fa fa-check"></i></span>In EU</li>
-              <li><span class="fa-li"><i class="fa fa-check"></i></span>Speed 100 Mb/s</li>
-              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Every format</li>
-              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>All products</li>
-              <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Top Speed</li>
-            </ul>
-            <h6 class="card-price text-center">$99<span class="period">/year</span></h6>
-          </div>
-          &lt;!&ndash;Footer&ndash;&gt;
-          <div class="card-footer text-center">
-            <div class="btn">Pick</div>
-          </div>
-        </div>
-      </div>-->
+    </div>
     </div>
   </div>
+</div>
 </div>
