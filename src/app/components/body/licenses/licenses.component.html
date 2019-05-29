@@ -23,18 +23,21 @@
         <p *ngIf="license.quantity != 0" class="card-stock"><i class="fa fa-square"></i> {{license.quantity}} in
           stock</p>
         <div class="container ml-4">
-<!--          <app-star-review [productId]="license.id" [userId]="userId"></app-star-review>-->
+          <!--          <app-star-review [productId]="license.id" [userId]="userId"></app-star-review>-->
           <!--  Need to add [userId]="user.id" or something -->
         </div>
-        
+
       </div>
       <!--      FOOTER-->
       <div class="card-footer">
         <p class="price text-center">
           <span *ngIf="license.salePrice > 0" class="before">{{license.price | currency}}</span>
           <span *ngIf="license.salePrice > 0" class="after">{{license.salePrice | currency}}</span>
-          <span *ngIf="license.salePrice === 0" >{{license.price | currency}}</span>
-          <a *ngIf="license.quantity > 0" class="btn btn-sm float-right" (click)="add(license)" id="buy">
+          <span *ngIf="license.salePrice === 0">{{license.price | currency}}</span>
+          <a *ngIf="license.quantity > 0 && cart" class="btn btn-sm float-right" (click)="add(license)" id="buy1">
+            Add to cart
+          </a>
+          <a *ngIf="license.quantity > 0 && !cart" routerLink="/register" class="btn btn-sm float-right" id="buy2">
             Add to cart
           </a>
         </p>

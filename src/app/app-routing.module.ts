@@ -16,8 +16,8 @@ import {CheckoutComponent} from './components/body/checkout/CartOverview/checkou
 import {OrderConfirmedComponent} from './components/body/checkout/order-confirmed/order-confirmed.component';
 import {FrontPageComponent} from './components/body/front-page/front-page.component';
 import {SearchListComponent} from './components/body/search-list/search-list.component';
-import {GetkeyComponent} from "./components/body/getkey/getkey.component";
-import {LicensesComponent} from "./components/body/licenses/licenses.component";
+import {GetkeyComponent} from './components/body/getkey/getkey.component';
+import {LicensesComponent} from './components/body/licenses/licenses.component';
 
 
 export const routes: Routes = [
@@ -27,13 +27,13 @@ export const routes: Routes = [
   {path: 'profile', component: MypageOverviewComponent, canActivate: [AuthGuard]},
   {path: 'features', component: FeaturesComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'logout', component: RegisterComponent},
+  {path: 'logout', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: 'recover', component: PasswordrecoveryComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuardService]},
   {path: 'plan', component: PlanComponent},
-  {path: 'checkout', component: CheckoutComponent},
+  {path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
   {path: 'licenses', component: LicensesComponent},
-  {path: 'order-confirmed', component: OrderConfirmedComponent},
+  {path: 'order-confirmed', component: OrderConfirmedComponent, canActivate: [AuthGuard]},
   {path: 'search/:searchWord', component: SearchListComponent},
   {path: 'getkey/:hash', component: GetkeyComponent},
   {path: '**', component: Error404Component},

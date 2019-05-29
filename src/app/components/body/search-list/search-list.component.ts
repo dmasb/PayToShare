@@ -23,10 +23,11 @@ export class SearchListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cart = new Cart();
     this.licenseService.getLicenses().subscribe(licenses => this.licenses = licenses);
     this.userSessionService.getUserDoc().subscribe(user => {
-      this.cart = Cart.clone(user.cart);
+      if (user) {
+        this.cart = Cart.clone(user.cart);
+      }
     });
   }
 

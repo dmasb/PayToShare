@@ -4,7 +4,6 @@ import {Plan} from '../../../models/products/plan';
 import {SalesService} from '../../../services/product/sales.service';
 import {Sale} from '../../../models/products/sale';
 import {SaleType} from '../../../models/saleType';
-import {Product} from '../../../models/products/product';
 
 @Component({
   selector: 'app-collection',
@@ -29,11 +28,4 @@ export class CollectionComponent implements OnInit {
 
   }
 
-  unpackProducts(products: any[]): Product[] {
-    return products as Product[];
-  }
-
-  unpackPlans(plans: any[]): Plan[] {
-    return plans as Plan[];
-  }
 }

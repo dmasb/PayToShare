@@ -5,7 +5,7 @@ import {UserSessionService} from '../../../services/user-session.service';
 import {Cart} from '../../../models/products/cart';
 import {StarService} from '../../../services/product/star.service';
 import {Rating} from '../../../models/rating';
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-products',
@@ -33,19 +33,24 @@ export class ProductsComponent implements OnInit {
     this.starService.getRatings().subscribe(ratings => this.ratings = ratings);
     this.productsService.getProductsByTag([]).subscribe(products => this.products = products);
     this.session.getUserDoc().subscribe(user => {
-      this.userId = user.id;
-      this.cart = Cart.clone(user.cart);
+      if (user) {
+        this.userId = user.id;
+        this.cart = Cart.clone(user.cart);
+      }
     });
   }
 
-  isVideoFormat(product: Product){
-    if (product.format.name === 'MP4') return true;
+  isVideoFormat(product: Product) {
+    if (product.format.name === 'MP4') {
+      return true;
+    }
   }
 
-  openModal(product: Product, modal){
-    this.modalService.open(modal)
+  openModal(product: Product, modal) {
+    this.modalService.open(modal);
     this.selectedProduct = product;
   }
+
   consLog(productId) {
     this.prodId = productId;
   }
@@ -65,12 +70,12 @@ export class ProductsComponent implements OnInit {
   sort() {
     const selectedOption = (document.getElementById('sortSales') as HTMLSelectElement);
     switch (selectedOption.value) {
-      case 'Ascending': {
-        this.products.sort((a, b) => (this.getObjectRating(a.id) > this.getObjectRating(b.id) ? -1 : 1));
+      case 'asc': {
+        this.products.sort((a, b) => (this.getObjectRating(a.id) < this.getObjectRating(b.id) ? -1 : 1));
         break;
       }
-      case 'Descending': {
-        this.products.sort((a, b) => (this.getObjectRating(a.id) < this.getObjectRating(b.id) ? -1 : 1));
+      case 'desc': {
+        this.products.sort((a, b) => (this.getObjectRating(a.id) > this.getObjectRating(b.id) ? -1 : 1));
         break;
       }
     }
