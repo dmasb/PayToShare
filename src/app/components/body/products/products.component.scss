@@ -39,14 +39,14 @@ h4{
   max-width: 100%;
 }
 
-img{
+img, video{
   max-height:100%;
   width: 100%;
   object-fit: fill;
   opacity: 0.8;
 }
 
-img:hover{
+img:hover, video:hover{
   opacity: 1.0;
   cursor: pointer;
 }
@@ -165,7 +165,7 @@ img:hover{
   width: 100%;
 }
 
-#modalImg{
+.modalImg{
   opacity: 1;
   cursor: default;
 }
