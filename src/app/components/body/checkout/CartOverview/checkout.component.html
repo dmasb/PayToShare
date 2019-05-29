@@ -1,81 +1,75 @@
 <div class="container">
-  <h1 class="text-center">Items in cart: {{cart.numberOfItems}}</h1>
-  <div class="row justify-content-center">
-    <div class="col-10 shadow-lg border scrolle">
-      <div class="row justify-content-center border-bottom">
-        <div class="col-2"></div>
-        <div class="col-2 text-center mt-1 mb-1">Title</div>
-        <div class="col-2 text-center mt-1 mb-1">Quantity</div>
-        <div class="col-2 text-center mt-1 mb-1">Price</div>
-        <div class="col-2 text-center mt-1 mb-1">Total</div>
-        <div class="col-1 mt-1 mb-1">Remove</div>
-      </div>
-      <div class="row justify-content-center" *ngIf="cart.plan">
-        <div class="col-2 shopping-cart-items">
-          <span><img src="{{cart.plan.imageUrl}}" alt="item1"/></span>
+  <div class="row mt-5">
+    <div class="col md-4 mb-4">
+      <h4 class="d-flex justify-content-between alig-items-center mb-3">
+        <span id="your-cart">Your Cart</span>
+        <span class="badge badge-secondary badge-pill">{{cart.numberOfItems}}</span>
+      </h4>
+      
+      <div class="d-flex justify-content-between" *ngIf="cart.plan">
+        <div class="mt-3">
+          <span><img src="{{cart.plan.imageUrl}}" class="img-top" alt="item1" /></span>
         </div>
-        <div class="col-2 text-center shopping-cart-text">{{cart.plan.title}}</div>
-        <div class="col-2 text-center shopping-cart-text">--</div>
+        <div class="text-center mt-3">
+          <h4 class="my-0">Plan</h4>
+          <small class="text-muted">{{cart.plan.title}}</small>
+        </div>
 
-        <div *ngIf="cart.plan.salePrice > 0" class="col-2 text-center shopping-cart-text">
+        <div *ngIf="cart.plan.salePrice > 0" class="text-center mt-3">
+          <h4 class="my-0">Price</h4>
           {{cart.plan.salePrice | currency}}
         </div>
-        <div *ngIf="cart.plan.salePrice > 0" class="col-2 text-center shopping-cart-text">
-          {{cart.plan.salePrice | currency}}
-        </div>
-        <div *ngIf="cart.plan.salePrice == 0" class="col-2 text-center shopping-cart-text">
+        <div *ngIf="cart.plan.salePrice == 0" class="text-center mt-3">
           {{cart.plan.price | currency}}
         </div>
-        <div *ngIf="cart.plan.salePrice == 0" class="col-2 text-center shopping-cart-text">
+        <div *ngIf="cart.plan.salePrice == 0" class="text-center mt-3">
           {{cart.plan.price | currency}}
         </div>
 
-        <div class="col-1 mt-1 mb-1 shopping-cart-text">
+        <div class="my-0">
           <button type="button" class="close btn-close" (click)="removePlan()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
       </div>
-      <div class="row justify-content-center" *ngFor="let license of this.cart.licenses">
-        <div class="col-2 shopping-cart-items">
-          <span><img src="{{license.item.imageUrl}}" alt="item1"/></span>
+      <hr>
+      <ul class="list-group mb-3" *ngFor="let license of this.cart.licenses">
+        <li class="list-group-item d-flex justify-content-sm-between">
+        <div class="mt-2 shopping-cart-items">
+          <span><img src="{{license.item.imageUrl}}" alt="item1" /></span>
         </div>
-        <div class="col-2 text-center shopping-cart-text">{{license.item.title}}</div>
-        <div class="col-2 text-center shopping-cart-text">
+        <div class="text-center mx-3">
+          <p id="product-title">{{license.item.title}}</p>
           <button class="button btn-circle" (click)="decreaseQuantity(license.item)"><i class="fa fa-minus"
-                                                                                        aria-hidden="true"></i></button>
+              aria-hidden="true"></i></button>
           {{license.amountOf}}
           <button class="button btn-circle" (click)="increaseQuantity(license.item)"><i class="fa fa-plus"
-                                                                                        aria-hidden="true"></i></button>
+              aria-hidden="true"></i></button>
         </div>
-        <div *ngIf="license.item.salePrice > 0" class="col-2 text-center shopping-cart-text">
-          {{license.item.salePrice | currency}}
-        </div>
-        <div *ngIf="license.item.salePrice > 0" class="col-2 text-center shopping-cart-text">
+        <div *ngIf="license.item.salePrice > 0" class="text-center mt-4">
           {{license.item.salePrice * license.amountOf | currency}}
         </div>
 
-        <div *ngIf="license.item.salePrice === 0" class="col-2 text-center shopping-cart-text">
-          {{license.item.price | currency}}
-        </div>
-        <div *ngIf="license.item.salePrice === 0" class="col-2 text-center shopping-cart-text">
+     
+        <div *ngIf="license.item.salePrice === 0" class="text-center mt-4">
           {{license.item.price * license.amountOf | currency}}
         </div>
 
-        <div class="col-1">
+        <div class="ml-3">
           <button type="button" class="close btn-close" (click)="removeAll(license.item)" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-      </div>
+      </li>
+      </ul>
       <div class="row border-top mt-3">
         <div class="col-12 mt-3">
           <h3 class="text-right">Total: {{this.cart.totalPrice | currency}}</h3>
           <button *ngIf="cart.numberOfItems === 0" type="button" class="btn" (click)="process()"
-                  routerLink="/order-confirmed" disabled>Confirm purchase
+            routerLink="/order-confirmed" disabled>Confirm purchase
           </button>
           <button *ngIf="cart.numberOfItems > 0" type="button" class="btn" (click)="process()"
-                  routerLink="/order-confirmed">Confirm purchase
+            routerLink="/order-confirmed">Confirm purchase
           </button>
         </div>
       </div>
