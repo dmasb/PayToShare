@@ -47,7 +47,6 @@
             </h6>
           </span>
         </div>
-
       </div>
       <div class="card-footer text-center">
         <p class="price">Format:{{product.format.name}}
@@ -57,7 +56,9 @@
   </div>
 </div>
 <ng-template #modal let-modal>
+  <!--  TODO:: FIX THIS JAZZZ-->
+  <!--  <img id="modalImg" src="{{this.selectedProduct.imageUrl}}" alt="{{this.selectedProduct.title}}">-->
+  <video autoplay controls src="../../../../assets/mp4/dejavu.mp4"></video>
   <span id="close" (click)="modal.close()" class="close">&times;</span>
-  <img id="modalImg" src="{{this.selectedProduct.imageUrl}}" alt="{{this.selectedProduct.title}}">
   <span id="caption">{{this.selectedProduct.description}}</span>
 </ng-template>

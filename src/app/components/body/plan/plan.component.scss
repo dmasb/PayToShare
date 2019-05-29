@@ -1,3 +1,7 @@
+.bg{
+  background-image: url(../../../../assets/images/bg7.png);
+}
+
 .container {
   max-width: 1060px;
 }
@@ -7,11 +11,6 @@
   width: auto !important;
 }
 
-.fit {
-  height: auto;
-  width: auto;
-  overflow: hidden;
-}
 
 .body-top {
   min-height: 8em;
@@ -33,13 +32,6 @@
   max-height: 35em;
   box-shadow: 5px 5px 5px 5px #929292;
 }
-
-.card-footer {
-  height: 15%;
-  max-height: 15%;
-  width: 100%;
-}
-
 .card-body {
   height: 12em;
   padding: 0.5em;

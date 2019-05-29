@@ -11,12 +11,9 @@
   <div class="row">
     <div class="col" id="products" *ngFor="let plan of unpackPlans(sale.saleObjects)">
       <div class="card">
-        <!--  IMAGE -->
         <div class="card-top">
           <img src="{{plan.imageUrl}}" alt="Card image cap">
         </div>
-
-        <!--    BODY-->
         <div class="card-body">
           <span class="sale">{{1 - plan.salePrice / plan.price | percent }}</span>
           <h1 class="card-title mb-2">{{plan.title}}</h1>

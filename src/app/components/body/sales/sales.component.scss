@@ -1,3 +1,21 @@
+#salebg{
+  height: 10em;
+  background-image: url("../../../../assets/images/salestext.png");
+  background-size: 80em 100%;
+  background-position: center;
+  background-position-y: top;
+}
+
+#salebg h1, h3 {
+  color: #FFFFFF;
+}
+
+#salescontent{
+  margin-top: 0;
+  padding-top: 0;
+}
+
+
 #licenseHeading{
   text-align: center;
 }
@@ -125,14 +143,6 @@ img{
   color: #FFFFFF;
 }
 
-//.card:hover{
-//  border-color: black;
-//  border-width: 1px;
-//  box-shadow: 1px 1px 1px 1px grey;
-//}
-
-
-
 .alert {
   padding: 20px;
   background-color: #368ff4;
@@ -152,7 +162,7 @@ img{
 }
 
 .container-sale {
-  margin-top: 2em;
+  margin-top: 10px;
   background-image: url(../../../../assets/images/salesbox2-2.png);
   background-color: #181E24;
   object-fit: fill;
