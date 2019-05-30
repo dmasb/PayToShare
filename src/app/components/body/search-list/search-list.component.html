@@ -1,3 +1,5 @@
+<div class="row d-flex justify-content-center mb-4" id="top">
+</div>
 <div class="container">
   <div *ngIf="getLicenses().length > 0">
     <div class="res">
@@ -32,12 +34,12 @@
                                  [userId]="userId"></app-star-review>
               </div>
               <div class="col-12">
-                <h6 class="text-white text-center" *ngIf="getObjectRating(license.title) === 0">
+                <h6 class="text-white text-center" *ngIf="getObjectRating(license.id) === 0">
                   <span class="badge badge-dark review-badge">No Reviews</span>
                 </h6>
-                <h6 class="text-white text-center" *ngIf="getObjectRating(license.title) !== 0">
+                <h6 class="text-white text-center" *ngIf="getObjectRating(license.id) !== 0">
                      <span class="badge badge-dark review-badge">
-                       {{getObjectRating(license.title) | number: '1.1-1'}} Stars
+                       {{getObjectRating(license.id) | number: '1.1-1'}} Stars
                       </span>
                 </h6>
               </div>
@@ -72,7 +74,7 @@
             <div class="row" *ngIf="license.salePrice === 0">
               <div class="col-8">
                 <h6 *ngIf="license.quantity === 0" class="stock-font-size stock-move"><i
-                  class="fa fa-square fa-square-red"></i> Out of Stock<br></h6>
+                  class="fa fa-square fa-square-red"></i> Out Of Stock<br></h6>
                 <h6 *ngIf="license.quantity  > 0 && license.quantity < 10" class="stock-font-size stock-move"><i
                   class="fa fa-square fa-square-yellow"></i> {{license.quantity}} in
                   Stock<br></h6>

@@ -1,4 +1,4 @@
-<div class="row d-flex justify-content-center mb-4">
+<div class="row d-flex justify-content-center mb-4" id="top">
   <div class="container-license pt-2">
     <div class="row text-center">
       <div class="col">
@@ -37,8 +37,7 @@
           <hr>
           <div class="no-space">
             <div class="no-space2">
-              <span class="sale pb-2 mb-0 pt-0 mt-0 "
-                    *ngIf="license.salePrice > 0">{{1 - license.salePrice / license.price | percent }}</span>
+              <span class="sale pb-2 mb-0 pt-0 mt-0 " *ngIf="license.salePrice > 0">{{1 - license.salePrice / license.price | percent }}</span>
             </div>
           </div>
           <p class="text-center text-muted desc-text">{{license.description}}</p>
@@ -47,16 +46,15 @@
               <h6 class="text-center review-container">Rate this license:</h6>
             </div>
             <div class="col-12 stars-margin">
-              <app-star-review (click)="consLog(license.id)" [productId]="licenseId"
-                               [userId]="userId"></app-star-review>
+              <app-star-review (click)="consLog(license.id)" [productId]="licenseId" [userId]="userId"></app-star-review>
             </div>
             <div class="col-12">
-              <h6 class="text-white text-center" *ngIf="getObjectRating(license.title) === 0">
+              <h6 class="text-white text-center" *ngIf="getObjectRating(license.id) === 0">
                 <span class="badge badge-dark review-badge">No Reviews</span>
               </h6>
-              <h6 class="text-white text-center" *ngIf="getObjectRating(license.title) !== 0">
+              <h6 class="text-white text-center" *ngIf="getObjectRating(license.id) !== 0">
                      <span class="badge badge-dark review-badge">
-                       {{getObjectRating(license.title) | number: '1.1-1'}} Stars
+                       {{getObjectRating(license.id) | number: '1.1-1'}} Stars
                       </span>
               </h6>
             </div>
@@ -65,48 +63,34 @@
         <div class="container pb-2">
           <div class="row" *ngIf="license.salePrice > 0">
             <div class="col-8 move-sale-price">
-              <h6 *ngIf="license.quantity === 0" class="stock-font-size"><i class="fa fa-square fa-square-red"></i> out
-                of Stock<br></h6>
-              <h6 *ngIf="license.quantity  > 0 && license.quantity < 10" class="stock-font-size"><i
-                class="fa fa-square fa-square-yellow"></i> {{license.quantity}} in
+              <h6 *ngIf="license.quantity === 0" class="stock-font-size"><i class="fa fa-square fa-square-red"></i> Out Of Stock<br></h6>
+              <h6 *ngIf="license.quantity  > 0 && license.quantity < 10" class="stock-font-size"><i class="fa fa-square fa-square-yellow"></i> {{license.quantity}} in
                 Stock<br></h6>
-              <h6 *ngIf="license.quantity  >= 10" class="stock-font-size"><i
-                class="fa fa-square fa-square-green"></i> {{license.quantity}} in
+              <h6 *ngIf="license.quantity  >= 10" class="stock-font-size"><i class="fa fa-square fa-square-green"></i> {{license.quantity}} in
                 Stock<br></h6>
               <h6 class="old-price text-muted">OLD: {{license.price | currency}}<br></h6>
               <h6>NOW: <span class="font-weight-bold">{{license.salePrice | currency}}</span></h6>
             </div>
             <div class="col">
               <br>
-              <a *ngIf="license.quantity > 0" class="btn btn-block btn-outline-dark btn-license mb-1" role="button"
-                 (click)="add(license)">
+              <a class="btn btn-block btn-outline-dark btn-license mb-1" role="button" (click)="add(license)">
                 BUY
-              </a>
-              <a *ngIf="license.quantity <= 0" class="btn btn-block btn-outline-dark btn-license mb-1" role="button">
-                Watch
               </a>
             </div>
           </div>
           <div class="row" *ngIf="license.salePrice === 0">
             <div class="col-8">
-              <h6 *ngIf="license.quantity === 0" class="stock-font-size stock-move"><i
-                class="fa fa-square fa-square-red"></i> Out of Stock<br></h6>
-              <h6 *ngIf="license.quantity  > 0 && license.quantity < 10" class="stock-font-size stock-move"><i
-                class="fa fa-square fa-square-yellow"></i> {{license.quantity}} in
+              <h6 *ngIf="license.quantity === 0" class="stock-font-size stock-move"><i class="fa fa-square fa-square-red"></i> out of Stock<br></h6>
+              <h6 *ngIf="license.quantity  > 0 && license.quantity < 10" class="stock-font-size stock-move"><i class="fa fa-square fa-square-yellow"></i> {{license.quantity}} in
                 Stock<br></h6>
-              <h6 *ngIf="license.quantity  >= 10" class="stock-font-size stock-move"><i
-                class="fa fa-square fa-square-green"></i> {{license.quantity}} in
+              <h6 *ngIf="license.quantity  >= 10" class="stock-font-size stock-move"><i class="fa fa-square fa-square-green"></i> {{license.quantity}} in
                 Stock<br></h6>
               <h5 class="move-price font-weight-bold mt-3">{{license.price | currency}}</h5>
             </div>
             <div class="col">
               <br>
-              <a *ngIf="license.quantity > 0" class="btn btn-block btn-outline-dark btn-license mb-1" role="button"
-                 (click)="add(license)">
+              <a class="btn btn-block btn-outline-dark btn-license mb-1" role="button" (click)="add(license)">
                 BUY
-              </a>
-              <a *ngIf="license.quantity <= 0" class="btn btn-block btn-outline-dark btn-license mb-1" role="button">
-                Watch
               </a>
             </div>
           </div>

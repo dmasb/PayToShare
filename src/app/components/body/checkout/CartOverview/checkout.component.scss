@@ -56,3 +56,23 @@ img {
   font-size: 1em;
   font-weight: bold;
 }
+
+.badge {
+  background-color: #489afb;
+  
+}
+
+.fullscreen{
+  background-image: url(../../../../../assets/images/bg7.png); // TAKEN WITHOUT CREDIT GIVEN LELELE
+  padding-top: 20px;
+  padding-bottom: 30px;
+  height: 100vh;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.container {
+  border: 4px solid #181E24;
+  border-radius: 3px;
+}

@@ -1,13 +1,4 @@
-<<<<<<< HEAD
-<div class="container">
-  <div class="row">
-    <div class="col ml-3">
-      <label for="sortSales">Sort by:</label><select id="sortSales" class="form-control" (change)="sort()">
-      <option value="desc">Highest Rating</option>
-      <option value="asc">Lowest Rating</option>
-    </select>
-=======
-<div class="row d-flex justify-content-center mb-4">
+<div class="row d-flex justify-content-center mb-4" id="top">
   <div class="container-product pt-2">
     <div class="row text-center">
       <div class="col">
@@ -15,7 +6,6 @@
         <h4 class="text-white">Included with our licenses</h4>
         <p class="mt-1">Find a product you like then purchase a license to use it</p>
       </div>
->>>>>>> ab3166ca227ccc659cc851df9361993778fb268a
     </div>
   </div>
 </div>
@@ -31,16 +21,16 @@
             <img (click)="openModal(product, modal)"
                  class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="Card image cap">
           </ng-template>
-        <!--    BODY-->
-        <div class="card-body text-center">
-          <h2 class="card-title">{{product.title}}</h2>
-          <span *ngFor="let tag of product.tags">
+          <!--    BODY-->
+          <div class="card-body text-center">
+            <h2 class="card-title">{{product.title}}</h2>
+            <span *ngFor="let tag of product.tags">
           <h5 class="text-muted">< {{tag.name}} ></h5>
         </span>
-          <h6 class="text-muted">| {{product.format.name}} |</h6>
-          <hr>
-          <p>{{product.description}}</p>
-        </div>
+            <h6 class="text-muted">| {{product.format.name}} |</h6>
+            <hr>
+            <p>{{product.description}}</p>
+          </div>
         </div>
       </div>
     </div>

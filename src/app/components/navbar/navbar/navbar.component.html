@@ -1,18 +1,8 @@
 <!-- HIDDEN ADMIN PANEL-->
-<div class="collapse" id="toggleAdmin" *ngIf="isLoggedIn && isAdmin">
-  <nav class="uk-navbar-container" uk-navbar id="adminpanel">
-    <div class="uk-navbar-center">
-      <ul class="uk-navbar-nav">
-        <li class="nav-item">
-          <a routerLink="/dashboard" data-toggle="collapse">Dashboard</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</div>
+
 
 <!--MAIN NAVBAR, COLLAPSEABLE-->
-<nav class="navbar navbar-expand-lg navbar-light" id="header">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="header">
 
   <div class="container">
   <!--  BRAND ICON -->
@@ -48,9 +38,7 @@
 
         <!--        ADMIN ITEM-->
         <li class="nav-item mr-2" *ngIf="isLoggedIn && isAdmin">
-          <a class="nav-link fa fa-28px fa-gears"
-             data-toggle="collapse" data-target="#toggleAdmin" aria-controls="toggleAdmin" aria-expanded="false"
-             routerLink="/"></a>
+          <a class="nav-link fa fa-28px fa-gears" routerLink="/dashboard"></a>
         </li>
         <!--        CART ITEM-->
         <li class="nav-item">
@@ -120,17 +108,5 @@
     </div>
   </div>
   </div>
-
 </nav>
 
-<!-- This is the off-canvas -->
-<!--<div class="uk-offcanvas-content">-->
-<div id="sidebar" uk-offcanvas="overlay: true">
-  <div class="uk-offcanvas-bar">
-
-    <button class="uk-offcanvas-close" type="button" uk-close></button>
-
-  </div>
-</div>
-
-<!--</div>-->
