@@ -7,6 +7,7 @@ import {StarService} from '../../../services/product/star.service';
 import {Rating} from '../../../models/rating';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',

@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col ml-3">
+    <div class="col">
       <label for="sortSales">Sort by:</label><select id="sortSales" class="form-control" (change)="sort()">
-      <option>Ascending</option>
-      <option>Descending</option>
-    </select>
+        <option>Ascending</option>
+        <option>Descending</option>
+      </select>
     </div>
     <div class="col-10"></div>
   </div>
@@ -15,11 +15,12 @@
     <div class="card shadow">
       <!--  IMAGE -->
       <div class="card-top">
-        <video *ngIf="isVideoFormat(product); else displayImg" (click)="openModal(product, modal)" src="{{product.imageUrl}}"></video>
-          <ng-template #displayImg>
-            <img (click)="openModal(product, modal)"
-                 class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="Card image cap">
-          </ng-template>
+        <video *ngIf="isVideoFormat(product); else displayImg" (click)="openModal(product, modal)"
+          src="{{product.imageUrl}}"></video>
+        <ng-template #displayImg>
+          <img (click)="openModal(product, modal)" class="card-img-top img-fluid" src="{{product.imageUrl}}"
+            alt="Card image cap">
+        </ng-template>
       </div>
       <!--    BODY-->
       <div class="card-body">
@@ -39,14 +40,14 @@
         <div class="container text-center" *ngIf="getObjectRating(product.id) === 0">
           <span class="badge badge-dark px-2 pt-2">
             <h6 class="text-white">
-               No Reviews
+              No Reviews
             </h6>
           </span>
         </div>
         <div class="container text-center" *ngIf="getObjectRating(product.id) !== 0">
           <span class="badge badge-dark px-2 pt-2">
             <h6 class="text-white">
-              Rating:  {{getObjectRating(product.id) | number: '1.1-1'}}/5
+              Rating: {{getObjectRating(product.id) | number: '1.1-1'}}/5
             </h6>
           </span>
         </div>
@@ -59,7 +60,8 @@
   </div>
 </div>
 <ng-template #modal let-modal>
-  <video class="modalImg"*ngIf="isVideoFormat(selectedProduct); else img" autoplay controls src="{{this.selectedProduct.imageUrl}}"></video>
+  <video class="modalImg" *ngIf="isVideoFormat(selectedProduct); else img" autoplay controls
+    src="{{this.selectedProduct.imageUrl}}"></video>
   <ng-template #img>
     <img class="modalImg" src="{{this.selectedProduct.imageUrl}}" alt="{{this.selectedProduct.title}}">
   </ng-template>
