@@ -22,11 +22,10 @@ export class LicensesComponent implements OnInit {
 
   constructor(private licenseService: LicenseService,
               private userSessionService: UserSessionService,
-              private starService: StarService,) {
+              private starService: StarService) {
   }
 
   ngOnInit() {
-    this.cart = new Cart();
     this.starService.getRatings().subscribe(ratings => this.ratings = ratings);
     this.licenseService.getLicenses().subscribe(licenses => this.licenses = licenses);
     this.userSessionService.getUserDoc().subscribe(user => {

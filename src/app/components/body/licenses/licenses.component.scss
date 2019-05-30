@@ -9,20 +9,24 @@ img {
   border-radius: 4px;
   object-fit: fill;
 }
+
 h2 {
   font-size: 25px;
   margin-bottom: 3px;
 }
+
 h5 {
   font-size: 18px;
   margin-top: 2px;
   margin-bottom: 2px;
 }
+
 h6 {
   font-size: 16px;
   margin-top: 2px;
   margin-bottom: 2px;
 }
+
 hr {
   margin-top: 8px;
   margin-bottom: 8px;
@@ -33,13 +37,18 @@ hr {
   margin-top: 0;
   padding-bottom: 0;
   padding-top: 0;
-}.review-badge {
-  margin:0;
+}
+
+.review-badge {
+  margin: 0;
   padding: 4px 2px 2px 2px;
   font-size: 14px;
- }.stars-margin{
-  margin-left:22%;
-   }
+}
+
+.stars-margin {
+  margin-left: 22%;
+}
+
 /* Card design */
 .card {
   margin: 1em auto;
@@ -54,6 +63,7 @@ hr {
   border-top: 1px solid lightgray;
   border-bottom: 4px solid #489afb;
 }
+
 .desc-text {
   font-size: 15px;
   margin-bottom: 0;
@@ -69,16 +79,22 @@ hr {
 
 .fa-square-green {
   color: green;
-}.fa-square-yellow{
+}
+
+.fa-square-yellow {
   color: yellow;
- }.fa-square-red {
+}
+
+.fa-square-red {
   color: red;
-   }.stock-font-size {
+}
+
+.stock-font-size {
   font-size: 14px;
   margin-bottom: 1px;
   padding-bottom: 1px;
 
-       }
+}
 
 .old-price {
   font-size: 13px;
@@ -93,10 +109,10 @@ hr {
 .container-license {
   margin-top: 2em;
   background-image: url(../../../../assets/images/randomgbg2.png);
-  background-position-y:35%;
+  background-position-y: 35%;
   background-color: #ff7f00;
   object-fit: fill;
-  width:1374px;
+  width: 1374px;
   //width: 574px;
   border-bottom: 5px solid steelblue;
   border-top-left-radius: 10px;
@@ -105,15 +121,15 @@ hr {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-.btn-license{
+.btn-license {
   font-family: sans-serif, Arial, Verdana;
   font-weight: bold;
   color: #FFFFFF;
-  text-align:center;
+  text-align: center;
   transition: all 0.2s;
 }
 
-.btn-license:hover{
+.btn-license:hover {
   background-color: #489afb;
 }
 
@@ -138,9 +154,10 @@ hr {
   left: 230px;
   transform: rotate(-20deg);
   animation: beat 1s ease infinite alternate;
+
   &:before,
   &:after {
-    content:"";
+    content: "";
     position: absolute;
     background: inherit;
     height: inherit;
@@ -150,39 +167,49 @@ hr {
     z-index: -1;
     transform: rotate(30deg);
   }
+
   &:after {
     transform: rotate(60deg);
   }
 }
+
 // For the star
 @keyframes beat {
-  from {	transform: rotate(-20deg) scale(1); }
-  to {	transform: rotate(-20deg) scale(1.1); }
+  from {
+    transform: rotate(-20deg) scale(1);
+  }
+  to {
+    transform: rotate(-20deg) scale(1.1);
+  }
 }
 
 .no-space {
   position: relative;
   width: 0;
   height: 0;
-}.no-space2 {
-   position: absolute;
- }
+}
+
+.no-space2 {
+  position: absolute;
+}
 
 .move-price {
   position: relative;
   bottom: 6px;
   font-size: 22px;
 }
+
 .stock-move {
   position: relative;
   top: 4px;
 }
+
 .move-sale-price {
   position: relative;
   top: 2px;
 }
 
-@media screen and (min-width: 1400px){
+@media screen and (min-width: 1400px) {
   /* Card design */
   .card {
     margin: 1em auto;
@@ -198,14 +225,14 @@ hr {
     border-bottom: 4px solid #489afb;
   }
 
-<<<<<<< HEAD
-#buy1 {
-  color: #FFFFFF;
-}
+  #buy1 {
+    color: #FFFFFF;
+  }
 
-#buy2 {
-  color: #FFFFFF;
-=======
+  #buy2 {
+    color: #FFFFFF;
+  }
+
   .sale {
     position: relative;
     display: inline-block;
@@ -220,9 +247,10 @@ hr {
     left: 260px;
     transform: rotate(-20deg);
     animation: beat 1s ease infinite alternate;
+
     &:before,
     &:after {
-      content:"";
+      content: "";
       position: absolute;
       background: inherit;
       height: inherit;
@@ -232,9 +260,9 @@ hr {
       z-index: -1;
       transform: rotate(30deg);
     }
+
     &:after {
       transform: rotate(60deg);
     }
   }
->>>>>>> ab3166ca227ccc659cc851df9361993778fb268a
 }
