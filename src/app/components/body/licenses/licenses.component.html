@@ -49,12 +49,12 @@
                 <app-star-review (click)="consLog(license.id)" [productId]="licenseId" [userId]="userId"></app-star-review>
               </div>
               <div class="col-12">
-                <h6 class="text-white text-center" *ngIf="getObjectRating(license.title) === 0">
+                <h6 class="text-white text-center" *ngIf="getObjectRating(license.id) === 0">
                   <span class="badge badge-dark review-badge">No Reviews</span>
                 </h6>
-                <h6 class="text-white text-center" *ngIf="getObjectRating(license.title) !== 0">
+                <h6 class="text-white text-center" *ngIf="getObjectRating(license.id) !== 0">
                      <span class="badge badge-dark review-badge">
-                       {{getObjectRating(license.title) | number: '1.1-1'}} Stars
+                       {{getObjectRating(license.id) | number: '1.1-1'}} Stars
                       </span>
                 </h6>
               </div>
@@ -94,16 +94,7 @@
             </a>
           </div>
         </div>
-        </div>  <!--
-        <p class="price text-center">
-          <span *ngIf="license.salePrice > 0" class="before">{{license.price | currency}}</span>
-          <span *ngIf="license.salePrice > 0" class="after">{{license.salePrice | currency}}</span>
-          <span *ngIf="license.salePrice === 0" >{{license.price | currency}}</span>
-          <a *ngIf="license.quantity > 0" class="btn btn-sm float-right" (click)="add(license)" id="buy">
-            Add to cart
-          </a>
-        </p>
-        -->
+        </div>
       </div>
     </div>
   </div>
