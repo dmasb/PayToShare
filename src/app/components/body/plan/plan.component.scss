@@ -3,40 +3,34 @@
   min-height: 100vh;
 }
 
-.container {
-  max-width: 1060px;
-}
-
 #top {
-  background-color: #e4e1e1;
-  width: auto !important;
   margin-top: 4em;
 }
 
-
-.body-top {
-  min-height: 8em;
+.container {
+  font-family: sans-serif, Arial, Verdana;
+  max-width: 1400px;
 }
-
-.body-middle {
-  min-height: 10em;
+img {
+  height: 10em;
+  width: 20em;
+  border-radius: 4px;
+  object-fit: fill;
 }
 
 /* Card design */
 .card {
-  margin: auto;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  background-color: #e4e1e1;
-  width: 15em;
-  max-width: 15em;
+  margin: 1em auto;
+  background-color: #FFFFFF;
+  width: 18em;
+  max-width: 18em;
   height: 32em;
-  max-height: 35em;
-  box-shadow: 5px 5px 5px 5px #929292;
-}
-.card-body {
-  height: 12em;
-  padding: 0.5em;
+  max-height: 32em;
+  // TESTING AND CAN BE CHANGED #181E24
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+  border-bottom: 4px solid #ff7f00;
 }
 
 .card-price {
@@ -47,62 +41,151 @@
   font-size: 0.6em;
 }
 
-.btn {
-  display: inline-block;
-  padding: 0.3em 1.2em;
-  margin: 0 0.3em 0.3em 0;
-  border-radius: 2em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  color: white;
-  background-color: #2d2d30;
-  text-align: center;
+
+////// NEW ADDED SCSS! 29/05-2019
+.old-price {
+  font-size: 13px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.text-license-list {
+  font-size: 12px;
+}
+
+.container-plan {
+  margin-top: 2em;
+  background-image: url(../../../../assets/images/randomgbg2.png);
+  background-position-y:35%;
+  background-color: #ff7f00;
+  object-fit: fill;
+  width:1374px;
+  //width: 574px;
+  border-bottom: 5px solid #ff7f00;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #FFFFFF;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.btn-plan{
+  font-family: sans-serif, Arial, Verdana;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align:center;
   transition: all 0.2s;
-  box-shadow: 2px 2px 2px 2px #252323;
-  cursor: pointer;
 }
 
-#buy {
-  color: white;
+.btn-plan:hover{
+  background-color: #ff7f00;
 }
 
-.btn:hover {
-  background-color: #5e5e5f;
+.badge-dark {
+  // background-color: #ff7f00;
+ // color: black;
+  font-size: 14px;
+  padding: 2px 4px 2px 3.5px;
 }
 
-@media (min-width: 992px) {
-  .card:hover {
-    margin-top: -0.25rem;
-    margin-bottom: 0.25rem;
-    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
-  }
-  .card:hover .btn {
-    opacity: 1;
-  }
-}
-
-.before {
-  color: rgba(red, 0.5);
-  text-decoration: none;
+.sale {
   position: relative;
-
-  &:before {
-    content: " ";
-    display: block;
-    width: 100%;
-    border-top: 2px solid rgba(red, 0.8);
-    height: 12px;
+  display: inline-block;
+  background: #ff7f00;
+  color: white;
+  height: 2.5rem;
+  width: 2.5rem;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 2.5rem;
+  bottom: 380px;
+  left: 230px;
+  transform: rotate(-20deg);
+  animation: beat 1s ease infinite alternate;
+  &:before,
+  &:after {
+    content:"";
     position: absolute;
-    bottom: 0;
+    background: inherit;
+    height: inherit;
+    width: inherit;
+    top: 0;
     left: 0;
-    transform: rotate(-7deg);
+    z-index: -1;
+    transform: rotate(30deg);
+  }
+  &:after {
+    transform: rotate(60deg);
   }
 }
+// For the star
 
-.after {
-  color: green;
-  text-decoration: none;
-  padding: 1em 1em 1em .5em;
+@keyframes beat {
+  from {	transform: rotate(-20deg) scale(1); }
+  to {	transform: rotate(-20deg) scale(1.1); }
+}
+
+.no-space {
+  position: relative;
+  width: 0;
+  height: 0;
+}.no-space2 {
+  position: absolute;
+ }
+
+ .move-price {
+   position: relative;
+   top: 4px;
+ }
+
+ .move-sale-price {
+   position: relative;
+   top: 2px;
+ }
+
+@media screen and (min-width: 1400px){
+  /* Card design */
+  .card {
+    margin: 1em auto;
+    background-color: #FFFFFF;
+    width: 20em;
+    max-width: 20em;
+    height: 33em;
+    max-height: 35em;
+    // TESTING AND CAN BE CHANGED #181E24
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-bottom: 4px solid #ff7f00;
+  }
+
+  .sale {
+    position: relative;
+    display: inline-block;
+    background: orange;
+    color: white;
+    height: 2.5rem;
+    width: 2.5rem;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 2.5rem;
+    bottom: 380px;
+    left: 260px;
+    transform: rotate(-20deg);
+    animation: beat 1s ease infinite alternate;
+    &:before,
+    &:after {
+      content:"";
+      position: absolute;
+      background: inherit;
+      height: inherit;
+      width: inherit;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      transform: rotate(30deg);
+    }
+    &:after {
+      transform: rotate(60deg);
+    }
+  }
 }

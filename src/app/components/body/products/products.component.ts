@@ -19,7 +19,6 @@ export class ProductsComponent implements OnInit {
   private products: Product[];
   private cart: Cart;
   private userId: string;
-  private prodId: any;
   private ratings: Rating[];
   private selectedProduct: Product = null;
 
@@ -46,34 +45,5 @@ export class ProductsComponent implements OnInit {
   openModal(product: Product, modal){
     this.modalService.open(modal)
     this.selectedProduct = product;
-  }
-  consLog(productId) {
-    this.prodId = productId;
-  }
-
-  get productID() {
-    return this.prodId;
-  }
-
-  getObjectRating(objectID: string): number {
-    if (this.ratings) {
-      const objectRatings = this.ratings.filter(res => res.objectID === objectID);
-      const numberArray = objectRatings.map(r => r.value);
-      return numberArray.length ? numberArray.reduce((total, val) => total + val) / numberArray.length : 0;
-    }
-  }
-
-  sort() {
-    const selectedOption = (document.getElementById('sortSales') as HTMLSelectElement);
-    switch (selectedOption.value) {
-      case 'Ascending': {
-        this.products.sort((a, b) => (this.getObjectRating(a.id) > this.getObjectRating(b.id) ? -1 : 1));
-        break;
-      }
-      case 'Descending': {
-        this.products.sort((a, b) => (this.getObjectRating(a.id) < this.getObjectRating(b.id) ? -1 : 1));
-        break;
-      }
-    }
   }
 }
