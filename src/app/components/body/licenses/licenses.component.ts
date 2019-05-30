@@ -15,19 +15,6 @@ export class LicensesComponent implements OnInit {
 
   private licenses: License[];
   private cart: Cart;
-<<<<<<< HEAD
-
-  constructor(private licenseService: LicenseService,
-              private userSessionService: UserSessionService) {
-  }
-
-  ngOnInit() {
-    this.licenseService.getLicenses().subscribe(licenses => this.licenses = licenses);
-    this.userSessionService.getUserDoc().subscribe(user => {
-      if (user) {
-        this.cart = Cart.clone(user.cart);
-      }
-=======
   private userId: string;
   private licId: any;
   private ratings: Rating[];
@@ -35,7 +22,8 @@ export class LicensesComponent implements OnInit {
 
   constructor(private licenseService: LicenseService,
               private userSessionService: UserSessionService,
-              private starService: StarService,) { }
+              private starService: StarService,) {
+  }
 
   ngOnInit() {
     this.cart = new Cart();
@@ -44,7 +32,6 @@ export class LicensesComponent implements OnInit {
     this.userSessionService.getUserDoc().subscribe(user => {
       this.userId = user.id;
       this.cart = Cart.clone(user.cart);
->>>>>>> ab3166ca227ccc659cc851df9361993778fb268a
     });
   }
 
@@ -68,6 +55,7 @@ export class LicensesComponent implements OnInit {
       return numberArray.length ? numberArray.reduce((total, val) => total + val) / numberArray.length : 0;
     }
   }
+
   sort() {
     const selectedOption = (document.getElementById('sortSales') as HTMLSelectElement);
 

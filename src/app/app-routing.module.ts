@@ -15,14 +15,9 @@ import {CheckoutComponent} from './components/body/checkout/CartOverview/checkou
 import {OrderConfirmedComponent} from './components/body/checkout/order-confirmed/order-confirmed.component';
 import {FrontPageComponent} from './components/body/front-page/front-page.component';
 import {SearchListComponent} from './components/body/search-list/search-list.component';
-<<<<<<< HEAD
 import {GetkeyComponent} from './components/body/getkey/getkey.component';
 import {LicensesComponent} from './components/body/licenses/licenses.component';
-=======
-import {GetkeyComponent} from "./components/body/getkey/getkey.component";
-import {LicensesComponent} from "./components/body/licenses/licenses.component";
-import {ProductsComponent} from "./components/body/products/products.component";
->>>>>>> ab3166ca227ccc659cc851df9361993778fb268a
+import {ProductsComponent} from './components/body/products/products.component';
 
 
 export const routes: Routes = [
