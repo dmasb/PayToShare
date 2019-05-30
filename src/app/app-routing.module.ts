@@ -18,6 +18,7 @@ import {SearchListComponent} from './components/body/search-list/search-list.com
 import {GetkeyComponent} from './components/body/getkey/getkey.component';
 import {LicensesComponent} from './components/body/licenses/licenses.component';
 import {ProductsComponent} from './components/body/products/products.component';
+import {SalesComponent } from './components/body/sales/sales.component';
 
 
 export const routes: Routes = [
@@ -36,6 +37,7 @@ export const routes: Routes = [
   {path: 'order-confirmed', component: OrderConfirmedComponent, canActivate: [AuthGuard]},
   {path: 'search/:searchWord', component: SearchListComponent},
   {path: 'getkey/:hash', component: GetkeyComponent},
+  {path: 'sales', component: SalesComponent},
   {path: '**', component: Error404Component},
 ];
 
