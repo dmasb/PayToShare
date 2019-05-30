@@ -1,52 +1,68 @@
 <div class="msg" id="myDiv">
   <span class="alert">Item added to cart</span>
 </div>
-<div class="row d-flex justify-content-center" *ngFor="let sale of planSale">
-  <div class="container-sale pb-2">
-    <div class="row">
-      <h1 class="col-12 text-center text-white">{{sale.name}} {{sale.discount}}%</h1>
-      <h3 class="col-12 text-center text-white">{{getDaysLeft(sale.ends)}}</h3>
+<div class="container-fluid" *ngFor="let sale of planSale">
+  <div class="row d-flex justify-content-center">
+    <div class="container-sale pb-2">
+      <div class="row">
+        <h1 class="col-12 text-center text-white">{{sale.name}} {{sale.discount}}%</h1>
+        <h3 class="col-12 text-center text-white">{{getDaysLeft(sale.ends)}}</h3>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col" id="products" *ngFor="let plan of unpackPlans(sale.saleObjects)">
-      <div class="card">
-        <div class="card-top">
-          <img src="{{plan.imageUrl}}" alt="Card image cap">
-        </div>
-        <div class="card-body">
-          <span class="sale">{{1 - plan.salePrice / plan.price | percent }}</span>
-          <h1 class="card-title mb-2">{{plan.title}}</h1>
-          <h5 class="card-text mb-2">
-            <span class="font-weight-italic">SPEED:</span> <br> <h6>{{plan.speed | number}} mb/s</h6>
-          </h5>
-          <h6 class="card-text text-maxchars">
-          <span *ngFor="let license of plan.defaultLicenses">
-            {{license}}
-          </span></h6>
-          <h6 class="card-text">
-          <span *ngFor="let license of plan.licenses">
-            <h6>{{license.title}}</h6>
-          </span></h6>
-          <h6 class="card-text text-maxchars">{{plan.description}}</h6>
-          <br>
-          <span>Sale: {{sale.name}}</span>
-          <br>
-        </div>
-        <!--      FOOTER-->
-        <div class="card-footer">
-          <p class="price">
-            <span class="before">{{plan.price | currency}}</span>
-            <span class="after">{{plan.salePrice | currency}}</span>
-            <a class="btn btn-sm float-right" id="buy1" (click)="addPlan(plan)">
-              Buy
-            </a>
-          </p>
+  <!--Card one-->
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-3 col-lg-4 col-md-6" *ngFor="let plan of unpackPlans(sale.saleObjects)">
+        <div class="card card-plan">
+          <div class="card-body d-flex flex-column">
+            <div class="text-center body-top">
+              <img class="plan-img" src="{{plan.imageUrl}}" alt="logo">
+              <h2 class="title">{{plan.title}}</h2>
+              <h5 class="text-muted">< {{plan.level.name}} ></h5>
+              <p class="text-center text-muted mb-0 pb-0">{{plan.description}}</p>
+            </div>
+            <hr>
+            <h5 class="text-center">{{plan.speed | number}} mb/s</h5>
+            <h6 class="text-center">Incl. <span class="badge badge-dark">{{plan.defaultLicenses.length}}</span> Licenses</h6>
+            <div class="no-space-plan">
+              <div class="no-space2-plan">
+                <span class="sale-plan pb-2 mb-0 pt-0 mt-0 " *ngIf="plan.salePrice > 0">{{1 - plan.salePrice / plan.price | percent }}</span>
+              </div>
+            </div>
+            <div class="container border-top border-bottom border-muted mb-2">
+              <div class="row">
+                <div class="col-3 text-license-list-plan" *ngFor="let license of plan.defaultLicenses">{{license}}</div>
+              </div>
+            </div>
+            <div class="row mt-auto" *ngIf="plan.salePrice > 0">
+              <div class="col-8 move-sale-price-plan">
+                <h6 class="old-price-plan text-muted">OLD: {{plan.price | currency}}<br></h6>
+                <h6>NOW: <span class="font-weight-bold">{{plan.salePrice | currency}}</span></h6>
+              </div>
+              <div class="col">
+                <a class="btn btn-block btn-outline-dark btn-plan mb-1" role="button" (click)="addPlan(plan)">
+                  BUY
+                </a>
+              </div>
+            </div>
+            <div class="row mt-auto" *ngIf="plan.salePrice === 0">
+              <div class="col-8">
+                <h5 class="move-price-plan font-weight-bold">{{plan.salePrice | currency}}</h5>
+              </div>
+              <div class="col">
+                <a class="btn btn-block btn-outline-dark btn-plan mb-1" role="button" (click)="addPlan(plan)">
+                  BUY
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="col-sm-12 d-flex justify-content-center mt-5" *ngFor="let sale of licenseSale">
   <div class="row">

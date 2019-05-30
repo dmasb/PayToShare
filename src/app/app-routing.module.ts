@@ -11,18 +11,23 @@ import {Error404Component} from './components/body/error404/error404.component';
 import {RoleGuardService} from './services/authentication/role-guard.service';
 import {DashboardComponent} from './components/body/admin/dashboard/dashboard.component';
 import {PlanComponent} from './components/body/plan/plan.component';
-import {CollectionComponent} from './components/body/collection/collection.component';
 import {CheckoutComponent} from './components/body/checkout/CartOverview/checkout.component';
 import {OrderConfirmedComponent} from './components/body/checkout/order-confirmed/order-confirmed.component';
 import {FrontPageComponent} from './components/body/front-page/front-page.component';
 import {SearchListComponent} from './components/body/search-list/search-list.component';
+<<<<<<< HEAD
 import {GetkeyComponent} from './components/body/getkey/getkey.component';
 import {LicensesComponent} from './components/body/licenses/licenses.component';
+=======
+import {GetkeyComponent} from "./components/body/getkey/getkey.component";
+import {LicensesComponent} from "./components/body/licenses/licenses.component";
+import {ProductsComponent} from "./components/body/products/products.component";
+>>>>>>> ab3166ca227ccc659cc851df9361993778fb268a
 
 
 export const routes: Routes = [
   {path: '', redirectTo: '', component: FrontPageComponent, pathMatch: 'full'},
-  {path: 'collection', component: CollectionComponent},
+  {path: 'collection', component: ProductsComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
   {path: 'profile', component: MypageOverviewComponent, canActivate: [AuthGuard]},
   {path: 'features', component: FeaturesComponent},

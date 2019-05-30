@@ -18,7 +18,6 @@ export class ProductsComponent implements OnInit {
   private products: Product[];
   private cart: Cart;
   private userId: string;
-  private prodId: any;
   private ratings: Rating[];
   private selectedProduct: Product = null;
 
@@ -51,14 +50,6 @@ export class ProductsComponent implements OnInit {
     this.selectedProduct = product;
   }
 
-  consLog(productId) {
-    this.prodId = productId;
-  }
-
-  get productID() {
-    return this.prodId;
-  }
-
   getObjectRating(objectID: string): number {
     if (this.ratings) {
       const objectRatings = this.ratings.filter(res => res.objectID === objectID);
@@ -80,4 +71,3 @@ export class ProductsComponent implements OnInit {
       }
     }
   }
-}
