@@ -54,7 +54,6 @@ import {SaleOverviewComponent} from './components/body/admin/salemanegement/sale
 import {DeleteSaleComponent} from './components/body/admin/salemanegement/delete-sale/delete-sale.component';
 import {PlanComponent} from './components/body/plan/plan.component';
 import {CartdropdownComponent} from './components/navbar/cartdropdown/cartdropdown.component';
-import {CollectionComponent} from './components/body/collection/collection.component';
 import {StarReviewComponent} from './components/body/products/star-review/star-review.component';
 import {CheckoutComponent} from './components/body/checkout/CartOverview/checkout.component';
 import {MypageOverviewComponent} from './components/body/mypage/mypage-overview/mypage-overview.component';
@@ -114,7 +113,6 @@ import { GetkeyComponent } from './components/body/getkey/getkey.component';
     DeleteSaleComponent,
     PlanComponent,
     CartdropdownComponent,
-    CollectionComponent,
     StarReviewComponent,
     CheckoutComponent,
     MypageOverviewComponent,

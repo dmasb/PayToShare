@@ -1,4 +1,5 @@
-<div class="container" *ngIf="currentUser">
+<div class="fullscreen">
+<div class="container bg-white" *ngIf="currentUser">
   <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
 
     <!--MY CART-->
@@ -48,4 +49,5 @@
       <app-my-subscriptions [uid]="currentUser.id"></app-my-subscriptions>
     </div>
   </div>
+</div>
 </div>
