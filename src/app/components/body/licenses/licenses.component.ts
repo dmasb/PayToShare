@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LicenseService} from '../../../services/product/license.service';
 import {License} from '../../../models/products/license';
 import {Cart} from '../../../models/products/cart';
@@ -22,10 +22,10 @@ export class LicensesComponent implements OnInit {
 
   constructor(private licenseService: LicenseService,
               private userSessionService: UserSessionService,
-              private starService: StarService,) { }
+              private starService: StarService) {
+  }
 
   ngOnInit() {
-    this.cart = new Cart();
     this.starService.getRatings().subscribe(ratings => this.ratings = ratings);
     this.licenseService.getLicenses().subscribe(licenses => this.licenses = licenses);
     this.userSessionService.getUserDoc().subscribe(user => {
@@ -54,6 +54,7 @@ export class LicensesComponent implements OnInit {
       return numberArray.length ? numberArray.reduce((total, val) => total + val) / numberArray.length : 0;
     }
   }
+
   sort() {
     const selectedOption = (document.getElementById('sortSales') as HTMLSelectElement);
 

@@ -1,6 +1,7 @@
 <li class="dropdown nav-item">
-  <a class="nav-link fa fa-28px fa-shopping-cart text-white" id="navbarDropdownMenuLink" role="button"
-     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="navbadgeicon">{{cart.numberOfItems}}</span></a>
+  <a *ngIf="cart" class="nav-link fa fa-28px fa-shopping-cart text-white" id="navbarDropdownMenuLink" role="button"
+     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+    class="navbadgeicon">{{cart.numberOfItems}}</span></a>
   <ul class="dropdown-menu dropdown-menu-right">
     <div class="container">
 

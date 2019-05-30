@@ -58,7 +58,6 @@ export class ProcessorderService {
         const oldLicense = JSON.parse(JSON.stringify(license.item));
         this.afs.collection('sales').ref.where('saleObjects', 'array-contains', oldLicense)
           .get().then(res => {
-          console.log(res.docs);
           res.docs.map(r => {
             r.ref.update({
               saleObjects: firebase.firestore.FieldValue.arrayRemove(oldLicense)

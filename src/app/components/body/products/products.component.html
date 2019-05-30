@@ -21,16 +21,16 @@
             <img (click)="openModal(product, modal)"
                  class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="Card image cap">
           </ng-template>
-        <!--    BODY-->
-        <div class="card-body text-center">
-          <h2 class="card-title">{{product.title}}</h2>
-          <span *ngFor="let tag of product.tags">
+          <!--    BODY-->
+          <div class="card-body text-center">
+            <h2 class="card-title">{{product.title}}</h2>
+            <span *ngFor="let tag of product.tags">
           <h5 class="text-muted">< {{tag.name}} ></h5>
         </span>
-          <h6 class="text-muted">| {{product.format.name}} |</h6>
-          <hr>
-          <p>{{product.description}}</p>
-        </div>
+            <h6 class="text-muted">| {{product.format.name}} |</h6>
+            <hr>
+            <p>{{product.description}}</p>
+          </div>
         </div>
       </div>
     </div>

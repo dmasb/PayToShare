@@ -5,6 +5,8 @@ import {LicenseService} from '../../../services/product/license.service';
 import {Plan} from '../../../models/products/plan';
 import {Cart} from '../../../models/products/cart';
 import {UserSessionService} from '../../../services/user-session.service';
+import {Rating} from '../../../models/rating';
+import {StarService} from '../../../services/product/star.service';
 
 @Component({
   selector: 'app-search-list',
@@ -16,20 +18,42 @@ export class SearchListComponent implements OnInit {
   private licenses: License[] = [];
   private cart: Cart;
   private searchWord: string;
+  private userId: string;
+  private licId: any;
+  private ratings: Rating[];
 
   constructor(private route: ActivatedRoute,
               private licenseService: LicenseService,
-              private userSessionService: UserSessionService) {
+              private userSessionService: UserSessionService,
+              private starService: StarService) {
   }
 
   ngOnInit() {
-    this.cart = new Cart();
+    this.starService.getRatings().subscribe(ratings => this.ratings = ratings);
     this.licenseService.getLicenses().subscribe(licenses => this.licenses = licenses);
     this.userSessionService.getUserDoc().subscribe(user => {
-      this.cart = Cart.clone(user.cart);
+      if (user) {
+        this.userId = user.id;
+        this.cart = Cart.clone(user.cart);
+      }
     });
   }
 
+  consLog(licenseId) {
+    this.licId = licenseId;
+  }
+
+  get licenseId() {
+    return this.licId;
+  }
+
+  getObjectRating(objectID: string): number {
+    if (this.ratings) {
+      const objectRatings = this.ratings.filter(res => res.objectID === objectID);
+      const numberArray = objectRatings.map(r => r.value);
+      return numberArray.length ? numberArray.reduce((total, val) => total + val) / numberArray.length : 0;
+    }
+  }
 
   getLicenses(): License[] {
     const keyword = this.route.snapshot.paramMap.get('searchWord').toLowerCase();
