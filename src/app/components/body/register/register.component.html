@@ -67,7 +67,15 @@
             <div class="form-group">
               <button type="submit" class="btn btn-primary btn-block"> Create Account</button>
             </div> <!-- form-group// -->
-            <p class="text-center">Have an account? <a href="">Log In</a></p>
+            <hr>
+            <p class="text-center sign-text">You can also login with Google or Facebook!</p>
+            <div class="row mb-2">
+              <div class="col-12">
+                <button type="button" class="loginBtn loginBtn--google" (click)="loginWithGoogle()"> Google</button>
+                <button type="button" class="loginBtn loginBtn--facebook" (click)="loginWithFacebook()"> Facebook
+                </button>
+              </div>
+            </div>
             <!-- Look to see if we want to keep or not! -->
           </form>
         </article>
