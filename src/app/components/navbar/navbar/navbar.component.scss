@@ -1,3 +1,13 @@
+$grid-breakpoints: (
+  xs: 0,
+  sm: 600px,
+  md: 800px,
+  lg: 1000px,
+  xl: 1850px
+);
+@import "../../../../../node_modules/bootstrap/scss/bootstrap";
+
+
 .navbar {
   z-index: 5;
 }
@@ -114,7 +124,7 @@ p {
 }
 .loginBtn--google:hover,
 .loginBtn--google:focus {
-  background: #E74B37;
+  background-image: linear-gradient(#f44b37, #aa4433);
 }
 
 p {
@@ -299,7 +309,6 @@ img {
 .fa-28px {
   font-size: 28px;
 }
-
 
 
 

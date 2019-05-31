@@ -26,6 +26,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  loginWithGoogle() {
+    this.auth.googleLogin();
+  }
+
+  loginWithFacebook() {
+    this.auth.facebookLogin();
+  }
   onSubmit() {
     const userEmail = this.profileForm.controls.email.value;
     const pass = this.profileForm.controls.password.value;

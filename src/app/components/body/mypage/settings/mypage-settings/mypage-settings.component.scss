@@ -22,9 +22,34 @@
     width: 10%;
     height: 10%;
   }
-  
-  .btn-primary{
-  
-    margin-bottom: 3%;
-  }
-  
+
+.btn-update:active {
+  color: #489afb;
+  background-color: #489afb;
+  border-color: #489afb;
+  width: 80px;
+}
+
+.btn-update {
+  background-color: #489afb;
+  border-color: #489afb;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+.btn-update:focus {
+  background-color: #1a6ed3;
+  border-color: #1a6ed3;
+}
+.btn-update:hover {
+  background-color: #1a6ed3;
+  border-color: #1a6ed3;
+}
+.btn-update:active {
+  background-color: #1a6ed3;
+  border-color: #1a6ed3;
+}
+.btn-update:disabled {
+  background-color: gray;
+  border-color: darkgray;
+}
