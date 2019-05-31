@@ -22,7 +22,7 @@
           </td>
           <td>{{ sub.validTo.toDate() | date}}</td>
           <th scope="col">
-            <a class="btn btn-sm float-right" id="buy1" (click)="cancelPlan(sub)">
+            <a class="btn btn-primary text-white float-right" (click)="cancelPlan(sub)">
               Cancel
             </a>
 
@@ -53,7 +53,7 @@
           <td *ngIf="!planSubscription">Frozen</td>
           <td>{{ sub.validTo.toDate() | date}}</td>
           <td>
-            <a class="btn btn-sm float-right" id="buy2" (click)="cancelLicense(sub)">
+            <a class="btn btn-primary text-white float-right" (click)="cancelLicense(sub)">
               Cancel
             </a>
           </td>
