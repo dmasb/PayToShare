@@ -73,7 +73,7 @@
             <a *ngIf="cart.numberOfItems === 0" class="btn btn-purchase disabled" (click)="process()"
                     routerLink="/order-confirmed">Confirm purchase
             </a>
-            <a *ngIf="cart.numberOfItems > 0" type="button" class="btn btn-purchase" (click)="process()"
+            <a *ngIf="cart.numberOfItems > 0" class="btn btn-purchase" (click)="process()"
                     routerLink="/order-confirmed">Confirm purchase
             </a>
           </div>
