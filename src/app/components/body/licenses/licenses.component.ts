@@ -22,6 +22,7 @@ export class LicensesComponent implements OnInit {
   private licId: any;
   private ratings: Rating[];
   private products: Product[];
+  img: any;
 
   constructor(private licenseService: LicenseService,
               private userSessionService: UserSessionService,
@@ -79,6 +80,11 @@ export class LicensesComponent implements OnInit {
     }
   }
 
+  isVideoFormat(product: Product) {
+    if (product.format.name === 'MP4') {
+      return true;
+    }
+  }
 
   openCenteredDialog(viewIncludedProducts, license: License) {
     this.productService.getProductsByTagAndFormat(license.tag.id, license.format.id).subscribe(products => this.products = products);
