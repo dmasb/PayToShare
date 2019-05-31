@@ -113,6 +113,13 @@ hr {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
+.fa-info-circle{
+  font-size: 38px;
+  position: relative;
+  bottom: 48px;
+  left: 94px;
+}
+
 .btn-license{
   font-family: sans-serif, Arial, Verdana;
   font-weight: bold;
@@ -198,6 +205,45 @@ hr {
   top: 2px;
 }
 
+video {
+  margin-top: 8px;
+  width: 8em;
+  height: 5em;
+  object-fit: contain;
+}
+.card-img-top{
+  width: 8em;
+  height: 4em;
+  object-fit: fill;
+}
+.modal-container {
+  max-width: 60em;
+  max-height: 40em;
+}
+.card-modal{
+  margin: 1em auto;
+  background-color: #FFFFFF;
+  width: 11em;
+  max-width: 11em;
+  height: 11em;
+  max-height: 11em;
+  // TESTING AND CAN BE CHANGED #181E24
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+  border-bottom: 4px solid red;
+}
+.card-modal-tile {
+  font-size: 20px;
+}
+.card-modal-subtitle {
+  font-size: 16px;
+}
+.card-modal-para {
+  font-size: 14px;
+}
+
+
 @media screen and (min-width: 1400px){
   /* Card design */
   .card {
@@ -212,6 +258,13 @@ hr {
     border-right: 1px solid lightgray;
     border-top: 1px solid lightgray;
     border-bottom: 4px solid #489afb;
+  }
+
+  .fa-info-circle{
+    font-size: 38px;
+    position: relative;
+    bottom: 48px;
+    left: 109px;
   }
 
   .sale {
