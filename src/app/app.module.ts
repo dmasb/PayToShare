@@ -67,9 +67,10 @@ import {AddLicenseSaleComponent} from './components/body/admin/salemanegement/ad
 import {OrdersComponent} from './components/body/orders/orders.component';
 import {SearchbarComponent} from './components/navbar/searchbar/searchbar.component';
 import {SearchListComponent} from './components/body/search-list/search-list.component';
-import { MySubscriptionsComponent } from './components/body/mypage/my-subscriptions/my-subscriptions.component';
-import { CookieService } from 'ngx-cookie-service';
-import { GetkeyComponent } from './components/body/getkey/getkey.component';
+import {MySubscriptionsComponent} from './components/body/mypage/my-subscriptions/my-subscriptions.component';
+import {CookieService} from 'ngx-cookie-service';
+import {GetkeyComponent} from './components/body/getkey/getkey.component';
+import {ViewIncludedProductsComponent} from './components/body/view-included-products/view-included-products.component';
 
 @NgModule({
   declarations: [
@@ -128,6 +129,7 @@ import { GetkeyComponent } from './components/body/getkey/getkey.component';
     SearchListComponent,
     MySubscriptionsComponent,
     GetkeyComponent,
+    ViewIncludedProductsComponent,
   ],
   imports: [
     BrowserModule,

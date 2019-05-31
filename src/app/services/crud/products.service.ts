@@ -34,6 +34,21 @@ export class ProductsService {
     );
   }
 
+  getProductsByTagAndFormat(tagID: string, formatID: string): Observable<Product[]> {
+    return this.products = this.afs.collection('products').snapshotChanges().pipe(
+      map(products => {
+        return products.map(product => {
+          return {
+            id: product.payload.doc.id,
+            ...product.payload.doc.data()
+          } as Product;
+        }).filter(
+          product => (product.tags.find(tag => tag.id === tagID) && product.format.id === formatID)
+        );
+      })
+    );
+  }
+
 
   /*
   to be fixed {Suitable for the search by tag functionality]

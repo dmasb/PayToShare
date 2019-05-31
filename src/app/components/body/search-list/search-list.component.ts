@@ -7,6 +7,9 @@ import {Cart} from '../../../models/products/cart';
 import {UserSessionService} from '../../../services/user-session.service';
 import {Rating} from '../../../models/rating';
 import {StarService} from '../../../services/product/star.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ProductsService} from '../../../services/crud/products.service';
+import {Product} from '../../../models/products/product';
 
 @Component({
   selector: 'app-search-list',
@@ -21,11 +24,14 @@ export class SearchListComponent implements OnInit {
   private userId: string;
   private licId: any;
   private ratings: Rating[];
+  private products: Product[];
 
   constructor(private route: ActivatedRoute,
               private licenseService: LicenseService,
               private userSessionService: UserSessionService,
-              private starService: StarService) {
+              private starService: StarService,
+              private modalService: NgbModal,
+              private productService: ProductsService) {
   }
 
   ngOnInit() {
@@ -76,5 +82,11 @@ export class SearchListComponent implements OnInit {
   addPlan(plan: Plan) {
     this.cart.plan = plan;
     this.userSessionService.updateCart(this.cart);
+  }
+
+  openCenteredDialog(viewIncludedProducts, license: License) {
+    this.productService.getProductsByTagAndFormat(license.tag.id, license.format.id).subscribe(products => this.products = products);
+    this.modalService.open(viewIncludedProducts, {centered: true});
+    return false;
   }
 }
