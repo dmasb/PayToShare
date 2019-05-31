@@ -117,7 +117,7 @@ export class UpdateProductComponent implements OnInit {
     return this.uploadImageService.getPercentage();
   }
 
-  getImageUrl(): url {
+  getImageUrl() {
     return this.uploadImageService.getImageUrl();
   }
 }
