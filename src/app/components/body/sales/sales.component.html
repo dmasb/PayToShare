@@ -123,7 +123,10 @@
                 </div>
                 <div class="col">
                   <br>
-                  <a class="btn btn-block btn-outline-dark btn-license mb-1" role="button" (click)="add(license)">
+                  <a *ngIf="license.quantity === 0" class="btn btn-block btn-outline-dark btn-disabled mb-1" role="button">
+                    BUY
+                  </a>
+                  <a *ngIf="license.quantity > 0" class="btn btn-block btn-outline-dark btn-license mb-1" role="button" (click)="addLicense(license)">
                     BUY
                   </a>
                 </div>
@@ -139,7 +142,10 @@
                 </div>
                 <div class="col">
                   <br>
-                  <a class="btn btn-block btn-outline-dark btn-license mb-1" role="button" (click)="add(license)">
+                  <a *ngIf="license.quantity === 0" class="btn btn-block btn-outline-dark btn-disabled mb-1" role="button">
+                  BUY
+                </a>
+                  <a *ngIf="license.quantity > 0" class="btn btn-block btn-outline-dark btn-license mb-1" role="button" (click)="addLicense(license)">
                     BUY
                   </a>
                 </div>
