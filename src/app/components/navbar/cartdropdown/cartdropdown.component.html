@@ -1,3 +1,4 @@
+
 <li class="dropdown nav-item">
   <a *ngIf="cart" class="nav-link fa fa-28px fa-shopping-cart text-white" id="navbarDropdownMenuLink" role="button"
      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
@@ -26,9 +27,8 @@
             <span class="item-price" *ngIf="cart.plan.salePrice > 0">{{cart.plan.salePrice | currency}}</span><br>
             <span class="item-price" *ngIf="cart.plan.salePrice === 0">{{cart.plan.price | currency}}</span><br>
           </li>
-          <h6 class="mt-4 mb-3 font-italic font-weight-bold">Licenses: </h6>
           <li class="clearfix" *ngFor="let license of cart.licenses">
-
+            <h6 class="mt-4 mb-3 font-italic font-weight-bold">Licenses: </h6>
             <span><img *ngIf="license.item.imageUrl" src="{{license.item.imageUrl}}" alt="item1"/></span>
             <span><img *ngIf="!license.item.imageUrl || license.item.imageUrl == '' " src="{{license.item.imageUrl}}"
                        alt="item1"/></span>
@@ -43,3 +43,4 @@
     </div>
   </ul>
 </li>
+
