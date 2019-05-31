@@ -20,7 +20,7 @@
             <div class="text-center body-top">
               <img src="{{plan.imageUrl}}" alt="plan image">
               <h2 class="title">{{plan.title}}</h2>
-<!--              <h5 class="text-muted">< {{plan.level.name}} ></h5>-->
+              <!--              <h5 class="text-muted">< {{plan.level.name}} ></h5>-->
               <p class="text-center text-muted mb-0 pb-0">{{plan.description}}</p>
             </div>
             <hr>
@@ -32,21 +32,21 @@
               </div>
             </div>
             <div class="container border-top border-bottom border-muted mb-2">
-              <div class="row">
-                <div class="col-3 text-license-list" *ngFor="let license of plan.defaultLicenses">{{license}}</div>
+              <div class="row mt-1">
+                <div class="col-4 text-license-list text-center mb-1" *ngFor="let license of plan.defaultLicenses">{{license}}</div>
               </div>
             </div>
-          <div class="row mt-auto" *ngIf="plan.salePrice > 0">
-            <div class="col-8 move-sale-price">
-              <h6 class="old-price text-muted">OLD: {{plan.price | currency}}<br></h6>
-              <h6>NOW: <span class="font-weight-bold">{{plan.salePrice | currency}}</span></h6>
+            <div class="row mt-auto" *ngIf="plan.salePrice > 0">
+              <div class="col-8 move-sale-price">
+                <h6 class="old-price text-muted">OLD: {{plan.price | currency}}<br></h6>
+                <h6>NOW: <span class="font-weight-bold">{{plan.salePrice | currency}}</span></h6>
+              </div>
+              <div class="col">
+                <a class="btn btn-block btn-outline-dark btn-plan mb-1" role="button" (click)="addPlan(plan)">
+                  BUY
+                </a>
+              </div>
             </div>
-            <div class="col">
-              <a class="btn btn-block btn-outline-dark btn-plan mb-1" role="button"(click)="addPlan(plan)">
-                BUY
-              </a>
-            </div>
-          </div>
             <div class="row mt-auto" *ngIf="plan.salePrice === 0">
               <div class="col-8">
                 <h5 class="move-price font-weight-bold">{{plan.salePrice | currency}}</h5>
@@ -57,9 +57,9 @@
                 </a>
               </div>
             </div>
+          </div>
+        </div>
       </div>
     </div>
-    </div>
   </div>
-</div>
 </div>

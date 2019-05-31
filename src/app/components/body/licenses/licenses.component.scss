@@ -135,15 +135,15 @@ hr {
 .sale {
   position: relative;
   display: inline-block;
-  background: #ff7f00;
+  background: #489afb;
   color: white;
   height: 2.5rem;
   width: 2.5rem;
   text-align: center;
   vertical-align: middle;
   line-height: 2.5rem;
-  bottom: 380px;
-  left: 230px;
+  bottom: 245px;
+  left: 224px;
   transform: rotate(-20deg);
   animation: beat 1s ease infinite alternate;
   &:before,
@@ -197,8 +197,8 @@ hr {
     background-color: #FFFFFF;
     width: 20em;
     max-width: 20em;
-    height: 30em;
-    max-height: 30em;
+    height: 31em;
+    max-height: 32em;
     // TESTING AND CAN BE CHANGED #181E24
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgray;

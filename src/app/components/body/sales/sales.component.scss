@@ -16,10 +16,10 @@ img.plan-img {
 .card-plan {
   margin: 1em auto;
   background-color: #FFFFFF;
-  width: 18em;
-  max-width: 18em;
-  height: 32em;
-  max-height: 32em;
+  width: 19em;
+  max-width: 19em;
+  height: 34em;
+  max-height: 35em;
   // TESTING AND CAN BE CHANGED #181E24
   border-left: 1px solid lightgray;
   border-right: 1px solid lightgray;
@@ -155,54 +155,6 @@ img.plan-img {
   top: 2px;
 }
 
-@media screen and (min-width: 1400px) {
-  /* Card design */
-  .card-plan {
-    margin: 1em auto;
-    background-color: #FFFFFF;
-    width: 20em;
-    max-width: 20em;
-    height: 33em;
-    max-height: 35em;
-    // TESTING AND CAN BE CHANGED #181E24
-    border-left: 1px solid lightgray;
-    border-right: 1px solid lightgray;
-    border-top: 1px solid lightgray;
-    border-bottom: 4px solid #ff7f00;
-  }
-
-  .sale-plan {
-    position: relative;
-    display: inline-block;
-    background: orange;
-    color: white;
-    height: 2.5rem;
-    width: 2.5rem;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 2.5rem;
-    bottom: 380px;
-    left: 260px;
-    transform: rotate(-20deg);
-    animation: beat 1s ease infinite alternate;
-
-    &:before,
-    &:after {
-      content: "";
-      position: absolute;
-      background: inherit;
-      height: inherit;
-      width: inherit;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      transform: rotate(30deg);
-    }
-
-    &:after {
-      transform: rotate(60deg);
-    }
-  }
 
 
   // LICESENSE SCSS!!!!
@@ -251,14 +203,15 @@ img.plan-img {
     background-color: #FFFFFF;
     width: 18em;
     max-width: 18em;
-    height: 30em;
-    max-height: 30em;
+    height: 31em;
+    max-height: 31em;
     // TESTING AND CAN BE CHANGED #181E24
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgray;
     border-top: 1px solid lightgray;
     border-bottom: 4px solid #489afb;
   }
+
   .desc-text {
     font-size: 15px;
     margin-bottom: 0;
@@ -339,21 +292,20 @@ img.plan-img {
   .sale-license {
     position: relative;
     display: inline-block;
-    background: #ff7f00;
+    background: #489afb;
     color: white;
     height: 2.5rem;
     width: 2.5rem;
     text-align: center;
     vertical-align: middle;
     line-height: 2.5rem;
-    bottom: 380px;
-    left: 230px;
+    bottom: 260px;
+    left: 224px;
     transform: rotate(-20deg);
     animation: beat 1s ease infinite alternate;
-
     &:before,
     &:after {
-      content: "";
+      content:"";
       position: absolute;
       background: inherit;
       height: inherit;
@@ -363,7 +315,6 @@ img.plan-img {
       z-index: -1;
       transform: rotate(30deg);
     }
-
     &:after {
       transform: rotate(60deg);
     }
@@ -408,8 +359,8 @@ img.plan-img {
       background-color: #FFFFFF;
       width: 20em;
       max-width: 20em;
-      height: 30em;
-      max-height: 30em;
+      height: 31em;
+      max-height: 32em;
       // TESTING AND CAN BE CHANGED #181E24
       border-left: 1px solid lightgray;
       border-right: 1px solid lightgray;
@@ -450,4 +401,152 @@ img.plan-img {
       }
     }
   }
+@media screen and (min-width: 1400px) {
+  /* Card design - PLAN*/
+  .card-plan {
+    margin: 1em auto;
+    background-color: #FFFFFF;
+    width: 20em;
+    max-width: 20em;
+    height: 34em;
+    max-height: 35em;
+    // TESTING AND CAN BE CHANGED #181E24
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-bottom: 4px solid #ff7f00;
+  }
+
+  .sale-plan {
+    position: relative;
+    display: inline-block;
+    background: #ff7f00;
+    color: white;
+    height: 2.5rem;
+    width: 2.5rem;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 2.5rem;
+    bottom: 372px;
+    left: 258px;
+    transform: rotate(-20deg);
+    animation: beat 1s ease infinite alternate;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      background: inherit;
+      height: inherit;
+      width: inherit;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      transform: rotate(30deg);
+    }
+
+    &:after {
+      transform: rotate(60deg);
+    }
+  }
+
+  /* Card design - LICENSE*/
+  .card-license {
+    margin: 1em auto;
+    background-color: #FFFFFF;
+    width: 20em;
+    max-width: 20em;
+    height: 31em;
+    max-height: 32em;
+    // TESTING AND CAN BE CHANGED #181E24
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-bottom: 4px solid #489afb;
+  }
+
+  .sale-license {
+    position: relative;
+    display: inline-block;
+    background: #489afb;
+    color: white;
+    height: 2.5rem;
+    width: 2.5rem;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 2.5rem;
+    bottom: 258px;
+    left: 260px;
+    transform: rotate(-20deg);
+    animation: beat 1s ease infinite alternate;
+    &:before,
+    &:after {
+      content:"";
+      position: absolute;
+      background: inherit;
+      height: inherit;
+      width: inherit;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      transform: rotate(30deg);
+    }
+    &:after {
+      transform: rotate(60deg);
+    }
+  }
 }
+  @media screen and (min-width: 1198px) and (max-width: 1255px) {
+    .card-plan {
+      margin: 1em auto;
+      background-color: #FFFFFF;
+      width: 18em;
+      max-width: 18em;
+      height: 33em;
+      max-height: 33em;
+      // TESTING AND CAN BE CHANGED #181E24
+      border-left: 1px solid lightgray;
+      border-right: 1px solid lightgray;
+      border-top: 1px solid lightgray;
+      border-bottom: 4px solid #ff7f00;
+    }
+    .text-license-list {
+      font-size: 11px;
+    }
+    p.plan-desc {
+      font-size: 14px;
+    }
+
+    .sale-plan {
+      position: relative;
+      display: inline-block;
+      background: #ff7f00;
+      color: white;
+      height: 2.5rem;
+      width: 2.5rem;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 2.5rem;
+      bottom: 375px;
+      left: 220px;
+      transform: rotate(-20deg);
+      animation: beat 1s ease infinite alternate;
+
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        background: inherit;
+        height: inherit;
+        width: inherit;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transform: rotate(30deg);
+      }
+
+      &:after {
+        transform: rotate(60deg);
+      }
+    }
+  }

@@ -59,12 +59,12 @@ export class LicensesComponent implements OnInit {
     const selectedOption = (document.getElementById('sortSales') as HTMLSelectElement);
 
     switch (selectedOption.value) {
-      case 'Ascending': {
+      case 'Rating: High to Low': {
         console.log('asc');
         this.licenses.sort((a, b) => (this.getObjectRating(a.id) > this.getObjectRating(b.id) ? -1 : 1));
         break;
       }
-      case 'Descending': {
+      case 'Rating: Low to High': {
         console.log('Desc');
         this.licenses.sort((a, b) => (this.getObjectRating(a.id) < this.getObjectRating(b.id) ? -1 : 1));
         break;
