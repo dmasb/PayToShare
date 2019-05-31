@@ -1,14 +1,22 @@
 .fullscreen{
-  background-image: url(../../../../../assets/images/bg7.png); // TAKEN WITHOUT CREDIT GIVEN LELELE
+  background-image: url(../../../../../assets/images/ordercomplete.jpg); // TAKEN WITHOUT CREDIT GIVEN LELELE
+  background-position: center;
   padding-top: 20px;
   padding-bottom: 30px;
-  height: 200vh;
+  height: 100vh;
   position: relative;
   background-size: cover;
   background-repeat: no-repeat;
   margin-top: 4em;
 }
 
+.container {
+  max-width: 1000px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
 img {
     height: 8em;
     width: auto;
@@ -24,5 +32,8 @@ img {
 
 hr {
     border-width: 2px;
+}
+@media screen and (min-width: 1300px) {
+  width: 1000px;
 }
 
