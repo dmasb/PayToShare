@@ -11,7 +11,6 @@ import {Error404Component} from './components/body/error404/error404.component';
 import {RoleGuardService} from './services/authentication/role-guard.service';
 import {DashboardComponent} from './components/body/admin/dashboard/dashboard.component';
 import {PlanComponent} from './components/body/plan/plan.component';
-import {CheckoutComponent} from './components/body/checkout/CartOverview/checkout.component';
 import {OrderConfirmedComponent} from './components/body/checkout/order-confirmed/order-confirmed.component';
 import {FrontPageComponent} from './components/body/front-page/front-page.component';
 import {SearchListComponent} from './components/body/search-list/search-list.component';
@@ -26,13 +25,12 @@ export const routes: Routes = [
   {path: 'collection', component: ProductsComponent},
   {path: 'weeklydeals', component: WeeklydealsComponent},
   {path: 'profile', component: MypageOverviewComponent, canActivate: [AuthGuard]},
-  {path: 'features', component: FeaturesComponent},
+  {path: 'checkout', component: FeaturesComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'logout', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: 'recover', component: PasswordrecoveryComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuardService]},
   {path: 'plan', component: PlanComponent},
-  {path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
   {path: 'licenses', component: LicensesComponent},
   {path: 'order-confirmed', component: OrderConfirmedComponent, canActivate: [AuthGuard]},
   {path: 'search/:searchWord', component: SearchListComponent},
