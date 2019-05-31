@@ -49,7 +49,7 @@
             </div>
             <div class="row mt-auto" *ngIf="plan.salePrice === 0">
               <div class="col-8">
-                <h5 class="move-price font-weight-bold">{{plan.salePrice | currency}}</h5>
+                <h5 class="move-price font-weight-bold">{{plan.price | currency}}</h5>
               </div>
               <div class="col">
                 <a class="btn btn-block btn-outline-dark btn-plan mb-1" role="button" (click)="addPlan(plan)">
