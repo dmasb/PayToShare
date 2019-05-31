@@ -217,8 +217,8 @@ video {
   object-fit: fill;
 }
 .modal-container {
-  width: 60em;
-  height: 40em;
+  max-width: 60em;
+  max-height: 40em;
 }
 .card-modal{
   margin: 1em auto;
