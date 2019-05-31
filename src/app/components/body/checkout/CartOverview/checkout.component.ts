@@ -20,8 +20,10 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit() {
     this.session.getUserDoc().subscribe(user => {
-      this.user = user;
-      this.cart = Cart.clone(user.cart);
+      if (user) {
+        this.user = user;
+        this.cart = Cart.clone(user.cart);
+      }
     });
 
   }
