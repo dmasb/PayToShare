@@ -5,6 +5,9 @@ import {Cart} from '../../../models/products/cart';
 import {UserSessionService} from '../../../services/user-session.service';
 import {StarService} from '../../../services/product/star.service';
 import {Rating} from '../../../models/rating';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Product} from '../../../models/products/product';
+import {ProductsService} from '../../../services/crud/products.service';
 
 @Component({
   selector: 'app-licenses',
@@ -18,11 +21,13 @@ export class LicensesComponent implements OnInit {
   private userId: string;
   private licId: any;
   private ratings: Rating[];
-
+  private products: Product[];
 
   constructor(private licenseService: LicenseService,
               private userSessionService: UserSessionService,
-              private starService: StarService) {
+              private starService: StarService,
+              private modalService: NgbModal,
+              private productService: ProductsService) {
   }
 
   ngOnInit() {
@@ -70,5 +75,12 @@ export class LicensesComponent implements OnInit {
         break;
       }
     }
+  }
+
+
+  openCenteredDialog(viewIncludedProducts, license: License) {
+    this.productService.getProductsByTagAndFormat(license.tag.id, license.format.id).subscribe(products => this.products = products);
+    this.modalService.open(viewIncludedProducts, {centered: true});
+    return false;
   }
 }

@@ -16,6 +16,8 @@ export class MypageOrdersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.orderService.getOrders(this.uid).subscribe(orders => this.orders = orders);
+    this.orderService.getOrders(this.uid).subscribe(orders => {
+      this.orders = orders.sort((a, b) => (a.created  < b.created) ? 1 : -1);
+    });
   }
 }
