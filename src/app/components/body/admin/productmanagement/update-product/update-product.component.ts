@@ -34,7 +34,7 @@ export class UpdateProductComponent implements OnInit {
     productPrice: new FormControl(''),
     productQuantity: new FormControl(''),
     productDescription: new FormControl(''),
-    licenseImageUrl: new FormControl('') //
+    productImageUrl: new FormControl('') //
   });
 
   constructor(private productService: ProductsService,
@@ -117,7 +117,7 @@ export class UpdateProductComponent implements OnInit {
     return this.uploadImageService.getPercentage();
   }
 
-  getImageUrl(): url {
+  getImageUrl() {
     return this.uploadImageService.getImageUrl();
   }
 }
