@@ -11,6 +11,7 @@ import {alerts} from '../../models/alerts';
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
 import {Cart} from '../../models/products/cart';
+import {Time} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -82,24 +83,18 @@ export class AuthService {
     return this.updateUserData(credential.user);
   }
 
-  addUserWithInfo(user: IUser, password: string) {
+  addUserWithInfo(user: User, password: string) {
     this.afAuth.auth.createUserWithEmailAndPassword(user.email, password).then(async cred => {
       this.afAuth.auth.currentUser.sendEmailVerification();
 
-      const credential = await this.afAuth.auth;
-
       // Adding required information to the user document data set mentioned earlier.
-      this.data.id = credential.currentUser.uid;
-      this.data.email = credential.currentUser.email;
-      this.data.firstName = user.firstName;
-      this.data.lastName = user.lastName;
-      this.data.phone = user.phone;
-      this.data.registerDate = cred.user.metadata.creationTime;
-      this.data.lastLogin = Timestamp.now();
-      this.data.loggedIn = true;
-      this.data.country = user.country;
-      this.data.zipcode = user.zipcode;
-      await this.afs.collection('users').doc(cred.user.uid).set(Object.assign({}, this.data));
+      user.id = cred.user.uid;
+      user.registerDate = cred.user.metadata.creationTime;
+      user.lastLogin = Timestamp.now();
+      user.loggedIn = true;
+      user.cart = Object.assign({}, user.cart);
+
+      await this.afs.collection('users').doc(cred.user.uid).set(Object.assign({}, user));
       this.router.navigate(['/profile']);
     });
   }

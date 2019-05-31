@@ -39,8 +39,9 @@ export class UserSessionService implements OnInit {
 
 
   updateUser(updatedUser: IUser): boolean {
-    const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${this.userID}`);
+    const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${updatedUser.id}`);
     userRef.ref.get().then(userDocument => {
+      console.log('TEEEEEEEEEEEEST');
       if (userDocument.exists) {
         userRef.update(Object.assign({}, updatedUser));
         return true;

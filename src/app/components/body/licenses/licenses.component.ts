@@ -34,8 +34,10 @@ export class LicensesComponent implements OnInit {
     this.starService.getRatings().subscribe(ratings => this.ratings = ratings);
     this.licenseService.getLicenses().subscribe(licenses => this.licenses = licenses);
     this.userSessionService.getUserDoc().subscribe(user => {
-      this.userId = user.id;
-      this.cart = Cart.clone(user.cart);
+      if (user) {
+        this.userId = user.id;
+        this.cart = Cart.clone(user.cart);
+      }
     });
   }
 

@@ -47,6 +47,7 @@ export class MypageOverviewComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('xDDDDD');
     this.updateFormValues();
     this.session.updateUser(this.currentUser);
     this.profileUpdated = true;

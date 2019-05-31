@@ -26,25 +26,32 @@ export interface IUser {
 }
 
 export class User implements IUser {
-  constructor() {
-    this.cart = new Cart();
-  }
+  address: string;
+  cart: Cart;
+  city: string;
+  country: string;
+  email: string;
+  firstName: string;
+  id: string;
+  lastLogin: firebase.firestore.Timestamp;
+  lastName: string;
+  loggedIn: boolean;
+  phone: number;
+  photoURL: string;
+  rank: Userrank;
+  registerDate;
+  sessionID: number;
+  sex: Sex;
+  zipcode: number;
 
-  id?: string;
-  rank: Userrank = Userrank.User;
-  email: string = null;
-  firstName: string = null;
-  lastName: string = null;
-  photoURL?: string = null;
-  registerDate = null;
-  sex?: Sex = null;
-  address = 'N/A';
-  city = 'N/A';
-  zipcode = 123456;
-  country = 'N/A';
-  phone?: number = null;
-  loggedIn?: boolean;
-  lastLogin?: Timestamp;
-  sessionID?: number = null;
-  cart?: Cart = null;
+  constructor() {
+    this.rank = Userrank.User;
+    this.address = 'N/A';
+    this.city = 'N/A';
+    this.country = 'N/A';
+    this.zipcode = 123456;
+    this.cart = new Cart();
+    this.photoURL = 'https://firebasestorage.googleapis.com/v0/b/paytoshare-b4cd1.appspot.com/o/userImages%2Fblank-' +
+      'profile-picture-973460_960_720.png?alt=media&token=1140f0f7-d7d0-4c05-a777-259c682ab7f1';
+  }
 }

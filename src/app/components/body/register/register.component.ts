@@ -4,6 +4,7 @@ import {Userrank} from '../../../models/userrank';
 import {AuthService} from '../../../services/authentication/auth.service';
 import {MessageService} from '../../../services/message.service';
 import {alerts} from '../../../models/alerts';
+import {User} from '../../../models/user';
 
 @Component({
   selector: 'app-register',
@@ -33,6 +34,7 @@ export class RegisterComponent implements OnInit {
   loginWithFacebook() {
     this.auth.facebookLogin();
   }
+
   onSubmit() {
     const userEmail = this.profileForm.controls.email.value;
     const pass = this.profileForm.controls.password.value;
@@ -41,13 +43,11 @@ export class RegisterComponent implements OnInit {
     const lastname = this.profileForm.controls.lastname.value;
     const userPhone = this.profileForm.controls.phone.value;
 
-    const user = {
-      rank: Userrank.User,
-      email: userEmail,
-      firstName: firstname,
-      lastName: lastname,
-      phone: userPhone
-    };
+    const user = new User();
+    user.email = userEmail;
+    user.firstName = firstname;
+    user.lastName = lastname;
+    user.phone = userPhone;
 
 
     if (pass !== passConfirm) {

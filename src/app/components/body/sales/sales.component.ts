@@ -11,8 +11,8 @@ import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
 import {CookieService} from 'ngx-cookie-service';
 import {User} from '../../../models/user';
-import {Rating} from "../../../models/rating";
-import {StarService} from "../../../services/product/star.service";
+import {Rating} from '../../../models/rating';
+import {StarService} from '../../../services/product/star.service';
 
 @Component({
   selector: 'app-sales',
@@ -44,8 +44,8 @@ export class SalesComponent implements OnInit {
     this.salesService.getSaleOnType(SaleType.LICENSE).subscribe(sales => this.licenseSale = sales);
     this.salesService.getSaleOnType(SaleType.PLAN).subscribe(sales => this.planSale = sales);
     this.userSessionService.getUserDoc().subscribe(user => {
-      this.userId = user.id;
       if (user) {
+        this.userId = user.id;
         this.user = user;
         this.cart = Cart.clone(user.cart);
       } else {
