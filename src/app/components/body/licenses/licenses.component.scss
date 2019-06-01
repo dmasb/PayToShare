@@ -217,8 +217,12 @@ video {
   object-fit: fill;
 }
 .modal-container {
-  max-width: 60em;
-  max-height: 40em;
+  max-width: 120em;
+  max-height: 60em;
+}
+.modal-body {
+  max-width: 110em;
+  max-height: 58em;
 }
 .card-modal{
   margin: 1em auto;
@@ -261,10 +265,10 @@ video {
   }
 
   .fa-info-circle{
-    font-size: 38px;
+    font-size: 23px;
     position: relative;
-    bottom: 48px;
-    left: 109px;
+    top: 8px;
+    left: 65px;
   }
 
   .sale {

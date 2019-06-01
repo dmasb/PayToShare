@@ -84,7 +84,7 @@
             </div>
             <div class="col">
               <br>
-              <a *ngIf="license.quantity === 0" class="btn btn-block btn-outline-dark btn-disabled mb-1" role="button">
+              <a *ngIf="license.quantity === 0" class="btn btn-block btn-outline-dark disabled mb-1" role="button">
                 BUY
               </a>
               <a *ngIf="license.quantity > 0" class="btn btn-block btn-outline-dark btn-license mb-1" role="button"
@@ -111,7 +111,7 @@
             </div>
             <div class="col">
               <br>
-              <a *ngIf="license.quantity === 0" class="btn btn-block btn-outline-dark btn-disabled mb-1" role="button">
+              <a *ngIf="license.quantity === 0" class="btn btn-block btn-outline-dark disabled mb-1" role="button">
                 BUY
               </a>
               <a *ngIf="license.quantity > 0" class="btn btn-block btn-outline-dark btn-license mb-1" role="button"
@@ -134,15 +134,15 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div *ngIf="products && products.length > 0" class="modal-body">
-    <div class="container container-prod-row mb-5">
+
+      <div *ngIf="products && products.length > 0" class="modal-body">
       <div class="row">
-        <div class="col-xl-4 col-lg-5 col-md-6" *ngFor="let product of products; let i=index">
+        <div class="col-xl-4 col-6" *ngFor="let product of products; let i=index">
           <div class="card-modal">
             <!--  IMAGE -->
-            <div class="card-body-info text-center d-flex flex-column">
+            <div class="card-body-info text-center">
               <video class="card-img-top align-self-center" *ngIf="isVideoFormat(product); else img" controls
-                     src="{{this.product.imageUrl}}"></video>
+                     src="{{product.imageUrl}}"></video>
               <!--    BODY-->
               <img class="card-img-top align-self-center" *ngIf="!isVideoFormat(product)"  src="{{product.imageUrl}}">
                 <h2 class="card-modal-tile">{{product.title}}</h2>
@@ -154,7 +154,6 @@
         </div>
       </div>
 
-  </div>
   <div *ngIf="!products || products.length === 0" class="modal-body">
     This license contains no products at this time
   </div>
