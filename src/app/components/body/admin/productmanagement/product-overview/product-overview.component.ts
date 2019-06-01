@@ -45,4 +45,44 @@ export class ProductOverviewComponent implements OnInit {
   onSubmit() {
     // pages
   }
+
+  sortTile() {
+    if (this.products[0].title < this.products[this.products.length - 1].title) {
+      this.products.sort((a, b) => a.title < b.title ? 1 : -1);
+    } else {
+      this.products.sort((a, b) => a.title > b.title ? 1 : -1);
+    }
+  }
+
+  sortTag() {
+    if (this.products[0].tags.length < this.products[this.products.length - 1].tags.length) {
+      this.products.sort((a, b) => a.tags.length < b.tags.length ? 1 : -1);
+    } else {
+      this.products.sort((a, b) => a.tags.length > b.tags.length ? 1 : -1);
+    }
+  }
+
+  sortFormat() {
+    if (this.products[0].format.name < this.products[this.products.length - 1].format.name) {
+      this.products.sort((a, b) => a.format.name < b.format.name ? 1 : -1);
+    } else {
+      this.products.sort((a, b) => a.format.name > b.format.name ? 1 : -1);
+    }
+  }
+
+  sortPrice() {
+    if (this.products[0].price < this.products[this.products.length - 1].price) {
+      this.products.sort((a, b) => a.price < b.price ? 1 : -1);
+    } else {
+      this.products.sort((a, b) => a.price > b.price ? 1 : -1);
+    }
+  }
+
+  sortQuantity() {
+    if (this.products[0].quantity < this.products[this.products.length - 1].quantity) {
+      this.products.sort((a, b) => a.quantity < b.quantity ? 1 : -1);
+    } else {
+      this.products.sort((a, b) => a.quantity > b.quantity ? 1 : -1);
+    }
+  }
 }

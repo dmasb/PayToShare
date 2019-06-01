@@ -15,22 +15,12 @@
         <table class="table table-striped">
           <thead>
           <tr>
-            <th scope="col">
-              <label>
-                <input type="checkbox" name="checkAll" disabled>
-              </label>
-            </th>
-            <th scope="col">Tag name</th>
-            <th scope="col">Actions</th>
+            <th class="table-title" (click)="sortTag()" scope="col">Tag name</th>
+            <th class="table-title-disabled" scope="col">Actions</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let tag of tags; index as i">
-            <th scope="row">
-              <label>
-                <input type="checkbox" name="checkbox + {{ i + 1}}" disabled>
-              </label>
-            </th>
             <td>{{ tag.name }}</td>
             <td>
               <app-update-tag [tag]="tag"></app-update-tag>

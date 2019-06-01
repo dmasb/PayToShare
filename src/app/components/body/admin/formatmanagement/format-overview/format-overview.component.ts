@@ -18,4 +18,11 @@ export class FormatOverviewComponent implements OnInit {
     this.formatService.getFormats().subscribe(formats => this.formats = formats);
   }
 
+  sortFormat() {
+    if (this.formats[0].name > this.formats[this.formats.length - 1].name) {
+      this.formats.sort((a, b) => a.name > b.name ? 1 : -1);
+    } else {
+      this.formats.sort((a, b) => a.name < b.name ? 1 : -1);
+    }
+  }
 }

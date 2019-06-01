@@ -11,3 +11,11 @@ table th {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.col-title {
+  cursor: pointer;
+}
+
+.table-title-disabled {
+  cursor: not-allowed;
+}

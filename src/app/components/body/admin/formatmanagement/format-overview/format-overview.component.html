@@ -15,22 +15,12 @@
         <table class="table table-striped">
           <thead>
           <tr>
-            <th scope="col">
-              <label>
-                <input type="checkbox" name="checkAll" disabled>
-              </label>
-            </th>
-            <th scope="col">Format name</th>
-            <th scope="col">Actions</th>
+            <th class="table-title" (click)="sortFormat()" scope="col">Format name</th>
+            <th class="table-title-disabled" scope="col">Actions</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let format of formats; index as i">
-            <th scope="row">
-              <label>
-                <input type="checkbox" name="checkbox + {{ i + 1}}" disabled>
-              </label>
-            </th>
             <td>{{ format.name }}</td>
             <td>
               <app-update-format [format]="format"></app-update-format>

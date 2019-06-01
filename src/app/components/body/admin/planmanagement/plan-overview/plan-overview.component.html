@@ -2,6 +2,7 @@
 <table class="table table-striped">
   <thead>
   <tr>
+    <th scope="col">Image</th>
     <th scope="col">Title</th>
     <th scope="col">Speed mb/S</th>
     <th scope="col">Price</th>
@@ -11,6 +12,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let plan of plans; index as i">
+    <td><img src="{{plan.imageUrl}}" alt=""></td>
     <td>{{ plan.title}}</td>
     <td>{{ plan.speed | number}}</td>
     <td>{{ plan.price | number}}</td>

@@ -51,4 +51,20 @@ export class LicenseOverviewComponent implements OnInit {
       this.licenses.sort((a, b) => (a.quantity < b.quantity ? -1 : 1));
     }
   }
+
+  sortFormat() {
+    if (this.licenses[0].format.name < this.licenses[this.licenses.length - 1].format.name) {
+      this.licenses.sort((a, b) => (a.format.name > b.format.name ? -1 : 1));
+    } else {
+      this.licenses.sort((a, b) => (a.format.name < b.format.name ? -1 : 1));
+    }
+  }
+
+  sortTag() {
+    if (this.licenses[0].tag.name < this.licenses[this.licenses.length - 1].tag.name) {
+      this.licenses.sort((a, b) => (a.tag.name > b.tag.name ? -1 : 1));
+    } else {
+      this.licenses.sort((a, b) => (a.tag.name < b.tag.name ? -1 : 1));
+    }
+  }
 }

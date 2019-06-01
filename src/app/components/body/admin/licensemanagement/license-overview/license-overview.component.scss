@@ -15,3 +15,7 @@ table th {
 .table-title {
   cursor: pointer;
 }
+
+.table-title-disabled {
+  cursor: not-allowed;
+}

@@ -41,25 +41,6 @@ export class SaleOverviewComponent implements OnInit {
     this.tagService.getTags().subscribe(tags => this.tags = tags);
   }
 
-  sort() {
-    const selectedOption = (document.getElementById('sortSales') as HTMLSelectElement);
-
-    switch (selectedOption.value) {
-      case 'Discount': {
-        this.sales.sort((a, b) => (a.discount > b.discount) ? -1 : 1);
-        break;
-      }
-      case 'Title': {
-        this.sales.sort((a, b) => (a.name < b.name) ? -1 : 1);
-        break;
-      }
-      case 'Period': {
-        this.sales.sort((a, b) => (a.begins < b.begins) ? -1 : 1);
-        break;
-      }
-    }
-  }
-
   getItemNames(salesObjects: any[], type: SaleType): string[] {
     const names: string[] = [];
     if (this.tags && this.plans) {
@@ -80,6 +61,54 @@ export class SaleOverviewComponent implements OnInit {
           return names;
         }
       }
+    }
+  }
+
+  sortTitle() {
+    if (this.sales[0].name > this.sales[this.sales.length - 1].name) {
+      this.sales.sort((a, b) => a.name > b.name ? 1 : -1);
+    } else {
+      this.sales.sort((a, b) => a.name < b.name ? 1 : -1);
+    }
+  }
+
+  sortType() {
+    if (this.sales[0].type > this.sales[this.sales.length - 1].type) {
+      this.sales.sort((a, b) => a.type > b.type ? 1 : -1);
+    } else {
+      this.sales.sort((a, b) => a.type < b.type ? 1 : -1);
+    }
+  }
+
+  sortIncludes() {
+    if (this.sales[0].saleObjects.length > this.sales[this.sales.length - 1].saleObjects.length) {
+      this.sales.sort((a, b) => a.saleObjects.length > b.saleObjects.length ? 1 : -1);
+    } else {
+      this.sales.sort((a, b) => a.saleObjects.length < b.saleObjects.length ? 1 : -1);
+    }
+  }
+
+  sortDiscount() {
+    if (this.sales[0].discount > this.sales[this.sales.length - 1].discount) {
+      this.sales.sort((a, b) => a.discount > b.discount ? 1 : -1);
+    } else {
+      this.sales.sort((a, b) => a.discount < b.discount ? 1 : -1);
+    }
+  }
+
+  sortBeings() {
+    if (this.sales[0].begins > this.sales[this.sales.length - 1].begins) {
+      this.sales.sort((a, b) => a.begins > b.begins ? 1 : -1);
+    } else {
+      this.sales.sort((a, b) => a.begins < b.begins ? 1 : -1);
+    }
+  }
+
+  sortEnds() {
+    if (this.sales[0].ends > this.sales[this.sales.length - 1].ends) {
+      this.sales.sort((a, b) => a.ends > b.ends ? 1 : -1);
+    } else {
+      this.sales.sort((a, b) => a.ends < b.ends ? 1 : -1);
     }
   }
 }

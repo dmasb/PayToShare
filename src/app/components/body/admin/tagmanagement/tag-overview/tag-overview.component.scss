@@ -1,13 +1,7 @@
-table {
-  table-layout: fixed;
+.table-title-disabled {
+  cursor: not-allowed;
 }
 
-table td {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-table th {
-  overflow: hidden;
-  text-overflow: ellipsis;
+.table-title {
+  cursor: pointer;
 }

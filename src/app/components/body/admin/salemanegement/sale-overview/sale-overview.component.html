@@ -50,23 +50,16 @@
 
       <div class="tab-pane fade show active" id="v-pills-salesOverview" role="tabpanel"
            aria-labelledby="v-pills-salesOverview-tab">
-        <div>
-          <label for="sortSales">Sort by:</label><select id="sortSales" class="form-control-sm ml-3" (change)="sort()">
-          <option>Discount</option>
-          <option>Title</option>
-          <option>Period</option>
-        </select>
-        </div>
         <table class="table table-striped">
           <thead>
           <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Type</th>
-            <th scope="col">Includes</th>
-            <th scope="col">Discount</th>
-            <th scope="col">Beings</th>
-            <th scope="col">Ends</th>
-            <th scope="col">Action(s)</th>
+            <th class="table-title" (click)="sortTitle()" scope="col">Title</th>
+            <th class="table-title" (click)="sortType()" scope="col">Type</th>
+            <th class="table-title" (click)="sortIncludes()" scope="col">Includes</th>
+            <th class="table-title" (click)="sortDiscount()" scope="col">Discount</th>
+            <th class="table-title" (click)="sortBeings()" scope="col">Beings</th>
+            <th class="table-title" (click)="sortEnds()" scope="col">Ends</th>
+            <th class="table-title-disabled" scope="col">Action(s)</th>
           </tr>
           </thead>
           <tbody>

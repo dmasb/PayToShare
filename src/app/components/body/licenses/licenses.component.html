@@ -129,9 +129,9 @@
 </div>
 
 <ng-template #addLicenseModal let-modal>
-  <div class="modal-container bg-white align-content-center">
+  <div class="modal-container bg-white justify-content-center">
   <div *ngIf="products" class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Products included: </h4>
+    <h4 class="modal-title" id="modal-basic-title">Products included: {{products.length}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
