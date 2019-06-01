@@ -8,8 +8,8 @@ import {alerts} from '../../models/alerts';
 import {SaleType} from '../../models/saleType';
 import {firestore} from 'firebase/app';
 import {Plan} from '../../models/products/plan';
-import Timestamp = firestore.Timestamp;
 import {License} from '../../models/products/license';
+import Timestamp = firestore.Timestamp;
 
 @Injectable({
   providedIn: 'root'
@@ -72,27 +72,31 @@ export class SalesService {
   }
 
   addSale(sale: Sale) {
-    if (sale.type === SaleType.PLAN) {
-      const plans = sale.saleObjects as Plan[];
-      for (const plan of plans) {
-        this.afs.collection('plans').doc(plan.id).update({
-          salePrice: plan.price - (plan.price * (sale.discount / 100))
-        });
-        plan.salePrice = plan.price - (plan.price * (sale.discount / 100));
+    if (sale.ends > Timestamp.now()) {
+      if (sale.type === SaleType.PLAN) {
+        const plans = sale.saleObjects as Plan[];
+        for (const plan of plans) {
+          this.afs.collection('plans').doc(plan.id).update({
+            salePrice: plan.price - (plan.price * (sale.discount / 100))
+          });
+          plan.salePrice = plan.price - (plan.price * (sale.discount / 100));
+        }
+        sale.saleObjects = plans;
+      } else if (sale.type === SaleType.LICENSE) {
+        const licenses = sale.saleObjects as License[];
+        for (const license of licenses) {
+          this.afs.collection('licenses').doc(license.id).update({
+            salePrice: license.price - (license.price * (sale.discount / 100))
+          });
+          license.salePrice = license.price - (license.price * (sale.discount / 100));
+        }
+        sale.saleObjects = licenses;
       }
-      sale.saleObjects = plans;
-    } else if (sale.type === SaleType.LICENSE) {
-      const licenses = sale.saleObjects as License[];
-      for (const license of licenses) {
-        this.afs.collection('licenses').doc(license.id).update({
-          salePrice: license.price - (license.price * (sale.discount / 100))
-        });
-        license.salePrice = license.price - (license.price * (sale.discount / 100));
-      }
-      sale.saleObjects = licenses;
+      this.afs.collection('sales').add(Object.assign({}, sale));
+      this.messageService.add(sale.name + ' was successfully listed!', alerts.success);
+    } else {
+      this.messageService.add('Adding expired sales is not allowed!', alerts.danger);
     }
-    this.afs.collection('sales').add(Object.assign({}, sale));
-    this.messageService.add(sale.name + ' was successfully listed!', alerts.success);
   }
 
   private async deleteSale(saleObject: Sale) {
