@@ -79,8 +79,7 @@ export class AddLicenseSaleComponent implements OnInit {
         }
       }
     }
-    console.log(saleArray);
-    console.log(licenseArray);
+
     if (saleArray.length === 0 && licenseArray.length === 0) {
 
       this.salesService.addSale(sale);

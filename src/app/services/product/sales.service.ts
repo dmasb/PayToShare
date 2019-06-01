@@ -10,6 +10,8 @@ import {firestore} from 'firebase/app';
 import {Plan} from '../../models/products/plan';
 import {License} from '../../models/products/license';
 import Timestamp = firestore.Timestamp;
+import {User} from '../../models/user';
+import {Cart} from '../../models/products/cart';
 
 @Injectable({
   providedIn: 'root'
@@ -119,6 +121,13 @@ export class SalesService {
               });
             }
           }
+          this.afs.collection('users').ref.get().then(users => {
+            users.docs.map(user => {
+              this.afs.collection('users').doc(user.id).update({
+                cart: Object.assign({}, new Cart())
+              });
+            });
+          });
           this.messageService.add(saleObject.name + ' was successfully deleted!', alerts.success);
         }, () => {
           this.messageService.add(saleObject.name + ' was not found!', alerts.success);
