@@ -1,6 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {ProcessorderService} from '../../../../../services/mail/processorder.service';
 import {Order} from '../../../../../models/order';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-mypage-orders',
@@ -12,7 +13,8 @@ export class MypageOrdersComponent implements OnInit {
   @Input() private uid: string;
   private orders: Order[];
 
-  constructor(private orderService: ProcessorderService) {
+  constructor(private router: Router,
+              private orderService: ProcessorderService) {
   }
 
   ngOnInit() {
@@ -21,5 +23,9 @@ export class MypageOrdersComponent implements OnInit {
         this.orders = orders.sort((a, b) => (a.created < b.created) ? 1 : -1);
       });
     }
+  }
+
+  viewOrder(id: string) {
+    this.router.navigate([`order/${id}`]);
   }
 }

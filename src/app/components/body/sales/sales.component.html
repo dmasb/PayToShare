@@ -112,7 +112,7 @@
             </div>
             <div class="container pb-2">
               <div class="row" *ngIf="license.salePrice > 0">
-                <div class="col-8 move-sale-price">
+                <div class="col-5 move-sale-price">
                   <h6 *ngIf="license.quantity === 0" class="stock-font-size"><i class="fa fa-square fa-square-red"></i> Out Of Stock<br></h6>
                   <h6 *ngIf="license.quantity  > 0 && license.quantity < 10" class="stock-font-size"><i class="fa fa-square fa-square-yellow"></i> {{license.quantity}} in
                     Stock<br></h6>
@@ -120,6 +120,10 @@
                     Stock<br></h6>
                   <h6 class="old-price text-muted">OLD: {{license.price | currency}}<br></h6>
                   <h6>NOW: <span class="font-weight-bold">{{license.salePrice | currency}}</span></h6>
+                </div>
+                <div class="col">
+                  <br>
+                  <app-view-included-products [license]="license"></app-view-included-products>
                 </div>
                 <div class="col">
                   <br>
@@ -132,13 +136,17 @@
                 </div>
               </div>
               <div class="row" *ngIf="license.salePrice === 0">
-                <div class="col-8">
+                <div class="col-5">
                   <h6 *ngIf="license.quantity === 0" class="stock-font-size stock-move"><i class="fa fa-square fa-square-red"></i> out of Stock<br></h6>
                   <h6 *ngIf="license.quantity  > 0 && license.quantity < 10" class="stock-font-size stock-move"><i class="fa fa-square fa-square-yellow"></i> {{license.quantity}} in
                     Stock<br></h6>
                   <h6 *ngIf="license.quantity  >= 10" class="stock-font-size stock-move"><i class="fa fa-square fa-square-green"></i> {{license.quantity}} in
                     Stock<br></h6>
                   <h5 class="move-price font-weight-bold mt-3">{{license.price | currency}}</h5>
+                </div>
+                <div class="col">
+                  <br>
+                  <app-view-included-products [license]="license"></app-view-included-products>
                 </div>
                 <div class="col">
                   <br>

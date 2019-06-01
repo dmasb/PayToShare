@@ -1,17 +1,36 @@
 <ng-template #addLicenseModal let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Add License</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    xDDDDDDDDDDDDDDDD
+  <div class="modal-container bg-white">
+    <div *ngIf="products" class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Products included: {{products.length}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div *ngIf="products && products.length > 0" class="modal-body">
+      <div class="row">
+        <div class="col-xl-4 col-6" *ngFor="let product of products; let i=index">
+          <div class="card-modal">
+            <!--  IMAGE -->
+            <div class="card-body-info text-center">
+              <video class="card-img-top align-self-center" *ngIf="isVideoFormat(product); else img" controls
+                     src="{{product.imageUrl}}"></video>
+              <!--    BODY-->
+              <img class="card-img-top align-self-center" *ngIf="!isVideoFormat(product)"  src="{{product.imageUrl}}">
+              <h2 class="card-modal-tile">{{product.title}}</h2>
+              <h5 class="card-modal-subtitle text-muted"><span *ngFor="let tag of product.tags">< {{tag.name}} ></span></h5>
+              <h6 class="card-modal-para text-muted">| {{product.format.name}} |</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!products || products.length === 0" class="modal-body">
+      This license contains no products at this time
+    </div>
   </div>
 </ng-template>
-<div class="nav flex-column nav-pills m-0 p-0 bg-white" id="v-pills-tab" aria-orientation="vertical">
-  <a class="btn btn-outline-dark text-left" id="key" role="tab" aria-selected="true" href="#"
-     (click)="openCenteredDialog(addLicenseModal)"><span uk-icon="icon:  plus-circle; ratio: 1" class="mr-2"></span>Add
-    License
-  </a>
-</div>
+
+<a role="button" class="text-primary btn-lic-info mb-1 pull-right"
+   (click)="openCenteredDialog(addLicenseModal)"><i class="fa fa-info-circle"></i></a>

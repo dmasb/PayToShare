@@ -62,11 +62,16 @@
               </div>
               <div class="col">
                 <br>
-                <a role="button" class="btn btn-link pull-right" (click)="openCenteredDialog(addLicenseModal, license)">Info</a>
+                <app-view-included-products [license]="license"></app-view-included-products>
               </div>
               <div class="col">
                 <br>
-                <a class="btn btn-block btn-outline-dark btn-license mb-1" role="button" (click)="addLicense(license)">
+                <a *ngIf="license.quantity === 0" class="btn btn-block btn-outline-dark btn-disabled mb-1"
+                   role="button">
+                  BUY
+                </a>
+                <a *ngIf="license.quantity > 0" class="btn btn-block btn-outline-dark btn-license mb-1" role="button"
+                   (click)="addLicense(license)">
                   BUY
                 </a>
               </div>
@@ -85,11 +90,16 @@
               </div>
               <div class="col">
                 <br>
-                <a role="button" class="btn btn-link pull-right" (click)="openCenteredDialog(addLicenseModal, license)">Info</a>
+                <app-view-included-products [license]="license"></app-view-included-products>
               </div>
               <div class="col">
                 <br>
-                <a class="btn btn-block btn-outline-dark btn-license mb-1" role="button" (click)="addLicense(license)">
+                <a *ngIf="license.quantity === 0" class="btn btn-block btn-outline-dark btn-disabled mb-1"
+                   role="button">
+                  BUY
+                </a>
+                <a *ngIf="license.quantity > 0" class="btn btn-block btn-outline-dark btn-license mb-1" role="button"
+                   (click)="addLicense(license)">
                   BUY
                 </a>
               </div>
@@ -103,38 +113,3 @@
     <span class="textRes">Item(s) not found </span>
   </div>
 </div>
-<ng-template #addLicenseModal let-modal>
-  <div *ngIf="products" class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Products included: </h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div *ngIf="products && products.length > 0" class="modal-body">
-    <div class="container container-prod-row mb-5">
-      <div class="row">
-        <div class="col-xl-3 col-lg-4 col-md-5" *ngFor="let product of products; let i=index">
-          <div class="card">
-            <!--  IMAGE -->
-            <div class="card-body d-flex flex-column">
-              <img class="card-img-top img-fluid" src="{{product.imageUrl}}" alt="Card image cap">
-              <!--    BODY-->
-              <div class="card-body text-center">
-                <h2 class="card-title">{{product.title}}</h2>
-                <span *ngFor="let tag of product.tags">
-          <h5 class="text-muted">< {{tag.name}} ></h5>
-        </span>
-                <h6 class="text-muted">| {{product.format.name}} |</h6>
-                <hr>
-                <p>{{product.description}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div *ngIf="!products || products.length === 0" class="modal-body">
-    This license contains no products at this time
-  </div>
-</ng-template>

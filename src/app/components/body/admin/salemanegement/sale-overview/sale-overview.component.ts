@@ -37,7 +37,11 @@ export class SaleOverviewComponent implements OnInit {
     this.planService.getPlans().subscribe(plans => this.plans = plans);
     this.licenseService.getLicenses().subscribe(licenses => this.licenses = licenses);
     this.productService.getProducts().subscribe(products => this.products = products);
-    this.salesService.getAllSales().subscribe(sales => this.sales = sales);
+    this.salesService.getAllSales().subscribe(sales => {
+      if (sales) {
+        this.sales = sales;
+      }
+    });
     this.tagService.getTags().subscribe(tags => this.tags = tags);
   }
 

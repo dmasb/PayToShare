@@ -82,11 +82,11 @@
             </div>
             <div class="col">
               <br>
-              <a role="button" class="text-primary btn-lic-info mb-1 " (click)="openCenteredDialog(addLicenseModal, license)"><i class="fa fa-info-circle"></i></a>
+              <app-view-included-products [license]="license"></app-view-included-products>
             </div>
             <div class="col">
               <br>
-              <a *ngIf="license.quantity === 0" class="btn btn-block btn-outline-dark disabled mb-1" role="button">
+              <a *ngIf="license.quantity === 0" class="btn btn-block btn-outline-dark btn-disabled mb-1" role="button">
                 BUY
               </a>
               <a *ngIf="license.quantity > 0" class="btn btn-block btn-outline-dark btn-license mb-1" role="button"
@@ -109,11 +109,11 @@
             </div>
             <div class="col">
               <br>
-              <a role="button" class="text-primary btn-lic-info mb-1 " (click)="openCenteredDialog(addLicenseModal, license)"><i class="fa fa-info-circle"></i></a>
+              <app-view-included-products [license]="license"></app-view-included-products>
             </div>
             <div class="col">
               <br>
-              <a *ngIf="license.quantity === 0" class="btn btn-block btn-outline-dark disabled mb-1" role="button">
+              <a *ngIf="license.quantity === 0" class="btn btn-block btn-outline-dark btn-disabled mb-1" role="button">
                 BUY
               </a>
               <a *ngIf="license.quantity > 0" class="btn btn-block btn-outline-dark btn-license mb-1" role="button"
@@ -128,7 +128,7 @@
   </div>
 </div>
 
-<ng-template #addLicenseModal let-modal>
+<!--<ng-template #addLicenseModal let-modal>
   <div class="modal-container bg-white justify-content-center">
   <div *ngIf="products" class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Products included: {{products.length}}</h4>
@@ -141,11 +141,11 @@
       <div class="row">
         <div class="col-xl-4 col-6" *ngFor="let product of products; let i=index">
           <div class="card-modal">
-            <!--  IMAGE -->
+            &lt;!&ndash;  IMAGE &ndash;&gt;
             <div class="card-body-info text-center">
               <video class="card-img-top align-self-center" *ngIf="isVideoFormat(product); else img" controls
                      src="{{product.imageUrl}}"></video>
-              <!--    BODY-->
+              &lt;!&ndash;    BODY&ndash;&gt;
               <img class="card-img-top align-self-center" *ngIf="!isVideoFormat(product)"  src="{{product.imageUrl}}">
                 <h2 class="card-modal-tile">{{product.title}}</h2>
                  <h5 class="card-modal-subtitle text-muted"><span *ngFor="let tag of product.tags">< {{tag.name}} ></span></h5>
@@ -160,4 +160,4 @@
     This license contains no products at this time
   </div>
   </div>
-</ng-template>
+</ng-template>-->

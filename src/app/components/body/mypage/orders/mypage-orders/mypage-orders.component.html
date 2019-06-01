@@ -15,7 +15,7 @@
         <tbody>
         <tr *ngFor="let order of orders; index as i">
           <td>{{ order.created.toDate() | date }}</td>
-          <td>{{ order.id }}</td>
+          <td class="order-link"><a (click)="viewOrder(order.id)">{{order.id}}</a></td>
           <td>
             <p *ngFor="let license of order.cart.licenses">{{ license.item.title }}</p>
           </td>

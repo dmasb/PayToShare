@@ -8,7 +8,6 @@ import {IUser} from '../../../models/user';
 import {MessageService} from '../../../services/message.service';
 
 
-
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

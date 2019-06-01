@@ -6,12 +6,14 @@
 #top {
   margin-top: 4em;
 }
+
 img.plan-img {
   height: 10em;
   width: 20em;
   border-radius: 4px;
   object-fit: fill;
 }
+
 /* Card design */
 .card-plan {
   margin: 1em auto;
@@ -27,15 +29,15 @@ img.plan-img {
   border-bottom: 4px solid #ff7f00;
 }
 
-.btn-plan{
+.btn-plan {
   font-family: sans-serif, Arial, Verdana;
   font-weight: bold;
   color: #FFFFFF;
-  text-align:center;
+  text-align: center;
   transition: all 0.2s;
 }
 
-.btn-plan:hover{
+.btn-plan:hover {
   background-color: #ff7f00;
 }
 
@@ -45,6 +47,7 @@ img.plan-img {
   font-size: 14px;
   padding: 2px 4px 2px 3.5px;
 }
+
 .old-price-plan {
   font-size: 13px;
   padding-bottom: 0;
@@ -55,26 +58,29 @@ img.plan-img {
   font-size: 12px;
 }
 
-.btn-plan:hover{
-  background-color:#ff7f00;
+.btn-plan:hover {
+  background-color: #ff7f00;
 }
 
-.btn-plan{
+.btn-plan {
   font-family: sans-serif, Arial, Verdana;
   font-weight: bold;
   color: #FFFFFF;
-  text-align:center;
+  text-align: center;
   transition: all 0.2s;
 }
-.btn-plan:hover{
+
+.btn-plan:hover {
   background-color: #ff7f00;
 }
+
 .alert {
   padding: 20px;
   background-color: #368ff4;
   color: white;
 }
-.msg{
+
+.msg {
   position: fixed;
   display: none;
   width: 100%;
@@ -92,7 +98,7 @@ img.plan-img {
   background-image: url(../../../../assets/images/salesbox2-2.png);
   background-color: #181E24;
   object-fit: fill;
-  width:1374px;
+  width: 1374px;
   //width: 574px;
   border-bottom: 5px solid #ff7f00;
   border-top-left-radius: 10px;
@@ -100,6 +106,7 @@ img.plan-img {
   color: #FFFFFF;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
+
 .sale-plan {
   position: relative;
   display: inline-block;
@@ -110,13 +117,14 @@ img.plan-img {
   text-align: center;
   vertical-align: middle;
   line-height: 2.5rem;
-  bottom: 380px;
-  left: 230px;
+  bottom: 390px;
+  left: 260px;
   transform: rotate(-20deg);
   animation: beat 1s ease infinite alternate;
+
   &:before,
   &:after {
-    content:"";
+    content: "";
     position: absolute;
     background: inherit;
     height: inherit;
@@ -126,24 +134,32 @@ img.plan-img {
     z-index: -1;
     transform: rotate(30deg);
   }
+
   &:after {
     transform: rotate(60deg);
   }
 }
+
 // For the star
 
 @keyframes beat {
-  from {	transform: rotate(-20deg) scale(1); }
-  to {	transform: rotate(-20deg) scale(1.1); }
+  from {
+    transform: rotate(-20deg) scale(1);
+  }
+  to {
+    transform: rotate(-20deg) scale(1.1);
+  }
 }
 
 .no-space-plan {
   position: relative;
   width: 0;
   height: 0;
-}.no-space2-plan {
-   position: absolute;
- }
+}
+
+.no-space2-plan {
+  position: absolute;
+}
 
 .move-price-plan {
   position: relative;
@@ -156,131 +172,140 @@ img.plan-img {
 }
 
 
+// LICESENSE SCSS!!!!
+img.license-img {
+  height: 8em;
+  width: 17em;
+  border-radius: 4px;
+  object-fit: fill;
+}
 
-  // LICESENSE SCSS!!!!
-  img.license-img {
-    height: 8em;
-    width: 17em;
-    border-radius: 4px;
-    object-fit: fill;
-  }
-  h2.license {
-    font-size: 25px;
-    margin-bottom: 3px;
-  }
-  h5.license {
-    font-size: 18px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-  }
-  h6.license {
-    font-size: 16px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-  }
-  hr.license {
-    margin-top: 8px;
-    margin-bottom: 8px;
-  }
+h2.license {
+  font-size: 25px;
+  margin-bottom: 3px;
+}
 
-  .review-container {
-    margin-bottom: 0;
-    margin-top: 0;
-    padding-bottom: 0;
-    padding-top: 0;
-  }
-  .review-badge {
-    margin: 0;
-    padding: 4px 2px 2px 2px;
-    font-size: 14px;
-  }
-  .stars-margin {
-    margin-left: 22%;
-  }
-  /* Card design */
-  .card-license {
-    margin: 1em auto;
-    background-color: #FFFFFF;
-    width: 18em;
-    max-width: 18em;
-    height: 31em;
-    max-height: 31em;
-    // TESTING AND CAN BE CHANGED #181E24
-    border-left: 1px solid lightgray;
-    border-right: 1px solid lightgray;
-    border-top: 1px solid lightgray;
-    border-bottom: 4px solid #489afb;
-  }
+h5.license {
+  font-size: 18px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
 
-  .desc-text {
-    font-size: 15px;
-    margin-bottom: 0;
-  }
+h6.license {
+  font-size: 16px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
 
-  .card-price {
-    font-size: 2em;
-  }
+hr.license {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
 
-  .card-price .period {
-    font-size: 0.6em;
-  }
+.review-container {
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
 
-  .fa-square-green {
-    color: green;
-  }
-  .fa-square-yellow {
-    color: yellow;
-  }
-  .fa-square-red {
-    color: red;
-  }
+.review-badge {
+  margin: 0;
+  padding: 4px 2px 2px 2px;
+  font-size: 14px;
+}
 
-  .fa-star-yellow {
-    color: #FFD700;
-  }
-  .stock-font-size {
-    font-size: 14px;
-    margin-bottom: 1px;
-    padding-bottom: 1px;
+.stars-margin {
+  margin-left: 22%;
+}
 
-  }
+/* Card design */
+.card-license {
+  margin: 1em auto;
+  background-color: #FFFFFF;
+  width: 18em;
+  max-width: 18em;
+  height: 31em;
+  max-height: 31em;
+  // TESTING AND CAN BE CHANGED #181E24
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+  border-bottom: 4px solid #489afb;
+}
 
-  .old-price {
-    font-size: 13px;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
+.desc-text {
+  font-size: 15px;
+  margin-bottom: 0;
+}
 
-  .text-license-list {
-    font-size: 12px;
-  }
+.card-price {
+  font-size: 2em;
+}
 
-  .container-license {
-    margin-top: 2em;
-    background-image: url(../../../../assets/images/randomgbg2.png);
-    background-position-y: 35%;
-    background-color: #ff7f00;
-    object-fit: fill;
-    width: 1374px;
-    //width: 574px;
-    border-bottom: 5px solid steelblue;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    color: #FFFFFF;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  }
+.card-price .period {
+  font-size: 0.6em;
+}
 
-  .btn-license {
-    font-family: sans-serif, Arial, Verdana;
-    font-weight: bold;
-    color: #FFFFFF;
-    text-align: center;
-    transition: all 0.2s;
-  }
+.fa-square-green {
+  color: green;
+}
 
-  .btn-license:hover {
-    background-color: #489afb;
-  }
+.fa-square-yellow {
+  color: yellow;
+}
+
+.fa-square-red {
+  color: red;
+}
+
+.fa-star-yellow {
+  color: #FFD700;
+}
+
+.stock-font-size {
+  font-size: 14px;
+  margin-bottom: 1px;
+  padding-bottom: 1px;
+
+}
+
+.old-price {
+  font-size: 13px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.text-license-list {
+  font-size: 12px;
+}
+
+.container-license {
+  margin-top: 2em;
+  background-image: url(../../../../assets/images/randomgbg2.png);
+  background-position-y: 35%;
+  background-color: #ff7f00;
+  object-fit: fill;
+  width: 1374px;
+  //width: 574px;
+  border-bottom: 5px solid steelblue;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #FFFFFF;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.btn-license {
+  font-family: sans-serif, Arial, Verdana;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.btn-license:hover {
+  background-color: #489afb;
+}
 
 .btn-disabled {
   color: darkgray;
@@ -290,11 +315,96 @@ img.plan-img {
   font-weight: bold;
 }
 
-  .badge-dark {
-    // background-color: #ff7f00;
-    // color: black;
-    font-size: 14px;
-    padding: 5px 5px 5px 5px;
+.badge-dark {
+  // background-color: #ff7f00;
+  // color: black;
+  font-size: 14px;
+  padding: 5px 5px 5px 5px;
+}
+
+.sale-license {
+  position: relative;
+  display: inline-block;
+  background: #489afb;
+  color: white;
+  height: 2.5rem;
+  width: 2.5rem;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 2.5rem;
+  bottom: 270px;
+  left: 240px;
+  transform: rotate(-20deg);
+  animation: beat 1s ease infinite alternate;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    background: inherit;
+    height: inherit;
+    width: inherit;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transform: rotate(30deg);
+  }
+
+  &:after {
+    transform: rotate(60deg);
+  }
+}
+
+// For the star
+@keyframes beat {
+  from {
+    transform: rotate(-20deg) scale(1);
+  }
+  to {
+    transform: rotate(-20deg) scale(1.1);
+  }
+}
+
+.no-space {
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+.no-space2 {
+  position: absolute;
+}
+
+.move-price {
+  position: relative;
+  bottom: 6px;
+  font-size: 22px;
+}
+
+.stock-move {
+  position: relative;
+  top: 4px;
+}
+
+.move-sale-price {
+  position: relative;
+  top: 2px;
+}
+
+@media screen and (min-width: 1400px) {
+  /* Card design */
+  .card-license {
+    margin: 1em auto;
+    background-color: #FFFFFF;
+    width: 20em;
+    max-width: 20em;
+    height: 31em;
+    max-height: 32em;
+    // TESTING AND CAN BE CHANGED #181E24
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-bottom: 4px solid #489afb;
   }
 
   .sale-license {
@@ -307,13 +417,14 @@ img.plan-img {
     text-align: center;
     vertical-align: middle;
     line-height: 2.5rem;
-    bottom: 260px;
-    left: 224px;
+    bottom: 258px;
+    left: 260px;
     transform: rotate(-20deg);
     animation: beat 1s ease infinite alternate;
+
     &:before,
     &:after {
-      content:"";
+      content: "";
       position: absolute;
       background: inherit;
       height: inherit;
@@ -323,92 +434,13 @@ img.plan-img {
       z-index: -1;
       transform: rotate(30deg);
     }
+
     &:after {
       transform: rotate(60deg);
     }
   }
-  // For the star
-  @keyframes beat {
-    from {
-      transform: rotate(-20deg) scale(1);
-    }
-    to {
-      transform: rotate(-20deg) scale(1.1);
-    }
-  }
+}
 
-  .no-space {
-    position: relative;
-    width: 0;
-    height: 0;
-  }
-  .no-space2 {
-    position: absolute;
-  }
-
-  .move-price {
-    position: relative;
-    bottom: 6px;
-    font-size: 22px;
-  }
-  .stock-move {
-    position: relative;
-    top: 4px;
-  }
-  .move-sale-price {
-    position: relative;
-    top: 2px;
-  }
-
-  @media screen and (min-width: 1400px) {
-    /* Card design */
-    .card-license {
-      margin: 1em auto;
-      background-color: #FFFFFF;
-      width: 20em;
-      max-width: 20em;
-      height: 31em;
-      max-height: 32em;
-      // TESTING AND CAN BE CHANGED #181E24
-      border-left: 1px solid lightgray;
-      border-right: 1px solid lightgray;
-      border-top: 1px solid lightgray;
-      border-bottom: 4px solid #489afb;
-    }
-
-    .sale-license {
-      position: relative;
-      display: inline-block;
-      background: #489afb;
-      color: white;
-      height: 2.5rem;
-      width: 2.5rem;
-      text-align: center;
-      vertical-align: middle;
-      line-height: 2.5rem;
-      bottom: 258px;
-      left: 260px;
-      transform: rotate(-20deg);
-      animation: beat 1s ease infinite alternate;
-
-      &:before,
-      &:after {
-        content: "";
-        position: absolute;
-        background: inherit;
-        height: inherit;
-        width: inherit;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        transform: rotate(30deg);
-      }
-
-      &:after {
-        transform: rotate(60deg);
-      }
-    }
-  }
 @media screen and (min-width: 1400px) {
   /* Card design - PLAN*/
   .card-plan {
@@ -487,9 +519,10 @@ img.plan-img {
     left: 260px;
     transform: rotate(-20deg);
     animation: beat 1s ease infinite alternate;
+
     &:before,
     &:after {
-      content:"";
+      content: "";
       position: absolute;
       background: inherit;
       height: inherit;
@@ -499,62 +532,64 @@ img.plan-img {
       z-index: -1;
       transform: rotate(30deg);
     }
+
     &:after {
       transform: rotate(60deg);
     }
   }
 }
-  @media screen and (min-width: 1198px) and (max-width: 1255px) {
-    .card-plan {
-      margin: 1em auto;
-      background-color: #FFFFFF;
-      width: 18em;
-      max-width: 18em;
-      height: 33em;
-      max-height: 33em;
-      // TESTING AND CAN BE CHANGED #181E24
-      border-left: 1px solid lightgray;
-      border-right: 1px solid lightgray;
-      border-top: 1px solid lightgray;
-      border-bottom: 4px solid #ff7f00;
-    }
-    .text-license-list {
-      font-size: 11px;
-    }
-    p.plan-desc {
-      font-size: 14px;
+
+@media screen and (min-width: 1198px) and (max-width: 1255px) {
+  .card-plan {
+    margin: 2em auto;
+    background-color: #FFFFFF;
+    width: 18em;
+    max-width: 18em;
+    height: 33em;
+    max-height: 33em;
+    // TESTING AND CAN BE CHANGED #181E24
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-bottom: 4px solid #ff7f00;
+  }
+  .text-license-list {
+    font-size: 11px;
+  }
+  p.plan-desc {
+    font-size: 14px;
+  }
+
+  .sale-plan {
+    position: relative;
+    display: inline-block;
+    background: #ff7f00;
+    color: white;
+    height: 2.5rem;
+    width: 2.5rem;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 2.5rem;
+    bottom: 375px;
+    left: 220px;
+    transform: rotate(-20deg);
+    animation: beat 1s ease infinite alternate;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      background: inherit;
+      height: inherit;
+      width: inherit;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      transform: rotate(30deg);
     }
 
-    .sale-plan {
-      position: relative;
-      display: inline-block;
-      background: #ff7f00;
-      color: white;
-      height: 2.5rem;
-      width: 2.5rem;
-      text-align: center;
-      vertical-align: middle;
-      line-height: 2.5rem;
-      bottom: 375px;
-      left: 220px;
-      transform: rotate(-20deg);
-      animation: beat 1s ease infinite alternate;
-
-      &:before,
-      &:after {
-        content: "";
-        position: absolute;
-        background: inherit;
-        height: inherit;
-        width: inherit;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        transform: rotate(30deg);
-      }
-
-      &:after {
-        transform: rotate(60deg);
-      }
+    &:after {
+      transform: rotate(60deg);
     }
   }
+}

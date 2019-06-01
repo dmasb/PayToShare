@@ -64,13 +64,13 @@ import {OrderConfirmedComponent} from './components/body/checkout/order-confirme
 import {LicensesComponent} from './components/body/licenses/licenses.component';
 import {FrontPageComponent} from './components/body/front-page/front-page.component';
 import {AddLicenseSaleComponent} from './components/body/admin/salemanegement/add-license-sale/add-license-sale.component';
-import {OrdersComponent} from './components/body/orders/orders.component';
 import {SearchbarComponent} from './components/navbar/searchbar/searchbar.component';
 import {SearchListComponent} from './components/body/search-list/search-list.component';
 import {MySubscriptionsComponent} from './components/body/mypage/my-subscriptions/my-subscriptions.component';
 import {CookieService} from 'ngx-cookie-service';
 import {GetkeyComponent} from './components/body/getkey/getkey.component';
 import {ViewIncludedProductsComponent} from './components/body/view-included-products/view-included-products.component';
+import {OrderDetailsComponent } from './components/body/mypage/orders/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -124,12 +124,12 @@ import {ViewIncludedProductsComponent} from './components/body/view-included-pro
     LicensesComponent,
     FrontPageComponent,
     AddLicenseSaleComponent,
-    OrdersComponent,
     SearchbarComponent,
     SearchListComponent,
     MySubscriptionsComponent,
     GetkeyComponent,
     ViewIncludedProductsComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     BrowserModule,

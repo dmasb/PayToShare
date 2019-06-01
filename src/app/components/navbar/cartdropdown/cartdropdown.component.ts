@@ -3,6 +3,7 @@ import {UserSessionService} from '../../../services/user-session.service';
 import {Cart} from '../../../models/products/cart';
 import {Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
+import {MessageService} from '../../../services/message.service';
 
 @Component({
   selector: 'app-cartdropdown',
@@ -15,7 +16,8 @@ export class CartdropdownComponent implements OnInit {
 
   constructor(private userSession: UserSessionService,
               private router: Router,
-              private cookieService: CookieService) {
+              private cookieService: CookieService,
+              private messageService: MessageService) {
   }
 
   ngOnInit() {

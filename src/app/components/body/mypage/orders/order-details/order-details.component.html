@@ -1,0 +1,69 @@
+<div class="fullscreen">
+  <div class="container bg-white">
+    <div *ngIf="getOrderDetails()">
+      <h4 class="text-center text-black-50 mb-4">Order: #{{getOrderDetails().id}}</h4>
+      <h6 class="text-center text-black-50 mb-4">{{getOrderDetails().created.toDate()}}</h6>
+      <table *ngIf="getOrderDetails().cart.plan" class="table">
+        <thead class="thead-light">
+        <tr>
+          <th class="col-3" scope="col">PLAN</th>
+          <th scope="col">Title</th>
+          <th scope="col">Speed</th>
+          <th scope="col">Licenses</th>
+          <th scope="col">Price</th>
+          <th scope="col">#</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="td-first"><img class="img" src="{{getOrderDetails().cart.plan.imageUrl}}" alt=""></td>
+          <td>{{getOrderDetails().cart.plan.title}}</td>
+          <td>{{getOrderDetails().cart.plan.speed}}</td>
+          <td>
+            <span *ngFor="let license of getOrderDetails().cart.plan.defaultLicenses">
+              {{license}}
+            </span>
+          </td>
+          <td>{{((getOrderDetails().cart.plan.salePrice === 0) ?
+            getOrderDetails().cart.plan.price : getOrderDetails().cart.plan.salePrice) | currency}}</td>
+          <td></td>
+        </tr>
+        </tbody>
+      </table>
+
+      <table *ngIf="getOrderDetails().cart.licenses.length > 0" class="table mt-4">
+        <thead class="thead-light">
+        <tr>
+          <th class="col-3" scope="col">License(s)</th>
+          <th scope="col">Title</th>
+          <th scope="col">Tag</th>
+          <th scope="col">Format</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let license of getOrderDetails().cart.licenses">
+          <td class="td-first"><img class="img" src="{{license.item.imageUrl}}" alt=""></td>
+          <td>{{license.item.title}}</td>
+          <td>{{license.item.tag.name}}</td>
+          <td>{{license.item.format.name}}</td>
+          <td>{{license.amountOf}}</td>
+          <td>{{((license.item.salePrice === 0) ? license.item.price : license.item.salePrice) | currency}}</td>
+        </tr>
+        </tbody>
+        <tr class="thead-light mt-5">
+          <td class="table-dark td-first">TOTAL</td>
+          <td class="table-dark"></td>
+          <td class="table-dark"></td>
+          <td class="table-dark"></td>
+          <td class="table-dark"></td>
+          <td class="table-dark">{{getOrderDetails().cart.totalPrice | currency}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="text-center">
+      <a routerLink="/profile" class="btn btn-secondary btn-lg active mt-5" role="button" aria-pressed="true">Back</a>
+    </div>
+  </div>
+</div>
