@@ -16,10 +16,9 @@ export class OrderConfirmedComponent implements OnInit {
 
   ngOnInit() {
     this.session.getUserDoc().subscribe(user => {
-
-      this.cart = Cart.clone(user.cart);
+      if (user) {
+        this.cart = Cart.clone(user.cart);
+      }
     });
   }
-
-
 }
