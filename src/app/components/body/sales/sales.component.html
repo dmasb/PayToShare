@@ -90,6 +90,12 @@
                 <span class="sale-license pb-2 mb-0 pt-0 mt-0 " *ngIf="license.salePrice > 0">{{1 - license.salePrice / license.price | percent }}</span>
               </div>
             </div>
+            <div class="no-space">
+              <div class="no-space2">
+              <span class="pb-2 mb-0 pt-0 mt-0 ">
+              <app-view-included-products [license]="license"></app-view-included-products></span>
+              </div>
+            </div>
             <p class="text-center text-muted desc-text">{{license.description}}</p>
             <div class="row mt-auto">
               <div class="col-12">
@@ -112,7 +118,7 @@
             </div>
             <div class="container pb-2">
               <div class="row" *ngIf="license.salePrice > 0">
-                <div class="col-5 move-sale-price">
+                <div class="col-8 move-sale-price">
                   <h6 *ngIf="license.quantity === 0" class="stock-font-size"><i class="fa fa-square fa-square-red"></i> Out Of Stock<br></h6>
                   <h6 *ngIf="license.quantity  > 0 && license.quantity < 10" class="stock-font-size"><i class="fa fa-square fa-square-yellow"></i> {{license.quantity}} in
                     Stock<br></h6>
@@ -123,20 +129,16 @@
                 </div>
                 <div class="col">
                   <br>
-                  <app-view-included-products [license]="license"></app-view-included-products>
-                </div>
-                <div class="col">
-                  <br>
-                  <a *ngIf="license.quantity === 0" class="btn btn-block btn-outline-dark btn-disabled mb-1" role="button">
+                  <a *ngIf="license.quantity === 0" class="btn btn-outline-dark disabled font-weight-bold pull-right mb-1" role="button">
                     BUY
                   </a>
-                  <a *ngIf="license.quantity > 0" class="btn btn-block btn-outline-dark btn-license mb-1" role="button" (click)="addLicense(license)">
+                  <a *ngIf="license.quantity > 0" class="btn btn-outline-dark btn-license pull-right mb-1" role="button" (click)="addLicense(license)">
                     BUY
                   </a>
                 </div>
               </div>
               <div class="row" *ngIf="license.salePrice === 0">
-                <div class="col-5">
+                <div class="col-8">
                   <h6 *ngIf="license.quantity === 0" class="stock-font-size stock-move"><i class="fa fa-square fa-square-red"></i> out of Stock<br></h6>
                   <h6 *ngIf="license.quantity  > 0 && license.quantity < 10" class="stock-font-size stock-move"><i class="fa fa-square fa-square-yellow"></i> {{license.quantity}} in
                     Stock<br></h6>
@@ -146,14 +148,10 @@
                 </div>
                 <div class="col">
                   <br>
-                  <app-view-included-products [license]="license"></app-view-included-products>
-                </div>
-                <div class="col">
-                  <br>
-                  <a *ngIf="license.quantity === 0" class="btn btn-block btn-outline-dark btn-disabled mb-1" role="button">
+                  <a *ngIf="license.quantity === 0" class="btn btn-outline-dark disabled font-weight-bold pull-right mb-1" role="button">
                   BUY
                 </a>
-                  <a *ngIf="license.quantity > 0" class="btn btn-block btn-outline-dark btn-license mb-1" role="button" (click)="addLicense(license)">
+                  <a *ngIf="license.quantity > 0" class="btn btn-outline-dark btn-license pull-right mb-1" role="button" (click)="addLicense(license)">
                     BUY
                   </a>
                 </div>
