@@ -28,4 +28,28 @@ export class MypageOrdersComponent implements OnInit {
   viewOrder(id: string) {
     this.router.navigate([`order/${id}`]);
   }
+
+  orderDate() {
+    if (this.orders[0].created < this.orders[this.orders.length - 1].created) {
+      this.orders.sort((a, b) => (a.created > b.created ? -1 : 1));
+    } else {
+      this.orders.sort((a, b) => (a.created < b.created ? -1 : 1));
+    }
+  }
+
+  orderProducts() {
+    if (this.orders[0].cart.numberOfItems < this.orders[this.orders.length - 1].cart.numberOfItems) {
+      this.orders.sort((a, b) => (a.cart.numberOfItems > b.cart.numberOfItems ? -1 : 1));
+    } else {
+      this.orders.sort((a, b) => (a.cart.numberOfItems < b.cart.numberOfItems ? -1 : 1));
+    }
+  }
+
+  orderPrice() {
+    if (this.orders[0].cart.totalPrice < this.orders[this.orders.length - 1].cart.totalPrice) {
+      this.orders.sort((a, b) => (a.cart.totalPrice > b.cart.totalPrice ? -1 : 1));
+    } else {
+      this.orders.sort((a, b) => (a.cart.totalPrice < b.cart.totalPrice ? -1 : 1));
+    }
+  }
 }

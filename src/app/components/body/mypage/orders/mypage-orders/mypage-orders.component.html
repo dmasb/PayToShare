@@ -5,23 +5,24 @@
       <table class="table table-striped">
         <thead>
         <tr>
-          <th scope="col">Date</th>
-          <th scope="col">Order number</th>
-          <th scope="col">Products</th>
-          <th scope="col">Price</th>
+          <th class="table-title" (click)="orderDate()" scope="col">Date</th>
+          <th class="table-title-disabled" scope="col">Order number</th>
+          <th class="table-title" (click)="orderProducts()" scope="col">Products</th>
+          <th class="table-title" (click)="orderPrice()" scope="col">Price</th>
+          <th class="table-title-disabled" scope="col">Action</th>
         </tr>
         </thead>
 
         <tbody>
         <tr *ngFor="let order of orders; index as i">
           <td>{{ order.created.toDate() | date }}</td>
-          <td class="order-link"><a (click)="viewOrder(order.id)">{{order.id}}</a></td>
+          <td>{{order.id}}</td>
           <td>
-            <p *ngFor="let license of order.cart.licenses">{{ license.item.title }}</p>
+            {{order.cart.numberOfItems}}
+            <span *ngIf="order.cart.plan">(+ plan)</span>
           </td>
           <td>{{order.cart.totalPrice | currency}}</td>
-        </tr>
-        <tr>
+          <td class="order-link"><a (click)="viewOrder(order.id)">See</a>
         </tr>
         </tbody>
 
