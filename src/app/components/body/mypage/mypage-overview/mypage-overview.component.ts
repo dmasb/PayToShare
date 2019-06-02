@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IUser} from '../../../../models/user';
 import {UserSessionService} from '../../../../services/user-session.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {MessageService} from '../../../../services/message.service';
 
 @Component({
   selector: 'app-mypage-overview',
@@ -11,13 +12,15 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class MypageOverviewComponent implements OnInit {
   isAdmin: string;
   currentUser: IUser = null;
-  profileUpdated: boolean = false;
+  profileUpdated = false;
   userLoaded = false;
   profile: FormGroup;
   error = false;
 
 
-  constructor(private fb: FormBuilder, private session: UserSessionService) {
+  constructor(private fb: FormBuilder,
+              private session: UserSessionService,
+              private messageService: MessageService) {
     this.profileUpdated = false;
   }
 
@@ -54,6 +57,6 @@ export class MypageOverviewComponent implements OnInit {
   }
 
   isAdminString() {
-    return this.currentUser.rank == 2 ? 'Admin' : 'User';
+    return this.currentUser.rank === 2 ? 'Admin' : 'User';
   }
 }

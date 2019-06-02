@@ -9,10 +9,10 @@ import {Cart} from '../../../models/products/cart';
 import {UserSessionService} from '../../../services/user-session.service';
 import {firestore} from 'firebase/app';
 import Timestamp = firestore.Timestamp;
-import {CookieService} from 'ngx-cookie-service';
 import {User} from '../../../models/user';
 import {Rating} from '../../../models/rating';
 import {StarService} from '../../../services/product/star.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sales',
@@ -32,15 +32,12 @@ export class SalesComponent implements OnInit {
   constructor(private planService: PlanService,
               private salesService: SalesService,
               private userSessionService: UserSessionService,
-              private cookieService: CookieService,
-              private starService: StarService) {
-    this.cart = new Cart();
-    this.cookieService.set('cart', JSON.stringify(this.cart), 1, '/');
+              private starService: StarService,
+              private router: Router) {
   }
 
   ngOnInit() {
     this.starService.getRatings().subscribe(ratings => this.ratings = ratings);
-    this.cart = new Cart();
     this.salesService.getSaleOnType(SaleType.LICENSE).subscribe(sales => this.licenseSale = sales);
     this.salesService.getSaleOnType(SaleType.PLAN).subscribe(sales => this.planSale = sales);
     this.userSessionService.getUserDoc().subscribe(user => {
@@ -48,10 +45,6 @@ export class SalesComponent implements OnInit {
         this.userId = user.id;
         this.user = user;
         this.cart = Cart.clone(user.cart);
-      } else {
-        const tempCart = JSON.parse(this.cookieService.get('cart')) as Cart;
-        this.cart = Cart.clone(tempCart);
-        console.log(this.cart);
       }
     });
   }
@@ -66,24 +59,32 @@ export class SalesComponent implements OnInit {
   }
 
   addLicense(license: License) {
-    this.cart.add(license);
-    this.cookieService.set('cart', JSON.stringify(this.cart));
-    if (this.user) {
+    if (!this.cart) {
+      this.router.navigate(['/register']);
+    } else {
+      this.cart.add(license);
       this.userSessionService.updateCart(this.cart);
+      const x = document.getElementById('myDiv');
+      x.style.display = 'block';
+      setTimeout(() => {
+        x.style.display = 'none';
+        console.log('tick');
+      }, 1000);
     }
-    const x = document.getElementById('myDiv');
-    x.style.display = 'block';
-    setTimeout(() => {
-      x.style.display = 'none';
-      console.log('tick');
-    }, 1000);
   }
 
   addPlan(plan: Plan) {
-    this.cart.addPlan(plan);
-    this.cookieService.set('cart', JSON.stringify(this.cart));
-    if (this.user) {
+    if (!this.cart) {
+      this.router.navigate(['/register']);
+    } else {
+      this.cart.addPlan(plan);
       this.userSessionService.updateCart(this.cart);
+      const x = document.getElementById('myDiv');
+      x.style.display = 'block';
+      setTimeout(() => {
+        x.style.display = 'none';
+        console.log('tick');
+      }, 1000);
     }
   }
 

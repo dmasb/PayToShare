@@ -8,6 +8,7 @@ import {Rating} from '../../../models/rating';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Product} from '../../../models/products/product';
 import {ProductsService} from '../../../services/crud/products.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-licenses',
@@ -28,7 +29,8 @@ export class LicensesComponent implements OnInit {
               private userSessionService: UserSessionService,
               private starService: StarService,
               private modalService: NgbModal,
-              private productService: ProductsService) {
+              private productService: ProductsService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -43,8 +45,12 @@ export class LicensesComponent implements OnInit {
   }
 
   add(license: License) {
-    this.cart.add(license);
-    this.userSessionService.updateCart(this.cart);
+    if (!this.cart) {
+      this.router.navigate(['/register']);
+    } else {
+      this.cart.add(license);
+      this.userSessionService.updateCart(this.cart);
+    }
   }
 
   consLog(licenseId) {

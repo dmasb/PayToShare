@@ -4,24 +4,24 @@
 
     <!--MY CART-->
     <li class="nav-item">
-      <a class="nav-link text-secondary" id="mycart-tab" data-toggle="tab" href="#mycart" role="tab"
+      <a (click)="messageService.clear()" class="nav-link text-secondary" id="mycart-tab" data-toggle="tab" href="#mycart" role="tab"
          aria-controls="contact" aria-selected="false">My Cart</a>
     </li>
 
     <!--ORDERS-->
     <li class="nav-item">
-      <a class="nav-link text-secondary" id="orders-tab" data-toggle="tab" href="#orders" role="tab"
+      <a (click)="messageService.clear()" class="nav-link text-secondary" id="orders-tab" data-toggle="tab" href="#orders" role="tab"
          aria-controls="contact" aria-selected="false">Orders</a>
     </li>
 
     <!--MYPAGE SETTINGS-->
     <li class="nav-item">
-      <a class="nav-link text-secondary" id="account-tab" data-toggle="tab" href="#account" role="tab"
+      <a (click)="messageService.clear()" class="nav-link text-secondary" id="account-tab" data-toggle="tab" href="#account" role="tab"
          aria-controls="contact" aria-selected="false">My Account</a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link text-secondary" id="subscriptions-tab" data-toggle="tab" href="#subscriptions" role="tab"
+      <a (click)="messageService.clear()" class="nav-link text-secondary" id="subscriptions-tab" data-toggle="tab" href="#subscriptions" role="tab"
          aria-controls="contact" aria-selected="true">Active subscriptions</a>
     </li>
 
