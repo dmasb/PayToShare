@@ -70,9 +70,9 @@
       <div class="row border-top mt-3">
         <div class="col-12 mt-3">
           <h3 class="text-right">Total: {{this.cart.totalPrice | currency}}</h3>
-          <a *ngIf="cart.numberOfItems === 0" class="btn btn-purchase disabled">Confirm purchase
+          <a *ngIf="cart.numberOfItems === 0" class="btn btn-purchase disabled text-white">Confirm purchase
           </a>
-          <a *ngIf="cart.numberOfItems > 0" class="btn btn-purchase" (click)="process()">Confirm purchase
+          <a *ngIf="cart.numberOfItems > 0" class="btn btn-purchase text-white" (click)="process()">Confirm purchase
           </a>
         </div>
       </div>
