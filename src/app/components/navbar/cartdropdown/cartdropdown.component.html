@@ -26,7 +26,7 @@
             <span class="item-price" *ngIf="cart.plan.salePrice > 0">{{cart.plan.salePrice | currency}}</span><br>
             <span class="item-price" *ngIf="cart.plan.salePrice === 0">{{cart.plan.price | currency}}</span><br>
           </li>
-          <h6 class="mt-4 mb-3 font-italic font-weight-bold">Licenses: </h6>
+          <h6 class="mt-4 mb-3 font-italic font-weight-bold" *ngIf="cart.licenses.length > 0">Licenses: </h6> <!-- *ngIf to check if cart licenses are 0 then it won't list licenses. Cuz there aint nothing to show. -->
           <li class="clearfix" *ngFor="let license of cart.licenses">
 
             <span><img *ngIf="license.item.imageUrl" src="{{license.item.imageUrl}}" alt="item1"/></span>
