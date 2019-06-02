@@ -36,6 +36,7 @@ export class MypageComponent implements OnInit {
         this.currentUser = user;
         this.profile = this.fb.group(user);
         this.userLoaded = true;
+        this.error = true;
       } else {
         this.error = true;
       }
