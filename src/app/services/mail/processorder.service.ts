@@ -59,24 +59,24 @@ export class ProcessorderService {
       }
 
       if (unavailableLicenses.length === 0) {
+        if (cart.plan) {
+          const planSub = new PlanSubscription(
+            user.id,
+            cart.plan.id,
+            cart.plan,
+            Timestamp.fromMillis(Timestamp.now().toMillis() + 2592000000));
+          this.afs.collection('plan_subscriptions').ref
+            .where('userID', '==', user.id).get().then(res => {
+            if (res.empty) {
+              this.afs.collection('plan_subscriptions').add(Object.assign({}, planSub));
+            } else {
+              res.docs.map(document => {
+                document.ref.update(Object.assign({}, planSub));
+              });
+            }
+          });
+        }
         for (const license of cart.licenses) {
-          if (cart.plan) {
-            const planSub = new PlanSubscription(
-              user.id,
-              cart.plan.id,
-              cart.plan,
-              Timestamp.fromMillis(Timestamp.now().toMillis() + 2592000000));
-            this.afs.collection('plan_subscriptions').ref
-              .where('userID', '==', user.id).get().then(res => {
-              if (res.empty) {
-                this.afs.collection('plan_subscriptions').add(Object.assign({}, planSub));
-              } else {
-                res.docs.map(document => {
-                  document.ref.update(Object.assign({}, planSub));
-                });
-              }
-            });
-          }
           const oldLicense = JSON.parse(JSON.stringify(license.item));
           this.afs.collection('sales').ref.where('saleObjects', 'array-contains', oldLicense)
             .get().then(res => {
