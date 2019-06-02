@@ -68,6 +68,15 @@ hr {
   border-bottom: 4px solid #489afb;
 }
 
+.second-type-moving{
+  bottom: 6px;
+  left: 224px;
+}
+
+.on-the-move {
+  top: 189px;
+  left: 160px;
+}
 .desc-text {
   font-size: 15px;
   margin-bottom: 0;
@@ -298,11 +307,13 @@ video {
     border-bottom: 4px solid #489afb;
   }
 
-  .fa-info-circle {
-    font-size: 23px;
-    position: relative;
-    top: 8px;
-    left: 65px;
+  .second-type-moving{
+    bottom: 6px;
+    left: 254px;
+  }
+  .on-the-move {
+    top:204px;
+    left: 195px;
   }
 
   .sale {
@@ -345,4 +356,14 @@ video {
   cursor: not-allowed;
   pointer-events: none;
   font-weight: bold;
+}
+
+.second-type-moving{
+  bottom: 6px;
+  left: 224px;
+}
+
+.second-type-moving{
+  bottom: 6px;
+  left: 254px;
 }
