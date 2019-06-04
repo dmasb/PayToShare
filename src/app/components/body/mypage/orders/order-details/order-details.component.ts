@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Order} from '../../../../../models/order';
 import {ProcessorderService} from '../../../../../services/mail/processorder.service';
 import {ActivatedRoute} from '@angular/router';
+import {User} from '../../../../../models/user';
 
 @Component({
   selector: 'app-order-details',
